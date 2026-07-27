@@ -20,7 +20,8 @@
 ## 1. 파이썬 데이터 수집
 
 ```bash
-cd /Users/huisang/Documents/peer
+git clone https://github.com/nnaver2025-spec/peer.git
+cd peer
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -30,7 +31,7 @@ python peer_tracker.py
 실행하면 그룹별 인덱스/스프레드/Z-Score가 콘솔에 찍히고 `frontend/public/dashboard_data.json`이 갱신된다.
 데이터가 없는 티커는 경고만 남기고 그룹 계산에서 제외한다.
 
-국내 종목은 티커 대신 종목명으로 표시한다. 매핑은 `peer_tracker.py`의 `KR_NAMES`에 있고,
+국내 종목은 티커 대신 종목명으로 표시한다. 매핑은 `kr_names.json`에 있고,
 JSON에는 `{"ticker": "005930.KS", "label": "삼성전자", "missing": false}` 형태로 담긴다.
 매핑에 없는 티커(해외 종목)는 티커를 그대로 쓴다.
 
