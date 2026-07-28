@@ -238,6 +238,35 @@ def normalize_to_100(frame: pd.DataFrame) -> pd.Series:
     return (frame / frame.iloc[0] * 100).mean(axis=1)
 
 
+def relative_strength(frame: pd.DataFrame) -> dict[str, float]:
+    """티커별 구간 상대강도.
+
+    기준일 100 정규화 지수의 마지막 값이다. 전 종목이 같은 날 100에서
+    출발하므로 이 값이 그대로 6개월 상대강도가 되고, 절대 주가 수준과 무관하다.
+    """
+    if frame.empty:
+        return {}
+
+    normalized = frame / frame.iloc[0] * 100
+    return {t: float(normalized[t].iloc[-1]) for t in frame.columns}
+
+
+def select_bellwether(frame: pd.DataFrame) -> str | None:
+    """RS 1등 종목 = 주도주. 동점은 컬럼 순서로 끊어 결과를 고정한다."""
+    rs = relative_strength(frame)
+    if not rs:
+        return None
+
+    order = {t: i for i, t in enumerate(frame.columns)}
+    return min(rs, key=lambda t: (-rs[t], order[t]))
+
+
+def select_top_pick(caps: dict[str, float | None]) -> str | None:
+    """시가총액 1등 종목 = 대장주. 표시 전용이고 인덱스 계산에는 쓰지 않는다."""
+    known = {t: cap for t, cap in caps.items() if cap}
+    return max(known, key=lambda t: known[t]) if known else None
+
+
 def rolling_zscore(series: pd.Series) -> pd.Series:
     """20일 이동 평균/표준편차 기준 Z-Score. 표본 부족이나 표준편차 0이면 빈 시리즈."""
     rolling = series.rolling(Z_WINDOW)
