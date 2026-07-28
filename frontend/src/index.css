@@ -1,12 +1,74 @@
 @import 'tailwindcss';
 
+/* Linear 계열 다크 팔레트.
+   배경은 순수 검정을 피해 약간 파란 기가 도는 저채도 회색을 쓴다.
+   강조색은 방향성 신호(오버/언더슈팅)에만 쓰고 나머지는 회색 단계로 처리한다. */
+@theme {
+  --color-canvas: #0e0f11;
+  --color-surface: #16171a;
+  --color-raised: #1c1e22;
+  --color-line: #26282d;
+  --color-line-strong: #35383f;
+
+  --color-ink: #e8e9ed;
+  --color-muted: #9a9da6;
+  --color-faint: #6b6e77;
+
+  --color-accent: #7c8cff;
+  --color-accent-soft: #1e2138;
+  --color-warn: #ff5d73;
+  --color-warn-soft: #2c1a20;
+  --color-good: #4ec9a0;
+
+  /* 가격 등락 전용. 국내 관행대로 상승 적색 / 하락 청색을 쓰되,
+     Z-Score의 warn/accent와 구분되는 톤으로 둔다. 같은 화면에서 파랑이
+     "언더슈팅(기회)"과 "하락"을 동시에 뜻하면 읽는 사람이 헷갈린다. */
+  --color-up: #f0616e;
+  --color-down: #4a9eff;
+}
+
 :root {
   color-scheme: dark;
 }
 
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   margin: 0;
-  background-color: #0a0a0b;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
   font-family: ui-sans-serif, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
   letter-spacing: 0;
+}
+
+/* 숫자 열이 좌우로 흔들리지 않도록 자릿수 폭을 고정한다. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 다크에서 기본 스크롤바는 밝은 띠로 튄다. 표면 톤에 맞춰 낮춘다. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-line-strong);
+  border: 3px solid transparent;
+  border-radius: 6px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }

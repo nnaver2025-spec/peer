@@ -1,3 +1,11 @@
 .venv/
 __pycache__/
 .DS_Store
+.pytest_cache/
+
+# 리팩터링 전 사본. 저장소에는 git 이력으로 남으므로 올리지 않는다.
+src_backup/
+*_backup.py
+
+# 개인 작업용 프롬프트 메모
+prompts/
