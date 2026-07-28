@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.peer.tracker.update</string>
+
+    <!-- 런처는 ~/.peer-cron에 둔다. macOS TCC가 launchd/cron이 Documents 안의
+         스크립트를 직접 실행하는 것을 막기 때문이다(Operation not permitted).
+         홈 밖 런처가 Documents 안 update.sh를 호출하면 정상 동작한다. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/huisang/.peer-cron/run_update.sh</string>
+    </array>
+
+    <key>StartInterval</key>
+    <integer>1800</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/huisang/.peer-cron/launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/huisang/.peer-cron/launchd.err.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+</dict>
+</plist>
