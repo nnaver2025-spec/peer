@@ -46,6 +46,16 @@ KR_NAMES: dict[str, str] = (
     json.loads(_NAMES_PATH.read_text(encoding="utf-8")) if _NAMES_PATH.exists() else {}
 )
 
+# 해외 티커 표시용 종목명. analysis/fetch_intl_names.py가 생성한다.
+# 일본/대만/홍콩/중국은 티커가 숫자라(285A.T) 그대로 두면 식별이 안 된다.
+# 미국/유럽 알파벳 티커는 그 자체로 읽히므로 매핑하지 않는다.
+_INTL_NAMES_PATH = Path(__file__).parent / "intl_names.json"
+INTL_NAMES: dict[str, str] = (
+    json.loads(_INTL_NAMES_PATH.read_text(encoding="utf-8"))
+    if _INTL_NAMES_PATH.exists()
+    else {}
+)
+
 
 Z_WINDOW = 20                # Z-Score 이동 윈도우 (거래일)
 ALERT_THRESHOLD = 1.5
@@ -69,8 +79,12 @@ OUTPUT_PATH = Path(__file__).parent / "frontend" / "public" / "dashboard_data.js
 
 
 def label_of(ticker: str) -> str:
-    """국내 티커는 종목명으로, 해외 티커는 티커 그대로 표시한다."""
-    return KR_NAMES.get(ticker, ticker)
+    """티커를 표시명으로 바꾼다.
+
+    국내는 한글 종목명, 숫자 티커를 쓰는 아시아권은 영문 회사명을 쓴다.
+    매핑에 없으면(미국/유럽 알파벳 티커) 티커를 그대로 쓴다.
+    """
+    return KR_NAMES.get(ticker) or INTL_NAMES.get(ticker) or ticker
 
 
 def _clean_close(close: pd.Series | pd.DataFrame, ticker: str) -> pd.Series | None:
@@ -287,6 +301,81 @@ def select_bellwether(frame: pd.DataFrame) -> str | None:
     return min(rs, key=lambda t: (-rs[t], order[t]))
 
 
+def universe_returns(
+    closes: dict[str, pd.Series], start: date | None = None
+) -> dict[str, float]:
+    """티커별 구간 수익률. RS Rating의 원재료다.
+
+    가격 수준과 무관한 비율이라 저가주와 고가주를 같은 자에 놓고 비교할 수 있다.
+    두 거래일 미만이거나 기준가가 0이면 측정 불가로 보고 제외한다.
+    """
+    out: dict[str, float] = {}
+    for ticker, series in closes.items():
+        window = series if start is None else series.loc[series.index >= pd.Timestamp(start)]
+        if len(window) < 2:
+            continue
+        base = float(window.iloc[0])
+        if base == 0:
+            continue
+        out[ticker] = float(window.iloc[-1]) / base - 1
+    return out
+
+
+def ticker_quote(series: pd.Series) -> dict[str, object] | None:
+    """종목 태그 호버용 시세.
+
+    이미 받아둔 종가 시리즈에서 뽑으므로 추가 조회가 없다.
+    `change`는 전일 대비, `period`는 구간 시작 대비 수익률(%)이다.
+    구간 시작 기준은 RS와 같아 화면에서 두 값이 서로 어긋나지 않는다.
+    """
+    clean = series.dropna()
+    if clean.empty:
+        return None
+
+    last = float(clean.iloc[-1])
+    change = None
+    if len(clean) >= 2:
+        prev = float(clean.iloc[-2])
+        if prev:
+            change = round((last / prev - 1) * 100, 2)
+
+    base = float(clean.iloc[0])
+    period = round((last / base - 1) * 100, 2) if base else None
+
+    return {
+        "close": round(last, 2),
+        "change": change,
+        "period": period,
+        "date": clean.index[-1].date().isoformat(),
+    }
+
+
+def rs_ratings(returns: dict[str, float]) -> dict[str, int]:
+    """구간 수익률을 유니버스 내 백분위 등급(1~100)으로 환산한다.
+
+    IBD의 RS Rating과 같은 성격이다. 100이 유니버스 최상위고 1이 최하위다.
+    최하위에 0을 주지 않는 이유는 "측정 불가(None)"와 구분하기 위해서다.
+    순위만 쓰므로 특정 종목이 몇 배 올랐는지는 등급에 반영되지 않는다.
+    그 크기 정보는 `bellwether_rs`(정규화 지수)에 그대로 남겨 둔다.
+    """
+    if not returns:
+        return {}
+
+    values = pd.Series(returns)
+    if len(values) == 1:
+        return {t: 100 for t in values.index}
+
+    # 순위를 [0, 1]로 펴서 최하위가 0, 최상위가 1이 되게 한다. pct=True를 그대로
+    # 쓰면 유니버스가 작을 때 최하위가 1/n(3종목이면 33)으로 떠서 척도가 왜곡된다.
+    ranks = values.rank(method="average")
+    spread = ranks.max() - ranks.min()
+    if spread == 0:  # 전 종목 동일 수익률
+        return {t: 100 for t in values.index}
+
+    scaled = (ranks - ranks.min()) / spread
+    return {t: max(1, int(round(p * 100))) for t, p in scaled.items()}
+
+
 def select_top_pick(caps: dict[str, float | None]) -> str | None:
     """시가총액 1등 종목 = 대장주. 표시 전용이고 인덱스 계산에는 쓰지 않는다."""
     known = {t: cap for t, cap in caps.items() if cap}
@@ -316,6 +405,7 @@ def analyze_group(
     end: date,
     closes: dict[str, pd.Series],
     caps: dict[str, float | None],
+    rs_rating_map: dict[str, int] | None = None,
 ) -> dict | None:
     print(f"[{key}] {cfg['desc']}")
     leads: list[pd.Series] = []
@@ -383,6 +473,15 @@ def analyze_group(
     latest_z = float(zscore.iloc[-1])
     history = pd.DataFrame({"spread": spread, "z": zscore}).dropna().tail(HISTORY_POINTS)
 
+    # 종목 태그 호버용 시세. 스프레드와 같은 구간을 써서 화면의 두 수치가
+    # 서로 다른 기준을 보지 않게 한다.
+    def quote_of(ticker: str) -> dict[str, object] | None:
+        series = closes.get(ticker)
+        if series is None:
+            return None
+        window = series.loc[series.index >= pd.Timestamp(spread_start)]
+        return ticker_quote(window if not window.empty else series)
+
     tier = coupling["tier"] if coupling else "unknown"
     if coupling:
         corr_text = (
@@ -397,8 +496,10 @@ def analyze_group(
     )
     if bellwether:
         z_text = f"{internal_z:+.2f}" if internal_z is not None else "n/a"
+        rating = (rs_rating_map or {}).get(bellwether)
+        rating_text = f"{rating}" if rating is not None else "n/a"
         print(
-            f"  bellwether={label_of(bellwether)} rs={bell_rs:.1f} "
+            f"  bellwether={label_of(bellwether)} rs_rating={rating_text} rs={bell_rs:.1f} "
             f"internal_z={z_text} top_pick={label_of(top_pick) if top_pick else 'n/a'}"
         )
 
@@ -407,11 +508,11 @@ def analyze_group(
         "sector": cfg.get("sector", "기타"),
         "desc": cfg["desc"],
         "lead_tickers": [
-            {"ticker": t, "label": label_of(t), "missing": t in missing}
+            {"ticker": t, "label": label_of(t), "missing": t in missing, "quote": quote_of(t)}
             for t in cfg["lead_tickers"]
         ],
         "lag_tickers": [
-            {"ticker": t, "label": label_of(t), "missing": t in missing}
+            {"ticker": t, "label": label_of(t), "missing": t in missing, "quote": quote_of(t)}
             for t in cfg["lag_tickers"]
         ],
         "base_date": common[0].date().isoformat(),
@@ -424,6 +525,11 @@ def analyze_group(
         "bellwether_ticker": bellwether,
         "bellwether_name": label_of(bellwether) if bellwether else None,
         "bellwether_rs": round(bell_rs, 2) if bell_rs is not None else None,
+        # 0~100 척도. 국내 유니버스 백분위이므로 100이 국내 최상위다.
+        # bellwether_rs(정규화 지수)는 상한이 없어 크기 근거로만 남긴다.
+        "bellwether_rs_rating": (
+            (rs_rating_map or {}).get(bellwether) if bellwether else None
+        ),
         "bellwether_index": (
             round(float(bell_index.iloc[-1]), 2) if bell_index is not None else None
         ),
@@ -489,6 +595,17 @@ def main() -> None:
     lag_universe = sorted(
         {t for cfg in PEER_GROUPS.values() for t in cfg["lag_tickers"] if t in closes}
     )
+
+    # RS Rating은 국내 유니버스 전체를 한 자에 놓고 매긴 백분위(1~100)다.
+    # 그룹 안에서가 아니라 국내 전 종목 중 몇 등인지를 나타내므로,
+    # 100은 "국내에서 가장 센 종목"을 뜻한다.
+    rs_returns = universe_returns({t: closes[t] for t in lag_universe}, start)
+    rs_rating_map = rs_ratings(rs_returns)
+    print(
+        f"RS Rating 산출: {len(rs_rating_map)}/{len(lag_universe)}개 "
+        f"(국내 유니버스 백분위, {start}~)"
+    )
+
     print(f"국내 티커 {len(lag_universe)}개 시가총액 수집 (워커 {CAP_WORKERS})")
     t1 = time.monotonic()
     caps = fetch_market_caps(lag_universe)
@@ -500,7 +617,8 @@ def main() -> None:
     groups = [
         result
         for key, cfg in PEER_GROUPS.items()
-        if (result := analyze_group(key, cfg, start, end, closes, caps)) is not None
+        if (result := analyze_group(key, cfg, start, end, closes, caps, rs_rating_map))
+        is not None
     ]
     # 커플링이 강한 그룹을 먼저, 그 안에서 괴리가 큰 순서로 세운다.
     tier_rank = {"strong": 0, "moderate": 1, "weak": 2, "unknown": 3}
