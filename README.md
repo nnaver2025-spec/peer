@@ -35,6 +35,13 @@ python peer_tracker.py
 JSON에는 `{"ticker": "005930.KS", "label": "삼성전자", "missing": false}` 형태로 담긴다.
 매핑에 없는 티커(해외 종목)는 티커를 그대로 쓴다.
 
+계산 로직 단위 테스트는 네트워크 없이 돈다.
+
+```bash
+pip install -r requirements-dev.txt
+python -m pytest tests/ -v
+```
+
 ## 2. 프론트엔드 실행
 
 ```bash
@@ -55,6 +62,16 @@ npm run dev
 4. `|Z| >= 1.5`이고 커플링이 `strong` 또는 `moderate`이면 `alert: true`.
    임계는 넘었지만 커플링이 약한 경우는 `z_extreme: true, alert: false`로 구분한다.
    양수는 오버슈팅(국내 과열), 음수는 언더슈팅(국내 갭 확대).
+5. 국내(lag) 종목에서 두 종목을 따로 뽑는다. 최근 6개월 상대강도(RS) 1등이
+   `bellwether_ticker`(주도주), 시가총액 1등이 `top_pick_ticker`(대장주)다.
+   두 선정은 서로 독립이라 같은 종목일 수도 있다. `bellwether_index`는 RS 1등
+   종목만 100 정규화한 지수, `rest_index`는 그 종목을 뺀 나머지 평균이다.
+   Top Pick은 표시 전용이고 인덱스 계산에는 관여하지 않는다.
+6. `internal_spread = rest_index - bellwether_index`이고 같은 20일 Z-Score로
+   `bellwether_z_score`를 낸다. 음수일수록 주도주만 앞서간 상태(나머지가 덜 오름,
+   추격 매수 여지)이고 양수는 나머지가 주도주보다 앞선 순환매 확산이다.
+   `|internal Z| >= 1.5`이면 `bellwether_alert: true`.
+   국내 종목끼리의 관계이므로 해외-국내 커플링 등급으로 게이팅하지 않는다.
 
 ## 커플링 강도
 
