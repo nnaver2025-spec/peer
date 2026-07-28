@@ -2,20 +2,18 @@ import { useEffect, useMemo, useState } from 'react'
 import { AlertTriangle, ArrowDownRight, ArrowUpRight, ExternalLink, RefreshCw } from 'lucide-react'
 import Sparkline from './Sparkline.jsx'
 import CouplingMeter from './CouplingMeter.jsx'
+import Bellwether from './Bellwether.jsx'
 import { metaOf } from './coupling.js'
 
 const THRESHOLD = 1.5
 
-// Z-Score 구간별 카드 테두리 / 강조 색상
+// Z-Score 구간별 강조. 색은 숫자와 추이선에만 쓰고 카드 테두리는 항상 회색으로 둔다.
 function zoneOf(z) {
   if (z >= THRESHOLD) {
     return {
       label: '오버슈팅',
-      border: 'border-rose-500/70',
-      ring: 'shadow-[0_0_0_1px_rgba(244,63,94,0.35)]',
-      text: 'text-rose-400',
-      chip: 'bg-rose-500/10 text-rose-300 border-rose-500/30',
-      stroke: '#fb7185',
+      text: 'text-warn',
+      stroke: '#d92d4b',
       Icon: ArrowUpRight,
       note: '국내가 해외보다 과도하게 앞섬',
     }
@@ -23,22 +21,16 @@ function zoneOf(z) {
   if (z <= -THRESHOLD) {
     return {
       label: '언더슈팅',
-      border: 'border-sky-500/70',
-      ring: 'shadow-[0_0_0_1px_rgba(14,165,233,0.35)]',
-      text: 'text-sky-400',
-      chip: 'bg-sky-500/10 text-sky-300 border-sky-500/30',
-      stroke: '#38bdf8',
+      text: 'text-accent',
+      stroke: '#3d5afe',
       Icon: ArrowDownRight,
       note: '국내 갭 확대, 따라잡기 여지',
     }
   }
   return {
     label: '중립',
-    border: 'border-neutral-800',
-    ring: '',
-    text: 'text-neutral-300',
-    chip: 'bg-neutral-800/60 text-neutral-400 border-neutral-700',
-    stroke: '#a3a3a3',
+    text: 'text-zinc-900',
+    stroke: '#a1a1aa',
     Icon: null,
     note: '통계적 정상 범위',
   }
@@ -54,10 +46,10 @@ function quoteUrl(ticker) {
 
 function TickerRow({ label, tickers, index, accent }) {
   return (
-    <div className="flex items-start justify-between gap-3">
+    <div className="flex items-start justify-between gap-4">
       <div className="min-w-0">
-        <div className="text-[11px] font-medium uppercase tracking-normal text-neutral-500">{label}</div>
-        <div className="mt-1 flex flex-wrap gap-1">
+        <div className="text-xs text-zinc-400">{label}</div>
+        <div className="mt-2 flex flex-wrap gap-x-1.5 gap-y-1">
           {tickers.map((t) => (
             <a
               key={t.ticker}
@@ -69,23 +61,23 @@ function TickerRow({ label, tickers, index, accent }) {
                   ? `${t.ticker} · 가격 데이터 없음 (계산 제외)`
                   : `${t.ticker} 시세 보기`
               }
-              className={`group inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[11px] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400 ${
+              className={`group inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[13px] leading-6 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 ${
                 t.missing
-                  ? 'border-neutral-800 text-neutral-600 line-through hover:text-neutral-500'
-                  : 'border-neutral-700 bg-neutral-900 text-neutral-300 hover:border-neutral-500 hover:text-neutral-50'
+                  ? 'text-zinc-300 line-through hover:text-zinc-400'
+                  : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'
               }`}
             >
               {t.label}
               <ExternalLink
-                size={9}
+                size={11}
                 aria-hidden="true"
-                className="shrink-0 opacity-0 transition-opacity group-hover:opacity-70"
+                className="shrink-0 opacity-0 transition-opacity group-hover:opacity-60"
               />
             </a>
           ))}
         </div>
       </div>
-      <div className={`shrink-0 text-right font-mono text-sm ${accent}`}>{index.toFixed(1)}</div>
+      <div className={`tnum shrink-0 text-right text-[15px] ${accent}`}>{index.toFixed(1)}</div>
     </div>
   )
 }
@@ -97,78 +89,71 @@ function GroupCard({ group }) {
   const trusted = group.coupling?.tier === 'strong' || group.coupling?.tier === 'moderate'
 
   return (
-    <article
-      className={`flex flex-col gap-4 rounded-lg border bg-neutral-950/80 p-4 ${
-        trusted ? `${zone.border} ${zone.ring}` : 'border-neutral-800'
-      }`}
-    >
-      <header className="flex items-start justify-between gap-3">
+    <article className="flex flex-col gap-7 rounded-lg border border-line bg-surface p-5 sm:p-7">
+      <header className="flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <div className="flex items-center gap-1.5">
-            <span className="rounded bg-neutral-800/80 px-1.5 py-0.5 text-[10px] text-neutral-400">
-              {group.sector}
-            </span>
-            <h2 className="truncate text-base font-semibold text-neutral-100">{group.desc}</h2>
-          </div>
-          <p className="mt-0.5 font-mono text-[11px] text-neutral-500">
-            {group.lead_tickers.length} vs {group.lag_tickers.length} 종목
+          <h2 className="truncate text-[17px] font-medium leading-7 text-zinc-900">{group.desc}</h2>
+          <p className="tnum mt-1 text-[13px] text-zinc-400">
+            {group.sector} · 해외 {group.lead_tickers.length} / 국내 {group.lag_tickers.length}
           </p>
         </div>
         <span
           title={coupling.note}
-          className={`flex shrink-0 items-center gap-1 rounded border px-2 py-0.5 text-[11px] ${coupling.chip}`}
+          className={`flex shrink-0 items-center gap-1.5 text-[13px] ${coupling.chip}`}
         >
+          <span className={`size-1.5 rounded-full ${coupling.dot}`} aria-hidden="true" />
           {coupling.label}
         </span>
       </header>
 
-      <div className="flex items-end justify-between gap-3">
+      <div className="flex items-end justify-between gap-6">
         <div>
-          <div className="text-[11px] uppercase text-neutral-500">Z-Score</div>
+          <div className="text-[13px] text-zinc-400">Z-Score</div>
           <div
-            className={`flex items-center gap-1 font-mono text-3xl font-semibold ${
-              trusted ? zone.text : 'text-neutral-500'
+            className={`tnum mt-1 flex items-center gap-1.5 text-[44px] font-medium leading-none ${
+              trusted ? zone.text : 'text-zinc-400'
             }`}
           >
-            {Icon && <Icon size={20} aria-hidden="true" />}
+            {Icon && <Icon size={26} strokeWidth={2} aria-hidden="true" />}
             {group.zscore > 0 ? '+' : ''}
             {group.zscore.toFixed(2)}
           </div>
         </div>
         <div className="text-right">
-          <div className="text-[11px] uppercase text-neutral-500">Spread</div>
-          <div className="font-mono text-lg text-neutral-200">
+          <div className="text-[13px] text-zinc-400">Spread</div>
+          <div className="tnum mt-1 text-xl leading-none text-zinc-700">
             {group.spread > 0 ? '+' : ''}
             {group.spread.toFixed(2)}
           </div>
         </div>
       </div>
 
-      <Sparkline points={group.history} stroke={trusted ? zone.stroke : '#525252'} />
+      <Sparkline points={group.history} stroke={trusted ? zone.stroke : '#d4d4d8'} />
 
-      <div className="border-t border-neutral-800 pt-3">
+      <div className="border-t border-line pt-6">
         <CouplingMeter coupling={group.coupling} />
       </div>
 
-      <div className="flex flex-col gap-3 border-t border-neutral-800 pt-3">
+      <div className="flex flex-col gap-5 border-t border-line pt-6">
         <TickerRow
           label="Lead 해외"
           tickers={group.lead_tickers}
           index={group.lead_index}
-          accent="text-neutral-400"
+          accent="text-zinc-500"
         />
         <TickerRow
           label="Lag 국내"
           tickers={group.lag_tickers}
           index={group.lag_index}
-          accent="text-neutral-200"
+          accent="text-zinc-800"
         />
+        <Bellwether group={group} />
       </div>
 
-      <p className="text-[11px] text-neutral-500">
+      <p className="text-[13px] leading-6 text-zinc-500">
         {group.alert ? (
-          <span className={`inline-flex items-center gap-1 ${zone.text}`}>
-            <AlertTriangle size={11} aria-hidden="true" />
+          <span className={`inline-flex items-center gap-1.5 ${zone.text}`}>
+            <AlertTriangle size={13} aria-hidden="true" />
             {zone.label} · {zone.note}
           </span>
         ) : group.z_extreme ? (
@@ -233,9 +218,9 @@ export default function App() {
     return (
       <main className="flex min-h-screen items-center justify-center px-6 text-center">
         <div className="max-w-md">
-          <AlertTriangle className="mx-auto mb-3 text-amber-400" aria-hidden="true" />
-          <p className="text-neutral-200">dashboard_data.json을 불러오지 못했습니다 ({error})</p>
-          <p className="mt-2 font-mono text-xs text-neutral-500">python peer_tracker.py</p>
+          <AlertTriangle className="mx-auto mb-4 text-warn" aria-hidden="true" />
+          <p className="text-zinc-800">dashboard_data.json을 불러오지 못했습니다 ({error})</p>
+          <p className="mt-3 font-mono text-sm text-zinc-400">python peer_tracker.py</p>
         </div>
       </main>
     )
@@ -244,7 +229,7 @@ export default function App() {
   if (!data) {
     return (
       <main className="flex min-h-screen items-center justify-center">
-        <RefreshCw className="animate-spin text-neutral-600" aria-hidden="true" />
+        <RefreshCw className="animate-spin text-zinc-300" aria-hidden="true" />
       </main>
     )
   }
@@ -255,91 +240,93 @@ export default function App() {
   ).length
 
   return (
-    <div className="min-h-screen text-neutral-200">
-      <header className="border-b border-neutral-800 bg-neutral-950/60 px-6 py-5">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-4">
-          <div>
-            <h1 className="text-xl font-semibold text-neutral-50">Peer Spread Tracker</h1>
-            <p className="mt-1 text-xs text-neutral-500">
+    <div className="min-h-screen text-zinc-800">
+      <header className="border-b border-line bg-surface">
+        <div className="mx-auto flex max-w-[1400px] flex-wrap items-end justify-between gap-x-8 gap-y-6 px-5 py-8 sm:px-8 sm:py-10">
+          <div className="max-w-xl">
+            <h1 className="text-2xl font-medium leading-8 text-zinc-900">Peer Spread Tracker</h1>
+            <p className="mt-2 text-[15px] leading-7 text-zinc-500">
               Lag(국내) - Lead(해외) 정규화 인덱스 스프레드 · {data.z_window}일 Z-Score · 임계 |Z|{' '}
               {data.alert_threshold} · 커플링 표본 {data.coupling_start}~
             </p>
           </div>
-          <dl className="flex items-end gap-6 text-right">
+          <dl className="flex flex-wrap items-end gap-x-10 gap-y-4 text-right">
             <div>
-              <dt className="text-[11px] uppercase text-neutral-500">그룹</dt>
-              <dd className="font-mono text-lg text-neutral-200">{data.groups.length}</dd>
+              <dt className="text-[13px] text-zinc-400">그룹</dt>
+              <dd className="tnum mt-1 text-2xl leading-none text-zinc-900">{data.groups.length}</dd>
             </div>
             <div>
-              <dt className="text-[11px] uppercase text-neutral-500">경고</dt>
-              <dd className={`font-mono text-lg ${alertCount ? 'text-rose-400' : 'text-neutral-200'}`}>
+              <dt className="text-[13px] text-zinc-400">경고</dt>
+              <dd
+                className={`tnum mt-1 text-2xl leading-none ${
+                  alertCount ? 'text-warn' : 'text-zinc-900'
+                }`}
+              >
                 {alertCount}
               </dd>
             </div>
             <div>
-              <dt className="text-[11px] uppercase text-neutral-500">커플링 유효</dt>
-              <dd className="font-mono text-lg text-neutral-200">{trustedCount}</dd>
+              <dt className="text-[13px] text-zinc-400">커플링 유효</dt>
+              <dd className="tnum mt-1 text-2xl leading-none text-zinc-900">{trustedCount}</dd>
             </div>
             <div>
-              <dt className="text-[11px] uppercase text-neutral-500">기준일</dt>
-              <dd className="font-mono text-sm text-neutral-400">{data.period.end}</dd>
+              <dt className="text-[13px] text-zinc-400">기준일</dt>
+              <dd className="tnum mt-1 text-[15px] leading-none text-zinc-500">{data.period.end}</dd>
             </div>
           </dl>
         </div>
       </header>
 
-      <div className="mx-auto max-w-7xl px-6 py-5">
-        <div
-          role="group"
-          aria-label="Z-Score 구간 필터"
-          className="inline-flex rounded border border-neutral-800 bg-neutral-950 p-0.5"
-        >
-          {FILTERS.map((f) => (
-            <button
-              key={f.id}
-              type="button"
-              onClick={() => setFilter(f.id)}
-              aria-pressed={filter === f.id}
-              className={`rounded px-3 py-1.5 text-xs transition-colors ${
-                filter === f.id
-                  ? 'bg-neutral-800 text-neutral-100'
-                  : 'text-neutral-500 hover:text-neutral-300'
-              }`}
-            >
-              {f.label}
-            </button>
-          ))}
+      <div className="mx-auto max-w-[1400px] px-5 py-8 sm:px-8 sm:py-10">
+        <div className="flex flex-col gap-4">
+          <div role="group" aria-label="Z-Score 구간 필터" className="-ml-3 flex flex-wrap gap-1">
+            {FILTERS.map((f) => (
+              <button
+                key={f.id}
+                type="button"
+                onClick={() => setFilter(f.id)}
+                aria-pressed={filter === f.id}
+                className={`rounded-md px-3 py-1.5 text-[14px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 ${
+                  filter === f.id
+                    ? 'bg-accent-soft text-accent'
+                    : 'text-zinc-500 hover:bg-zinc-100 hover:text-zinc-800'
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-1.5" role="group" aria-label="섹터 필터">
+            {['all', ...sectors].map((s) => (
+              <button
+                key={s}
+                type="button"
+                onClick={() => setSector(s)}
+                aria-pressed={sector === s}
+                className={`rounded-full border px-3 py-1 text-[13px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 ${
+                  sector === s
+                    ? 'border-zinc-900 bg-zinc-900 text-white'
+                    : 'border-line-strong text-zinc-500 hover:border-zinc-400 hover:text-zinc-800'
+                }`}
+              >
+                {s === 'all' ? '전체 섹터' : s}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-3 flex flex-wrap gap-1" role="group" aria-label="섹터 필터">
-          {['all', ...sectors].map((s) => (
-            <button
-              key={s}
-              type="button"
-              onClick={() => setSector(s)}
-              aria-pressed={sector === s}
-              className={`rounded border px-2.5 py-1 text-xs transition-colors ${
-                sector === s
-                  ? 'border-neutral-600 bg-neutral-800 text-neutral-100'
-                  : 'border-neutral-800 text-neutral-500 hover:border-neutral-700 hover:text-neutral-300'
-              }`}
-            >
-              {s === 'all' ? '전체 섹터' : s}
-            </button>
-          ))}
-        </div>
-
-        <section className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <section className="mt-9 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {groups.map((g) => (
             <GroupCard key={g.key} group={g} />
           ))}
         </section>
 
         {groups.length === 0 && (
-          <p className="mt-10 text-center text-sm text-neutral-500">해당 구간의 그룹이 없습니다.</p>
+          <p className="mt-16 text-center text-[15px] text-zinc-400">해당 구간의 그룹이 없습니다.</p>
         )}
 
-        <footer className="mt-8 border-t border-neutral-800 pt-4 font-mono text-[11px] text-neutral-600">
+        <footer className="tnum mt-14 border-t border-line pt-6 text-[13px] text-zinc-400">
           generated_at {data.generated_at} · {data.period.start} ~ {data.period.end}
         </footer>
       </div>
