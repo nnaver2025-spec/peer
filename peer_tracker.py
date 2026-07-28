@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import time
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -53,6 +54,7 @@ FETCH_RETRIES = 3            # Yahoo 간헐적 빈 응답 대비 재시도 횟�
 RETRY_SLEEP_SEC = 1.5        # 재시도 간 대기
 BATCH_SIZE = 60              # 한 번에 조회할 티커 수. 순차 조회보다 10배 이상 빠르다.
 BATCH_SLEEP_SEC = 0.5        # 배치 간 대기
+CAP_WORKERS = 8              # 시가총액 병렬 조회 수. 순차 조회는 티커당 0.5초가 걸린다.
 HISTORY_POINTS = 60          # 프론트 스파크라인용 최근 구간
 
 COUPLING_START = date(2020, 1, 1)   # 장기 커플링 측정 시작
@@ -170,6 +172,30 @@ def fetch_close(ticker: str, start: date, end: date) -> pd.Series | None:
     return _clean_close(df["Close"], ticker)
 
 
+def fetch_market_caps(tickers: list[str]) -> dict[str, float | None]:
+    """티커별 시가총액. 조회 실패나 미제공이면 None.
+
+    Top Pick(대장주) 표시에만 쓰므로 실패해도 주도주 선정은 RS로 계속 간다.
+    종가와 달리 배치 API가 없어 티커별로 받아야 하는데, 순차로 돌리면
+    260개에 2분이 넘는다. 종가 배치 수집과 균형을 맞추려고 병렬로 받는다.
+    """
+
+    def one(ticker: str) -> tuple[str, float | None]:
+        try:
+            cap = yf.Ticker(ticker).fast_info.get("marketCap")
+        except Exception:
+            cap = None
+        return ticker, (float(cap) if cap else None)
+
+    with ThreadPoolExecutor(max_workers=CAP_WORKERS) as pool:
+        caps = dict(pool.map(one, tickers))
+
+    missing = [t for t, cap in caps.items() if cap is None]
+    if missing:
+        print(f"  [warn] 시가총액 조회 실패 {len(missing)}개 (Top Pick 후보 제외)")
+    return caps
+
+
 def build_group_frame(closes: list[pd.Series]) -> pd.DataFrame:
     """티커 종가들을 날짜 union으로 정렬 후 ffill. 전 종목 데이터가 갖춰진 날부터 반환."""
     frame = pd.concat(closes, axis=1, sort=True).ffill()
@@ -267,6 +293,15 @@ def select_top_pick(caps: dict[str, float | None]) -> str | None:
     return max(known, key=lambda t: known[t]) if known else None
 
 
+def bellwether_split(
+    frame: pd.DataFrame, ticker: str
+) -> tuple[pd.Series, pd.Series | None]:
+    """주도주 단독 인덱스와 나머지 평균 인덱스. 나머지가 없으면 두 번째는 None."""
+    normalized = frame / frame.iloc[0] * 100
+    others = normalized.drop(columns=[ticker])
+    return normalized[ticker], (others.mean(axis=1) if not others.empty else None)
+
+
 def rolling_zscore(series: pd.Series) -> pd.Series:
     """20일 이동 평균/표준편차 기준 Z-Score. 표본 부족이나 표준편차 0이면 빈 시리즈."""
     rolling = series.rolling(Z_WINDOW)
@@ -280,6 +315,7 @@ def analyze_group(
     spread_start: date,
     end: date,
     closes: dict[str, pd.Series],
+    caps: dict[str, float | None],
 ) -> dict | None:
     print(f"[{key}] {cfg['desc']}")
     leads: list[pd.Series] = []
@@ -318,6 +354,26 @@ def analyze_group(
     lead_index = normalize_to_100(lead_frame.loc[common])
     lag_index = normalize_to_100(lag_frame.loc[common])
 
+    # 주도주(RS 1등)와 대장주(시총 1등)는 국내 종목 중에서만 뽑는다. 두 선정은
+    # 서로 독립이고 같은 종목일 수도 있다. 내부 괴리율은 국내끼리의 관계라
+    # 해외-국내 커플링 등급과 무관하게 계산한다.
+    lag_recent = lag_frame.loc[common]
+    bellwether = select_bellwether(lag_recent)
+    top_pick = select_top_pick({t: caps.get(t) for t in lag_recent.columns})
+    bell_rs = relative_strength(lag_recent).get(bellwether) if bellwether else None
+    bell_index, rest_index = (
+        bellwether_split(lag_recent, bellwether) if bellwether else (None, None)
+    )
+
+    internal_spread = None
+    internal_z = None
+    if rest_index is not None:
+        internal = rest_index - bell_index
+        internal_zscore = rolling_zscore(internal)
+        if not internal_zscore.empty:
+            internal_spread = round(float(internal.iloc[-1]), 2)
+            internal_z = round(float(internal_zscore.iloc[-1]), 2)
+
     spread = lag_index - lead_index
     zscore = rolling_zscore(spread)
     if zscore.empty:
@@ -339,6 +395,12 @@ def analyze_group(
         f"  lead={lead_index.iloc[-1]:.1f} lag={lag_index.iloc[-1]:.1f} "
         f"spread={spread.iloc[-1]:+.2f} z={latest_z:+.2f} {corr_text} [{tier}]"
     )
+    if bellwether:
+        z_text = f"{internal_z:+.2f}" if internal_z is not None else "n/a"
+        print(
+            f"  bellwether={label_of(bellwether)} rs={bell_rs:.1f} "
+            f"internal_z={z_text} top_pick={label_of(top_pick) if top_pick else 'n/a'}"
+        )
 
     return {
         "key": key,
@@ -358,6 +420,22 @@ def analyze_group(
         "lag_index": round(float(lag_index.iloc[-1]), 2),
         "spread": round(float(spread.iloc[-1]), 2),
         "zscore": round(latest_z, 2),
+        # Bellwether = RS 1등, Top Pick = 시총 1등. 서로 독립이고 같을 수도 있다.
+        "bellwether_ticker": bellwether,
+        "bellwether_name": label_of(bellwether) if bellwether else None,
+        "bellwether_rs": round(bell_rs, 2) if bell_rs is not None else None,
+        "bellwether_index": (
+            round(float(bell_index.iloc[-1]), 2) if bell_index is not None else None
+        ),
+        "top_pick_ticker": top_pick,
+        "top_pick_name": label_of(top_pick) if top_pick else None,
+        "rest_index": (
+            round(float(rest_index.iloc[-1]), 2) if rest_index is not None else None
+        ),
+        "internal_spread": internal_spread,
+        "bellwether_z_score": internal_z,
+        # 국내 내부 관계라 커플링 등급으로 게이팅하지 않는다 (기존 alert와 별개).
+        "bellwether_alert": internal_z is not None and abs(internal_z) >= ALERT_THRESHOLD,
         # 커플링이 약하면 스프레드가 좁혀질 근거가 없으므로 경고로 올리지 않는다.
         "z_extreme": abs(latest_z) >= ALERT_THRESHOLD,
         "alert": abs(latest_z) >= ALERT_THRESHOLD and tier in ("strong", "moderate"),
@@ -407,10 +485,22 @@ def main() -> None:
         print(f"최종 누락: {', '.join(unresolved)}")
     print()
 
+    # 시가총액은 Top Pick(대장주) 표시용이라 국내(lag) 티커만 받는다.
+    lag_universe = sorted(
+        {t for cfg in PEER_GROUPS.values() for t in cfg["lag_tickers"] if t in closes}
+    )
+    print(f"국내 티커 {len(lag_universe)}개 시가총액 수집 (워커 {CAP_WORKERS})")
+    t1 = time.monotonic()
+    caps = fetch_market_caps(lag_universe)
+    print(
+        f"시가총액 완료: {sum(v is not None for v in caps.values())}/{len(caps)}개 "
+        f"({time.monotonic() - t1:.1f}s)\n"
+    )
+
     groups = [
         result
         for key, cfg in PEER_GROUPS.items()
-        if (result := analyze_group(key, cfg, start, end, closes)) is not None
+        if (result := analyze_group(key, cfg, start, end, closes, caps)) is not None
     ]
     # 커플링이 강한 그룹을 먼저, 그 안에서 괴리가 큰 순서로 세운다.
     tier_rank = {"strong": 0, "moderate": 1, "weak": 2, "unknown": 3}
@@ -441,6 +531,10 @@ def main() -> None:
     print(f"\n저장: {OUTPUT_PATH}")
     print(f"그룹 {len(groups)}개 / 경고 {alerts}개 (|Z| >= {ALERT_THRESHOLD} 이면서 커플링 유효)")
     print(f"커플링 약해 보류된 극단 Z: {muted}개")
+    bell_alerts = sum(g["bellwether_alert"] for g in groups)
+    same_pick = sum(g["bellwether_ticker"] == g["top_pick_ticker"] for g in groups)
+    print(f"주도주 내부 괴리 경고: {bell_alerts}개 (|internal Z| >= {ALERT_THRESHOLD})")
+    print(f"주도주 = 대장주인 그룹: {same_pick}/{len(groups)}개")
     if unresolved:
         print(f"데이터 누락 티커 {len(unresolved)}개: {', '.join(unresolved)}")
 

@@ -5,6 +5,7 @@ import pytest
 
 from peer_tracker import (
     Z_WINDOW,
+    bellwether_split,
     relative_strength,
     rolling_zscore,
     select_bellwether,
@@ -101,3 +102,32 @@ def test_bellwether_and_top_pick_are_selected_independently():
 def test_bellwether_and_top_pick_can_be_the_same_ticker():
     assert select_bellwether(_frame({"A": 140.0, "B": 100.0})) == "A"
     assert select_top_pick({"A": 9e12, "B": 1e11}) == "A"
+
+
+def test_split_normalizes_bellwether_alone_to_100():
+    bell, _ = bellwether_split(_frame({"A": 130.0, "B": 110.0, "C": 90.0}), "A")
+    assert bell.iloc[0] == pytest.approx(100.0)
+    assert bell.iloc[-1] == pytest.approx(130.0)
+
+
+def test_split_rest_is_mean_of_remaining_tickers():
+    _, rest = bellwether_split(_frame({"A": 130.0, "B": 110.0, "C": 90.0}), "A")
+    assert rest.iloc[0] == pytest.approx(100.0)
+    assert rest.iloc[-1] == pytest.approx(100.0)  # (110 + 90) / 2
+
+
+def test_internal_spread_is_negative_when_bellwether_leads():
+    # internal_spread = rest - bellwether 이므로 주도주만 오르면 음수다.
+    bell, rest = bellwether_split(_frame({"A": 140.0, "B": 100.0}), "A")
+    assert (rest - bell).iloc[-1] == pytest.approx(-40.0)
+
+
+def test_internal_spread_is_positive_when_rest_leads():
+    bell, rest = bellwether_split(_frame({"A": 100.0, "B": 130.0}), "A")
+    assert (rest - bell).iloc[-1] == pytest.approx(30.0)
+
+
+def test_split_returns_none_rest_for_single_ticker_group():
+    bell, rest = bellwether_split(_frame({"A": 120.0}), "A")
+    assert rest is None
+    assert bell.iloc[-1] == pytest.approx(120.0)
