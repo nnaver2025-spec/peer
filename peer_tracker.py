@@ -49,6 +49,10 @@ KR_NAMES: dict[str, str] = (
 Z_WINDOW = 20                # Z-Score 이동 윈도우 (거래일)
 ALERT_THRESHOLD = 1.5
 SLEEP_SEC = 0.2              # API 차단 방지
+FETCH_RETRIES = 3            # Yahoo 간헐적 빈 응답 대비 재시도 횟수
+RETRY_SLEEP_SEC = 1.5        # 재시도 간 대기
+BATCH_SIZE = 60              # 한 번에 조회할 티커 수. 순차 조회보다 10배 이상 빠르다.
+BATCH_SLEEP_SEC = 0.5        # 배치 간 대기
 HISTORY_POINTS = 60          # 프론트 스파크라인용 최근 구간
 
 COUPLING_START = date(2020, 1, 1)   # 장기 커플링 측정 시작
@@ -67,34 +71,103 @@ def label_of(ticker: str) -> str:
     return KR_NAMES.get(ticker, ticker)
 
 
-def fetch_close(ticker: str, start: date, end: date) -> pd.Series | None:
-    """단일 티커의 수정 종가 시리즈. 실패하거나 데이터가 없으면 None."""
-    try:
-        df = yf.download(
-            ticker,
-            start=start.isoformat(),
-            end=end.isoformat(),
-            auto_adjust=True,
-            progress=False,
-            actions=False,
-            threads=False,
-        )
-    except Exception as exc:  # 네트워크/티커 오류는 그룹 전체를 죽이지 않는다
-        print(f"  [warn] {ticker} 다운로드 실패: {exc}")
+def _clean_close(close: pd.Series | pd.DataFrame, ticker: str) -> pd.Series | None:
+    """종가 컬럼을 날짜 인덱스 시리즈로 정리한다. 비면 None."""
+    if isinstance(close, pd.DataFrame):  # yfinance가 MultiIndex 컬럼을 주는 경우
+        close = close.iloc[:, 0]
+    close = close.dropna()
+    if close.empty:
         return None
-    finally:
-        time.sleep(SLEEP_SEC)
+    close.index = pd.to_datetime(close.index).tz_localize(None).normalize()
+    return close.rename(ticker)
+
+
+def fetch_batch_closes(
+    tickers: list[str], start: date, end: date
+) -> dict[str, pd.Series]:
+    """여러 티커의 종가를 배치로 받는다.
+
+    티커를 하나씩 받으면 472개에 5분이 걸린다. 배치는 같은 작업을 30초 안에
+    끝낸다. 배치에서 빠진 티커는 호출한 쪽에서 개별 재시도로 보강한다.
+    """
+    closes: dict[str, pd.Series] = {}
+
+    for i in range(0, len(tickers), BATCH_SIZE):
+        chunk = tickers[i : i + BATCH_SIZE]
+        try:
+            df = yf.download(
+                " ".join(chunk),
+                start=start.isoformat(),
+                end=end.isoformat(),
+                auto_adjust=True,
+                progress=False,
+                actions=False,
+                threads=True,
+                group_by="ticker",
+            )
+        except Exception as exc:  # 배치 실패는 개별 재시도로 넘긴다
+            print(f"  [warn] 배치 {i // BATCH_SIZE + 1} 실패: {exc}")
+            continue
+        finally:
+            time.sleep(BATCH_SLEEP_SEC)
+
+        if df is None or df.empty:
+            continue
+
+        for ticker in chunk:
+            # 단일 티커만 성공하면 yfinance가 평면 컬럼을 주기도 한다.
+            if isinstance(df.columns, pd.MultiIndex):
+                if ticker not in df.columns.get_level_values(0):
+                    continue
+                raw = df[ticker].get("Close")
+            else:
+                raw = df.get("Close") if len(chunk) == 1 else None
+            if raw is None:
+                continue
+            series = _clean_close(raw, ticker)
+            if series is not None:
+                closes[ticker] = series
+
+        done = min(i + BATCH_SIZE, len(tickers))
+        print(f"  수집 {done}/{len(tickers)} (성공 {len(closes)})")
+
+    return closes
+
+
+def fetch_close(ticker: str, start: date, end: date) -> pd.Series | None:
+    """단일 티커의 수정 종가 시리즈. 실패하거나 데이터가 없으면 None.
+
+    Yahoo가 간헐적으로 빈 응답을 주므로 짧게 재시도한다. 재시도가 없으면
+    일시적 오류 하나로 그룹 전체가 대시보드에서 빠진다.
+    """
+    df = None
+    for attempt in range(1, FETCH_RETRIES + 1):
+        try:
+            df = yf.download(
+                ticker,
+                start=start.isoformat(),
+                end=end.isoformat(),
+                auto_adjust=True,
+                progress=False,
+                actions=False,
+                threads=False,
+            )
+        except Exception as exc:  # 네트워크/티커 오류는 그룹 전체를 죽이지 않는다
+            print(f"  [warn] {ticker} 다운로드 실패 ({attempt}/{FETCH_RETRIES}): {exc}")
+            df = None
+        finally:
+            time.sleep(SLEEP_SEC)
+
+        if df is not None and not df.empty:
+            break
+        if attempt < FETCH_RETRIES:
+            time.sleep(RETRY_SLEEP_SEC)
 
     if df is None or df.empty:
         print(f"  [warn] {ticker} 데이터 없음")
         return None
 
-    close = df["Close"]
-    if isinstance(close, pd.DataFrame):  # yfinance가 MultiIndex 컬럼을 주는 경우
-        close = close.iloc[:, 0]
-    close = close.dropna()
-    close.index = pd.to_datetime(close.index).tz_localize(None).normalize()
-    return close.rename(ticker) if not close.empty else None
+    return _clean_close(df["Close"], ticker)
 
 
 def build_group_frame(closes: list[pd.Series]) -> pd.DataFrame:
@@ -165,20 +238,37 @@ def normalize_to_100(frame: pd.DataFrame) -> pd.Series:
     return (frame / frame.iloc[0] * 100).mean(axis=1)
 
 
-def analyze_group(key: str, cfg: dict, spread_start: date, end: date) -> dict | None:
+def rolling_zscore(series: pd.Series) -> pd.Series:
+    """20일 이동 평균/표준편차 기준 Z-Score. 표본 부족이나 표준편차 0이면 빈 시리즈."""
+    rolling = series.rolling(Z_WINDOW)
+    z = (series - rolling.mean()) / rolling.std()
+    return z.replace([float("inf"), float("-inf")], float("nan")).dropna()
+
+
+def analyze_group(
+    key: str,
+    cfg: dict,
+    spread_start: date,
+    end: date,
+    closes: dict[str, pd.Series],
+) -> dict | None:
     print(f"[{key}] {cfg['desc']}")
     leads: list[pd.Series] = []
     lags: list[pd.Series] = []
     missing: list[str] = []
 
+    # 종가는 main에서 배치로 한 번에 받아둔다. 같은 티커가 여러 그룹에 쓰이므로
+    # 캐시를 공유하면 중복 조회도 사라진다.
     for bucket, tickers in ((leads, cfg["lead_tickers"]), (lags, cfg["lag_tickers"])):
         for ticker in tickers:
-            # 장기 구간을 한 번만 받아 커플링과 스프레드에 함께 쓴다.
-            series = fetch_close(ticker, COUPLING_START, end)
+            series = closes.get(ticker)
             if series is None:
                 missing.append(ticker)
             else:
                 bucket.append(series)
+
+    if missing:
+        print(f"  [warn] 데이터 없음: {', '.join(missing)}")
 
     if not leads or not lags:
         print(f"  [skip] Lead/Lag 한쪽 데이터가 비어 계산 불가 (missing={missing})")
@@ -200,8 +290,7 @@ def analyze_group(key: str, cfg: dict, spread_start: date, end: date) -> dict | 
     lag_index = normalize_to_100(lag_frame.loc[common])
 
     spread = lag_index - lead_index
-    rolling = spread.rolling(Z_WINDOW)
-    zscore = ((spread - rolling.mean()) / rolling.std()).dropna()
+    zscore = rolling_zscore(spread)
     if zscore.empty:
         print("  [skip] Z-Score 산출 실패 (표준편차 0)")
         return None
@@ -263,10 +352,36 @@ def main() -> None:
     print(f"스프레드 구간: {start} ~ {today}")
     print(f"커플링 표본: {COUPLING_START} ~ {today} (그룹 {len(PEER_GROUPS)}개)\n")
 
+    # 전 그룹의 티커를 모아 배치로 한 번에 받는다.
+    universe = sorted(
+        {t for cfg in PEER_GROUPS.values() for key in ("lead_tickers", "lag_tickers") for t in cfg[key]}
+    )
+    print(f"티커 {len(universe)}개 배치 수집 시작 (배치 크기 {BATCH_SIZE})")
+    t0 = time.monotonic()
+    closes = fetch_batch_closes(universe, COUPLING_START, end)
+
+    # 배치에서 빠진 티커만 개별 재시도로 보강한다. Yahoo의 간헐적 실패 대비다.
+    dropped = [t for t in universe if t not in closes]
+    if dropped:
+        print(f"\n배치 누락 {len(dropped)}개 개별 재시도: {', '.join(dropped)}")
+        for ticker in dropped:
+            series = fetch_close(ticker, COUPLING_START, end)
+            if series is not None:
+                closes[ticker] = series
+
+    unresolved = [t for t in universe if t not in closes]
+    print(
+        f"수집 완료: {len(closes)}/{len(universe)}개 "
+        f"({time.monotonic() - t0:.1f}s)"
+    )
+    if unresolved:
+        print(f"최종 누락: {', '.join(unresolved)}")
+    print()
+
     groups = [
         result
         for key, cfg in PEER_GROUPS.items()
-        if (result := analyze_group(key, cfg, start, end)) is not None
+        if (result := analyze_group(key, cfg, start, end, closes)) is not None
     ]
     # 커플링이 강한 그룹을 먼저, 그 안에서 괴리가 큰 순서로 세운다.
     tier_rank = {"strong": 0, "moderate": 1, "weak": 2, "unknown": 3}
@@ -297,6 +412,8 @@ def main() -> None:
     print(f"\n저장: {OUTPUT_PATH}")
     print(f"그룹 {len(groups)}개 / 경고 {alerts}개 (|Z| >= {ALERT_THRESHOLD} 이면서 커플링 유효)")
     print(f"커플링 약해 보류된 극단 Z: {muted}개")
+    if unresolved:
+        print(f"데이터 누락 티커 {len(unresolved)}개: {', '.join(unresolved)}")
 
 
 if __name__ == "__main__":
