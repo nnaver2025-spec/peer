@@ -5,8 +5,9 @@
 - `sheet_groups.py` - 관심종목 시트의 표 구조를 옮긴 Peer 그룹 정의 (단일 출처)
 - `peer_tracker.py` - yfinance로 2020년 이후 종가 수집 → 최근 6개월 스프레드 Z-Score + 장기 커플링 강도 → `frontend/public/dashboard_data.json`
 - `kr_names.json` - 국내 티커 표시명 275개
-- `frontend/` - React + Vite + Tailwind 다크 대시보드 (카드 그리드)
+- `frontend/` - React + Vite + Tailwind 대시보드 (라이트 미니멀, 카드 그리드)
 - `analysis/` - 일회성 검증 스크립트 (커플링, 신호 백테스트, 데이터 커버리지)
+- `scripts/` - 30분 주기 자동 갱신 설정 (launchd). 설치는 `scripts/README.md` 참고
 
 ## 그룹 구성
 
