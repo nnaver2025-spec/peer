@@ -41,3 +41,26 @@ launchctl kickstart -p gui/$(id -u)/com.peer.tracker.update  # 즉시 실행
 
 로그 마지막 줄은 `update ok`, `update failed (exit N)`, `skipped (실행 중)` 중 하나다.
 한 회차는 약 25초 걸린다.
+
+## 여론(FOMO) 갱신 (launchd, 2시간 주기)
+
+커뮤니티 여론 데이터는 별도 에이전트 `com.peer.fomo.update`가 2시간마다 갱신한다.
+주기를 대시보드(30분)와 분리한 이유는 한 회차에 8개 게시판 x 30종목으로 500회 넘게
+요청하기 때문이다. 30분마다 두드리면 차단을 부르고, 여론은 주가만큼 빨리 변하지도 않는다.
+
+구성은 대시보드 쪽과 같은 형태다.
+
+- `~/.peer-cron/run_fomo.sh` - launchd가 호출하는 런처
+- `~/.peer-cron/fomo_update.sh` - 락/로그를 관리하고 `fomo_watch.py`를 실행
+- `~/.peer-cron/logs/fomo.log` - 실행 로그 (5000줄 초과 시 자동 트림)
+
+```bash
+mkdir -p ~/.peer-cron
+cp scripts/fomo_update.sh scripts/run_fomo.sh ~/.peer-cron/
+chmod +x ~/.peer-cron/fomo_update.sh ~/.peer-cron/run_fomo.sh
+cp scripts/com.peer.fomo.update.plist ~/Library/LaunchAgents/
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.peer.fomo.update.plist
+```
+
+한 회차는 약 2분 걸린다. 즉시 실행은
+`launchctl kickstart -p gui/$(id -u)/com.peer.fomo.update`.

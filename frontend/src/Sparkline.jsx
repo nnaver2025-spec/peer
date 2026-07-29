@@ -1,8 +1,14 @@
-// 스프레드 최근 추이. width/height는 고정 viewBox로 두어 카드 레이아웃이 흔들리지 않게 한다.
-export default function Sparkline({ points, stroke, className = 'h-12 w-full' }) {
+// 시계열 최근 추이. width/height는 고정 viewBox로 두어 카드 레이아웃이 흔들리지 않게 한다.
+export default function Sparkline({
+  points,
+  stroke,
+  className = 'h-12 w-full',
+  valueKey = 'spread',
+  label = '스프레드 최근 추이',
+}) {
   if (!points || points.length < 2) return null
 
-  const values = points.map((p) => p.spread)
+  const values = points.map((p) => p[valueKey])
   const min = Math.min(...values)
   const max = Math.max(...values)
   const span = max - min || 1
@@ -25,7 +31,7 @@ export default function Sparkline({ points, stroke, className = 'h-12 w-full' })
       className={className}
       preserveAspectRatio="none"
       role="img"
-      aria-label="스프레드 최근 추이"
+      aria-label={label}
     >
       {zeroY !== null && (
         <line
@@ -42,7 +48,8 @@ export default function Sparkline({ points, stroke, className = 'h-12 w-full' })
       <path
         d={path}
         fill="none"
-        stroke={stroke}
+        // 토큰 이름을 넘기면 테마를 따라가고, hex를 넘기면 그 값을 쓴다.
+        stroke={stroke?.startsWith('--') ? `var(${stroke})` : stroke}
         strokeWidth="1.5"
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"

@@ -1,10 +1,34 @@
 <!doctype html>
-<html lang="ko" class="dark">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0e0f11" />
     <title>Peer Spread Tracker</title>
+    <script>
+      // React가 마운트되기 전에 테마를 확정한다. 이게 없으면 라이트 모드 사용자가
+      // 새로고침할 때마다 어두운 배경이 한 프레임 번쩍인다.
+      (function () {
+        var saved = null
+        try {
+          saved = localStorage.getItem('peer:theme')
+        } catch (e) {
+          // 프라이빗 모드 등에서 localStorage가 막히면 시스템 설정으로 떨어진다.
+        }
+        var theme =
+          saved === 'light' || saved === 'dark'
+            ? saved
+            : window.matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark'
+        document.documentElement.dataset.theme = theme
+        if (theme === 'light') {
+          document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute('content', '#fbfbfc')
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

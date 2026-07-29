@@ -3,6 +3,9 @@ __pycache__/
 .DS_Store
 .pytest_cache/
 
+# KRX 상장 목록 캐시. 24시간마다 갱신되는 파생 데이터다.
+.cache/
+
 # 리팩터링 전 사본. 저장소에는 git 이력으로 남으므로 올리지 않는다.
 src_backup/
 *_backup.py

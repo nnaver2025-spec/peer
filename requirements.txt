@@ -1,2 +1,9 @@
 yfinance==1.5.2
 pandas==3.0.5
+cloudscraper==1.2.71
+beautifulsoup4==4.15.0
+lxml==6.1.1
+finance-datareader==0.9.202
+# 에펨코리아 전용. wasm 기반 보안 검사를 통과해 쿠키를 얻는 데만 쓴다.
+# 설치돼 있지 않으면 그 게시판만 건너뛰고 나머지는 정상 동작한다.
+playwright==1.61.0

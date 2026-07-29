@@ -86,7 +86,7 @@ function Row({ group, selected, onSelect }) {
       <td className="w-[120px] px-3 py-2.5">
         <Sparkline
           points={group.history}
-          stroke={trusted ? zone.stroke : '#3a3d44'}
+          stroke={trusted ? zone.stroke : '--color-line-strong'}
           className="h-6 w-full"
         />
       </td>

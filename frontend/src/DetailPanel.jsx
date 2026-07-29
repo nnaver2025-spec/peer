@@ -68,7 +68,7 @@ export default function DetailPanel({ group, onClose }) {
         <Metric label="Lag" value={group.lag_index.toFixed(1)} tone="text-muted" />
       </dl>
 
-      <Sparkline points={group.history} stroke={trusted ? zone.stroke : '#3a3d44'} />
+      <Sparkline points={group.history} stroke={trusted ? zone.stroke : '--color-line-strong'} />
 
       <p className="text-[13px] leading-6 text-muted">
         {group.alert

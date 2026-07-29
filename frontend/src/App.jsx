@@ -1,9 +1,35 @@
 import { useEffect, useMemo, useState } from 'react'
-import { AlertTriangle, LayoutGrid, List, RefreshCw, Search, X } from 'lucide-react'
+import { AlertTriangle, LayoutGrid, List, Moon, RefreshCw, Search, Sun, X } from 'lucide-react'
 import GroupTable from './GroupTable.jsx'
 import GroupCard from './GroupCard.jsx'
 import DetailPanel from './DetailPanel.jsx'
+import FomoTab from './FomoTab.jsx'
 import { THRESHOLD, TIER_RANK, isTrusted } from './zone.js'
+import { useTheme } from './theme.js'
+
+function ThemeToggle({ theme, onToggle }) {
+  const next = theme === 'dark' ? '라이트' : '다크'
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      title={`${next} 모드로 전환`}
+      aria-label={`${next} 모드로 전환`}
+      className="rounded-md p-1.5 text-faint transition-colors hover:bg-raised hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+    >
+      {theme === 'dark' ? (
+        <Sun size={15} aria-hidden="true" />
+      ) : (
+        <Moon size={15} aria-hidden="true" />
+      )}
+    </button>
+  )
+}
+
+const TABS = [
+  { id: 'spread', label: '괴리' },
+  { id: 'fomo', label: '여론' },
+]
 
 const FILTERS = [
   { id: 'all', label: '전체' },
@@ -34,9 +60,16 @@ function compare(a, b, sort) {
 export default function App() {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
+  const [theme, toggleTheme] = useTheme()
   const [filter, setFilter] = useState('all')
   const [sector, setSector] = useState('all')
   const [query, setQuery] = useState('')
+  // 탭도 뷰와 같은 방식으로 기억한다. ?tab=fomo로 바로 열 수 있다.
+  const [tab, setTab] = useState(() => {
+    const fromUrl = new URLSearchParams(window.location.search).get('tab')
+    if (fromUrl === 'spread' || fromUrl === 'fomo') return fromUrl
+    return localStorage.getItem('peer:tab') ?? 'spread'
+  })
   // 뷰 선택은 로컬에 남겨 다음 방문에도 유지한다. ?view=card로도 열 수 있다.
   const [view, setView] = useState(() => {
     const fromUrl = new URLSearchParams(window.location.search).get('view')
@@ -79,6 +112,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('peer:view', view)
   }, [view])
+
+  useEffect(() => {
+    localStorage.setItem('peer:tab', tab)
+  }, [tab])
 
   const sectors = useMemo(
     () => (data ? [...new Set(data.groups.map((g) => g.sector))] : []),
@@ -124,7 +161,10 @@ export default function App() {
 
   if (error) {
     return (
-      <main className="flex min-h-screen items-center justify-center px-6 text-center">
+      <main className="relative flex min-h-screen items-center justify-center px-6 text-center">
+        <div className="absolute right-4 top-4">
+          <ThemeToggle theme={theme} onToggle={toggleTheme} />
+        </div>
         <div className="max-w-md">
           <AlertTriangle className="mx-auto mb-4 text-warn" aria-hidden="true" />
           <p className="text-ink">dashboard_data.json을 불러오지 못했습니다 ({error})</p>
@@ -144,10 +184,11 @@ export default function App() {
 
   const alertCount = data.groups.filter((g) => g.alert).length
   const trustedCount = data.groups.filter(isTrusted).length
+  const isSpread = tab === 'spread'
 
   return (
     <div className="flex h-screen flex-col overflow-hidden">
-      <header className="flex shrink-0 flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-line bg-surface px-5 py-3">
+      <header className="flex shrink-0 flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-line bg-surface px-5 pt-3">
         <div className="flex min-w-0 items-baseline gap-3">
           <h1 className="text-[15px] font-medium text-ink">Peer Spread Tracker</h1>
           <p className="tnum truncate text-[13px] text-faint">
@@ -169,9 +210,34 @@ export default function App() {
             <dd className="text-ink">{trustedCount}</dd>
           </div>
         </dl>
+
+        {/* 탭은 헤더 하단 경계에 붙여 활성 탭이 본문과 이어져 보이게 둔다. */}
+        <div className="-mb-px flex w-full items-center justify-between gap-3 border-t border-line pt-2 sm:w-auto sm:border-t-0 sm:pt-0">
+          <nav aria-label="지표 선택" className="flex gap-1">
+            {TABS.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => setTab(t.id)}
+                aria-current={tab === t.id ? 'page' : undefined}
+                className={`rounded-t-md border-b-2 px-3 pb-2 pt-1 text-[14px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
+                  tab === t.id
+                    ? 'border-accent text-ink'
+                    : 'border-transparent text-muted hover:text-ink'
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </nav>
+          <div className="pb-1.5">
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
+          </div>
+        </div>
       </header>
 
       <div className="flex min-h-0 flex-1">
+        {isSpread && (
         <nav className="hidden w-[200px] shrink-0 flex-col gap-6 overflow-y-auto border-r border-line px-3 py-4 lg:flex">
           <div>
             <p className="px-2 pb-1.5 text-[12px] text-faint">보기</p>
@@ -211,7 +277,11 @@ export default function App() {
             ))}
           </div>
         </nav>
+        )}
 
+        {tab === 'fomo' ? (
+          <FomoTab />
+        ) : (
         <main className="flex min-w-0 flex-1 flex-col">
           <div className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-2.5">
             <label className="flex min-w-[200px] flex-1 items-center gap-2 rounded-md border border-line bg-surface px-2.5 py-1.5 focus-within:border-line-strong sm:max-w-[320px]">
@@ -295,9 +365,10 @@ export default function App() {
             </footer>
           </div>
         </main>
+        )}
 
         {/* 좁은 화면에서는 목록을 덮는 오버레이로, 넓은 화면에서는 우측 고정 패널로 둔다. */}
-        {selected && (
+        {isSpread && selected && (
           <div className="fixed inset-0 z-20 bg-canvas md:static md:z-auto md:w-[360px] md:shrink-0">
             <DetailPanel group={selected} onClose={() => setSelectedKey(null)} />
           </div>

@@ -1,0 +1,6623 @@
+{
+  "generated_at": "2026-07-29 18:57:40",
+  "interval_hours": 2,
+  "lookback_days": 3,
+  "us_index_lookback_days": 7,
+  "min_sentiment_hits": 10,
+  "daily_points": 30,
+  "history_points": 36,
+  "sources": [
+    {
+      "key": "naver",
+      "label": "네이버 증권 종목토론실"
+    },
+    {
+      "key": "dc_krstock",
+      "label": "디시 한국 주식 갤러리"
+    },
+    {
+      "key": "dc_stockus",
+      "label": "디시 미국 주식 갤러리"
+    },
+    {
+      "key": "dc_neostock",
+      "label": "디시 주식 갤러리"
+    },
+    {
+      "key": "dc_jusik",
+      "label": "디시 실전주식투자 갤러리"
+    },
+    {
+      "key": "arca",
+      "label": "아카라이브 주식 채널"
+    },
+    {
+      "key": "fmkorea",
+      "label": "에펨코리아 주식·재테크"
+    },
+    {
+      "key": "ppomppu",
+      "label": "뽐뿌 증권포럼"
+    }
+  ],
+  "market": {
+    "score": 43.3,
+    "zone": "fear",
+    "label": "공포",
+    "greed_total": 314,
+    "fear_total": 411,
+    "hits": 725,
+    "total_posts": 7297,
+    "stocks": 30,
+    "greed_leaning": 9,
+    "fear_leaning": 18,
+    "keyword_totals": {
+      "greed": {
+        "상한가": 64,
+        "상승": 60,
+        "반등": 51,
+        "급등": 30,
+        "신고가": 25,
+        "호재": 20,
+        "추매": 14,
+        "가즈아": 12,
+        "물타기": 9,
+        "불장": 6,
+        "익절": 6,
+        "우상향": 4,
+        "풀매수": 4,
+        "영차": 3,
+        "떡상": 3,
+        "존버": 3
+      },
+      "fear": {
+        "하락": 102,
+        "폭락": 59,
+        "하한가": 54,
+        "고점": 41,
+        "손절": 29,
+        "급락": 28,
+        "반토막": 15,
+        "나락": 13,
+        "붕괴": 12,
+        "악재": 12,
+        "물렸": 11,
+        "청산": 8,
+        "떡락": 5,
+        "망했다": 5,
+        "약세": 4,
+        "끝났다": 4,
+        "패닉": 3,
+        "돔황챠": 2,
+        "설거지": 2,
+        "구조대": 1,
+        "곡소리": 1
+      }
+    },
+    "sectors": [
+      {
+        "sector": "지주",
+        "stocks": 1,
+        "greed_total": 5,
+        "fear_total": 29,
+        "hits": 34,
+        "score": 14.7,
+        "zone": "extreme_fear"
+      },
+      {
+        "sector": "기계",
+        "stocks": 1,
+        "greed_total": 7,
+        "fear_total": 12,
+        "hits": 19,
+        "score": 36.8,
+        "zone": "fear"
+      },
+      {
+        "sector": "반도체",
+        "stocks": 7,
+        "greed_total": 80,
+        "fear_total": 133,
+        "hits": 213,
+        "score": 37.6,
+        "zone": "fear"
+      },
+      {
+        "sector": "AI인프라",
+        "stocks": 4,
+        "greed_total": 53,
+        "fear_total": 84,
+        "hits": 137,
+        "score": 38.7,
+        "zone": "fear"
+      },
+      {
+        "sector": "방산",
+        "stocks": 1,
+        "greed_total": 7,
+        "fear_total": 11,
+        "hits": 18,
+        "score": 38.9,
+        "zone": "fear"
+      },
+      {
+        "sector": "우주",
+        "stocks": 1,
+        "greed_total": 7,
+        "fear_total": 11,
+        "hits": 18,
+        "score": 38.9,
+        "zone": "fear"
+      },
+      {
+        "sector": "조선",
+        "stocks": 3,
+        "greed_total": 17,
+        "fear_total": 20,
+        "hits": 37,
+        "score": 45.9,
+        "zone": "neutral"
+      },
+      {
+        "sector": "IP",
+        "stocks": 1,
+        "greed_total": 6,
+        "fear_total": 7,
+        "hits": 13,
+        "score": 46.2,
+        "zone": "neutral"
+      },
+      {
+        "sector": "광통신",
+        "stocks": 2,
+        "greed_total": 27,
+        "fear_total": 31,
+        "hits": 58,
+        "score": 46.6,
+        "zone": "neutral"
+      },
+      {
+        "sector": "화학",
+        "stocks": 2,
+        "greed_total": 27,
+        "fear_total": 26,
+        "hits": 53,
+        "score": 50.9,
+        "zone": "neutral"
+      },
+      {
+        "sector": "화장품",
+        "stocks": 2,
+        "greed_total": 21,
+        "fear_total": 16,
+        "hits": 37,
+        "score": 56.8,
+        "zone": "greed"
+      },
+      {
+        "sector": "로봇",
+        "stocks": 1,
+        "greed_total": 12,
+        "fear_total": 8,
+        "hits": 20,
+        "score": 60.0,
+        "zone": "greed"
+      },
+      {
+        "sector": "증권",
+        "stocks": 3,
+        "greed_total": 39,
+        "fear_total": 20,
+        "hits": 59,
+        "score": 66.1,
+        "zone": "greed"
+      },
+      {
+        "sector": "식품",
+        "stocks": 1,
+        "greed_total": 6,
+        "fear_total": 3,
+        "hits": 9,
+        "score": null,
+        "zone": null
+      }
+    ],
+    "evidence": [
+      {
+        "title": "상한가도 가고 급등도 잦았단주성엔지니어링실적 꼬라지...",
+        "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10145436082&search_keyword=%EC%A3%BC%EC%84%B1%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A7%81&page=1",
+        "source": "fmkorea",
+        "greed": [
+          "급등",
+          "상한가"
+        ],
+        "fear": [],
+        "stock": "주성엔지니어링"
+      },
+      {
+        "title": "(속담)종목 악재는 손절//지수나 시장 악재는 추매 >>>>추매",
+        "url": "https://finance.naver.com/item/board_read.naver?code=017670&nid=426489774&page=11",
+        "source": "naver",
+        "greed": [
+          "추매"
+        ],
+        "fear": [
+          "손절",
+          "악재"
+        ],
+        "stock": "SK텔레콤"
+      },
+      {
+        "title": "현대마란솔루션이여 유가상승보니 신재송에너지주 내일 급등",
+        "url": "https://finance.naver.com/item/board_read.naver?code=443060&nid=421546754&page=10",
+        "source": "naver",
+        "greed": [
+          "급등",
+          "상승"
+        ],
+        "fear": [],
+        "stock": "HD현대마린솔루션"
+      },
+      {
+        "title": "SK스퀘어는 결국 고점에서 반토막 났네요;",
+        "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=2&divpage=1&search_type=sub_memo&keyword=SK%BD%BA%C4%F9%BE%EE&no=399718",
+        "source": "ppomppu",
+        "greed": [],
+        "fear": [
+          "반토막",
+          "고점"
+        ],
+        "stock": "SK스퀘어"
+      },
+      {
+        "title": "50만원 추매 물타기~",
+        "url": "https://finance.naver.com/item/board_read.naver?code=085620&nid=426522882&page=2",
+        "source": "naver",
+        "greed": [
+          "추매",
+          "물타기"
+        ],
+        "fear": [],
+        "stock": "미래에셋생명"
+      },
+      {
+        "title": "고점 찍고 계단식 대세하락",
+        "url": "https://finance.naver.com/item/board_read.naver?code=009540&nid=425412011&page=11",
+        "source": "naver",
+        "greed": [],
+        "fear": [
+          "고점",
+          "하락"
+        ],
+        "stock": "HD한국조선해양"
+      },
+      {
+        "title": "오늘은 전고점 깨고 상승",
+        "url": "https://finance.naver.com/item/board_read.naver?code=483650&nid=426328076&page=10",
+        "source": "naver",
+        "greed": [
+          "상승"
+        ],
+        "fear": [
+          "고점"
+        ],
+        "stock": "달바글로벌"
+      },
+      {
+        "title": "[속보] SK하이닉스 60조 벌고도 \"추락\" 6천선 붕괴 '패닉셀'..사상 첫 연이틀 서킷브레이커 -",
+        "url": "https://finance.naver.com/item/board_read.naver?code=000660&nid=426692162&page=1",
+        "source": "naver",
+        "greed": [],
+        "fear": [
+          "패닉",
+          "붕괴"
+        ],
+        "stock": "SK하이닉스"
+      },
+      {
+        "title": "에이피알은 매일이 신고가,달바글로벌은 전고점 가는 중",
+        "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=1&divpage=1&search_type=sub_memo&keyword=%B4%DE%B9%D9%B1%DB%B7%CE%B9%FA&no=349681",
+        "source": "ppomppu",
+        "greed": [
+          "신고가"
+        ],
+        "fear": [
+          "고점"
+        ],
+        "stock": "달바글로벌"
+      },
+      {
+        "title": "1주 하한가에 870억 강제 청산",
+        "url": "https://finance.naver.com/item/board_read.naver?code=000660&nid=426691658&page=5",
+        "source": "naver",
+        "greed": [],
+        "fear": [
+          "청산",
+          "하한가"
+        ],
+        "stock": "SK하이닉스"
+      },
+      {
+        "title": "오늘 광통신 떡상 양자도 강한반등",
+        "url": "https://finance.naver.com/item/board_read.naver?code=046970&nid=425119641&page=8",
+        "source": "naver",
+        "greed": [
+          "떡상",
+          "반등"
+        ],
+        "fear": [],
+        "stock": "우리로"
+      },
+      {
+        "title": "SK하이닉스 급락 오판이 가상자산 시장에서 6000만달러 청산으로 번졌다",
+        "url": "https://arca.live/b/stock/178346038?target=title&keyword=SK%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4&p=1",
+        "source": "arca",
+        "greed": [],
+        "fear": [
+          "청산",
+          "급락"
+        ],
+        "stock": "SK하이닉스"
+      },
+      {
+        "title": "30분 남았다. 상한가 가즈아",
+        "url": "https://finance.naver.com/item/board_read.naver?code=399720&nid=426398147&page=7",
+        "source": "naver",
+        "greed": [
+          "가즈아",
+          "상한가"
+        ],
+        "fear": [],
+        "stock": "가온칩스"
+      },
+      {
+        "title": "SK하이닉스무기한선물 19% 급락…운영사, 청산 피해 보상",
+        "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10144184261&search_keyword=SK%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4&page=3",
+        "source": "fmkorea",
+        "greed": [],
+        "fear": [
+          "청산",
+          "급락"
+        ],
+        "stock": "SK하이닉스"
+      },
+      {
+        "title": "상한가 가즈아 200,000원",
+        "url": "https://finance.naver.com/item/board_read.naver?code=399720&nid=426395736&page=7",
+        "source": "naver",
+        "greed": [
+          "가즈아",
+          "상한가"
+        ],
+        "fear": [],
+        "stock": "가온칩스"
+      },
+      {
+        "title": "저점 찾았고 반등 계단식 하락으로 보이지만 더이상 말안한다.손절하려면 오늘 나가고 주식하지말라.",
+        "url": "https://finance.naver.com/item/board_read.naver?code=009150&nid=426674875&page=6",
+        "source": "naver",
+        "greed": [],
+        "fear": [
+          "손절",
+          "하락"
+        ],
+        "stock": "삼성전기"
+      }
+    ],
+    "history": [
+      {
+        "ts": "2026-07-29 00:10",
+        "score": 41.2
+      },
+      {
+        "ts": "2026-07-29 09:47",
+        "score": 43.6
+      },
+      {
+        "ts": "2026-07-29 10:09",
+        "score": 38.4
+      },
+      {
+        "ts": "2026-07-29 10:16",
+        "score": 42.4
+      },
+      {
+        "ts": "2026-07-29 10:34",
+        "score": 47.0
+      },
+      {
+        "ts": "2026-07-29 10:39",
+        "score": 51.1
+      },
+      {
+        "ts": "2026-07-29 11:22",
+        "score": 44.3
+      },
+      {
+        "ts": "2026-07-29 11:31",
+        "score": 44.2
+      },
+      {
+        "ts": "2026-07-29 11:39",
+        "score": 44.1
+      },
+      {
+        "ts": "2026-07-29 11:50",
+        "score": 42.0
+      },
+      {
+        "ts": "2026-07-29 12:47",
+        "score": 41.7
+      },
+      {
+        "ts": "2026-07-29 14:23",
+        "score": 40.8
+      },
+      {
+        "ts": "2026-07-29 14:56",
+        "score": 20.7
+      },
+      {
+        "ts": "2026-07-29 15:09",
+        "score": 41.2
+      },
+      {
+        "ts": "2026-07-29 17:04",
+        "score": 42.1
+      },
+      {
+        "ts": "2026-07-29 17:47",
+        "score": 41.3
+      },
+      {
+        "ts": "2026-07-29 18:52",
+        "score": 43.3
+      }
+    ],
+    "daily": [
+      {
+        "date": "2026-07-29",
+        "score": 43.3,
+        "n": 1
+      }
+    ]
+  },
+  "market_gauge": {
+    "score": 16.8,
+    "zone": "extreme_fear",
+    "label": "극단적 공포",
+    "as_of": "2026-07-29",
+    "components": [
+      {
+        "key": "momentum",
+        "label": "모멘텀",
+        "score": 0.0,
+        "detail": "125일선 대비 -15.0%"
+      },
+      {
+        "key": "volatility",
+        "label": "변동성",
+        "score": 1.2,
+        "detail": "20일 변동성 81%"
+      },
+      {
+        "key": "breadth",
+        "label": "시장 폭",
+        "score": 9.0,
+        "detail": "상승 260 / 하락 2410"
+      },
+      {
+        "key": "range",
+        "label": "52주 위치",
+        "score": 42.4,
+        "detail": "3,119 ~ 9,115 중 5,663"
+      },
+      {
+        "key": "rsi",
+        "label": "RSI",
+        "score": 31.5,
+        "detail": "RSI(14) 32"
+      }
+    ]
+  },
+  "indices": [
+    {
+      "key": "kospi",
+      "label": "코스피",
+      "market": "국내",
+      "aliases": [
+        "코스피",
+        "KOSPI"
+      ],
+      "current_level": 5663.24,
+      "lookback_days": 3,
+      "score": 19.6,
+      "zone": "extreme_fear",
+      "label_text": "극단적 공포",
+      "total_posts": 435,
+      "greed_total": 10,
+      "fear_total": 41,
+      "hits": 51,
+      "greed_counts": {
+        "반등": 7,
+        "우상향": 2,
+        "상승": 1
+      },
+      "fear_counts": {
+        "하락": 14,
+        "폭락": 13,
+        "급락": 5,
+        "고점": 4,
+        "붕괴": 4,
+        "나락": 1
+      },
+      "evidence": [
+        {
+          "title": "코스피는 그래도 계속 우상향맞죠??",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=2964549&s_type=search_subject&s_keyword=코스피&page=3",
+          "source": "dc_krstock",
+          "greed": [
+            "우상향"
+          ],
+          "fear": []
+        },
+        {
+          "title": "와 오늘 코스피 고점과 저점 차이는 18% 차이. 역대급이구만",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=2966547&s_type=search_subject&s_keyword=코스피&page=1",
+          "source": "dc_krstock",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "코스피 사실상 5700 돌파한건데 지금 반등이면",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17156565&s_type=search_subject&s_keyword=코스피&page=4",
+          "source": "dc_stockus",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "노무라 \"코스피 급락은 수급 충격 탓…반등 열쇠는 주주환원\"",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=2963919&s_type=search_subject&s_keyword=코스피&page=4",
+          "source": "dc_krstock",
+          "greed": [],
+          "fear": [
+            "급락"
+          ]
+        },
+        {
+          "title": "내가 하닉 코스피 반등시켜볼께",
+          "url": "https://arca.live/b/stock/178307631?target=title&keyword=%EC%BD%94%EC%8A%A4%ED%94%BC&p=3",
+          "source": "arca",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "코스피, 한달 새 ‘33.6%’ 폭락…IMF 때보다 더 떨어져",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=2963867&s_type=search_subject&s_keyword=코스피&page=4",
+          "source": "dc_krstock",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "??? :코스피불꽃상승 국민연금 고갈안된다",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10145871682&search_keyword=%EC%BD%94%EC%8A%A4%ED%94%BC&page=1",
+          "source": "fmkorea",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "아니 근데 코스피 계속 나락갈거같으면 ㅋㅋ",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=2963583&s_type=search_subject&s_keyword=코스피&page=4",
+          "source": "dc_krstock",
+          "greed": [],
+          "fear": [
+            "나락"
+          ]
+        },
+        {
+          "title": "코스피는 V자반등이냐 어깨냐 두가지같네",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10145681573&search_keyword=%EC%BD%94%EC%8A%A4%ED%94%BC&page=2",
+          "source": "fmkorea",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "코스피 << 4월달가격임.. 이게 대폭락이야 ? ㅋㅋㅋㅋㅋㅋㅋ",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17158266&s_type=search_subject&s_keyword=코스피&page=2",
+          "source": "dc_stockus",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "모건스탠리,JP모건 \"코스피싸고 곧 반등한다\"",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10145435888&search_keyword=%EC%BD%94%EC%8A%A4%ED%94%BC&page=3",
+          "source": "fmkorea",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "근데 미국주식갤러리 인데 코스피 폭락한놈들왜들어옴",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17158182&s_type=search_subject&s_keyword=코스피&page=3",
+          "source": "dc_stockus",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 0,
+          "error": "티커 변환 실패"
+        },
+        {
+          "key": "dc_krstock",
+          "count": 75,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 73,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 9,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 132,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 105,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 41,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 30.6
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 21.2
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 20.4
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 19.6
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 19.6,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "kosdaq",
+      "label": "코스닥",
+      "market": "국내",
+      "aliases": [
+        "코스닥",
+        "KOSDAQ"
+      ],
+      "current_level": 662.68,
+      "lookback_days": 3,
+      "score": 25.0,
+      "zone": "fear",
+      "label_text": "공포",
+      "total_posts": 315,
+      "greed_total": 6,
+      "fear_total": 18,
+      "hits": 24,
+      "greed_counts": {
+        "풀매수": 2,
+        "상승": 2,
+        "추매": 1,
+        "반등": 1
+      },
+      "fear_counts": {
+        "반토막": 4,
+        "하락": 3,
+        "폭락": 3,
+        "손절": 2,
+        "고점": 2,
+        "패닉": 2,
+        "나락": 1,
+        "붕괴": 1
+      },
+      "evidence": [
+        {
+          "title": "코스닥 불반등나오는이유 딱말해줌 반박환영 ㅇㅇㅇ",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=2965307&s_type=search_subject&s_keyword=코스닥&page=1",
+          "source": "dc_krstock",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "코스닥은 고점애서 반토막, 코스피도 반토막 가는 중",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=3&divpage=1&search_type=sub_memo&keyword=%C4%DA%BD%BA%B4%DA&no=415587",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "반토막",
+            "고점"
+          ]
+        },
+        {
+          "title": "코스닥 풀매수 간다",
+          "url": "https://arca.live/b/stock/178328373?target=title&keyword=%EC%BD%94%EC%8A%A4%EB%8B%A5&p=1",
+          "source": "arca",
+          "greed": [
+            "풀매수"
+          ],
+          "fear": []
+        },
+        {
+          "title": "코스닥이 폭락하는건 당연함",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=2966902&s_type=search_subject&s_keyword=코스닥&page=1",
+          "source": "dc_krstock",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "코스닥 풀매수 각이냐?",
+          "url": "https://arca.live/b/stock/178220445?target=title&keyword=%EC%BD%94%EC%8A%A4%EB%8B%A5&p=2",
+          "source": "arca",
+          "greed": [
+            "풀매수"
+          ],
+          "fear": []
+        },
+        {
+          "title": "코스닥은 왜 나락가는거냐??",
+          "url": "https://gall.dcinside.com/board/view/?id=neostock&no=7212516&s_type=search_subject&s_keyword=코스닥&page=1",
+          "source": "dc_neostock",
+          "greed": [],
+          "fear": [
+            "나락"
+          ]
+        },
+        {
+          "title": "솔직히코스닥대세상승장오면 진짜 다음기회엔 숏 준비해야겠다.",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10145915285&search_keyword=%EC%BD%94%EC%8A%A4%EB%8B%A5&page=1",
+          "source": "fmkorea",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "[속보] 코스닥 700 붕괴",
+          "url": "https://arca.live/b/stock/178213327?target=title&keyword=%EC%BD%94%EC%8A%A4%EB%8B%A5&p=2",
+          "source": "arca",
+          "greed": [],
+          "fear": [
+            "붕괴"
+          ]
+        },
+        {
+          "title": "닉스 /코스닥etf 추매완료",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10145273620&search_keyword=%EC%BD%94%EC%8A%A4%EB%8B%A5&page=2",
+          "source": "fmkorea",
+          "greed": [
+            "추매"
+          ],
+          "fear": []
+        },
+        {
+          "title": "코스닥 2개월 만에 고점 대비 -42.84%",
+          "url": "https://arca.live/b/stock/178199118?target=title&keyword=%EC%BD%94%EC%8A%A4%EB%8B%A5&p=2",
+          "source": "arca",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "코스피는 상승한거라도 있지..코스닥은?",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=4&divpage=1&search_type=sub_memo&keyword=%C4%DA%BD%BA%B4%DA&no=415365",
+          "source": "ppomppu",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "코스닥 어제 분할 손절할걸",
+          "url": "https://arca.live/b/stock/178187855?target=title&keyword=%EC%BD%94%EC%8A%A4%EB%8B%A5&p=2",
+          "source": "arca",
+          "greed": [],
+          "fear": [
+            "손절"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 0,
+          "error": "티커 변환 실패"
+        },
+        {
+          "key": "dc_krstock",
+          "count": 54,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 28,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 3,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 85,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 103,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 41,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 16.0
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 18.2
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 21.7
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 25.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 25.0,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "sp500",
+      "label": "S&P500",
+      "market": "미국",
+      "aliases": [
+        "S&P500",
+        "S&P",
+        "에센피",
+        "에스앤피",
+        "SPY",
+        "SPX"
+      ],
+      "current_level": 7428.77978515625,
+      "lookback_days": 7,
+      "score": 63.6,
+      "zone": "greed",
+      "label_text": "탐욕",
+      "total_posts": 83,
+      "greed_total": 7,
+      "fear_total": 4,
+      "hits": 11,
+      "greed_counts": {
+        "상승": 7
+      },
+      "fear_counts": {
+        "고점": 3,
+        "하락": 1
+      },
+      "evidence": [
+        {
+          "title": "JP모건, 매수 신호 점등에 S&P 500 상승 전망",
+          "url": "https://arca.live/b/stock/178212306?target=title&keyword=S%26P&p=1",
+          "source": "arca",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "실시간 S&P500 고점대비 하락률 ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10138624599&search_keyword=S%26amp%3BP500&page=2",
+          "source": "fmkorea",
+          "greed": [],
+          "fear": [
+            "고점",
+            "하락"
+          ]
+        },
+        {
+          "title": "JP모건, \"연준 비둘기파적 동결 시 S&P 500 최대 1% 상승\"",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10145702236&search_keyword=S%26amp%3BP500&page=1",
+          "source": "fmkorea",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "\"아니 에센피는 최고점에서 고작 2% 빠졌다니까?\"",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17157526&s_type=search_subject&s_keyword=에센피&page=1",
+          "source": "dc_stockus",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "S&P500 균등 RSP는 상승중",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10142402509&search_keyword=S%26amp%3BP500&page=1",
+          "source": "fmkorea",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "S&P500 고점대비 -3%",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10123766459&search_keyword=S%26amp%3BP500&page=4",
+          "source": "fmkorea",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "S&P500개 기업중 340개 기업이 상승 중",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10137649020&search_keyword=S%26amp%3BP500&page=3",
+          "source": "fmkorea",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "S&P 500 지수를 구성하는 11개 업종 가운데 기술주를 제외한 10개 업종이 상승했으며, 지수 편입 종목 중 약 360개가 상승세로 마감했습니다.",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10126916908&search_keyword=S%26amp%3BP500&page=4",
+          "source": "fmkorea",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "엔베디아, QQQ,SPYM 이런 건 3% 상승 하네요?",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=2&divpage=1&search_type=sub_memo&keyword=SPY&no=345906",
+          "source": "ppomppu",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 0,
+          "error": "티커 변환 실패"
+        },
+        {
+          "key": "dc_krstock",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 14,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 59,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 8,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 37.5
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 37.5
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 63.6
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 63.6,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "nasdaq",
+      "label": "나스닥",
+      "market": "미국",
+      "aliases": [
+        "나스닥",
+        "NASDAQ",
+        "QQQ"
+      ],
+      "current_level": 24876.91015625,
+      "lookback_days": 7,
+      "score": 40.0,
+      "zone": "fear",
+      "label_text": "공포",
+      "total_posts": 311,
+      "greed_total": 22,
+      "fear_total": 33,
+      "hits": 55,
+      "greed_counts": {
+        "반등": 9,
+        "떡상": 5,
+        "상승": 3,
+        "풀매수": 1,
+        "추매": 1,
+        "물타기": 1,
+        "우상향": 1,
+        "신고가": 1
+      },
+      "fear_counts": {
+        "하락": 11,
+        "고점": 9,
+        "손절": 3,
+        "폭락": 3,
+        "붕괴": 2,
+        "물렸": 1,
+        "나락": 1,
+        "끝났다": 1,
+        "급락": 1,
+        "악재": 1
+      },
+      "evidence": [
+        {
+          "title": "나스닥 고점대비 -10% 찍고 반등은 과학임",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17159303&s_type=search_subject&s_keyword=나스닥&page=1",
+          "source": "dc_stockus",
+          "greed": [
+            "반등"
+          ],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "[속보] SK하닉 ADR 9%급락..반도체 압박에나스닥하락",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=2&divpage=1&search_type=sub_memo&keyword=%B3%AA%BD%BA%B4%DA&no=414347",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "하락",
+            "급락"
+          ]
+        },
+        {
+          "title": "미안한데 나스닥 어제 나온게 반등임",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=2957102&s_type=search_subject&s_keyword=나스닥&page=1",
+          "source": "dc_krstock",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "20년전 나스닥 하락장을 알아보자.araboza",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=2963473&s_type=search_subject&s_keyword=나스닥&page=1",
+          "source": "dc_krstock",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "금이든 나스닥이든 횡보하다가 우상향할일없다",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17158645&s_type=search_subject&s_keyword=나스닥&page=1",
+          "source": "dc_stockus",
+          "greed": [
+            "우상향"
+          ],
+          "fear": []
+        },
+        {
+          "title": "이제 슬슬 나스닥 고점론이 올라오겠지",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=2962022&s_type=search_subject&s_keyword=나스닥&page=1",
+          "source": "dc_krstock",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "[긴급] 지금 나스닥 왜 크게 반등하는중임?",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17157228&s_type=search_subject&s_keyword=나스닥&page=3",
+          "source": "dc_stockus",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "금이든 나스닥이든 하락장 1도 시작안했다",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17158777&s_type=search_subject&s_keyword=나스닥&page=1",
+          "source": "dc_stockus",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "오늘 국장 죽여놓고 나스닥은 떡상하면 어케됨",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17155753&s_type=search_subject&s_keyword=나스닥&page=3",
+          "source": "dc_stockus",
+          "greed": [
+            "떡상"
+          ],
+          "fear": []
+        },
+        {
+          "title": "일단 오늘도 나스닥 하락 확정인가",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17158719&s_type=search_subject&s_keyword=나스닥&page=1",
+          "source": "dc_stockus",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "짤녀 꼴리는만큼 오늘 나스닥 상승",
+          "url": "https://arca.live/b/stock/178351534?target=title&keyword=%EB%82%98%EC%8A%A4%EB%8B%A5&p=1",
+          "source": "arca",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "오늘 나스닥 역대급 하락 나올 것 같음",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17158142&s_type=search_subject&s_keyword=나스닥&page=2",
+          "source": "dc_stockus",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 0,
+          "error": "티커 변환 실패"
+        },
+        {
+          "key": "dc_krstock",
+          "count": 20,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 72,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 177,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": "연속 실패로 건너뜀"
+        },
+        {
+          "key": "ppomppu",
+          "count": 42,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 43.1
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 38.3
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 39.6
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 40.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 40.0,
+          "n": 1
+        }
+      ]
+    }
+  ],
+  "stocks": [
+    {
+      "key": "402340.KS",
+      "name": "SK스퀘어",
+      "ticker": "402340",
+      "group_desc": "지주회사",
+      "sector": "지주",
+      "current_level": 850000.0,
+      "score": 23.9,
+      "zone": "extreme_fear",
+      "label": "극단적 공포",
+      "total_posts": 265,
+      "greed_total": 5,
+      "fear_total": 29,
+      "greed_counts": {
+        "반등": 2,
+        "불장": 1,
+        "물타기": 1,
+        "상한가": 1
+      },
+      "fear_counts": {
+        "하락": 6,
+        "손절": 5,
+        "고점": 5,
+        "폭락": 4,
+        "급락": 3,
+        "하한가": 3,
+        "반토막": 2,
+        "나락": 1
+      },
+      "evidence": [
+        {
+          "title": "우량주 중에 혼자 반등 못함",
+          "url": "https://finance.naver.com/item/board_read.naver?code=402340&nid=426688449&page=1",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "SK스퀘어는 결국 고점에서 반토막 났네요;",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=2&divpage=1&search_type=sub_memo&keyword=SK%BD%BA%C4%F9%BE%EE&no=399718",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "반토막",
+            "고점"
+          ]
+        },
+        {
+          "title": "물타기",
+          "url": "https://finance.naver.com/item/board_read.naver?code=402340&nid=426681504&page=2",
+          "source": "naver",
+          "greed": [
+            "물타기"
+          ],
+          "fear": []
+        },
+        {
+          "title": "97년 IMF 때보다 더하락.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=402340&nid=426692008&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "삼성전자 보합 가겠네요 낼부터 불장일 겁니다.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=402340&nid=426677803&page=3",
+          "source": "naver",
+          "greed": [
+            "불장"
+          ],
+          "fear": []
+        },
+        {
+          "title": "2분기 매출 말아먹어서 나락간 현대로템도",
+          "url": "https://finance.naver.com/item/board_read.naver?code=402340&nid=426688539&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "나락"
+          ]
+        },
+        {
+          "title": "공포에 질려 조금만 반등해 올라도 개인은 팔고있어요.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=402340&nid=426672312&page=4",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "\"급락장에서 더 답답한 주식 정산금\" 팔았는데 돈은 이틀 뒤? T+2 결제제도가 만든 후유증",
+          "url": "https://finance.naver.com/item/board_read.naver?code=402340&nid=426688361&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "급락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 237,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 7,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 20,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-28 18:14",
+          "score": 49.6
+        },
+        {
+          "ts": "2026-07-28 18:20",
+          "score": 49.6
+        },
+        {
+          "ts": "2026-07-28 18:26",
+          "score": 49.6
+        },
+        {
+          "ts": "2026-07-29 00:10",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-07-29 09:47",
+          "score": 48.8
+        },
+        {
+          "ts": "2026-07-29 10:09",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-07-29 10:16",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-07-29 10:34",
+          "score": 47.3
+        },
+        {
+          "ts": "2026-07-29 10:39",
+          "score": 46.9
+        },
+        {
+          "ts": "2026-07-29 11:22",
+          "score": 47.5
+        },
+        {
+          "ts": "2026-07-29 11:31",
+          "score": 47.8
+        },
+        {
+          "ts": "2026-07-29 11:39",
+          "score": 48.2
+        },
+        {
+          "ts": "2026-07-29 11:50",
+          "score": 47.5
+        },
+        {
+          "ts": "2026-07-29 12:47",
+          "score": 46.7
+        },
+        {
+          "ts": "2026-07-29 14:23",
+          "score": 45.8
+        },
+        {
+          "ts": "2026-07-29 14:56",
+          "score": 45.3
+        },
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 45.1
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 26.1
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 24.4
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 23.9
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 23.9,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "101160.KQ",
+      "name": "월덱스",
+      "ticker": "101160",
+      "group_desc": "반도체 소재",
+      "sector": "반도체",
+      "current_level": 26150.0,
+      "score": 50.0,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 233,
+      "greed_total": 3,
+      "fear_total": 3,
+      "greed_counts": {
+        "상한가": 2,
+        "우상향": 1
+      },
+      "fear_counts": {
+        "손절": 1,
+        "고점": 1,
+        "폭락": 1
+      },
+      "evidence": [
+        {
+          "title": "상한가",
+          "url": "https://finance.naver.com/item/board_read.naver?code=101160&nid=425532362&page=5",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "폭락이 와도 이것만 알면 돈 지킵니다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=101160&nid=426279864&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "장좋았으면 상한가 갓겟는걸?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=101160&nid=425078921&page=7",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "월덱스손절",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10144646009&search_keyword=%EC%9B%94%EB%8D%B1%EC%8A%A4&page=1",
+          "source": "fmkorea",
+          "greed": [],
+          "fear": [
+            "손절"
+          ]
+        },
+        {
+          "title": "정배열후 우상향 기대",
+          "url": "https://finance.naver.com/item/board_read.naver?code=101160&nid=424284601&page=9",
+          "source": "naver",
+          "greed": [
+            "우상향"
+          ],
+          "fear": []
+        },
+        {
+          "title": "월덱스는 고점대비 3%나 내리네요",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=1&divpage=1&search_type=sub_memo&keyword=%BF%F9%B5%A6%BD%BA&no=207468",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 222,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 3,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 8,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-28 18:08",
+          "score": 47.6
+        },
+        {
+          "ts": "2026-07-28 18:09",
+          "score": 47.6
+        },
+        {
+          "ts": "2026-07-28 18:14",
+          "score": 48.5
+        },
+        {
+          "ts": "2026-07-28 18:20",
+          "score": 48.5
+        },
+        {
+          "ts": "2026-07-28 18:26",
+          "score": 47.6
+        },
+        {
+          "ts": "2026-07-29 00:10",
+          "score": 48.6
+        },
+        {
+          "ts": "2026-07-29 09:47",
+          "score": 48.6
+        },
+        {
+          "ts": "2026-07-29 10:09",
+          "score": 48.6
+        },
+        {
+          "ts": "2026-07-29 10:16",
+          "score": 48.6
+        },
+        {
+          "ts": "2026-07-29 10:34",
+          "score": 47.7
+        },
+        {
+          "ts": "2026-07-29 10:39",
+          "score": 49.0
+        },
+        {
+          "ts": "2026-07-29 11:22",
+          "score": 50.4
+        },
+        {
+          "ts": "2026-07-29 11:31",
+          "score": 50.4
+        },
+        {
+          "ts": "2026-07-29 11:39",
+          "score": 50.4
+        },
+        {
+          "ts": "2026-07-29 11:50",
+          "score": 50.2
+        },
+        {
+          "ts": "2026-07-29 12:47",
+          "score": 50.2
+        },
+        {
+          "ts": "2026-07-29 14:23",
+          "score": 50.2
+        },
+        {
+          "ts": "2026-07-29 14:56",
+          "score": 50.2
+        },
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 50.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 50.0,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "036930.KQ",
+      "name": "주성엔지니어링",
+      "ticker": "036930",
+      "group_desc": "전공정 장비",
+      "sector": "반도체",
+      "current_level": 116100.0,
+      "score": 30.2,
+      "zone": "fear",
+      "label": "공포",
+      "total_posts": 276,
+      "greed_total": 7,
+      "fear_total": 24,
+      "greed_counts": {
+        "급등": 2,
+        "상승": 2,
+        "신고가": 1,
+        "상한가": 1,
+        "익절": 1
+      },
+      "fear_counts": {
+        "하한가": 17,
+        "폭락": 3,
+        "물렸": 1,
+        "떡락": 1,
+        "고점": 1,
+        "하락": 1
+      },
+      "evidence": [
+        {
+          "title": "상한가도 가고 급등도 잦았단주성엔지니어링실적 꼬라지...",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10145436082&search_keyword=%EC%A3%BC%EC%84%B1%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A7%81&page=1",
+          "source": "fmkorea",
+          "greed": [
+            "급등",
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "■■■주성 시간외 하한가 뭐여???",
+          "url": "https://finance.naver.com/item/board_read.naver?code=036930&nid=426691631&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하한가"
+          ]
+        },
+        {
+          "title": "삼전 상승으로 마감할 거 같은데",
+          "url": "https://finance.naver.com/item/board_read.naver?code=036930&nid=426690570&page=2",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "시외 하한가 살짝 풀리니 그렀게 좋아",
+          "url": "https://finance.naver.com/item/board_read.naver?code=036930&nid=426689251&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하한가"
+          ]
+        },
+        {
+          "title": "국장 끝나니까 귀신같이 미선물 상승으로 돌아서네요",
+          "url": "https://finance.naver.com/item/board_read.naver?code=036930&nid=426690403&page=2",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "하한가 아니잔아",
+          "url": "https://finance.naver.com/item/board_read.naver?code=036930&nid=426689018&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하한가"
+          ]
+        },
+        {
+          "title": "거품 하나 터지면 새로운 초개거품 탄생 시총10조주성엔지니어링+15 신고가",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=2&divpage=1&search_type=sub_memo&keyword=%C1%D6%BC%BA%BF%A3%C1%F6%B4%CF%BE%EE%B8%B5&no=360757",
+          "source": "ppomppu",
+          "greed": [
+            "신고가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "하한가에 200주샀네요!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=036930&nid=426688863&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하한가"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 237,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 9,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 9,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 21,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-28 18:08",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-07-28 18:09",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-07-28 18:14",
+          "score": 49.6
+        },
+        {
+          "ts": "2026-07-28 18:20",
+          "score": 49.6
+        },
+        {
+          "ts": "2026-07-28 18:26",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-07-29 00:10",
+          "score": 49.4
+        },
+        {
+          "ts": "2026-07-29 09:47",
+          "score": 49.2
+        },
+        {
+          "ts": "2026-07-29 10:09",
+          "score": 47.0
+        },
+        {
+          "ts": "2026-07-29 10:16",
+          "score": 47.5
+        },
+        {
+          "ts": "2026-07-29 10:34",
+          "score": 46.4
+        },
+        {
+          "ts": "2026-07-29 10:39",
+          "score": 48.0
+        },
+        {
+          "ts": "2026-07-29 11:22",
+          "score": 47.2
+        },
+        {
+          "ts": "2026-07-29 11:31",
+          "score": 47.0
+        },
+        {
+          "ts": "2026-07-29 11:39",
+          "score": 48.0
+        },
+        {
+          "ts": "2026-07-29 11:50",
+          "score": 48.2
+        },
+        {
+          "ts": "2026-07-29 12:47",
+          "score": 48.6
+        },
+        {
+          "ts": "2026-07-29 14:23",
+          "score": 47.4
+        },
+        {
+          "ts": "2026-07-29 14:56",
+          "score": 47.8
+        },
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 48.0
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 40.0
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 30.0
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 30.2
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 30.2,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "443060.KS",
+      "name": "HD현대마린솔루션",
+      "ticker": "443060",
+      "group_desc": "조선 기자재",
+      "sector": "조선",
+      "current_level": 181200.0,
+      "score": 60.0,
+      "zone": "greed",
+      "label": "탐욕",
+      "total_posts": 212,
+      "greed_total": 12,
+      "fear_total": 6,
+      "greed_counts": {
+        "반등": 4,
+        "상승": 3,
+        "급등": 2,
+        "추매": 1,
+        "상한가": 1,
+        "호재": 1
+      },
+      "fear_counts": {
+        "하락": 4,
+        "고점": 1,
+        "약세": 1
+      },
+      "evidence": [
+        {
+          "title": "현대마란솔루션이여 유가상승보니 신재송에너지주 내일 급등",
+          "url": "https://finance.naver.com/item/board_read.naver?code=443060&nid=421546754&page=10",
+          "source": "naver",
+          "greed": [
+            "급등",
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "시장과 반대일 땐 항상 주가 하락의 원인는 내부에 있더라",
+          "url": "https://finance.naver.com/item/board_read.naver?code=443060&nid=425953490&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "찐반등맞는거냐?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=443060&nid=426131092&page=1",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "시장 하락 + 잠수함 실패 하락",
+          "url": "https://finance.naver.com/item/board_read.naver?code=443060&nid=424758098&page=5",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "1~2% 보단 5~10% 상승",
+          "url": "https://finance.naver.com/item/board_read.naver?code=443060&nid=426005736&page=2",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "조선업 전반적 상승 때도 하락인겨?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=443060&nid=424661115&page=5",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "이렇게 상승 없는 품절주도 또 없다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=443060&nid=425200696&page=3",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "조선업종이 지속 약세인 이유가 뭘까",
+          "url": "https://finance.naver.com/item/board_read.naver?code=443060&nid=424612976&page=5",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "약세"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 203,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 8,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 51.4
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 60.0
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 60.0
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 60.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 60.0,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "009540.KS",
+      "name": "HD한국조선해양",
+      "ticker": "009540",
+      "group_desc": "조선",
+      "sector": "조선",
+      "current_level": 335000.0,
+      "score": 45.5,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 245,
+      "greed_total": 4,
+      "fear_total": 6,
+      "greed_counts": {
+        "상승": 2,
+        "추매": 1,
+        "우상향": 1
+      },
+      "fear_counts": {
+        "하락": 3,
+        "폭락": 2,
+        "고점": 1
+      },
+      "evidence": [
+        {
+          "title": "공포에 추매..",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009540&nid=426654663&page=2",
+          "source": "naver",
+          "greed": [
+            "추매"
+          ],
+          "fear": []
+        },
+        {
+          "title": "고점 찍고 계단식 대세하락",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009540&nid=425412011&page=11",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "고점",
+            "하락"
+          ]
+        },
+        {
+          "title": "미국의 한국 조선업 요청으로 길고긴 우상향 행보 이어일것",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009540&nid=425748925&page=8",
+          "source": "naver",
+          "greed": [
+            "우상향"
+          ],
+          "fear": []
+        },
+        {
+          "title": "조선은 시원하게 한번 폭락해야 수급붙지 않겠냐,,",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009540&nid=426497421&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "코스피 상승 랠리 시작이 조선주였지",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009540&nid=425681348&page=8",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "이왕 하락하는거 한조 25만까지 내려와라",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009540&nid=426451195&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "상승 재료",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009540&nid=425175030&page=12",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "오늘 하락으로 끝나는 거야 기정사실이고",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009540&nid=426327736&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 227,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 2,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 9,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 7,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 49.6
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 45.5
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 45.5
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 45.5
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 45.5,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "319400.KQ",
+      "name": "현대무벡스",
+      "ticker": "319400",
+      "group_desc": "로봇",
+      "sector": "로봇",
+      "current_level": 23450.0,
+      "score": 56.2,
+      "zone": "greed",
+      "label": "탐욕",
+      "total_posts": 257,
+      "greed_total": 12,
+      "fear_total": 8,
+      "greed_counts": {
+        "상한가": 6,
+        "상승": 3,
+        "반등": 2,
+        "익절": 1
+      },
+      "fear_counts": {
+        "하락": 3,
+        "나락": 2,
+        "하한가": 2,
+        "폭락": 1
+      },
+      "evidence": [
+        {
+          "title": "이란 미국 공격 (낼장 상한가예약)",
+          "url": "https://finance.naver.com/item/board_read.naver?code=319400&nid=426605224&page=5",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "하한가 가즈아",
+          "url": "https://finance.naver.com/item/board_read.naver?code=319400&nid=426682222&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하한가"
+          ]
+        },
+        {
+          "title": "엇그제 사서 오늘 아침에 익절 하고 나갑니다.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=319400&nid=426599240&page=5",
+          "source": "naver",
+          "greed": [
+            "익절"
+          ],
+          "fear": []
+        },
+        {
+          "title": "돔황처 시외 하락",
+          "url": "https://finance.naver.com/item/board_read.naver?code=319400&nid=426680856&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "반등은 없을듯ㅜ",
+          "url": "https://finance.naver.com/item/board_read.naver?code=319400&nid=426584352&page=6",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "선지 하한가의 위엄!!!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=319400&nid=426623018&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하한가"
+          ]
+        },
+        {
+          "title": "테마주가 겨우 7퍼 상승이라니",
+          "url": "https://finance.naver.com/item/board_read.naver?code=319400&nid=426582419&page=6",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "코스피 모두가 하락할 때",
+          "url": "https://finance.naver.com/item/board_read.naver?code=319400&nid=426618708&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 233,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 4,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 20,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 51.6
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 56.2
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 56.2
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 56.2
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 56.2,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "078150.KQ",
+      "name": "HB테크놀러지",
+      "ticker": "078150",
+      "group_desc": "유리기판",
+      "sector": "반도체",
+      "current_level": 1642.0,
+      "score": 45.5,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 223,
+      "greed_total": 4,
+      "fear_total": 6,
+      "greed_counts": {
+        "상승": 3,
+        "추매": 1
+      },
+      "fear_counts": {
+        "하락": 2,
+        "물렸": 1,
+        "떡락": 1,
+        "급락": 1,
+        "붕괴": 1
+      },
+      "evidence": [
+        {
+          "title": "상승 조건이 된것같은데",
+          "url": "https://finance.naver.com/item/board_read.naver?code=078150&nid=426005677&page=3",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "하락의 끝은 어디인가요?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=078150&nid=426644809&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "상승구간",
+          "url": "https://finance.naver.com/item/board_read.naver?code=078150&nid=425920189&page=3",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "물렸습니다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=078150&nid=426609839&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "물렸"
+          ]
+        },
+        {
+          "title": "추매좀 하려니까ᆢ오르냐~",
+          "url": "https://finance.naver.com/item/board_read.naver?code=078150&nid=425266766&page=6",
+          "source": "naver",
+          "greed": [
+            "추매"
+          ],
+          "fear": []
+        },
+        {
+          "title": "떡락은 잡주처럼하고",
+          "url": "https://finance.naver.com/item/board_read.naver?code=078150&nid=425933834&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "떡락"
+          ]
+        },
+        {
+          "title": ",유리기판관련주 3년지나야 상승",
+          "url": "https://finance.naver.com/item/board_read.naver?code=078150&nid=424623175&page=10",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "주식시장붕괴",
+          "url": "https://finance.naver.com/item/board_read.naver?code=078150&nid=425833259&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "붕괴"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 218,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 5,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 49.6
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 45.5
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 45.5
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 45.5
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 45.5,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "000660.KS",
+      "name": "SK하이닉스",
+      "ticker": "000660",
+      "group_desc": "DRAM/NAND",
+      "sector": "반도체",
+      "current_level": 1401000.0,
+      "score": 39.0,
+      "zone": "fear",
+      "label": "공포",
+      "total_posts": 395,
+      "greed_total": 26,
+      "fear_total": 44,
+      "greed_counts": {
+        "반등": 11,
+        "상승": 6,
+        "급등": 3,
+        "상한가": 2,
+        "호재": 2,
+        "추매": 1,
+        "우상향": 1
+      },
+      "fear_counts": {
+        "급락": 8,
+        "폭락": 7,
+        "하락": 6,
+        "청산": 5,
+        "붕괴": 5,
+        "고점": 4,
+        "물렸": 3,
+        "하한가": 3,
+        "손절": 1,
+        "떡락": 1,
+        "패닉": 1
+      },
+      "evidence": [
+        {
+          "title": "지난주부터 상한가만 알려준곳인데;;",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000660&nid=426692174&page=1",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "[속보] SK하이닉스 60조 벌고도 \"추락\" 6천선 붕괴 '패닉셀'..사상 첫 연이틀 서킷브레이커 -",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000660&nid=426692162&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "패닉",
+            "붕괴"
+          ]
+        },
+        {
+          "title": "미장반등하는디왤케안가냐..",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000660&nid=426692122&page=1",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "1주 하한가에 870억 강제 청산",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000660&nid=426691658&page=5",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "청산",
+            "하한가"
+          ]
+        },
+        {
+          "title": "내일 상한가 가나요?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000660&nid=426692053&page=2",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "SK하이닉스 급락 오판이 가상자산 시장에서 6000만달러 청산으로 번졌다",
+          "url": "https://arca.live/b/stock/178346038?target=title&keyword=SK%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4&p=1",
+          "source": "arca",
+          "greed": [],
+          "fear": [
+            "청산",
+            "급락"
+          ]
+        },
+        {
+          "title": "내일부터 v자 반등이닷",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000660&nid=426691974&page=3",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "SK하이닉스무기한선물 19% 급락…운영사, 청산 피해 보상",
+          "url": "https://www.fmkorea.com/index.php?mid=stock&search_target=title&document_srl=10144184261&search_keyword=SK%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4&page=3",
+          "source": "fmkorea",
+          "greed": [],
+          "fear": [
+            "청산",
+            "급락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 235,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 7,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 4,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 35,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 84,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 29,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 46.5
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 29.7
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 29.6
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 39.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 39.0,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "009150.KS",
+      "name": "삼성전기",
+      "ticker": "009150",
+      "group_desc": "PCB/기판",
+      "sector": "반도체",
+      "current_level": 1029000.0,
+      "score": 33.3,
+      "zone": "fear",
+      "label": "공포",
+      "total_posts": 362,
+      "greed_total": 13,
+      "fear_total": 32,
+      "greed_counts": {
+        "상승": 6,
+        "반등": 4,
+        "풀매수": 1,
+        "불장": 1,
+        "호재": 1
+      },
+      "fear_counts": {
+        "손절": 4,
+        "하락": 4,
+        "폭락": 4,
+        "붕괴": 4,
+        "반토막": 3,
+        "고점": 3,
+        "하한가": 3,
+        "떡락": 2,
+        "패닉": 2,
+        "급락": 2,
+        "청산": 1
+      },
+      "evidence": [
+        {
+          "title": "산수가 말한대로 100만원에 다들 풀매수했나?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009150&nid=426692003&page=1",
+          "source": "naver",
+          "greed": [
+            "풀매수"
+          ],
+          "fear": []
+        },
+        {
+          "title": "저점 찾았고 반등 계단식 하락으로 보이지만 더이상 말안한다.손절하려면 오늘 나가고 주식하지말라.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009150&nid=426674875&page=6",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "손절",
+            "하락"
+          ]
+        },
+        {
+          "title": "넥장 상승 가짜. 초단타",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009150&nid=426689959&page=1",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "삼성전기현대차 고점에 물린 주주들 생지옥 월요일 폭락공포",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=2&divpage=1&search_type=sub_memo&keyword=%BB%EF%BC%BA%C0%FC%B1%E2&no=405689",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "고점",
+            "폭락"
+          ]
+        },
+        {
+          "title": "바닥 다지기 후 상승예상.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009150&nid=426684755&page=2",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "삼성전기는 고점대비 반토막이네요",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=2&divpage=1&search_type=sub_memo&keyword=%BB%EF%BC%BA%C0%FC%B1%E2&no=400917",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "반토막",
+            "고점"
+          ]
+        },
+        {
+          "title": "3분기실적30%상승확정된거네",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009150&nid=426681882&page=3",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "지금 다 손절했음.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=009150&nid=426691228&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "손절"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 238,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 4,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 2,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 7,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 76,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 35,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 46.9
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 30.9
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 31.5
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 33.3
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 33.3,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "053610.KQ",
+      "name": "프로텍",
+      "ticker": "053610",
+      "group_desc": "HBM/패키징 장비",
+      "sector": "반도체",
+      "current_level": 49850.0,
+      "score": 33.3,
+      "zone": "fear",
+      "label": "공포",
+      "total_posts": 186,
+      "greed_total": 1,
+      "fear_total": 8,
+      "greed_counts": {
+        "급등": 1
+      },
+      "fear_counts": {
+        "하락": 3,
+        "폭락": 2,
+        "나락": 1,
+        "악재": 1,
+        "하한가": 1
+      },
+      "evidence": [
+        {
+          "title": "프로텍 급등? 반도체 미래 먹거리 놓치지 마세요!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=053610&nid=423886383&page=6",
+          "source": "naver",
+          "greed": [
+            "급등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "장난말고 하한가로 내려줘",
+          "url": "https://finance.naver.com/item/board_read.naver?code=053610&nid=425071831&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하한가"
+          ]
+        },
+        {
+          "title": "메타 땜시 반도체가 나락이네",
+          "url": "https://finance.naver.com/item/board_read.naver?code=053610&nid=424417198&page=5",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "나락"
+          ]
+        },
+        {
+          "title": "이제 하락장인가요 ㅜㅠ",
+          "url": "https://finance.naver.com/item/board_read.naver?code=053610&nid=423577155&page=6",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "예정대로 오후되니 조금씩 하락 이네요",
+          "url": "https://finance.naver.com/item/board_read.naver?code=053610&nid=422282730&page=8",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "오후 개폭락 아니길",
+          "url": "https://finance.naver.com/item/board_read.naver?code=053610&nid=422242279&page=8",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "미장이 폭락했는데 월요일 어떨까요?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=053610&nid=422004894&page=9",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "숨겨논 악재는",
+          "url": "https://finance.naver.com/item/board_read.naver?code=053610&nid=421261218&page=10",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "악재"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 183,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 3,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 48.1
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 33.3
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 33.3
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 33.3
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 33.3,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "019210.KQ",
+      "name": "와이지-원",
+      "ticker": "019210",
+      "group_desc": "건설기계",
+      "sector": "기계",
+      "current_level": 16110.0,
+      "score": 41.9,
+      "zone": "fear",
+      "label": "공포",
+      "total_posts": 221,
+      "greed_total": 7,
+      "fear_total": 12,
+      "greed_counts": {
+        "반등": 3,
+        "상승": 3,
+        "급등": 1
+      },
+      "fear_counts": {
+        "하락": 4,
+        "손절": 2,
+        "고점": 2,
+        "돔황챠": 1,
+        "물렸": 1,
+        "폭락": 1,
+        "하한가": 1
+      },
+      "evidence": [
+        {
+          "title": "금리 지속 상승중",
+          "url": "https://finance.naver.com/item/board_read.naver?code=019210&nid=426323654&page=3",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "오늜하락주요인",
+          "url": "https://finance.naver.com/item/board_read.naver?code=019210&nid=426515491&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "텅스텐 가격이 지속 상승 중",
+          "url": "https://finance.naver.com/item/board_read.naver?code=019210&nid=426308032&page=3",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "키움창구 손절물량",
+          "url": "https://finance.naver.com/item/board_read.naver?code=019210&nid=426499123&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "손절"
+          ]
+        },
+        {
+          "title": "OSG 2% 대 상승",
+          "url": "https://finance.naver.com/item/board_read.naver?code=019210&nid=426263863&page=3",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "오늘 국장 폭락이네?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=019210&nid=426426316&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "급등할때 탔다가 손해보고 악에 받혀서",
+          "url": "https://finance.naver.com/item/board_read.naver?code=019210&nid=426135216&page=5",
+          "source": "naver",
+          "greed": [
+            "급등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "텅스텐가격 많이하락함.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=019210&nid=426299388&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 221,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 0,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 48.9
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 41.9
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 41.9
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 41.9
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 41.9,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "086790.KS",
+      "name": "하나금융지주",
+      "ticker": "086790",
+      "group_desc": "은행지주",
+      "sector": "증권",
+      "current_level": 120400.0,
+      "score": 53.7,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 236,
+      "greed_total": 16,
+      "fear_total": 13,
+      "greed_counts": {
+        "신고가": 8,
+        "급등": 6,
+        "추매": 1,
+        "상승": 1
+      },
+      "fear_counts": {
+        "고점": 4,
+        "급락": 4,
+        "하락": 3,
+        "나락": 1,
+        "폭락": 1
+      },
+      "evidence": [
+        {
+          "title": "대체거래소서 급등?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=086790&nid=426391534&page=2",
+          "source": "naver",
+          "greed": [
+            "급등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "2차 급락 스멜",
+          "url": "https://finance.naver.com/item/board_read.naver?code=086790&nid=426596253&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "급락"
+          ]
+        },
+        {
+          "title": "동지들! 속임수 매도라 급등?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=086790&nid=426342512&page=2",
+          "source": "naver",
+          "greed": [
+            "급등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "왜 은행주 중 오늘 하나금융만 하락이죠?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=086790&nid=426343529&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "동지들! 급등 스멜이다!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=086790&nid=426111365&page=4",
+          "source": "naver",
+          "greed": [
+            "급등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "또! 대체거래소서 급락 스멜",
+          "url": "https://finance.naver.com/item/board_read.naver?code=086790&nid=426333316&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "급락"
+          ]
+        },
+        {
+          "title": "급등? 빨리 사둬라!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=086790&nid=426043665&page=4",
+          "source": "naver",
+          "greed": [
+            "급등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "지금 고점이라고 사지 말라해도",
+          "url": "https://finance.naver.com/item/board_read.naver?code=086790&nid=425660636&page=6",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 219,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 16,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 53.7
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 53.7
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 53.7
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 53.7,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "079550.KS",
+      "name": "LIG넥스원",
+      "ticker": "079550",
+      "group_desc": "방산 (유럽 Peer)",
+      "sector": "방산",
+      "current_level": 620000.0,
+      "score": 43.3,
+      "zone": "fear",
+      "label": "공포",
+      "total_posts": 244,
+      "greed_total": 7,
+      "fear_total": 11,
+      "greed_counts": {
+        "급등": 3,
+        "상한가": 2,
+        "신고가": 1,
+        "익절": 1
+      },
+      "fear_counts": {
+        "하락": 5,
+        "폭락": 3,
+        "손절": 1,
+        "고점": 1,
+        "끝났다": 1
+      },
+      "evidence": [
+        {
+          "title": "오늘은 방산 조선주들 급등이 나올것 같아요",
+          "url": "https://finance.naver.com/item/board_read.naver?code=079550&nid=426565371&page=6",
+          "source": "naver",
+          "greed": [
+            "급등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "과도한 하락으로 매수하기 좋은 환경조성.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=079550&nid=426678680&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "30년차)로템 익절하고",
+          "url": "https://finance.naver.com/item/board_read.naver?code=079550&nid=426517046&page=7",
+          "source": "naver",
+          "greed": [
+            "익절"
+          ],
+          "fear": []
+        },
+        {
+          "title": "30년차)끝났다니깐~~",
+          "url": "https://finance.naver.com/item/board_read.naver?code=079550&nid=426599341&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "끝났다"
+          ]
+        },
+        {
+          "title": "미국 방상주 급등",
+          "url": "https://finance.naver.com/item/board_read.naver?code=079550&nid=426417336&page=12",
+          "source": "naver",
+          "greed": [
+            "급등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "지금 미국방산 팔란티어레버리지 -19%여 대폭락중 미국대표방산주 대폭락중이여",
+          "url": "https://finance.naver.com/item/board_read.naver?code=079550&nid=426547547&page=6",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "뭐 해??? 미쿡 RTX 는 역사적 신고가 달리는데~~~",
+          "url": "https://finance.naver.com/item/board_read.naver?code=079550&nid=426405903&page=12",
+          "source": "naver",
+          "greed": [
+            "신고가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "반도체주 모두 손절하고, 방산주(LIG. 한화). 해운주(HMM) 화장품주(달바) 디자인하우스(가온) 으로 포트조정 비중확대.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=079550&nid=426546332&page=6",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "손절"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 225,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 19,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 48.8
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 39.4
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 39.4
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 43.3
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 43.3,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "085620.KS",
+      "name": "미래에셋생명",
+      "ticker": "085620",
+      "group_desc": "보험",
+      "sector": "증권",
+      "current_level": 14130.0,
+      "score": 61.3,
+      "zone": "greed",
+      "label": "탐욕",
+      "total_posts": 242,
+      "greed_total": 13,
+      "fear_total": 6,
+      "greed_counts": {
+        "추매": 3,
+        "물타기": 3,
+        "영차": 2,
+        "신고가": 2,
+        "상한가": 2,
+        "불장": 1
+      },
+      "fear_counts": {
+        "하락": 2,
+        "하한가": 2,
+        "손절": 1,
+        "물렸": 1
+      },
+      "evidence": [
+        {
+          "title": "50만원 추매 물타기~",
+          "url": "https://finance.naver.com/item/board_read.naver?code=085620&nid=426522882&page=2",
+          "source": "naver",
+          "greed": [
+            "추매",
+            "물타기"
+          ],
+          "fear": []
+        },
+        {
+          "title": "연기금 3만원대에 왕창 처물렸으니 이젠 일하라!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=085620&nid=426204528&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "물렸"
+          ]
+        },
+        {
+          "title": "추매 했습니다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=085620&nid=426650087&page=1",
+          "source": "naver",
+          "greed": [
+            "추매"
+          ],
+          "fear": []
+        },
+        {
+          "title": "눈물을 머금고 손절했습니다.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=085620&nid=426198232&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "손절"
+          ]
+        },
+        {
+          "title": "날씨 더운데 시원하게 물타기",
+          "url": "https://finance.naver.com/item/board_read.naver?code=085620&nid=426448363&page=2",
+          "source": "naver",
+          "greed": [
+            "물타기"
+          ],
+          "fear": []
+        },
+        {
+          "title": "대체 얼마까지 주가가 하락해야 게시판에 도배를 멈출 건지 진지하게 물어보고 싶습니다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=085620&nid=426085094&page=5",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "추매해서 단가나 낮추어야 겠다. 젠장",
+          "url": "https://finance.naver.com/item/board_read.naver?code=085620&nid=426345860&page=3",
+          "source": "naver",
+          "greed": [
+            "추매"
+          ],
+          "fear": []
+        },
+        {
+          "title": "미래에셋생명은 어제 하한가 맞고 오늘 또 -19% ㄷ ㄷ",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=1&divpage=1&search_type=sub_memo&keyword=%B9%CC%B7%A1%BF%A1%BC%C2%BB%FD%B8%ED&no=383446",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "하한가"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 225,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 17,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 51.2
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 59.4
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 59.4
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 61.3
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 61.3,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "082740.KS",
+      "name": "한화엔진",
+      "ticker": "082740",
+      "group_desc": "조선 엔진",
+      "sector": "조선",
+      "current_level": 38700.0,
+      "score": 33.3,
+      "zone": "fear",
+      "label": "공포",
+      "total_posts": 243,
+      "greed_total": 1,
+      "fear_total": 8,
+      "greed_counts": {
+        "가즈아": 1
+      },
+      "fear_counts": {
+        "하락": 2,
+        "폭락": 2,
+        "악재": 2,
+        "손절": 1,
+        "급락": 1
+      },
+      "evidence": [
+        {
+          "title": "가즈아",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082740&nid=426046233&page=12",
+          "source": "naver",
+          "greed": [
+            "가즈아"
+          ],
+          "fear": []
+        },
+        {
+          "title": "반도체 악재하고 무슨상관",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082740&nid=426628009&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "악재"
+          ]
+        },
+        {
+          "title": "주주환원 없는 자사주 매입은 악재",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082740&nid=426569744&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "악재"
+          ]
+        },
+        {
+          "title": "실적 안좋으면 현대로템처럼 폭락 합니다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082740&nid=426505190&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "그래서,손절하셨나ㅋㅋㅋ",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082740&nid=426392188&page=6",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "손절"
+          ]
+        },
+        {
+          "title": "한엔 급락",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082740&nid=426371679&page=7",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "급락"
+          ]
+        },
+        {
+          "title": "아는척 입털면 주가하락",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082740&nid=426347650&page=8",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "오늘도 오전상승,오후폭락 ㅠㅠ",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082740&nid=426123275&page=11",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 232,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 3,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 8,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 48.8
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 33.3
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 33.3
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 33.3
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 33.3,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "005940.KS",
+      "name": "NH투자증권",
+      "ticker": "005940",
+      "group_desc": "증권",
+      "sector": "증권",
+      "current_level": 25950.0,
+      "score": 69.6,
+      "zone": "greed",
+      "label": "탐욕",
+      "total_posts": 204,
+      "greed_total": 10,
+      "fear_total": 1,
+      "greed_counts": {
+        "호재": 7,
+        "풀매수": 1,
+        "급등": 1,
+        "신고가": 1
+      },
+      "fear_counts": {
+        "손절": 1
+      },
+      "evidence": [
+        {
+          "title": "목요일에 삼성전자 풀매수한거..",
+          "url": "https://finance.naver.com/item/board_read.naver?code=005940&nid=425801236&page=3",
+          "source": "naver",
+          "greed": [
+            "풀매수"
+          ],
+          "fear": []
+        },
+        {
+          "title": "손절",
+          "url": "https://finance.naver.com/item/board_read.naver?code=005940&nid=425977344&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "손절"
+          ]
+        },
+        {
+          "title": "유증호재",
+          "url": "https://finance.naver.com/item/board_read.naver?code=005940&nid=423952874&page=6",
+          "source": "naver",
+          "greed": [
+            "호재"
+          ],
+          "fear": []
+        },
+        {
+          "title": "??? : 3자배정 유증은 호재다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=005940&nid=423525394&page=6",
+          "source": "naver",
+          "greed": [
+            "호재"
+          ],
+          "fear": []
+        },
+        {
+          "title": "코스피는 신고가인대",
+          "url": "https://finance.naver.com/item/board_read.naver?code=005940&nid=423484771&page=7",
+          "source": "naver",
+          "greed": [
+            "신고가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "3자 유증은 대호재",
+          "url": "https://finance.naver.com/item/board_read.naver?code=005940&nid=421761245&page=10",
+          "source": "naver",
+          "greed": [
+            "호재"
+          ],
+          "fear": []
+        },
+        {
+          "title": "낼 급등...",
+          "url": "https://finance.naver.com/item/board_read.naver?code=005940&nid=421714963&page=10",
+          "source": "naver",
+          "greed": [
+            "급등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "호재라 생각하는 사람들",
+          "url": "https://finance.naver.com/item/board_read.naver?code=005940&nid=421698384&page=10",
+          "source": "naver",
+          "greed": [
+            "호재"
+          ],
+          "fear": []
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 202,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 2,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 51.7
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 64.0
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 69.6
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 69.6
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 69.6,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "039830.KQ",
+      "name": "오로라",
+      "ticker": "039830",
+      "group_desc": "IP/엔터",
+      "sector": "IP",
+      "current_level": 19570.0,
+      "score": 48.0,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 195,
+      "greed_total": 6,
+      "fear_total": 7,
+      "greed_counts": {
+        "상한가": 3,
+        "반등": 1,
+        "상승": 1,
+        "익절": 1
+      },
+      "fear_counts": {
+        "하락": 2,
+        "약세": 2,
+        "폭락": 1,
+        "급락": 1,
+        "하한가": 1
+      },
+      "evidence": [
+        {
+          "title": "반기 실적 선매수후 공시나오면 익절 전략",
+          "url": "https://finance.naver.com/item/board_read.naver?code=039830&nid=426576651&page=1",
+          "source": "naver",
+          "greed": [
+            "익절"
+          ],
+          "fear": []
+        },
+        {
+          "title": "11.10 미국증시 - 대마초 관련주 급락(오로라캐나비스 -25.96%) / 약세 : 기술주, 반도체, 바이든 관련주 / 알리바바 -8.26%, 보잉 +5.20%, GM +5.44, 비욘드미트 -16.94%, 줌비디오 -9.01%",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=2&divpage=1&search_type=sub_memo&keyword=%BF%C0%B7%CE%B6%F3&no=169219",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "급락",
+            "약세"
+          ]
+        },
+        {
+          "title": "벌써 반등하나?..안녕이다.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=039830&nid=420595191&page=6",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "오늘도 시원하게 폭락하네..",
+          "url": "https://finance.naver.com/item/board_read.naver?code=039830&nid=421272389&page=5",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "오늘도 상한가",
+          "url": "https://finance.naver.com/item/board_read.naver?code=039830&nid=418925975&page=9",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "오늘 하락은 좀 시원하네...",
+          "url": "https://finance.naver.com/item/board_read.naver?code=039830&nid=421173991&page=5",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "얼마나 공매쳤으면 오늘 상한가 갈까?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=039830&nid=418731693&page=9",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "오늘도 하락 시켜주네.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=039830&nid=421029566&page=5",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 179,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 15,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 49.5
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 46.2
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 46.2
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 48.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 48.0,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "032820.KQ",
+      "name": "우리기술",
+      "ticker": "032820",
+      "group_desc": "국내 원전",
+      "sector": "AI인프라",
+      "current_level": 8080.0,
+      "score": 47.5,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 254,
+      "greed_total": 13,
+      "fear_total": 15,
+      "greed_counts": {
+        "상한가": 5,
+        "가즈아": 2,
+        "풀매수": 2,
+        "호재": 2,
+        "물타기": 1,
+        "상승": 1
+      },
+      "fear_counts": {
+        "하락": 4,
+        "물렸": 2,
+        "망했다": 2,
+        "설거지": 1,
+        "나락": 1,
+        "반토막": 1,
+        "고점": 1,
+        "폭락": 1,
+        "악재": 1,
+        "하한가": 1
+      },
+      "evidence": [
+        {
+          "title": "지금부터 풀매수",
+          "url": "https://finance.naver.com/item/board_read.naver?code=032820&nid=426673415&page=1",
+          "source": "naver",
+          "greed": [
+            "풀매수"
+          ],
+          "fear": []
+        },
+        {
+          "title": "■AI고점론",
+          "url": "https://finance.naver.com/item/board_read.naver?code=032820&nid=426685005&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "인생머있더냐 몰빵가즈아~~",
+          "url": "https://finance.naver.com/item/board_read.naver?code=032820&nid=426586668&page=4",
+          "source": "naver",
+          "greed": [
+            "가즈아"
+          ],
+          "fear": []
+        },
+        {
+          "title": "하락 속도 구간중",
+          "url": "https://finance.naver.com/item/board_read.naver?code=032820&nid=426669137&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "메드업 상한가",
+          "url": "https://finance.naver.com/item/board_read.naver?code=032820&nid=426582659&page=4",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "힝... 망했다ㅠㅠ",
+          "url": "https://finance.naver.com/item/board_read.naver?code=032820&nid=426637920&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "망했다"
+          ]
+        },
+        {
+          "title": "이건 희망도 미래도 없는 버러지 기업이야. 그냥 물타기도 하지말고",
+          "url": "https://finance.naver.com/item/board_read.naver?code=032820&nid=426572677&page=4",
+          "source": "naver",
+          "greed": [
+            "물타기"
+          ],
+          "fear": []
+        },
+        {
+          "title": "나락간다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=032820&nid=426601700&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "나락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 221,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 2,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 31,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 49.6
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 48.7
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 47.5
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 47.5
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 47.5,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "000500.KS",
+      "name": "가온전선",
+      "ticker": "000500",
+      "group_desc": "변압기/전력기기",
+      "sector": "AI인프라",
+      "current_level": 122400.0,
+      "score": 31.8,
+      "zone": "fear",
+      "label": "공포",
+      "total_posts": 241,
+      "greed_total": 8,
+      "fear_total": 24,
+      "greed_counts": {
+        "반등": 6,
+        "가즈아": 1,
+        "상한가": 1
+      },
+      "fear_counts": {
+        "하한가": 11,
+        "하락": 5,
+        "손절": 3,
+        "악재": 2,
+        "반토막": 1,
+        "고점": 1,
+        "청산": 1
+      },
+      "evidence": [
+        {
+          "title": "삼닉 전부 말아올림!!!!!! 가온 가즈아 !!!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000500&nid=426680610&page=1",
+          "source": "naver",
+          "greed": [
+            "가즈아"
+          ],
+          "fear": []
+        },
+        {
+          "title": "고점 63만원짜리 주식이",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000500&nid=426679141&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "축하드립니다 내일 상한가 각이네요",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000500&nid=426676821&page=1",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "가온 19.3%나 하락이유는?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000500&nid=426678477&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "코스피 코스닥은 조금이라도 반등하잖아",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000500&nid=426669542&page=2",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "거래소 하락 1위 대단하다 어제 오늘",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000500&nid=426678406&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "혼자 모힛하이 반등",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000500&nid=426666944&page=2",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "가온전선 하락 이유",
+          "url": "https://finance.naver.com/item/board_read.naver?code=000500&nid=426677989&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 231,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 7,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 46.8
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 31.8
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 30.4
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 31.8
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 31.8,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "483650.KS",
+      "name": "달바글로벌",
+      "ticker": "483650",
+      "group_desc": "화장품/ODM",
+      "sector": "화장품",
+      "current_level": 265000.0,
+      "score": 50.0,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 246,
+      "greed_total": 12,
+      "fear_total": 12,
+      "greed_counts": {
+        "신고가": 7,
+        "상승": 3,
+        "가즈아": 1,
+        "익절": 1
+      },
+      "fear_counts": {
+        "고점": 5,
+        "하락": 3,
+        "하한가": 2,
+        "손절": 1,
+        "폭락": 1
+      },
+      "evidence": [
+        {
+          "title": "오늘은 전고점 깨고 상승",
+          "url": "https://finance.naver.com/item/board_read.naver?code=483650&nid=426328076&page=10",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "상승 하락은 탑이네!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=483650&nid=426638219&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "에이피알은 매일이 신고가,달바글로벌은 전고점 가는 중",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=1&divpage=1&search_type=sub_memo&keyword=%B4%DE%B9%D9%B1%DB%B7%CE%B9%FA&no=349681",
+          "source": "ppomppu",
+          "greed": [
+            "신고가"
+          ],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "달바 역사상 고점인데도",
+          "url": "https://finance.naver.com/item/board_read.naver?code=483650&nid=426624859&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "신고가라 길게 볼랬더니",
+          "url": "https://finance.naver.com/item/board_read.naver?code=483650&nid=426621291&page=4",
+          "source": "naver",
+          "greed": [
+            "신고가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "아까 275000원 곧 30갈줄알았는데 24로 하락",
+          "url": "https://finance.naver.com/item/board_read.naver?code=483650&nid=426622441&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "익절 감사",
+          "url": "https://finance.naver.com/item/board_read.naver?code=483650&nid=426595479&page=5",
+          "source": "naver",
+          "greed": [
+            "익절"
+          ],
+          "fear": []
+        },
+        {
+          "title": "달바 무슨 호재 있나요? 지금 국장 대폭락중인데 왜?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=483650&nid=426611265&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 226,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": "차단됨 (HTTP 430)"
+        },
+        {
+          "key": "ppomppu",
+          "count": 19,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 51.4
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 51.4
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 50.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 50.0,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "010950.KS",
+      "name": "S-Oil",
+      "ticker": "010950",
+      "group_desc": "화학/정유",
+      "sector": "화학",
+      "current_level": 126400.0,
+      "score": 53.8,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 235,
+      "greed_total": 15,
+      "fear_total": 12,
+      "greed_counts": {
+        "상한가": 5,
+        "상승": 3,
+        "반등": 2,
+        "호재": 2,
+        "추매": 1,
+        "급등": 1,
+        "익절": 1
+      },
+      "fear_counts": {
+        "하락": 4,
+        "고점": 2,
+        "급락": 2,
+        "구조대": 1,
+        "나락": 1,
+        "폭락": 1,
+        "악재": 1
+      },
+      "evidence": [
+        {
+          "title": "내일 반등해주면",
+          "url": "https://finance.naver.com/item/board_read.naver?code=010950&nid=426692187&page=1",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "제일 중요한 악재",
+          "url": "https://finance.naver.com/item/board_read.naver?code=010950&nid=426573914&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "악재"
+          ]
+        },
+        {
+          "title": "유가 상승보고 들어오는",
+          "url": "https://finance.naver.com/item/board_read.naver?code=010950&nid=426620324&page=1",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "휴가철 지수하락 매년 행사",
+          "url": "https://finance.naver.com/item/board_read.naver?code=010950&nid=426498077&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "국제 유가 개급등중",
+          "url": "https://finance.naver.com/item/board_read.naver?code=010950&nid=426612100&page=1",
+          "source": "naver",
+          "greed": [
+            "급등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "■급락 중지 후 현재 보합상태",
+          "url": "https://finance.naver.com/item/board_read.naver?code=010950&nid=426418110&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "급락"
+          ]
+        },
+        {
+          "title": "정유주 호재",
+          "url": "https://finance.naver.com/item/board_read.naver?code=010950&nid=426541309&page=2",
+          "source": "naver",
+          "greed": [
+            "호재"
+          ],
+          "fear": []
+        },
+        {
+          "title": "공매도 엄청 심하네 오늘 나락가겠네",
+          "url": "https://finance.naver.com/item/board_read.naver?code=010950&nid=426358450&page=5",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "나락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 234,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": "차단됨 (HTTP 430)"
+        },
+        {
+          "key": "ppomppu",
+          "count": 1,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 48.5
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 42.6
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 42.6
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 53.8
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 53.8,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "017670.KS",
+      "name": "SK텔레콤",
+      "ticker": "017670",
+      "group_desc": "통신사",
+      "sector": "광통신",
+      "current_level": 78600.0,
+      "score": 48.8,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 261,
+      "greed_total": 14,
+      "fear_total": 15,
+      "greed_counts": {
+        "반등": 5,
+        "가즈아": 2,
+        "추매": 2,
+        "급등": 2,
+        "떡상": 1,
+        "상승": 1,
+        "신고가": 1
+      },
+      "fear_counts": {
+        "폭락": 8,
+        "악재": 4,
+        "손절": 2,
+        "물렸": 1
+      },
+      "evidence": [
+        {
+          "title": "얘는 왜 반등이 안나오죠",
+          "url": "https://finance.naver.com/item/board_read.naver?code=017670&nid=426668370&page=1",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "(속담)종목 악재는 손절//지수나 시장 악재는 추매 >>>>추매",
+          "url": "https://finance.naver.com/item/board_read.naver?code=017670&nid=426489774&page=11",
+          "source": "naver",
+          "greed": [
+            "추매"
+          ],
+          "fear": [
+            "손절",
+            "악재"
+          ]
+        },
+        {
+          "title": "가즈아!!!!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=017670&nid=426663154&page=2",
+          "source": "naver",
+          "greed": [
+            "가즈아"
+          ],
+          "fear": []
+        },
+        {
+          "title": "폭락하니까 줄줄이 목표가 하향리포트 내놓네ㅎㅎㅎ",
+          "url": "https://finance.naver.com/item/board_read.naver?code=017670&nid=426615424&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "하나증권에서 8월 기술주 반등 시 급반등할 가능성이 크답니다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=017670&nid=426565328&page=6",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "젠슨황만 스치면 대폭락",
+          "url": "https://finance.naver.com/item/board_read.naver?code=017670&nid=426567014&page=6",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "미수 풀가즈아",
+          "url": "https://finance.naver.com/item/board_read.naver?code=017670&nid=426560446&page=6",
+          "source": "naver",
+          "greed": [
+            "가즈아"
+          ],
+          "fear": []
+        },
+        {
+          "title": "Sk텔이 폭락할 하등의 이유가",
+          "url": "https://finance.naver.com/item/board_read.naver?code=017670&nid=426564553&page=6",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 234,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 2,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 6,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 19,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 49.6
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 48.8
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 48.8
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 48.8
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 48.8,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "047040.KS",
+      "name": "대우건설",
+      "ticker": "047040",
+      "group_desc": "EPC",
+      "sector": "AI인프라",
+      "current_level": 12020.0,
+      "score": 34.1,
+      "zone": "fear",
+      "label": "공포",
+      "total_posts": 273,
+      "greed_total": 8,
+      "fear_total": 21,
+      "greed_counts": {
+        "상승": 3,
+        "존버": 1,
+        "물타기": 1,
+        "반등": 1,
+        "신고가": 1,
+        "상한가": 1
+      },
+      "fear_counts": {
+        "하락": 11,
+        "반토막": 2,
+        "돔황챠": 1,
+        "나락": 1,
+        "고점": 1,
+        "끝났다": 1,
+        "망했다": 1,
+        "청산": 1,
+        "폭락": 1,
+        "급락": 1
+      },
+      "evidence": [
+        {
+          "title": "물타기하다가 조졌네",
+          "url": "https://finance.naver.com/item/board_read.naver?code=047040&nid=426661718&page=3",
+          "source": "naver",
+          "greed": [
+            "물타기"
+          ],
+          "fear": []
+        },
+        {
+          "title": "현대건설대우건설반토막 미수 깡통계좌 반대매매청산 공포",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=1&divpage=1&search_type=sub_memo&keyword=%B4%EB%BF%EC%B0%C7%BC%B3&no=386081",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "반토막",
+            "청산"
+          ]
+        },
+        {
+          "title": "지금 소폭 반등 예정입니다. 희소식...",
+          "url": "https://finance.naver.com/item/board_read.naver?code=047040&nid=426658635&page=3",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "내일하락도 미리축하드립니다^^♡♡",
+          "url": "https://finance.naver.com/item/board_read.naver?code=047040&nid=426691258&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "코스피는 잘 상승중입니다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=047040&nid=426585265&page=11",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "떨어지는것 오늘이 최고고점",
+          "url": "https://finance.naver.com/item/board_read.naver?code=047040&nid=426690879&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "대우건설역사적 신고가 반년만에 텐버거",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=3&divpage=1&search_type=sub_memo&keyword=%B4%EB%BF%EC%B0%C7%BC%B3&no=349028",
+          "source": "ppomppu",
+          "greed": [
+            "신고가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "전쟁리스크 때문에 당분간 하락 불가피",
+          "url": "https://finance.naver.com/item/board_read.naver?code=047040&nid=426689345&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 237,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 2,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 5,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 29,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 47.6
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 40.0
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 35.0
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 34.1
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 34.1,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "046970.KQ",
+      "name": "우리로",
+      "ticker": "046970",
+      "group_desc": "CPO/광통신",
+      "sector": "광통신",
+      "current_level": 3505.0,
+      "score": 46.3,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 226,
+      "greed_total": 13,
+      "fear_total": 16,
+      "greed_counts": {
+        "상한가": 4,
+        "반등": 2,
+        "상승": 2,
+        "신고가": 2,
+        "떡상": 1,
+        "추매": 1,
+        "급등": 1
+      },
+      "fear_counts": {
+        "폭락": 4,
+        "하락": 3,
+        "손절": 2,
+        "고점": 2,
+        "하한가": 2,
+        "끝났다": 1,
+        "급락": 1,
+        "붕괴": 1
+      },
+      "evidence": [
+        {
+          "title": "오늘 광통신 떡상 양자도 강한반등",
+          "url": "https://finance.naver.com/item/board_read.naver?code=046970&nid=425119641&page=8",
+          "source": "naver",
+          "greed": [
+            "떡상",
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "우리로, 도대체 왜 하락하는 걸까요?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=046970&nid=426638417&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "445주 추매했읍니다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=046970&nid=426587773&page=1",
+          "source": "naver",
+          "greed": [
+            "추매"
+          ],
+          "fear": []
+        },
+        {
+          "title": "오늘 손절하신 분들 꼭 보세요",
+          "url": "https://finance.naver.com/item/board_read.naver?code=046970&nid=426480703&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "손절"
+          ]
+        },
+        {
+          "title": "장담하건데 매수자 증가로 상승세 올것",
+          "url": "https://finance.naver.com/item/board_read.naver?code=046970&nid=426568521&page=1",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "삼닉스폭락",
+          "url": "https://finance.naver.com/item/board_read.naver?code=046970&nid=425799077&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "며칠 전 상승한 이유와 앞으로의 전망!!!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=046970&nid=426135383&page=3",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "삼닉 최고점 못뚫으면 끝이다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=046970&nid=425633246&page=5",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 223,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 3,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 49.1
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 45.2
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 45.2
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 46.3
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 46.3,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "399720.KQ",
+      "name": "가온칩스",
+      "ticker": "399720",
+      "group_desc": "반도체 IP/디자인",
+      "sector": "반도체",
+      "current_level": 43100.0,
+      "score": 59.3,
+      "zone": "greed",
+      "label": "탐욕",
+      "total_posts": 255,
+      "greed_total": 26,
+      "fear_total": 16,
+      "greed_counts": {
+        "상한가": 14,
+        "가즈아": 3,
+        "상승": 3,
+        "급등": 2,
+        "호재": 2,
+        "영차": 1,
+        "떡상": 1
+      },
+      "fear_counts": {
+        "하락": 6,
+        "폭락": 5,
+        "하한가": 2,
+        "설거지": 1,
+        "나락": 1,
+        "끝났다": 1
+      },
+      "evidence": [
+        {
+          "title": "30분 남았다. 상한가 가즈아",
+          "url": "https://finance.naver.com/item/board_read.naver?code=399720&nid=426398147&page=7",
+          "source": "naver",
+          "greed": [
+            "가즈아",
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "과도한 하락. 향후 주가상승을 위한 기초다짐.",
+          "url": "https://finance.naver.com/item/board_read.naver?code=399720&nid=426678471&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "상한가 가즈아 200,000원",
+          "url": "https://finance.naver.com/item/board_read.naver?code=399720&nid=426395736&page=7",
+          "source": "naver",
+          "greed": [
+            "가즈아",
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "차트가...하락....",
+          "url": "https://finance.naver.com/item/board_read.naver?code=399720&nid=426576180&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "상한가 가즈아 200,000원 상한가",
+          "url": "https://finance.naver.com/item/board_read.naver?code=399720&nid=426395558&page=7",
+          "source": "naver",
+          "greed": [
+            "가즈아",
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "갑자기 왜 폭락?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=399720&nid=426571871&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "내일 떡상 하겠는데?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=399720&nid=426495665&page=4",
+          "source": "naver",
+          "greed": [
+            "떡상"
+          ],
+          "fear": []
+        },
+        {
+          "title": "하한가다 ㅅㅅㅅㅅㅅㅅ",
+          "url": "https://finance.naver.com/item/board_read.naver?code=399720&nid=426567821&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하한가"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 234,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 8,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 12,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 52.4
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 59.3
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 59.3
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 59.3
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 59.3,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "082920.KQ",
+      "name": "비츠로셀",
+      "ticker": "082920",
+      "group_desc": "2차전지",
+      "sector": "화학",
+      "current_level": 26100.0,
+      "score": 47.4,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 230,
+      "greed_total": 12,
+      "fear_total": 14,
+      "greed_counts": {
+        "상한가": 3,
+        "불장": 2,
+        "물타기": 2,
+        "급등": 2,
+        "상승": 2,
+        "반등": 1
+      },
+      "fear_counts": {
+        "하락": 5,
+        "폭락": 3,
+        "손절": 2,
+        "급락": 1,
+        "약세": 1,
+        "악재": 1,
+        "하한가": 1
+      },
+      "evidence": [
+        {
+          "title": "평단 낮춘다꼬 물타기한 애들",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082920&nid=426653312&page=1",
+          "source": "naver",
+          "greed": [
+            "물타기"
+          ],
+          "fear": []
+        },
+        {
+          "title": "반도체 폭락인데 반도체보다 더떨어진건 문제가 있지않나 ㅋ",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082920&nid=426686224&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "대단은 하다 전부 급등이고 난리구만",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082920&nid=426341493&page=2",
+          "source": "naver",
+          "greed": [
+            "급등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "이제 다시 연속 하락 시작인가",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082920&nid=426561606&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "상한가 가자~",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082920&nid=426154149&page=3",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "하한가 한번 갑시다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082920&nid=426399242&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하한가"
+          ]
+        },
+        {
+          "title": "상한가 6방은",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082920&nid=425943801&page=4",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "급등장엔 역시 급락이지ㅋㅋ 사라 매수타임이다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=082920&nid=426110889&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "급락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 224,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 3,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 3,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 49.6
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 48.6
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 47.4
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 47.4
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 47.4,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "475150.KS",
+      "name": "SK이터닉스",
+      "ticker": "475150",
+      "group_desc": "신재생",
+      "sector": "AI인프라",
+      "current_level": 43450.0,
+      "score": 50.0,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 256,
+      "greed_total": 24,
+      "fear_total": 24,
+      "greed_counts": {
+        "반등": 6,
+        "상승": 6,
+        "상한가": 5,
+        "급등": 3,
+        "존버": 1,
+        "물타기": 1,
+        "신고가": 1,
+        "호재": 1
+      },
+      "fear_counts": {
+        "반토막": 6,
+        "하락": 5,
+        "고점": 3,
+        "나락": 2,
+        "망했다": 2,
+        "급락": 2,
+        "손절": 1,
+        "물렸": 1,
+        "폭락": 1,
+        "하한가": 1
+      },
+      "evidence": [
+        {
+          "title": "유가 급상승보니 풍력주들 내일 상한가",
+          "url": "https://finance.naver.com/item/board_read.naver?code=475150&nid=426683473&page=2",
+          "source": "naver",
+          "greed": [
+            "상승",
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "3거래일만에 고점대비 반토막",
+          "url": "https://finance.naver.com/item/board_read.naver?code=475150&nid=426652532&page=7",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "반토막",
+            "고점"
+          ]
+        },
+        {
+          "title": "서부텍사스산 원유(USD/BBL) 지수82.01 전일대비상승 2.75 (+3.47%),이란 요르단 미군기지에 탄도미사일 발사",
+          "url": "https://finance.naver.com/item/board_read.naver?code=475150&nid=426690040&page=1",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "97년 IMF 때보다 더 하락",
+          "url": "https://finance.naver.com/item/board_read.naver?code=475150&nid=426692365&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "용자들이어 고지가 다왔다. 대상승 초입이다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=475150&nid=426687129&page=1",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "물렸소이다 딱",
+          "url": "https://finance.naver.com/item/board_read.naver?code=475150&nid=426684531&page=2",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "물렸"
+          ]
+        },
+        {
+          "title": "모든 주식 물타기 잘들어!!!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=475150&nid=426685471&page=2",
+          "source": "naver",
+          "greed": [
+            "물타기"
+          ],
+          "fear": []
+        },
+        {
+          "title": "3일만에 반토막을 내버리네 대단스~~",
+          "url": "https://finance.naver.com/item/board_read.naver?code=475150&nid=426680798&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "반토막"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 237,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 7,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 12,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 48.8
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 47.4
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 49.2
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 50.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 50.0,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "189300.KQ",
+      "name": "인텔리안테크놀로지스",
+      "ticker": "189300",
+      "group_desc": "우주",
+      "sector": "우주",
+      "current_level": 51500.0,
+      "score": 43.3,
+      "zone": "fear",
+      "label": "공포",
+      "total_posts": 208,
+      "greed_total": 7,
+      "fear_total": 11,
+      "greed_counts": {
+        "추매": 2,
+        "가즈아": 1,
+        "우상향": 1,
+        "반등": 1,
+        "상승": 1,
+        "상한가": 1
+      },
+      "fear_counts": {
+        "하락": 4,
+        "고점": 3,
+        "손절": 1,
+        "나락": 1,
+        "곡소리": 1,
+        "급락": 1
+      },
+      "evidence": [
+        {
+          "title": "추매들 잘하고 있지?!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=189300&nid=426684829&page=1",
+          "source": "naver",
+          "greed": [
+            "추매"
+          ],
+          "fear": []
+        },
+        {
+          "title": "최고점에서 거의 120퍼가 나락 갔네",
+          "url": "https://finance.naver.com/item/board_read.naver?code=189300&nid=425624887&page=6",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "나락",
+            "고점"
+          ]
+        },
+        {
+          "title": "추매",
+          "url": "https://finance.naver.com/item/board_read.naver?code=189300&nid=426662210&page=1",
+          "source": "naver",
+          "greed": [
+            "추매"
+          ],
+          "fear": []
+        },
+        {
+          "title": "전고점 갈려면 연상 몇번쳐야 가냐",
+          "url": "https://finance.naver.com/item/board_read.naver?code=189300&nid=426516980&page=1",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        },
+        {
+          "title": "오늘 주가 상승 막느니라 많이들 고생했네!",
+          "url": "https://finance.naver.com/item/board_read.naver?code=189300&nid=426386593&page=2",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "왜 18만대까지 갔다가 하락했나?",
+          "url": "https://finance.naver.com/item/board_read.naver?code=189300&nid=426157165&page=3",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "기술반등 나올때",
+          "url": "https://finance.naver.com/item/board_read.naver?code=189300&nid=425545017&page=6",
+          "source": "naver",
+          "greed": [
+            "반등"
+          ],
+          "fear": []
+        },
+        {
+          "title": "고점대비 66% 빠졌다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=189300&nid=426061625&page=4",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "고점"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 208,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 0,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 48.8
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 41.4
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 43.3
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 43.3
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 43.3,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "340570.KQ",
+      "name": "티앤엘",
+      "ticker": "340570",
+      "group_desc": "스킨부스터",
+      "sector": "화장품",
+      "current_level": 54900.0,
+      "score": 60.0,
+      "zone": "greed",
+      "label": "탐욕",
+      "total_posts": 218,
+      "greed_total": 9,
+      "fear_total": 4,
+      "greed_counts": {
+        "상승": 3,
+        "상한가": 2,
+        "가즈아": 1,
+        "불장": 1,
+        "존버": 1,
+        "호재": 1
+      },
+      "fear_counts": {
+        "나락": 1,
+        "하락": 1,
+        "폭락": 1,
+        "붕괴": 1
+      },
+      "evidence": [
+        {
+          "title": "티앤엘 상한가 가즈아",
+          "url": "https://finance.naver.com/item/board_read.naver?code=340570&nid=426327623&page=2",
+          "source": "naver",
+          "greed": [
+            "가즈아",
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "수출 어쩌고 = 하락",
+          "url": "https://finance.naver.com/item/board_read.naver?code=340570&nid=424300406&page=6",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "[호재] 티앤엘, 과기부 국책과제 최종 선정 (첨단바이오 항암 백신 개발)",
+          "url": "https://finance.naver.com/item/board_read.naver?code=340570&nid=425246018&page=4",
+          "source": "naver",
+          "greed": [
+            "호재"
+          ],
+          "fear": []
+        },
+        {
+          "title": "이 도그도 안 물어갈 ...주가가 폭락하면",
+          "url": "https://finance.naver.com/item/board_read.naver?code=340570&nid=423606996&page=7",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "이미 물려서 존버 하는 사람들은",
+          "url": "https://finance.naver.com/item/board_read.naver?code=340570&nid=425134202&page=4",
+          "source": "naver",
+          "greed": [
+            "존버"
+          ],
+          "fear": []
+        },
+        {
+          "title": "정점에 다다른 코스피 붕괴 조짐",
+          "url": "https://finance.naver.com/item/board_read.naver?code=340570&nid=423492511&page=7",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "붕괴"
+          ]
+        },
+        {
+          "title": "조만간 제대로 상승할것으로 기대되네요...",
+          "url": "https://finance.naver.com/item/board_read.naver?code=340570&nid=424425313&page=5",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "망하는길로 가는구나 나락가자 내가 왜",
+          "url": "https://finance.naver.com/item/board_read.naver?code=340570&nid=421136877&page=11",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "나락"
+          ]
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 215,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 2,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 1,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 51.2
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 60.0
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 60.0
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 60.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 60.0,
+          "n": 1
+        }
+      ]
+    },
+    {
+      "key": "222040.KQ",
+      "name": "코스맥스엔비티",
+      "ticker": "222040",
+      "group_desc": "식품",
+      "sector": "식품",
+      "current_level": 7450.0,
+      "score": 57.1,
+      "zone": "greed",
+      "label": "탐욕",
+      "total_posts": 155,
+      "greed_total": 6,
+      "fear_total": 3,
+      "greed_counts": {
+        "상한가": 3,
+        "상승": 2,
+        "호재": 1
+      },
+      "fear_counts": {
+        "하락": 1,
+        "폭락": 1,
+        "하한가": 1
+      },
+      "evidence": [
+        {
+          "title": "호재발생....",
+          "url": "https://finance.naver.com/item/board_read.naver?code=222040&nid=426507575&page=1",
+          "source": "naver",
+          "greed": [
+            "호재"
+          ],
+          "fear": []
+        },
+        {
+          "title": "대부분 5%이상 하락인데 잘버티네요~~",
+          "url": "https://finance.naver.com/item/board_read.naver?code=222040&nid=420027972&page=6",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하락"
+          ]
+        },
+        {
+          "title": "오늘 상한가",
+          "url": "https://finance.naver.com/item/board_read.naver?code=222040&nid=426000003&page=2",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "하한가 ■ 주가조작 문자",
+          "url": "https://finance.naver.com/item/board_read.naver?code=222040&nid=419409586&page=7",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "하한가"
+          ]
+        },
+        {
+          "title": "오늘부터 상승한다",
+          "url": "https://finance.naver.com/item/board_read.naver?code=222040&nid=421869248&page=4",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        },
+        {
+          "title": "개폭락",
+          "url": "https://finance.naver.com/item/board_read.naver?code=222040&nid=408697277&page=12",
+          "source": "naver",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ]
+        },
+        {
+          "title": "상한가를 기록했어요 📈",
+          "url": "https://finance.naver.com/item/board_read.naver?code=222040&nid=419298203&page=8",
+          "source": "naver",
+          "greed": [
+            "상한가"
+          ],
+          "fear": []
+        },
+        {
+          "title": "소액주주연합의 노력과 최근 주가 상승",
+          "url": "https://finance.naver.com/item/board_read.naver?code=222040&nid=416480354&page=10",
+          "source": "naver",
+          "greed": [
+            "상승"
+          ],
+          "fear": []
+        }
+      ],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 153,
+          "error": null
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": null
+        },
+        {
+          "key": "fmkorea",
+          "count": 1,
+          "error": null
+        },
+        {
+          "key": "ppomppu",
+          "count": 1,
+          "error": null
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-07-29 15:09",
+          "score": 51.0
+        },
+        {
+          "ts": "2026-07-29 17:04",
+          "score": 57.1
+        },
+        {
+          "ts": "2026-07-29 17:47",
+          "score": 57.1
+        },
+        {
+          "ts": "2026-07-29 18:52",
+          "score": 57.1
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-07-29",
+          "score": 57.1,
+          "n": 1
+        }
+      ]
+    }
+  ]
+}

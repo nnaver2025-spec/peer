@@ -27,6 +27,32 @@
   --color-down: #4a9eff;
 }
 
+/* 라이트 팔레트. 다크에서 쓰던 채도 그대로 밝기만 뒤집으면 흰 배경에서 색이 떠서
+   눈이 피로하다. 강조색은 채도를 올리고 명도를 낮춰 대비를 유지한다.
+   토큰 이름과 의미는 그대로라 컴포넌트는 손대지 않는다. */
+:root[data-theme='light'] {
+  --color-canvas: #fbfbfc;
+  --color-surface: #ffffff;
+  --color-raised: #f1f2f4;
+  --color-line: #e3e5e9;
+  --color-line-strong: #c8ccd3;
+
+  --color-ink: #1a1c20;
+  --color-muted: #565a63;
+  --color-faint: #82868f;
+
+  --color-accent: #3d4fd6;
+  --color-accent-soft: #e8ebfd;
+  --color-warn: #d92d4b;
+  --color-warn-soft: #fdeaee;
+  --color-good: #12866a;
+
+  --color-up: #d92d4b;
+  --color-down: #1668cc;
+
+  color-scheme: light;
+}
+
 :root {
   color-scheme: dark;
 }

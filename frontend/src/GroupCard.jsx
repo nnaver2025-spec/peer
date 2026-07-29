@@ -54,7 +54,7 @@ export default function GroupCard({ group, onSelect }) {
       </div>
 
       <ZBar z={group.zscore} tone={trusted ? zone.bar : 'bg-line-strong'} />
-      <Sparkline points={group.history} stroke={trusted ? zone.stroke : '#3a3d44'} />
+      <Sparkline points={group.history} stroke={trusted ? zone.stroke : '--color-line-strong'} />
 
       <div className="border-t border-line pt-4">
         <CouplingMeter coupling={group.coupling} />

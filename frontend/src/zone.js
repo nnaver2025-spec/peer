@@ -10,7 +10,7 @@ export function zoneOf(z) {
       label: '오버슈팅',
       text: 'text-warn',
       bar: 'bg-warn',
-      stroke: '#ff5d73',
+      stroke: '--color-warn',
       Icon: ArrowUpRight,
       note: '국내가 해외보다 과도하게 앞섬',
     }
@@ -20,7 +20,7 @@ export function zoneOf(z) {
       label: '언더슈팅',
       text: 'text-accent',
       bar: 'bg-accent',
-      stroke: '#7c8cff',
+      stroke: '--color-accent',
       Icon: ArrowDownRight,
       note: '국내 갭 확대, 따라잡기 여지',
     }
@@ -29,7 +29,7 @@ export function zoneOf(z) {
     label: '중립',
     text: 'text-ink',
     bar: 'bg-line-strong',
-    stroke: '#6b6e77',
+    stroke: '--color-faint',
     Icon: null,
     note: '통계적 정상 범위',
   }
