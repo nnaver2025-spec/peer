@@ -3,6 +3,7 @@
 from datetime import date
 
 import pytest
+from bs4 import BeautifulSoup
 
 import fomo_core as core
 from fomo_indices import INDICES
@@ -863,3 +864,209 @@ def test_render_shows_both_success_and_failure_rows():
     assert "1개" in text
     assert "차단됨 (HTTP 430) (skip)" in text
     assert "FOMO 점수" in text
+
+
+# ── 반응(조회수/추천수) 기반 가중 ────────────────────────────────────────────
+
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        ("1,234", 1234),
+        ("1.2만", 12000),
+        ("12 - 3", 12),      # 뽐뿌 추천-반대 표기
+        ("[ 15 ]", 15),      # 네이버·에펨 댓글 수
+        ("", None),
+        ("-", None),
+        (None, None),
+    ],
+)
+def test_parse_count_reads_list_cell_numbers(text, expected):
+    assert core.parse_count(text) == expected
+
+
+def _hot(views=None, votes=None, comments=None, title="글"):
+    return core.Post(title, None, "arca", None, views, votes, comments)
+
+
+def test_post_weight_defaults_to_one_when_metrics_missing():
+    """수치를 못 읽은 글은 버리지 않는다. 셀렉터가 깨졌을 때 표본이 통째로 사라진다."""
+    assert core.post_weight(_hot(), 100.0, 1.0) == 1
+
+
+def test_post_weight_boosts_widely_read_posts():
+    assert core.post_weight(_hot(views=400), 100.0, None) == core.HOT_WEIGHT
+
+
+def test_post_weight_boosts_upvoted_posts():
+    assert core.post_weight(_hot(views=10, votes=30), 100.0, 1.0) == core.HOT_WEIGHT
+
+
+def test_post_weight_drops_unread_posts_without_reactions():
+    """조회수도 반응도 없는 글은 여론이 아니라 혼잣말이다."""
+    assert core.post_weight(_hot(views=10, votes=0, comments=0), 100.0, 1.0) == 0
+
+
+def test_post_weight_keeps_low_view_post_that_drew_replies():
+    assert core.post_weight(_hot(views=10, votes=0, comments=4), 100.0, 1.0) == 1
+
+
+def test_post_weight_ignores_median_from_thin_sample():
+    """중위값이 없으면(표본 부족) 가중도 없다."""
+    assert core.post_weight(_hot(views=1), None, None) == 1
+
+
+def test_weighted_titles_scales_within_each_source():
+    """소스를 섞어 기준을 만들면 조회수 높은 사이트 글만 화제글이 된다."""
+    quiet = core.SourceResult(
+        "dc", "디시", [_hot(views=v, votes=0, comments=0, title=f"조용{v}") for v in (40, 45, 50, 50, 55, 60, 60, 65)]
+    )
+    loud = core.SourceResult(
+        "ppomppu", "뽐뿌", [_hot(views=v, votes=0, comments=1, title=f"시끌{v}") for v in (700, 750, 800, 800, 850, 900, 900, 950)]
+    )
+    sample = core.weighted_titles([quiet, loud])
+    # 뽐뿌 글이 조회수만으로 전부 화제글이 되지 않는다.
+    assert sample.hot == 0
+    assert sample.dropped == 0
+    assert sample.kept == 16
+
+
+def test_weighted_titles_repeats_hot_post_titles():
+    posts = [_hot(views=50, votes=0, comments=1, title=f"조용{i}") for i in range(7)]
+    posts.append(_hot(views=600, votes=0, comments=1, title="화제글"))
+    sample = core.weighted_titles([core.SourceResult("dc", "디시", posts)])
+    assert sample.hot == 1
+    assert sample.titles.count("화제글") == core.HOT_WEIGHT
+    assert sample.titles.count("조용0") == 1
+
+
+def test_analyze_weights_greed_from_popular_posts():
+    """인기글이 방향을 끌고 간다. 조회수 없는 글이 같은 표를 가지면 왜곡된다."""
+    posts = [_hot(views=50, votes=0, comments=1, title=f"손절했다 {i}") for i in range(7)]
+    posts.append(_hot(views=900, votes=0, comments=1, title="가즈아 떡상"))
+    report = core.analyze(core.ScanResult("삼성전자", None, [core.SourceResult("dc", "디시", posts)]))
+    assert report.hot_posts == 1
+    assert report.stats.greed_total == 2 * core.HOT_WEIGHT
+    assert report.stats.fear_total == 7
+
+
+def test_evidence_prefers_posts_with_more_reactions():
+    posts = [
+        _hot(views=30, votes=0, comments=0, title="가즈아 조용한 글"),
+        _hot(views=900, votes=40, comments=20, title="가즈아 화제글"),
+    ]
+    items = core.evidence_posts(posts, limit=2)
+    assert items[0]["title"] == "가즈아 화제글"
+    assert items[0]["votes"] == 40
+
+
+def test_prefiltered_popular_source_counts_every_post_as_hot():
+    """인기글 목록은 추천 중위가 이미 높아 상대 기준으로는 아무것도 안 잡힌다."""
+    posts = [core.Post(f"폭락 {i}", None, "fmkorea_pop", None, None, v, 20)
+             for i, v in enumerate((70, 80, 92, 92, 100, 120, 140, 176))]
+    sample = core.weighted_titles([core.SourceResult("fmkorea_pop", "에펨 인기글", posts)])
+    assert sample.hot == len(posts)
+    assert sample.dropped == 0
+    assert sample.titles.count("폭락 0") == core.HOT_WEIGHT
+
+
+def test_naver_parser_reads_counts_when_title_has_reply_marker():
+    """제목 셀의 댓글 수(`[ 3 ]`)도 tah 클래스를 써서 위치로 세면 값이 밀린다."""
+    html = """
+    <table><tbody>
+      <tr>
+        <td><span class="tah">2026.07.30 15:32</span></td>
+        <td class="title"><a href="/item/board_read.naver?code=046970&nid=1" title="고점에 물린 분들에게!">고점에</a></td>
+        <td class="p11">돈이다</td>
+        <td><span class="tah">36</span></td>
+        <td><strong class="tah">2</strong></td>
+        <td><strong class="tah">1</strong></td>
+      </tr>
+      <tr>
+        <td><span class="tah">2026.07.30 13:37</span></td>
+        <td class="title"><a href="/item/board_read.naver?code=046970&nid=2" title="주식 25년차..">주식</a>
+          <span class="tah">[ 3 ]</span></td>
+        <td class="p11">워드</td>
+        <td><span class="tah">97</span></td>
+        <td><strong class="tah">0</strong></td>
+        <td><strong class="tah">4</strong></td>
+      </tr>
+    </tbody></table>
+    """
+    soup = BeautifulSoup(html, "lxml")
+    rows = core._titles_naver(soup, 'td.title a[href*="board_read.naver"]')
+    assert [(r.views, r.votes) for r in rows] == [(36, 2), (97, 0)]
+    assert rows[1].comments == 3
+
+
+def test_dcinside_parser_reads_view_and_recommend_cells():
+    html = """
+    <table><tbody><tr class="ub-content">
+      <td class="gall_tit ub-word"><a href="/mgallery/board/view/?id=krstock&no=1">코스피 가즈아</a></td>
+      <td class="gall_date" title="2026-07-30 15:26:25">15:26</td>
+      <td class="gall_count">10,651</td>
+      <td class="gall_recommend">55</td>
+    </tr></tbody></table>
+    """
+    rows = core._titles_dcinside(BeautifulSoup(html, "lxml"), core._DC_SELECTOR)
+    assert (rows[0].views, rows[0].votes) == (10651, 55)
+
+
+def test_arca_parser_reads_view_and_rate_cells():
+    html = """
+    <div class="list-table">
+      <a class="vrow" href="/b/stock/1">
+        <span class="vcol col-title">코스피 반등</span>
+        <span class="vcol col-time"><time datetime="2026-07-30T06:00:00.000Z">15:00</time></span>
+        <span class="vcol col-view">1707</span>
+        <span class="vcol col-rate">19</span>
+      </a>
+    </div>
+    """
+    rows = core._titles_arca(BeautifulSoup(html, "lxml"), "div.list-table a.vrow")
+    assert (rows[0].views, rows[0].votes) == (1707, 19)
+
+
+def test_ppomppu_parser_reads_view_cell():
+    html = """
+    <table><tbody><tr class="baseList">
+      <td class="baseList-space"><a class="baseList-title" href="view.php?id=stock&no=1"><span>코스피 폭락</span></a>
+        <span class="baseList-c">2</span></td>
+      <td class="baseList-space"><time class="baseList-time">15:21:09</time></td>
+      <td class="baseList-space baseList-rec"></td>
+      <td class="baseList-space baseList-views">751</td>
+    </tr></tbody></table>
+    """
+    rows = core._titles_css(BeautifulSoup(html, "lxml"), "a.baseList-title span")
+    assert rows[0].views == 751
+    assert rows[0].votes is None       # 추천 칸이 비어 있으면 0이 아니라 미지수다
+    assert rows[0].comments == 2
+
+
+def test_fmkorea_search_parser_separates_views_from_votes():
+    """조회수와 추천수가 같은 td.m_no를 쓰고 추천에만 m_no_voted가 붙는다."""
+    html = """
+    <table><tbody><tr>
+      <td class="title"><a class="hx" href="/index.php?document_srl=1">코스피 <strong>반등</strong>하냐</a>
+        <a class="replyNum" href="#c">3</a></td>
+      <td class="time">15:25</td>
+      <td class="m_no">120</td>
+      <td class="m_no m_no_voted">2</td>
+    </tr></tbody></table>
+    """
+    rows = core._titles_css(BeautifulSoup(html, "lxml"), "td.title a.hx")
+    assert (rows[0].views, rows[0].votes, rows[0].comments) == (120, 2, 3)
+
+
+def test_fmkorea_pop_parser_reads_vote_badge():
+    html = """
+    <ul><li class="li">
+      <a class="pc_voted_count"><span class="label">추천</span><span class="count">48</span></a>
+      <h3 class="title"><a href="/index.php?document_srl=1"><span class="ellipsis-target">코스피 떡상</span>
+        <span class="comment_count">[15]</span></a></h3>
+      <span class="regdate">15:26</span>
+    </li></ul>
+    """
+    rows = core._titles_fmkorea_pop(BeautifulSoup(html, "lxml"), "h3.title a")
+    assert rows[0].votes == 48
+    assert rows[0].comments == 15
+    assert rows[0].views is None

@@ -1,6 +1,7 @@
 """감시 모드의 이력 집계 검증. 네트워크를 타지 않는다."""
 
 import fomo_watch as watch
+import fomo_core as core
 
 
 def test_first_run_creates_one_daily_point():
@@ -50,3 +51,56 @@ def test_daily_points_cover_a_month():
     assert watch.DAILY_POINTS == 30
     # 회차 이력은 짧게 둔다. 둘을 같은 길이로 두면 JSON이 커진다.
     assert watch.HISTORY_POINTS < watch.DAILY_POINTS * 12
+
+
+# ── 인기글을 시장 심리에 더하기 ──────────────────────────────────────────────
+
+def _market(greed: int, fear: int) -> dict:
+    return core.aggregate(
+        [
+            {
+                "name": "삼성전자",
+                "sector": "반도체",
+                "greed_total": greed,
+                "fear_total": fear,
+                "total_posts": 200,
+                "greed_counts": {"상승": greed},
+                "fear_counts": {"하락": fear},
+                "evidence": [
+                    {"title": "상승 간다", "url": "u1", "source": "naver", "greed": ["상승"], "fear": []}
+                ],
+            }
+        ]
+    )
+
+
+def _wide(titles: list[str]) -> core.ScanResult:
+    posts = [core.Post(t, f"https://fm/{i}", "fmkorea_pop", None, None, 80, 20) for i, t in enumerate(titles)]
+    return core.ScanResult("시장 전체", None, [core.SourceResult("fmkorea_pop", "에펨 인기글", posts)])
+
+
+def test_merge_market_wide_adds_keywords_and_posts():
+    base = _market(10, 10)
+    merged = watch.merge_market_wide(base, _wide(["코스피 폭락", "삼전 반토막", "손절했다"]))
+    assert merged["greed_total"] == 10
+    # 인기글은 이미 추천순으로 걸러진 목록이라 전부 화제글로 가중된다.
+    assert merged["fear_total"] == 10 + 3 * core.HOT_WEIGHT
+    assert merged["total_posts"] == base["total_posts"] + 3
+    assert merged["score"] < base["score"]
+    assert merged["keyword_totals"]["fear"]["폭락"] == core.HOT_WEIGHT
+
+
+def test_merge_market_wide_labels_evidence_as_popular():
+    merged = watch.merge_market_wide(_market(10, 10), _wide(["코스피 폭락"]))
+    assert any(item.get("stock") == "인기글" for item in merged["evidence"])
+
+
+def test_merge_market_wide_is_noop_without_sample():
+    """인기글 수집이 막히면 시장 심리는 그대로 간다."""
+    base = _market(10, 10)
+    assert watch.merge_market_wide(base, None) == base
+    assert watch.merge_market_wide(base, _wide(["오늘 날씨 좋네"])) == base
+    blocked = core.ScanResult(
+        "시장 전체", None, [core.SourceResult("fmkorea_pop", "에펨 인기글", error="차단됨 (HTTP 429)")]
+    )
+    assert watch.merge_market_wide(base, blocked) == base

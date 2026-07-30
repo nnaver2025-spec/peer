@@ -76,6 +76,14 @@ export default function MarketMood({ market, minHits, sector, onSector, indices,
           <p className="tnum mt-2 text-[12px] text-faint">
             키워드 {market.hits}회 · 게시글 {market.total_posts}개
           </p>
+          {(market.hot_posts > 0 || market.dropped_posts > 0) && (
+            <p
+              className="tnum mt-1 text-[12px] text-faint"
+              title="반응이 많은 글은 가중해서 세고, 조회수도 반응도 없는 글은 표본에서 뺍니다"
+            >
+              인기글 {market.hot_posts}개 · 제외 {market.dropped_posts}개
+            </p>
+          )}
         </div>
 
         {gauge && <MarketGauge gauge={gauge} />}

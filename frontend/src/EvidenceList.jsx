@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, Eye, MessageSquare, ThumbsUp } from 'lucide-react'
 
 // 소스 키 -> 짧은 표시명. 목록에서 어느 게시판 글인지 한눈에 알게 한다.
 const SOURCE_LABELS = {
@@ -10,6 +10,23 @@ const SOURCE_LABELS = {
   arca: '아카라이브',
   fmkorea: '에펨코리아',
   ppomppu: '뽐뿌',
+  fmkorea_pop: '에펨 인기글',
+}
+
+// 1,234 / 1.2만. 목록 폭이 좁아 만 단위는 접는다.
+function formatCount(value) {
+  if (value >= 10000) return `${(value / 10000).toFixed(1)}만`
+  return value.toLocaleString('ko-KR')
+}
+
+function Reaction({ icon: Icon, value, title }) {
+  if (value === null || value === undefined) return null
+  return (
+    <span className="inline-flex items-center gap-0.5" title={title}>
+      <Icon size={10} aria-hidden="true" />
+      {formatCount(value)}
+    </span>
+  )
 }
 
 function Row({ item }) {
@@ -47,6 +64,9 @@ function Row({ item }) {
           <span className="mt-0.5 flex flex-wrap items-center gap-x-2 text-[11px] text-faint">
             {item.stock && <span>{item.stock}</span>}
             <span>{SOURCE_LABELS[item.source] ?? item.source}</span>
+            <Reaction icon={Eye} value={item.views} title="조회수" />
+            <Reaction icon={ThumbsUp} value={item.votes} title="추천" />
+            <Reaction icon={MessageSquare} value={item.comments} title="댓글" />
             <span className={greedy ? 'text-warn/70' : 'text-accent/70'}>
               {words.join(' · ')}
             </span>

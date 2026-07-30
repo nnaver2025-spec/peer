@@ -62,6 +62,10 @@ def render(report: core.FomoReport, index=None) -> str:
 
     lines.append("  " + "─" * 35)
     lines.append(f"  총 수집: {report.total_posts}개 게시글")
+    if report.hot_posts or report.dropped_posts:
+        lines.append(
+            f"  반응 가중: 인기글 {report.hot_posts}개 · 반응 없어 제외 {report.dropped_posts}개"
+        )
     lines.append("")
 
     stats = report.stats

@@ -53,6 +53,14 @@ function IndexCell({ index }) {
         게시글 {index.total_posts}개 · 키워드 {index.hits}회
         {index.lookback_days && ` · ${index.lookback_days}일`}
       </p>
+      {(index.hot_posts > 0 || index.dropped_posts > 0) && (
+        <p
+          className="tnum text-[11px] text-faint"
+          title="반응이 많은 글은 가중해서 세고, 조회수도 반응도 없는 글은 표본에서 뺍니다"
+        >
+          인기글 {index.hot_posts}개 · 제외 {index.dropped_posts}개
+        </p>
+      )}
 
       {evidence.length > 0 && (
         <div className="self-start">

@@ -59,6 +59,50 @@ def scan_market_wide() -> core.ScanResult | None:
     return core.ScanResult("시장 전체", None, results)
 
 
+def merge_market_wide(market: dict[str, object], scan: core.ScanResult | None) -> dict[str, object]:
+    """인기글 표본을 시장 심리에 더한다.
+
+    개별 종목에는 섞지 않는다. 인기글은 종목을 특정하지 않아서 30종목이 같은 표본을
+    공유하게 되고, 지수 별칭으로 걸러봤을 때는 60건 중 2건만 남아 표본이 사라졌다.
+    시장 전체 심리는 원래 여러 종목을 합친 값이라 여기 더하는 것이 자연스럽다.
+    """
+    if scan is None:
+        return market
+
+    report = core.analyze(scan)
+    stats = report.stats
+    if not stats.greed_total and not stats.fear_total:
+        return market
+
+    greed = market["greed_total"] + stats.greed_total
+    fear = market["fear_total"] + stats.fear_total
+    score = core.sentiment_score(greed, fear)
+
+    merged = dict(market)
+    merged["greed_total"] = greed
+    merged["fear_total"] = fear
+    merged["hits"] = greed + fear
+    merged["total_posts"] = market["total_posts"] + report.total_posts
+    merged["hot_posts"] = market.get("hot_posts", 0) + report.hot_posts
+    merged["dropped_posts"] = market.get("dropped_posts", 0) + report.dropped_posts
+    merged["score"] = score
+    merged["zone"] = core.interpret(score)[0] if score is not None else None
+    merged["label"] = core.interpret(score)[1] if score is not None else "표본 부족"
+
+    for side, field_name in (("greed", "greed_counts"), ("fear", "fear_counts")):
+        totals = dict(merged["keyword_totals"][side])
+        for word, hits in getattr(stats, field_name).items():
+            totals[word] = totals.get(word, 0) + hits
+        merged["keyword_totals"][side] = dict(sorted(totals.items(), key=lambda kv: -kv[1]))
+
+    # 인기글 근거는 종목 이름이 없다. 어디서 왔는지 알 수 있게 표시를 붙인다.
+    extra = [{**item, "stock": "인기글"} for item in report.evidence(EVIDENCE_PER_MARKET)]
+    merged["evidence"] = core.interleave_evidence(
+        list(market.get("evidence", [])) + extra, EVIDENCE_PER_MARKET
+    )
+    return merged
+
+
 def load_targets() -> list[dict[str, str]]:
     """대시보드 JSON에서 주도주 목록을 뽑는다. 티커 기준으로 중복을 제거한다."""
     if not DASHBOARD_PATH.exists():
@@ -219,6 +263,8 @@ def scan_index(index, stamp: str, history: list, level: float | None = None) -> 
         "hits": stats.greed_total + stats.fear_total,
         "greed_counts": stats.greed_counts,
         "fear_counts": stats.fear_counts,
+        "hot_posts": report.hot_posts,
+        "dropped_posts": report.dropped_posts,
         "evidence": report.evidence(EVIDENCE_PER_INDEX),
         "per_source": [
             {"key": r.key, "count": r.count, "error": r.error} for r in report.results
@@ -252,6 +298,8 @@ def scan_target(target: dict[str, str], stamp: str, history: list) -> dict[str, 
         "fear_total": report.stats.fear_total,
         "greed_counts": report.stats.greed_counts,
         "fear_counts": report.stats.fear_counts,
+        "hot_posts": report.hot_posts,
+        "dropped_posts": report.dropped_posts,
         "evidence": report.evidence(EVIDENCE_PER_STOCK),
         "per_source": [
             {"key": r.key, "count": r.count, "error": r.error} for r in report.results
@@ -318,6 +366,15 @@ def main(argv: list[str] | None = None) -> int:
     stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
     stocks: list[dict[str, object]] = []
 
+    # 인기글을 먼저 받는다. 종목 30개를 돈 뒤에는 에펨에 요청이 수백 건 쌓여 429가
+    # 온다(실측). 회차 시작 시점은 도메인 카운터가 깨끗하다.
+    wide = None if args.limit else scan_market_wide()
+    if wide is not None:
+        ok = [r for r in wide.results if not r.error]
+        failed = [r for r in wide.results if r.error]
+        note = f" · 실패: {failed[0].error}" if failed and not ok else ""
+        print(f"[인기글] 수집 {sum(r.count for r in ok)}개{note}")
+
     for index, target in enumerate(targets, start=1):
         if index > 1:
             time.sleep(STOCK_SLEEP_SEC)
@@ -347,6 +404,8 @@ def main(argv: list[str] | None = None) -> int:
             )
 
     market = core.aggregate(stocks)
+    # 인기글은 종목을 특정하지 않으므로 개별 종목이 아니라 시장 심리에만 더한다.
+    market = merge_market_wide(market, wide)
     if market["score"] is not None:
         market_history = market_history + [{"ts": stamp, "score": market["score"]}]
     market["history"] = market_history[-HISTORY_POINTS:]

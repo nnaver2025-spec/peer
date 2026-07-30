@@ -174,6 +174,7 @@ function Card({ stock }) {
 
       <p className="tnum text-[12px] text-faint">
         수집 {stock.total_posts}개{failed > 0 && ` · 실패 ${failed}곳`}
+        {stock.hot_posts > 0 && ` · 인기글 ${stock.hot_posts}개`}
       </p>
 
       {evidence.length > 0 && (

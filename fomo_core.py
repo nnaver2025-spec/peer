@@ -73,6 +73,22 @@ CIRCUIT_TRIP_FAILURES = 3
 # 신호가 아니라 잡음이다. 이 값을 못 넘기면 점수 대신 "표본 부족"으로 표시한다.
 MIN_SENTIMENT_HITS = 10
 
+# 반응(조회수/추천수/댓글)으로 게시글 무게를 조절한다. 아무도 안 읽은 글과 수백 명이
+# 추천한 글을 같게 세면 여론이 아니라 글쓴 사람 수를 재는 것이 된다.
+#
+# 절대 임계값은 못 쓴다. 같은 3일치 코스피 표본에서 조회수 중위가 디시 미국주식 46,
+# 아카라이브 121, 에펨 204, 뽐뿌 792였다. 스케일이 20배 차이 나서 하나로 자르면
+# 한 사이트만 남는다. 그래서 소스별 중위값 대비 배수로 판단한다.
+#
+# 추천수는 필터로 쓸 수 없다. 디시는 86%가 추천 0이고 뽐뿌·에펨 인기글은 추천 칸이
+# 아예 다른 스케일이다. 추천은 무게를 더하는 쪽으로만 쓴다.
+HOT_VIEW_RATIO = 3.0     # 소스 중위 조회수의 이 배수를 넘으면 화제글
+HOT_VOTE_RATIO = 3.0     # 추천도 같은 기준. 최소 3표는 넘어야 한다
+HOT_VOTE_FLOOR = 3
+HOT_WEIGHT = 3           # 화제글을 몇 배로 세는지
+DEAD_VIEW_RATIO = 0.4    # 중위의 이 비율 미만이고 반응이 전혀 없으면 제외
+SCALE_MIN_SAMPLE = 8     # 중위값을 신뢰할 최소 표본
+
 _throttle_lock = threading.Lock()
 _last_request_at: dict[str, float] = {}
 
@@ -473,6 +489,9 @@ def evidence_posts(
     점수에 영향을 주지 않으므로 전부 저장할 이유도 없다.
 
     한쪽으로 치우친 목록은 오해를 부르므로 탐욕/공포를 번갈아 담는다.
+
+    반응이 많은 글을 먼저 담는다. 점수가 화제글에 무게를 더 주니 근거도 같은 순서로
+    보여야 화면과 계산이 어긋나지 않는다.
     """
     greed_side: list[dict] = []
     fear_side: list[dict] = []
@@ -487,13 +506,17 @@ def evidence_posts(
             "source": post.source,
             "greed": greed,
             "fear": fear,
+            "views": post.views,
+            "votes": post.votes,
+            "comments": post.comments,
         }
         # 양쪽 키워드가 다 있으면 많은 쪽으로 분류한다.
         (greed_side if len(greed) >= len(fear) else fear_side).append(item)
 
-    # 키워드가 여러 개 잡힌 글이 그 방향을 더 분명히 말한다.
-    greed_side.sort(key=lambda i: -(len(i["greed"]) + len(i["fear"])))
-    fear_side.sort(key=lambda i: -(len(i["greed"]) + len(i["fear"])))
+    # 많이 읽히고 추천받은 글이 여론을 대표한다. 반응이 같으면 키워드가 여러 개
+    # 잡힌 글이 방향을 더 분명히 말한다.
+    for side in (greed_side, fear_side):
+        side.sort(key=lambda i: (-_reaction_rank(i), -(len(i["greed"]) + len(i["fear"]))))
 
     out: list[dict] = []
     for a, b in zip_longest(greed_side, fear_side):
@@ -503,6 +526,18 @@ def evidence_posts(
         if len(out) >= limit:
             break
     return out
+
+
+def _reaction_rank(item: dict) -> int:
+    """근거 정렬용 반응 점수.
+
+    조회수 스케일이 소스마다 20배 차이 나서 그대로 더하면 뽐뿌 글만 앞에 온다.
+    추천과 댓글은 사람이 직접 남긴 반응이라 조회수보다 무겁게 본다.
+    """
+    votes = item.get("votes") or 0
+    comments = item.get("comments") or 0
+    views = item.get("views") or 0
+    return votes * 20 + comments * 10 + min(views, 2000) // 100
 
 
 def fomo_score(greed: int, fear: int, total_posts: int) -> float:
@@ -604,6 +639,10 @@ class Source:
     # 검색어를 URL에 넣지 않는 소스(인기글 목록). 지수처럼 시장 전체를 보는
     # 대상에만 쓰고 개별 종목에는 붙이지 않는다.
     market_wide: bool = False
+    # 목록 자체가 추천순으로 걸러진 소스. 여기에 다시 상대 기준을 적용하면 안 된다.
+    # 인기글 목록은 추천 중위가 92라 그 3배(276)를 넘는 글이 없어 전부 보통 글로
+    # 판정됐다. 이미 커뮤니티가 골라준 목록이므로 전부 화제글로 본다.
+    prefiltered_popular: bool = False
 
     @property
     def page_limit(self) -> int:
@@ -724,6 +763,7 @@ SOURCES: tuple[Source, ...] = (
         # 인기 탭은 이미 주식 게시판이라 제목에 종목명이 없어도 주식 여론이다.
         # 지수 별칭으로 걸러보니 60건 중 2건만 남아 표본이 사라졌다.
         filter_by_keyword=False,
+        prefiltered_popular=True,
     ),
 )
 
@@ -773,36 +813,115 @@ def parse_post_date(text: str, today: date | None = None) -> date | None:
     return None
 
 
-# 파서는 (제목, 상대 링크, 날짜) 튜플을 돌려준다. 링크는 전부 상대경로라 호출한
-# 쪽에서 페이지 URL 기준으로 절대화한다. 날짜를 못 읽으면 None이다.
-def _titles_naver(soup: BeautifulSoup, selector: str) -> list[tuple[str, str | None, date | None]]:
-    """종목토론실은 목록에서 제목이 잘린다. title 속성에 전체 제목이 있다."""
+@dataclass(frozen=True)
+class RawRow:
+    """목록 한 행에서 읽어낸 값. 링크는 상대경로라 호출한 쪽에서 절대화한다.
+
+    날짜와 반응 수치는 읽지 못하면 None이다. 0과 구분해야 한다. 뽐뿌 추천 칸처럼
+    실제로 비어 있는 경우(추천 0)와 셀렉터가 깨져 못 읽은 경우를 같게 취급하면
+    참여도 필터가 표본을 통째로 날린다.
+    """
+
+    title: str
+    href: str | None = None
+    posted: date | None = None
+    views: int | None = None
+    votes: int | None = None
+    comments: int | None = None
+
+
+# 목록 셀의 숫자는 형식이 제멋대로다. 뽐뿌는 `12 - 3`(추천-반대), 디시는 `1.2만`,
+# 에펨 인기글 댓글은 `[15]`로 찍는다. 앞쪽 정수만 읽고 만 단위는 풀어준다.
+_COUNT_NUM = re.compile(r"(\d[\d,]*(?:\.\d+)?)\s*(만|천)?")
+
+
+def parse_count(text: str | None) -> int | None:
+    """목록 셀의 반응 수치를 정수로. 숫자가 없으면 None."""
+    if text is None:
+        return None
+    match = _COUNT_NUM.search(text)
+    if match is None:
+        return None
+    try:
+        value = float(match.group(1).replace(",", ""))
+    except ValueError:
+        return None
+    unit = match.group(2)
+    if unit == "만":
+        value *= 10_000
+    elif unit == "천":
+        value *= 1_000
+    return int(value)
+
+
+def _cell_count(node, selector: str) -> int | None:
+    """행 안에서 셀렉터로 찾은 첫 셀의 숫자. 셀이 없으면 None."""
+    if node is None:
+        return None
+    cell = node.select_one(selector)
+    if cell is None:
+        return None
+    return parse_count(cell.get_text(" ", strip=True))
+
+
+def _titles_naver(soup: BeautifulSoup, selector: str) -> list[RawRow]:
+    """종목토론실은 목록에서 제목이 잘린다. title 속성에 전체 제목이 있다.
+
+    조회/공감/비공감은 클래스 없는 마지막 세 td에 순서로 들어 있다. 제목 셀 안의
+    댓글 수(`[ 3 ]`)도 같은 tah 클래스를 쓰므로 tah 노드를 세면 한 칸씩 밀린다.
+    td 위치로 읽는다.
+    """
     out = []
     for anchor in soup.select(selector):
         row = anchor.find_parent("tr")
         stamp = row.select_one("td.tah") if row else None
+        views = votes = comments = None
+        if row is not None:
+            cells = row.select("td")
+            # [날짜, 제목, 작성자, 조회, 공감, 비공감] 6칸 구조다.
+            if len(cells) >= 6:
+                views = parse_count(cells[-3].get_text(" ", strip=True))
+                votes = parse_count(cells[-2].get_text(" ", strip=True))
+            # 댓글 수는 제목 셀 안에 `[ 3 ]`으로 붙는다.
+            reply = anchor.find_parent("td")
+            if reply is not None:
+                marker = reply.select_one("span.tah, strong.tah")
+                if marker is not None:
+                    comments = parse_count(marker.get_text(" ", strip=True))
         out.append(
-            (
-                anchor.get("title") or anchor.get_text(" ", strip=True),
-                anchor.get("href"),
-                parse_post_date(stamp.get_text(strip=True) if stamp else ""),
+            RawRow(
+                title=anchor.get("title") or anchor.get_text(" ", strip=True),
+                href=anchor.get("href"),
+                posted=parse_post_date(stamp.get_text(strip=True) if stamp else ""),
+                views=views,
+                votes=votes,
+                comments=comments,
             )
         )
     return out
 
 
-def _titles_dcinside(soup: BeautifulSoup, selector: str) -> list[tuple[str, str | None, date | None]]:
+def _titles_dcinside(soup: BeautifulSoup, selector: str) -> list[RawRow]:
     out = []
     for a in soup.select(selector):
         row = a.find_parent("tr")
         cell = row.select_one("td.gall_date") if row else None
         # 오늘 글은 본문에 시각만 찍히고 전체 날짜는 title 속성에 있다.
         raw = (cell.get("title") or cell.get_text(strip=True)) if cell else ""
-        out.append((a.get_text(" ", strip=True), a.get("href"), parse_post_date(raw)))
+        out.append(
+            RawRow(
+                title=a.get_text(" ", strip=True),
+                href=a.get("href"),
+                posted=parse_post_date(raw),
+                views=_cell_count(row, "td.gall_count"),
+                votes=_cell_count(row, "td.gall_recommend"),
+                comments=_cell_count(a.find_parent("td"), "a.reply_numbox, span.reply_num"),
+            )
+        )
     return out
 
 
-def _titles_arca(soup: BeautifulSoup, selector: str) -> list[tuple[str, str | None, date | None]]:
+def _titles_arca(soup: BeautifulSoup, selector: str) -> list[RawRow]:
     """공지는 목록 상단에 고정돼 검색 결과와 무관하다. 클래스로 걸러낸다."""
     out = []
     for row in soup.select(selector):
@@ -813,11 +932,20 @@ def _titles_arca(soup: BeautifulSoup, selector: str) -> list[tuple[str, str | No
             continue
         stamp = row.select_one("span.vcol.col-time time")
         raw = (stamp.get("datetime") or stamp.get_text(strip=True)) if stamp else ""
-        out.append((cell.get_text(" ", strip=True), row.get("href"), parse_post_date(raw)))
+        out.append(
+            RawRow(
+                title=cell.get_text(" ", strip=True),
+                href=row.get("href"),
+                posted=parse_post_date(raw),
+                views=_cell_count(row, "span.vcol.col-view"),
+                votes=_cell_count(row, "span.vcol.col-rate"),
+                comments=_cell_count(cell, "span.comment-count"),
+            )
+        )
     return out
 
 
-def _titles_css(soup: BeautifulSoup, selector: str) -> list[tuple[str, str | None, date | None]]:
+def _titles_css(soup: BeautifulSoup, selector: str) -> list[RawRow]:
     """에펨은 검색어가 <strong>으로 감싸져 있어 구분자 없이 붙여 읽는다.
 
     뽐뿌는 셀렉터가 <span>을 가리키므로 링크는 부모 <a>에서 찾는다.
@@ -837,11 +965,21 @@ def _titles_css(soup: BeautifulSoup, selector: str) -> list[tuple[str, str | Non
                     if _TIME_ONLY.match(text) or _CLOCK.match(text) or _SHORT_DATE.match(text):
                         stamp = cell
                         break
+        # 에펨 검색 목록은 조회/추천 모두 td.m_no인데 추천 쪽에만 m_no_voted가 붙는다.
+        views = _cell_count(row, "td.baseList-views") if row is not None else None
+        votes = _cell_count(row, "td.baseList-rec") if row is not None else None
+        if row is not None and views is None:
+            plain = [c for c in row.select("td.m_no") if "m_no_voted" not in (c.get("class") or [])]
+            views = parse_count(plain[0].get_text(" ", strip=True)) if plain else None
+            votes = _cell_count(row, "td.m_no.m_no_voted")
         out.append(
-            (
-                node.get_text("", strip=True),
-                anchor.get("href") if anchor else None,
-                parse_post_date(stamp.get_text(strip=True) if stamp else ""),
+            RawRow(
+                title=node.get_text("", strip=True),
+                href=anchor.get("href") if anchor else None,
+                posted=parse_post_date(stamp.get_text(strip=True) if stamp else ""),
+                views=views,
+                votes=votes,
+                comments=_cell_count(row, "a.replyNum, span.baseList-c"),
             )
         )
     return out
@@ -851,13 +989,13 @@ def _titles_css(soup: BeautifulSoup, selector: str) -> list[tuple[str, str | Non
 _POP_TIME = re.compile(r"\b(\d{1,2}:\d{2}|\d{2}\.\d{2})\b")
 
 
-def _titles_fmkorea_pop(
-    soup: BeautifulSoup, selector: str
-) -> list[tuple[str, str | None, date | None]]:
+def _titles_fmkorea_pop(soup: BeautifulSoup, selector: str) -> list[RawRow]:
     """에펨 인기 탭. 검색 목록과 마크업이 달라 별도 파서가 필요하다.
 
     제목은 `h3.title a`이고 날짜 셀에 전용 클래스가 없어 li 텍스트에서 시각 패턴을
     찾는다. 제목 끝의 댓글 수(`[31]`)는 normalize_title이 떼어낸다.
+
+    추천 수는 썸네일 위 배지(`a.pc_voted_count span.count`)에 있고 조회수는 없다.
     """
     out = []
     for anchor in soup.select(selector):
@@ -868,10 +1006,12 @@ def _titles_fmkorea_pop(
             if match:
                 stamp = match.group(1)
         out.append(
-            (
-                anchor.get_text(" ", strip=True),
-                anchor.get("href"),
-                parse_post_date(stamp),
+            RawRow(
+                title=anchor.get_text(" ", strip=True),
+                href=anchor.get("href"),
+                posted=parse_post_date(stamp),
+                votes=_cell_count(row, "a.pc_voted_count span.count"),
+                comments=_cell_count(anchor, "span.comment_count"),
             )
         )
     return out
@@ -998,14 +1138,14 @@ def fetch_posts(
             break  # 검색 결과 소진
 
         fresh_on_page = 0
-        for raw, href, posted in rows:
+        for row in rows:
             # 날짜를 못 읽은 글은 버리지 않는다. 파서가 깨졌을 때 표본이 통째로
             # 사라지는 편이 오래된 글 몇 개보다 위험하다.
-            if posted is not None and posted < cutoff:
+            if row.posted is not None and row.posted < cutoff:
                 continue
             fresh_on_page += 1
 
-            title = normalize_title(raw)
+            title = normalize_title(row.title)
             if not title or title in seen:
                 continue
             if source.filter_by_keyword and not matches_keyword(title, keyword):
@@ -1016,9 +1156,12 @@ def fetch_posts(
             posts.append(
                 Post(
                     title=title,
-                    url=urljoin(response.url, href) if href else None,
+                    url=urljoin(response.url, row.href) if row.href else None,
                     source=source.key,
-                    posted_on=posted,
+                    posted_on=row.posted,
+                    views=row.views,
+                    votes=row.votes,
+                    comments=row.comments,
                 )
             )
 
@@ -1037,10 +1180,105 @@ class Post:
     url: str | None = None
     source: str = ""
     posted_on: date | None = None
+    # 목록에서 읽은 반응 수치. 읽지 못했으면 None이다(0과 구분한다).
+    views: int | None = None
+    votes: int | None = None
+    comments: int | None = None
 
 
 def titles_of(posts: list[Post]) -> list[str]:
     return [p.title for p in posts]
+
+
+def _median(values: list[int]) -> float | None:
+    if len(values) < SCALE_MIN_SAMPLE:
+        return None
+    ordered = sorted(values)
+    mid = len(ordered) // 2
+    if len(ordered) % 2:
+        return float(ordered[mid])
+    return (ordered[mid - 1] + ordered[mid]) / 2
+
+
+def _source_scale(posts: list[Post]) -> tuple[float | None, float | None]:
+    """소스 안의 조회수/추천수 중위값. 표본이 얇으면 None(가중 없음)."""
+    return (
+        _median([p.views for p in posts if p.views is not None]),
+        _median([p.votes for p in posts if p.votes is not None]),
+    )
+
+
+def post_weight(post: Post, view_median: float | None, vote_median: float | None) -> int:
+    """게시글 하나의 무게. 0이면 표본에서 뺀다.
+
+    반응을 읽지 못한 글(수치가 전부 None)은 기본 무게 1을 준다. 셀렉터가 깨졌을 때
+    표본이 통째로 사라지는 것을 막는다. 날짜 처리와 같은 원칙이다.
+    """
+    if post.views is None and post.votes is None and post.comments is None:
+        return 1
+
+    reacted = bool(post.votes) or bool(post.comments)
+    if (
+        not reacted
+        and view_median is not None
+        and post.views is not None
+        and post.views < view_median * DEAD_VIEW_RATIO
+    ):
+        return 0
+
+    hot_views = (
+        view_median is not None
+        and post.views is not None
+        and post.views >= view_median * HOT_VIEW_RATIO
+    )
+    hot_votes = (
+        vote_median is not None
+        and post.votes is not None
+        and post.votes >= max(vote_median * HOT_VOTE_RATIO, HOT_VOTE_FLOOR)
+    )
+    return HOT_WEIGHT if hot_views or hot_votes else 1
+
+
+@dataclass
+class WeightedSample:
+    """반응 가중을 적용한 제목 표본."""
+
+    titles: list[str] = field(default_factory=list)   # 화제글은 여러 번 들어간다
+    kept: int = 0
+    dropped: int = 0
+    hot: int = 0
+
+
+def weighted_titles(results: list[SourceResult]) -> WeightedSample:
+    """소스별로 반응 중위값을 재서 제목 표본을 만든다.
+
+    중위값은 소스 안에서만 낸다. 소스를 섞어 하나의 기준을 만들면 조회수가 원래
+    높은 사이트의 글이 전부 화제글이 되고, 낮은 사이트는 전부 잘려나간다.
+    """
+    prefiltered = {s.key for s in SOURCES if s.prefiltered_popular}
+    sample = WeightedSample()
+    for result in results:
+        if not result.posts:
+            continue
+        # 추천순으로 이미 걸러진 목록은 전부 화제글이다. 상대 기준을 다시 적용하면
+        # 중위값이 높아서 아무것도 화제글로 잡히지 않는다.
+        if result.key in prefiltered:
+            sample.kept += len(result.posts)
+            sample.hot += len(result.posts)
+            for post in result.posts:
+                sample.titles.extend([post.title] * HOT_WEIGHT)
+            continue
+        view_median, vote_median = _source_scale(result.posts)
+        for post in result.posts:
+            weight = post_weight(post, view_median, vote_median)
+            if weight == 0:
+                sample.dropped += 1
+                continue
+            sample.kept += 1
+            if weight > 1:
+                sample.hot += 1
+            sample.titles.extend([post.title] * weight)
+    return sample
 
 
 @dataclass
@@ -1199,6 +1437,10 @@ class FomoReport:
     stats: KeywordStats
     results: list[SourceResult]
     current_level: float | None = None
+    # 반응 가중 적용 결과. 표본이 얼마나 걸러졌는지 화면에서 보여주기 위해 남긴다.
+    kept_posts: int = 0
+    dropped_posts: int = 0
+    hot_posts: int = 0
 
     @property
     def total_posts(self) -> int:
@@ -1217,8 +1459,10 @@ def analyze(scan_result: ScanResult, current_level: float | None = None) -> Fomo
 
     `current_level`(현재 지수나 주가)을 주면 목표 수치를 현재와 비교해 조롱을 가려낸다.
     """
-    titles = scan_result.titles
-    stats = count_keywords(titles, current_level)
+    # 제목을 그대로 세지 않고 반응으로 무게를 준다. 조회수도 없는 글이 화제글과 같은
+    # 한 표를 갖는 구조에서는 여론이 아니라 글쓴 사람 수를 재게 된다.
+    sample = weighted_titles(scan_result.results)
+    stats = count_keywords(sample.titles, current_level)
     # 게시글 수로 나누면 점수가 50에 붙어 구간이 죽는다. 표본 크기를 반영한
     # 축소 추정을 쓴다.
     score = shrunk_score(stats.greed_total, stats.fear_total)
@@ -1232,6 +1476,9 @@ def analyze(scan_result: ScanResult, current_level: float | None = None) -> Fomo
         stats=stats,
         results=scan_result.results,
         current_level=current_level,
+        kept_posts=sample.kept,
+        dropped_posts=sample.dropped,
+        hot_posts=sample.hot,
     )
 
 
@@ -1258,6 +1505,8 @@ def aggregate(records: list[dict]) -> dict:
     greed = sum(r["greed_total"] for r in records)
     fear = sum(r["fear_total"] for r in records)
     posts = sum(r["total_posts"] for r in records)
+    hot = sum(r.get("hot_posts", 0) for r in records)
+    dropped = sum(r.get("dropped_posts", 0) for r in records)
 
     keyword_totals: dict[str, dict[str, int]] = {"greed": {}, "fear": {}}
     for record in records:
@@ -1307,6 +1556,8 @@ def aggregate(records: list[dict]) -> dict:
         "fear_total": fear,
         "hits": greed + fear,
         "total_posts": posts,
+        "hot_posts": hot,
+        "dropped_posts": dropped,
         "stocks": len(records),
         "greed_leaning": greed_leaning,
         "fear_leaning": fear_leaning,
@@ -1325,10 +1576,17 @@ def _merge_evidence(records: list[dict], limit: int = 16) -> list[dict]:
         for item in record.get("evidence", []):
             pool.append({**item, "stock": record.get("name", "")})
 
+    return interleave_evidence(pool, limit)
+
+
+def interleave_evidence(pool: list[dict], limit: int = 16) -> list[dict]:
+    """근거 목록을 탐욕/공포 번갈아 배치한다. 반응이 많은 글을 먼저 담는다."""
     greed_side = [i for i in pool if len(i.get("greed", [])) >= len(i.get("fear", []))]
     fear_side = [i for i in pool if len(i.get("greed", [])) < len(i.get("fear", []))]
     for side in (greed_side, fear_side):
-        side.sort(key=lambda i: -(len(i.get("greed", [])) + len(i.get("fear", []))))
+        side.sort(
+            key=lambda i: (-_reaction_rank(i), -(len(i.get("greed", [])) + len(i.get("fear", []))))
+        )
 
     out: list[dict] = []
     for a, b in zip_longest(greed_side, fear_side):
