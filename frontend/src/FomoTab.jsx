@@ -4,6 +4,11 @@ import HotFeed from './HotFeed.jsx'
 import MarketMood from './MarketMood.jsx'
 import NewsPanel from './NewsPanel.jsx'
 
+// 요약을 고정하지 않고 전체를 한 흐름으로 스크롤한다.
+//
+// 요약을 상단에 고정했을 때 그것만 508px을 차지해 아래 스크롤 창이 344px로 눌렸다.
+// 지수 카드를 펼치거나 뉴스를 보려면 좁은 창 안에서 계속 긁어야 했다. 읽을 내용이
+// 늘어난 지금은 한 페이지로 흐르는 편이 낫다.
 export default function FomoTab() {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
@@ -56,7 +61,7 @@ export default function FomoTab() {
   }
 
   return (
-    <main className="flex min-w-0 flex-1 flex-col">
+    <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto">
       {data.market && (
         <MarketMood
           market={data.market}
@@ -66,7 +71,7 @@ export default function FomoTab() {
         />
       )}
 
-      <div className="min-h-0 flex-1 overflow-y-auto px-5 py-4">
+      <div className="px-5 py-4">
         {/* 종목별 점수 표를 여기서 뺐다. 종목 표본은 88.7%가 네이버 한 곳에서 오고
             키워드 3개 차이로 30종목 중 24종목의 구간이 뒤집혔다. 대신 반응이 검증된
             화제글을 둔다. 종목 수집은 시장·섹터 집계 재료로 계속 쓴다. */}
