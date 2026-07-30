@@ -68,6 +68,8 @@ export default function FomoTab() {
           minHits={data.min_sentiment_hits ?? 10}
           indices={data.indices}
           gauge={data.market_gauge}
+          generatedAt={data.generated_at}
+          intervalHours={data.interval_hours}
         />
       )}
 

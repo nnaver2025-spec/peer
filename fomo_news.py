@@ -34,8 +34,8 @@ from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from urllib.parse import quote
 
-import cloudscraper
 from bs4 import BeautifulSoup
+import requests
 
 import fomo_core as core
 
@@ -121,8 +121,15 @@ class SectorNews(object):
     error: str | None = None
 
 
-def _session() -> cloudscraper.CloudScraper:
-    return cloudscraper.create_scraper()
+def _session() -> requests.Session:
+    """구글 뉴스 RSS는 표준 requests로 200이 온다.
+
+    cloudscraper를 쓰지 않는다. 그쪽은 내부에서 임시 파일과 JS 인터프리터를 찾는데,
+    launchd 환경에서 TMPDIR과 PATH가 달라 세션 생성 자체가 OSError로 죽었다.
+    크론 회차에서 뉴스가 통째로 빠지는 원인이었다. 우회가 필요 없는 소스에
+    무거운 도구를 쓸 이유도 없다.
+    """
+    return requests.Session()
 
 
 def effective_half(title: str) -> str:
@@ -163,9 +170,12 @@ def _count(titles: list[str], words: tuple[str, ...]) -> tuple[int, dict[str, in
 
 def fetch_sector(sector: str, session=None) -> tuple[list[NewsItem], str | None]:
     """섹터 하나의 최근 기사를 받는다. 실패하면 빈 목록과 이유를 돌려준다."""
-    own = session or _session()
     query = quote(f"{sector} 주가 when:{LOOKBACK_DAYS}d")
     try:
+        # 세션 생성도 실패할 수 있다. cloudscraper는 내부적으로 임시 파일과
+        # JS 인터프리터를 찾는데, launchd 환경에서는 TMPDIR과 PATH가 달라
+        # OSError가 났다. try 안에 두어 이 회차만 건너뛰게 한다.
+        own = session or _session()
         res = own.get(
             RSS_URL.format(query=query),
             headers={"User-Agent": core.UA},

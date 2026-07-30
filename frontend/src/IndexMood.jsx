@@ -103,8 +103,15 @@ function Detail({ index, zone, trend, useDaily }) {
             <p className="text-[11px] text-faint">수집 내역</p>
             <ul className="tnum mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
               {sources.map((s) => (
-                <li key={s.key} className={s.error ? 'text-faint' : 'text-muted'}>
-                  {SOURCE_LABELS[s.key] ?? s.key} {s.error ? '실패' : s.count}
+                <li
+                  key={s.key}
+                  className={s.error ? 'text-faint' : 'text-muted'}
+                  title={s.error ?? undefined}
+                >
+                  {SOURCE_LABELS[s.key] ?? s.key}{' '}
+                  {/* 구조상 못 쓰는 소스는 고장이 아니다. 지수에는 6자리 티커가 없어
+                      네이버 종목토론실을 검색할 수 없다. */}
+                  {s.error ? (s.unsupported ? '해당 없음' : '실패') : s.count}
                 </li>
               ))}
             </ul>

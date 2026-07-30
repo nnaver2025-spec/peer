@@ -69,6 +69,9 @@ export function topKeywords(counts, limit = 3) {
 }
 
 // 실패한 소스 수. 수집 신뢰도를 판단하는 데 쓴다.
+//
+// 구조상 못 쓰는 소스는 세지 않는다. 지수는 6자리 티커가 없어 네이버 종목토론실을
+// 쓸 수 없는데, 이걸 실패로 세면 매 회차 고장난 것처럼 보인다.
 export function failedSources(stock) {
-  return (stock.per_source ?? []).filter((s) => s.error).length
+  return (stock.per_source ?? []).filter((s) => s.error && !s.unsupported).length
 }

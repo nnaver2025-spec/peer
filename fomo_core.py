@@ -1346,6 +1346,9 @@ class SourceResult:
     label: str
     posts: list[Post] = field(default_factory=list)
     error: str | None = None
+    # 못 쓴 이유가 고장이 아니라 구조인 경우(지수는 6자리 티커가 없어 네이버
+    # 종목토론실을 쓸 수 없다). 화면에서 "실패"로 보이면 고장으로 읽힌다.
+    unsupported: bool = False
 
     @property
     def count(self) -> int:
@@ -1375,7 +1378,10 @@ def _collect_one(
     source: Source, keyword: str, ticker: str | None, lookback_days: int
 ) -> SourceResult:
     if source.needs_ticker and not ticker:
-        return SourceResult(source.key, source.label, error="티커 변환 실패")
+        # 지수는 티커가 원래 없다. 종목 검색에서 변환이 안 된 경우와 구분한다.
+        return SourceResult(
+            source.key, source.label, error="티커 없어 제외", unsupported=True
+        )
     if circuit_open(source.key):
         return SourceResult(source.key, source.label, error="연속 실패로 건너뜀")
     try:
@@ -1451,6 +1457,9 @@ def scan_aliases(
     }
     seen: dict[str, set[str]] = {s.key: set() for s in SOURCES}
     errors: dict[str, list[str]] = {s.key: [] for s in SOURCES}
+    # 구조상 못 쓰는 소스인지 기억한다. 별칭별 결과를 새 SourceResult로 합치는
+    # 과정에서 플래그가 사라지면 지수 카드에 매 회차 `실패`가 찍힌다.
+    unsupported: dict[str, bool] = {s.key: False for s in SOURCES}
 
     for position, alias in enumerate(aliases):
         # 인기글은 검색어와 무관한 같은 목록이다. 별칭마다 받으면 같은 글을 여러 번
@@ -1465,8 +1474,10 @@ def scan_aliases(
                 merged[result.key] = SourceResult(result.key, result.label)
                 seen[result.key] = set()
                 errors[result.key] = []
+                unsupported[result.key] = False
             if result.error:
                 errors[result.key].append(result.error)
+                unsupported[result.key] = unsupported[result.key] or result.unsupported
                 continue
             target = merged[result.key]
             for post in result.posts:
@@ -1479,6 +1490,7 @@ def scan_aliases(
     for key, result in merged.items():
         if not result.posts and errors[key]:
             result.error = errors[key][0]
+            result.unsupported = unsupported[key]
 
     # 한 번도 응답을 받지 못한 소스는 결과에서 뺀다. 빈 성공으로 남기면 "수집 0개"로
     # 보이지만 실제로는 시도조차 안 된 상태다.

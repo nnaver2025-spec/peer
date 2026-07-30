@@ -754,6 +754,50 @@ def test_mixed_post_counts_toward_dominant_side():
 # --- 화제글 피드 ----------------------------------------------------------
 
 
+def test_missing_ticker_is_marked_unsupported():
+    """지수는 6자리 티커가 없다. 고장이 아니라 구조라서 실패와 구분한다.
+
+    이걸 실패로 세면 지수 카드에 매 회차 `실패`가 찍혀 사용자가 고장으로 읽는다.
+    """
+    naver = next(s for s in core.SOURCES if s.needs_ticker)
+    result = core._collect_one(naver, "코스피", None, core.LOOKBACK_DAYS)
+    assert result.unsupported is True
+    assert result.error == "티커 없어 제외"
+
+
+def test_normal_source_is_not_unsupported():
+    """정상 수집 결과에는 표시가 붙지 않는다."""
+    result = core.SourceResult("arca", "아카라이브", [core.Post("가즈아")])
+    assert result.unsupported is False
+    assert result.error is None
+
+
+def test_scan_aliases_keeps_unsupported_flag(monkeypatch):
+    """별칭을 합치는 과정에서 unsupported가 사라지면 안 된다.
+
+    지수는 scan_aliases를 거치는데, 여기서 새 SourceResult로 다시 담기 때문에
+    플래그를 명시적으로 옮겨야 한다. 놓치면 지수 카드에 매 회차 `실패`가 찍힌다.
+    """
+    def fake_scan(keyword, lookback_days=3, include_market_wide=False):
+        return core.ScanResult(
+            keyword,
+            None,
+            [
+                core.SourceResult(
+                    "naver", "네이버", error="티커 없어 제외", unsupported=True
+                ),
+                core.SourceResult("arca", "아카라이브", [core.Post(f"{keyword} 폭락")]),
+            ],
+        )
+
+    monkeypatch.setattr(core, "scan", fake_scan)
+    merged = core.scan_aliases("코스피", ["코스피", "KOSPI"])
+    by_key = {r.key: r for r in merged.results}
+    assert by_key["naver"].unsupported is True
+    assert by_key["arca"].unsupported is False
+    assert by_key["arca"].count == 2   # 별칭 두 개가 각각 다른 제목을 준다
+
+
 def test_feed_keeps_posts_without_keywords():
     """피드는 키워드가 없는 글도 담는다.
 

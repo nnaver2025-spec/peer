@@ -120,7 +120,7 @@ def _collect_news(market: dict[str, object]) -> dict[str, object] | None:
     try:
         results = fomo_news.collect(sectors)
     except Exception as exc:                      # noqa: BLE001 - 회차를 잃지 않는다
-        print(f"[뉴스] 수집 실패: {type(exc).__name__}", file=sys.stderr)
+        print(f"[뉴스] 수집 실패: {type(exc).__name__}: {exc}", file=sys.stderr)
         return None
 
     payload = fomo_news.payload(results)
@@ -298,7 +298,13 @@ def scan_index(index, stamp: str, history: list, level: float | None = None) -> 
         "dropped_posts": report.dropped_posts,
         "evidence": report.evidence(EVIDENCE_PER_INDEX),
         "per_source": [
-            {"key": r.key, "count": r.count, "error": r.error} for r in report.results
+            {
+                "key": r.key,
+                "count": r.count,
+                "error": r.error,
+                "unsupported": r.unsupported,
+            }
+            for r in report.results
         ],
         "history": trail[-HISTORY_POINTS:],
         "daily": roll_daily(_load_daily("indices", index.key), stamp, score),
@@ -333,7 +339,13 @@ def scan_target(target: dict[str, str], stamp: str, history: list) -> dict[str, 
         "dropped_posts": report.dropped_posts,
         "evidence": report.evidence(EVIDENCE_PER_STOCK),
         "per_source": [
-            {"key": r.key, "count": r.count, "error": r.error} for r in report.results
+            {
+                "key": r.key,
+                "count": r.count,
+                "error": r.error,
+                "unsupported": r.unsupported,
+            }
+            for r in report.results
         ],
         "history": trail[-HISTORY_POINTS:],
         "daily": roll_daily(
@@ -411,7 +423,10 @@ def main(argv: list[str] | None = None) -> int:
             time.sleep(STOCK_SLEEP_SEC)
         record = scan_target(target, stamp, previous.get(target["key"], []))
         stocks.append(record)
-        blocked = sum(1 for s in record["per_source"] if s["error"])
+        # 구조상 못 쓰는 소스(unsupported)는 실패로 세지 않는다.
+        blocked = sum(
+            1 for s in record["per_source"] if s["error"] and not s.get("unsupported")
+        )
         note = f" (실패 {blocked})" if blocked else ""
         print(
             f"[{index}/{len(targets)}] {target['name']} "

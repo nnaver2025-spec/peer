@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { topKeywords, zoneOf } from './fomo.js'
 import EvidencePopover from './EvidencePopover.jsx'
+import Freshness from './Freshness.jsx'
 import IndexMood from './IndexMood.jsx'
 import MarketGauge from './MarketGauge.jsx'
 import ScoreTrend from './ScoreTrend.jsx'
@@ -44,7 +45,14 @@ function SectorChip({ sector, minHits }) {
   )
 }
 
-export default function MarketMood({ market, minHits, indices, gauge }) {
+export default function MarketMood({
+  market,
+  minHits,
+  indices,
+  gauge,
+  generatedAt,
+  intervalHours,
+}) {
   const zone = zoneOf(market)
   const thin = market.score === null
   const { greed_leaning: greedLeaning, fear_leaning: fearLeaning, stocks } = market
@@ -58,7 +66,10 @@ export default function MarketMood({ market, minHits, indices, gauge }) {
     <section className="border-b border-line px-5 py-4">
       <div className="flex flex-wrap items-start gap-x-10 gap-y-5">
         <div className="min-w-[220px]">
-          <p className="text-[12px] text-faint">여론 심리</p>
+          <div className="flex items-baseline gap-2">
+            <p className="text-[12px] text-faint">여론 심리</p>
+            <Freshness generatedAt={generatedAt} intervalHours={intervalHours} />
+          </div>
           <div className="mt-1 flex items-baseline gap-2.5">
             <span className={`tnum text-[34px] font-medium leading-none ${zone.text}`}>
               {thin ? '—' : market.score.toFixed(1)}
