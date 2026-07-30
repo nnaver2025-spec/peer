@@ -104,3 +104,18 @@ def test_merge_market_wide_is_noop_without_sample():
         "시장 전체", None, [core.SourceResult("fmkorea_pop", "에펨 인기글", error="차단됨 (HTTP 429)")]
     )
     assert watch.merge_market_wide(base, blocked) == base
+
+
+def test_feed_is_built_from_wide_sample():
+    """화제글 피드는 키워드가 없는 글까지 담는다.
+
+    점수에 쓰는 표본(merge_market_wide)과 화면에 보여줄 목록은 기준이 다르다.
+    """
+    wide = _wide(["오늘 날씨 좋네", "코스피 폭락"])
+    posts = [p for r in wide.results for p in r.posts]
+    feed = core.feed_posts(posts, watch.FEED_LIMIT)
+    assert len(feed) == 2
+    # 키워드가 잡힌 글이 위로 온다.
+    assert feed[0]["title"] == "코스피 폭락"
+    # 점수 쪽은 키워드가 없으면 표본으로 세지 않는다.
+    assert watch.merge_market_wide(_market(10, 10), _wide(["오늘 날씨 좋네"])) == _market(10, 10)

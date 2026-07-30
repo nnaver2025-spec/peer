@@ -39,8 +39,11 @@ HISTORY_POINTS = 36
 DAILY_POINTS = 30
 INTERVAL_HOURS = 2
 EVIDENCE_PER_STOCK = 8   # 종목별로 남길 근거 게시글 수
-EVIDENCE_PER_INDEX = 12  # 지수는 표본이 두꺼워 조금 더 남긴다
+# 지수 카드를 펼치면 근거를 목록으로 펼쳐 보여준다. 화면이 감당하는 만큼 남긴다.
+EVIDENCE_PER_INDEX = 24
 EVIDENCE_PER_MARKET = 16
+# 화제글 피드에 남길 인기글 수. 한 회차에 60건이 들어오므로 전부 담는다.
+FEED_LIMIT = 60
 
 
 def scan_market_wide() -> core.ScanResult | None:
@@ -406,6 +409,13 @@ def main(argv: list[str] | None = None) -> int:
     market = core.aggregate(stocks)
     # 인기글은 종목을 특정하지 않으므로 개별 종목이 아니라 시장 심리에만 더한다.
     market = merge_market_wide(market, wide)
+    # 화제글 피드. 점수 근거와 달리 키워드가 안 잡힌 글도 담는다. 인기 탭 60건 중
+    # 감정 키워드가 붙는 글은 4건뿐인데, 나머지도 분위기는 분명히 담고 있다.
+    feed = (
+        core.feed_posts([p for r in wide.results for p in r.posts], FEED_LIMIT)
+        if wide is not None
+        else []
+    )
     if market["score"] is not None:
         market_history = market_history + [{"ts": stamp, "score": market["score"]}]
     market["history"] = market_history[-HISTORY_POINTS:]
@@ -436,6 +446,7 @@ def main(argv: list[str] | None = None) -> int:
             "sources": [{"key": s.key, "label": s.label} for s in core.SOURCES],
             "market": market,
             "market_gauge": gauge,
+            "feed": feed,
             "indices": indices,
             "stocks": stocks,
         },

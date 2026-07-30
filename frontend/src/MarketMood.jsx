@@ -21,33 +21,30 @@ function MoodBar({ score, bar }) {
 }
 
 // 섹터 한 칸. 이름과 점수를 한 줄에 붙여 여러 섹터를 한눈에 훑게 한다.
-function SectorChip({ sector, minHits, onSelect, active }) {
+//
+// 종목 표를 뺀 뒤로는 눌러서 걸러낼 대상이 없다. 클릭 대신 호버 설명만 남긴다.
+function SectorChip({ sector, minHits }) {
   const thin = sector.score === null
   const zone = zoneOf(sector)
 
   return (
-    <button
-      type="button"
-      onClick={() => onSelect(active ? null : sector.sector)}
-      aria-pressed={active}
+    <span
       title={
         thin
           ? `${sector.sector} · 키워드 ${sector.hits}회 (최소 ${minHits}회 필요)`
           : `${sector.sector} · ${zone.label} · 탐욕 ${sector.greed_total} / 공포 ${sector.fear_total} · ${sector.stocks}종목`
       }
-      className={`flex items-baseline gap-2 rounded-md border px-2.5 py-1 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
-        active ? 'border-line-strong bg-raised' : 'border-line hover:border-line-strong'
-      }`}
+      className="flex items-baseline gap-2 rounded-md border border-line px-2.5 py-1"
     >
       <span className="text-[13px] text-muted">{sector.sector}</span>
       <span className={`tnum text-[14px] ${thin ? 'text-faint' : zone.text}`}>
         {thin ? '—' : sector.score.toFixed(0)}
       </span>
-    </button>
+    </span>
   )
 }
 
-export default function MarketMood({ market, minHits, sector, onSector, indices, gauge }) {
+export default function MarketMood({ market, minHits, indices, gauge }) {
   const zone = zoneOf(market)
   const thin = market.score === null
   const { greed_leaning: greedLeaning, fear_leaning: fearLeaning, stocks } = market
@@ -169,13 +166,7 @@ export default function MarketMood({ market, minHits, sector, onSector, indices,
         <p className="text-[12px] text-faint">섹터별 (공포 순)</p>
         <div className="mt-2 flex flex-wrap gap-1.5">
           {market.sectors.map((s) => (
-            <SectorChip
-              key={s.sector}
-              sector={s}
-              minHits={minHits}
-              active={sector === s.sector}
-              onSelect={onSector}
-            />
+            <SectorChip key={s.sector} sector={s} minHits={minHits} />
           ))}
         </div>
       </div>

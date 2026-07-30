@@ -540,6 +540,65 @@ def _reaction_rank(item: dict) -> int:
     return votes * 20 + comments * 10 + min(views, 2000) // 100
 
 
+# 주식 여론과 무관한 정치 공방. 인기 탭 상위에 올라오지만 시장 분위기가 아니라
+# 진영 싸움이라 화면 피드에서는 뺀다(실측: 60건 중 3건, 추천 상위 3위 안에 2건).
+POLITICS_WORDS = (
+    "윤석열", "재명", "이재명", "대통령", "민주당", "국민의힘", "정부",
+    "총리", "장관", "의원", "탄핵", "선거",
+)
+
+# 정치 단어가 있어도 시장을 함께 말하면 남기는 판단 근거.
+MARKET_WORDS = (
+    "코스피", "코스닥", "나스닥", "지수", "증시", "주가", "주식", "종목",
+    "연기금", "외국인", "금리", "환율", "실적", "배당", "상장", "공매도",
+)
+
+
+def is_politics_post(title: str) -> bool:
+    """정치 공방 글인지. 정책·종목 얘기가 섞였으면 남긴다."""
+    if not any(word in title for word in POLITICS_WORDS):
+        return False
+    # `정부 "연기금아, 코스닥 바닥인데"`처럼 시장을 함께 말하는 글은 여론이다.
+    return not any(word in title for word in MARKET_WORDS)
+
+
+def feed_posts(posts: list[Post], limit: int = 60) -> list[dict]:
+    """화제글 피드. 반응이 검증된 글을 그대로 보여준다.
+
+    `evidence_posts`와 목적이 다르다. 근거 목록은 점수를 만든 글만 담지만, 피드는
+    키워드가 안 잡힌 글도 담는다. 실측에서 에펨 인기글 60건 중 감정 키워드가 붙는
+    글은 4건(7%)뿐인데, 나머지도 `진짜 다들 멘탈 어찌 잡아요?`처럼 분위기를 분명히
+    담고 있었다. 키워드로 거르면 화제글의 93%를 버리는 셈이다.
+
+    점수 계산에는 쓰지 않는다. 여기서 무엇을 보여줄지와 무엇을 셀지는 별개다.
+    """
+    rows: list[dict] = []
+    for post in posts:
+        if is_politics_post(post.title):
+            continue
+        greed, fear = match_keywords(post.title)
+        rows.append(
+            {
+                "title": post.title,
+                "url": post.url,
+                "source": post.source,
+                "greed": greed,
+                "fear": fear,
+                "views": post.views,
+                "votes": post.votes,
+                "comments": post.comments,
+            }
+        )
+
+    # 키워드가 잡힌 글을 위로 올린다. 방향이 분명한 글이 먼저 읽히는 게 낫다.
+    # 각 묶음 안에서는 반응이 많은 순이다.
+    tagged = [r for r in rows if r["greed"] or r["fear"]]
+    plain = [r for r in rows if not r["greed"] and not r["fear"]]
+    for group in (tagged, plain):
+        group.sort(key=lambda i: -_reaction_rank(i))
+    return (tagged + plain)[:limit]
+
+
 def fomo_score(greed: int, fear: int, total_posts: int) -> float:
     """0~100 여론 점수. 기준 50에서 키워드 편차만큼 움직인다.
 

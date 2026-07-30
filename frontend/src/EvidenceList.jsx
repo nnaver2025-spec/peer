@@ -30,8 +30,16 @@ function Reaction({ icon: Icon, value, title }) {
 }
 
 function Row({ item }) {
-  const greedy = item.greed.length >= item.fear.length
   const words = [...item.greed, ...item.fear]
+  // 피드에는 키워드가 안 잡힌 글도 들어온다. 방향이 없는 글을 탐욕으로 칠하면
+  // 실제로 없는 신호를 만들어낸다.
+  const side = words.length === 0
+    ? null
+    : item.greed.length >= item.fear.length
+      ? 'greed'
+      : 'fear'
+  const sideText =
+    side === 'greed' ? 'text-warn' : side === 'fear' ? 'text-accent' : 'text-faint'
 
   return (
     <li className="border-b border-line/70 last:border-b-0">
@@ -44,10 +52,16 @@ function Row({ item }) {
         }`}
       >
         <span
-          className={`mt-0.5 shrink-0 text-[11px] ${greedy ? 'text-warn' : 'text-accent'}`}
-          title={greedy ? '탐욕 신호' : '공포 신호'}
+          className={`mt-0.5 w-[22px] shrink-0 text-[11px] ${sideText}`}
+          title={
+            side === 'greed'
+              ? '탐욕 신호'
+              : side === 'fear'
+                ? '공포 신호'
+                : '감정 키워드가 잡히지 않은 화제글'
+          }
         >
-          {greedy ? '탐욕' : '공포'}
+          {side === 'greed' ? '탐욕' : side === 'fear' ? '공포' : '·'}
         </span>
 
         <span className="min-w-0 flex-1">
@@ -67,9 +81,11 @@ function Row({ item }) {
             <Reaction icon={Eye} value={item.views} title="조회수" />
             <Reaction icon={ThumbsUp} value={item.votes} title="추천" />
             <Reaction icon={MessageSquare} value={item.comments} title="댓글" />
-            <span className={greedy ? 'text-warn/70' : 'text-accent/70'}>
-              {words.join(' · ')}
-            </span>
+            {words.length > 0 && (
+              <span className={side === 'greed' ? 'text-warn/70' : 'text-accent/70'}>
+                {words.join(' · ')}
+              </span>
+            )}
           </span>
         </span>
       </a>

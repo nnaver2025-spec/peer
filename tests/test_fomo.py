@@ -751,6 +751,79 @@ def test_mixed_post_counts_toward_dominant_side():
     assert len(items[0]["greed"]) > len(items[0]["fear"])
 
 
+# --- 화제글 피드 ----------------------------------------------------------
+
+
+def test_feed_keeps_posts_without_keywords():
+    """피드는 키워드가 없는 글도 담는다.
+
+    인기 탭 60건 중 감정 키워드가 붙는 글은 4건(7%)뿐이다. 키워드로 거르면
+    화제글의 93%가 사라진다.
+    """
+    posts = [
+        core.Post("진짜 다들 멘탈 어찌 잡아요?", votes=112),
+        core.Post("여친 부모님 식사자리 가는 중인데", votes=111),
+    ]
+    feed = core.feed_posts(posts)
+    assert len(feed) == 2
+    assert all(not f["greed"] and not f["fear"] for f in feed)
+
+
+def test_feed_puts_tagged_posts_first():
+    """키워드가 잡힌 글이 반응이 적어도 위로 온다."""
+    posts = [
+        core.Post("잡담 글", votes=500),
+        core.Post("코스피 폭락 손절", votes=3),
+    ]
+    feed = core.feed_posts(posts)
+    assert feed[0]["title"] == "코스피 폭락 손절"
+    assert feed[1]["title"] == "잡담 글"
+
+
+def test_feed_sorts_each_group_by_reaction():
+    """같은 묶음 안에서는 반응이 많은 순이다."""
+    posts = [
+        core.Post("잡담 약함", votes=1),
+        core.Post("잡담 강함", votes=200),
+    ]
+    feed = core.feed_posts(posts)
+    assert [f["title"] for f in feed] == ["잡담 강함", "잡담 약함"]
+
+
+def test_feed_drops_pure_politics_posts():
+    """진영 싸움 글은 시장 여론이 아니라 노이즈다."""
+    posts = [
+        core.Post("팩트) 재명이가 죽어도 얘기 안하는 거", votes=177),
+        core.Post("하닉 190~200 에 잡으면서", votes=150),
+    ]
+    feed = core.feed_posts(posts)
+    assert [f["title"] for f in feed] == ["하닉 190~200 에 잡으면서"]
+
+
+def test_feed_keeps_policy_posts_that_mention_market():
+    """정치 단어가 있어도 시장을 함께 말하면 남긴다."""
+    title = '정부 "연기금아, 코스닥 바닥인데 슬슬 올려주거지?"'
+    assert core.is_politics_post(title) is False
+    assert core.feed_posts([core.Post(title, votes=116)])
+
+
+def test_feed_respects_limit():
+    posts = [core.Post(f"잡담 {i}", votes=i) for i in range(80)]
+    assert len(core.feed_posts(posts, limit=60)) == 60
+
+
+def test_feed_carries_reactions_and_url():
+    post = core.Post(
+        "코스피 폭락", "https://x/1", "fmkorea_pop", views=None, votes=91, comments=12
+    )
+    item = core.feed_posts([post])[0]
+    assert item["url"] == "https://x/1"
+    assert item["source"] == "fmkorea_pop"
+    assert item["votes"] == 91
+    assert item["comments"] == 12
+    assert item["fear"] == ["폭락"]
+
+
 def test_aggregate_merges_evidence_with_stock_name():
     records = [
         {**_record("삼성전자", "반도체", 6, 6),
