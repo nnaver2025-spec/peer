@@ -49,7 +49,7 @@ export default function HotFeed({ feed, sources }) {
   if (!feed.length) return null
 
   return (
-    <section className="flex min-h-0 flex-1 flex-col">
+    <section className="mt-8 flex flex-col border-t border-line pt-5">
       <header className="flex flex-wrap items-center justify-between gap-3 pb-2">
         <div>
           <h2 className="text-[14px] text-ink">시장 화제글</h2>

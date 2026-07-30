@@ -136,7 +136,7 @@ export default function NewsPanel({ news }) {
         : 'text-ink'
 
   return (
-    <section className="mt-8 border-t border-line pt-5">
+    <section>
       <header className="flex flex-wrap items-baseline justify-between gap-3">
         <div>
           <h2 className="text-[14px] text-ink">뉴스 논조</h2>

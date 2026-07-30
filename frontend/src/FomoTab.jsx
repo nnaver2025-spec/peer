@@ -72,12 +72,16 @@ export default function FomoTab() {
       )}
 
       <div className="px-5 py-4">
-        {/* 종목별 점수 표를 여기서 뺐다. 종목 표본은 88.7%가 네이버 한 곳에서 오고
-            키워드 3개 차이로 30종목 중 24종목의 구간이 뒤집혔다. 대신 반응이 검증된
-            화제글을 둔다. 종목 수집은 시장·섹터 집계 재료로 계속 쓴다. */}
-        <HotFeed feed={data.feed ?? []} sources={data.sources} />
+        {/* 뉴스를 먼저 둔다. 태그율이 41~53%로 커뮤니티(7%)보다 높고 매체가 쓴 글이라
+            먼저 읽는 편이 맥락 잡기에 낫다. 커뮤니티 화제글은 그 아래에서 분위기를
+            보탠다.
 
+            종목별 점수 표는 여기서 뺐다. 종목 표본은 88.7%가 네이버 한 곳에서 오고
+            키워드 3개 차이로 30종목 중 24종목의 구간이 뒤집혔다. 종목 수집은
+            시장·섹터 집계 재료로 계속 쓴다. */}
         <NewsPanel news={data.news} />
+
+        <HotFeed feed={data.feed ?? []} sources={data.sources} />
 
         <footer className="tnum mt-8 text-[12px] text-faint">
           generated_at {data.generated_at} · {data.interval_hours}시간 주기 ·{' '}
