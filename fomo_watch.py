@@ -23,6 +23,7 @@ from pathlib import Path
 
 import fomo_core as core
 import fomo_market
+import fomo_news
 from fomo_indices import INDICES, US_INDEX_LOOKBACK_DAYS, index_levels
 
 ROOT = Path(__file__).parent
@@ -104,6 +105,33 @@ def merge_market_wide(market: dict[str, object], scan: core.ScanResult | None) -
         list(market.get("evidence", [])) + extra, EVIDENCE_PER_MARKET
     )
     return merged
+
+
+def _collect_news(market: dict[str, object]) -> dict[str, object] | None:
+    """섹터별 뉴스 논조를 받는다. 통째로 실패해도 회차를 살린다.
+
+    검색어는 섹터 이름을 쓴다(`반도체 주가`). 대표주 이름으로 검색하면 표본이
+    3~9건으로 말라 종목 점수와 같은 문제가 재발한다.
+    """
+    sectors = [s["sector"] for s in market.get("sectors", [])]
+    if not sectors:
+        return None
+
+    try:
+        results = fomo_news.collect(sectors)
+    except Exception as exc:                      # noqa: BLE001 - 회차를 잃지 않는다
+        print(f"[뉴스] 수집 실패: {type(exc).__name__}", file=sys.stderr)
+        return None
+
+    payload = fomo_news.payload(results)
+    failed = [s["sector"] for s in payload["sectors"] if s["error"]]
+    note = f" · 실패 {len(failed)}섹터" if failed else ""
+    print(
+        f"뉴스 논조 {payload['score']} ({payload['label']}) · "
+        f"긍정 {payload['positive_total']} / 부정 {payload['negative_total']} · "
+        f"기사 {payload['total']}건{note}"
+    )
+    return payload
 
 
 def load_targets() -> list[dict[str, str]]:
@@ -434,6 +462,10 @@ def main(argv: list[str] | None = None) -> int:
             )
         )
 
+    # 섹터별 뉴스 논조. 커뮤니티 여론과 점수를 섞지 않고 나란히 둔다. 성격이 다른
+    # 표본이라 합치면 어느 쪽이 움직인 건지 알 수 없어진다.
+    news = _collect_news(market)
+
     write_output(
         {
             "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -447,6 +479,7 @@ def main(argv: list[str] | None = None) -> int:
             "market": market,
             "market_gauge": gauge,
             "feed": feed,
+            "news": news,
             "indices": indices,
             "stocks": stocks,
         },

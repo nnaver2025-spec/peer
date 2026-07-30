@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { AlertTriangle, RefreshCw } from 'lucide-react'
 import HotFeed from './HotFeed.jsx'
 import MarketMood from './MarketMood.jsx'
+import NewsPanel from './NewsPanel.jsx'
 
 export default function FomoTab() {
   const [data, setData] = useState(null)
@@ -70,6 +71,8 @@ export default function FomoTab() {
             키워드 3개 차이로 30종목 중 24종목의 구간이 뒤집혔다. 대신 반응이 검증된
             화제글을 둔다. 종목 수집은 시장·섹터 집계 재료로 계속 쓴다. */}
         <HotFeed feed={data.feed ?? []} sources={data.sources} />
+
+        <NewsPanel news={data.news} />
 
         <footer className="tnum mt-8 text-[12px] text-faint">
           generated_at {data.generated_at} · {data.interval_hours}시간 주기 ·{' '}
