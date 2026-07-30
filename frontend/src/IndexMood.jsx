@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import EvidenceList from './EvidenceList.jsx'
+import NewsColumns from './NewsColumns.jsx'
 import ScoreTrend from './ScoreTrend.jsx'
-import { topKeywords, zoneOf } from './fomo.js'
+import { bandOf, topKeywords, zoneOf } from './fomo.js'
 
 const SOURCE_LABELS = {
   naver: '네이버',
@@ -58,8 +59,27 @@ function Summary({ index, zone, thin, trend, useDaily, minHits }) {
         게시글 {index.total_posts}개 · 키워드 {index.hits}회
         {index.lookback_days ? ` · ${index.lookback_days}일` : ''}
       </p>
+      {/* 커뮤니티 표본이 얇은 지수(코스닥·S&P500)는 여론만으로 판단이 안 된다.
+          뉴스 논조를 함께 보여주되 점수는 섞지 않는다. */}
+      {index.news?.score !== null && index.news?.score !== undefined && (
+        <p className="tnum mt-1 text-[11px]">
+          <span className="text-faint">뉴스 </span>
+          <span className={toneClass(index.news.score)}>
+            {index.news.score.toFixed(1)}
+          </span>
+          <span className="text-faint"> · {index.news.hits}회</span>
+        </p>
+      )}
     </>
   )
+}
+
+// 뉴스 점수 색. 여론과 같은 팔레트를 쓰되 zone 키가 없어 점수로 분류한다.
+function toneClass(score) {
+  const band = bandOf(score)
+  if (band === 'extreme_greed' || band === 'greed') return 'text-warn'
+  if (band === 'extreme_fear' || band === 'fear') return 'text-accent'
+  return 'text-ink'
 }
 
 // 펼친 내용. 카드 아래 전체 폭을 써서 화제글을 넉넉히 펼친다. 카드 안에 넣으면
@@ -146,6 +166,27 @@ function Detail({ index, zone, trend, useDaily }) {
           </div>
         </div>
       </div>
+
+      {/* 커뮤니티 표본이 얇은 지수는 뉴스가 더 두껍다(코스닥 히트 11 vs 92).
+          여론과 나란히 두어 서로 보완하게 한다. */}
+      {index.news && !index.news.error && (
+        <div className="mt-4 border-t border-line pt-3">
+          <p className="text-[11px] text-faint">
+            뉴스 논조
+            {index.news.score !== null && (
+              <span className={`ml-1.5 ${toneClass(index.news.score)}`}>
+                {index.news.score.toFixed(1)}
+              </span>
+            )}
+            <span className="ml-1.5">
+              기사 {index.news.total}건 · 키워드 {index.news.hits}회
+            </span>
+          </p>
+          <div className="mt-2">
+            <NewsColumns tone={index.news} />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

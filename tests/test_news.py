@@ -143,6 +143,64 @@ def test_payload_keeps_lookback_metadata():
     assert out["min_hits"] == news.MIN_HITS
 
 
+# --- 지수 뉴스 논조 --------------------------------------------------------
+
+
+def test_index_query_uses_jisu_suffix():
+    """지수는 `주가`가 아니라 `지수`로 검색한다.
+
+    실측에서 `코스닥 주가`는 태그 49건, `코스닥 지수`는 69건이었다. S&P500은
+    44건 -> 100건으로 벌어졌다. `주가`를 붙이면 개별 종목 기사가 섞인다.
+    """
+    seen = {}
+
+    class FakeResponse:
+        status_code = 200
+        text = "<rss><channel></channel></rss>"
+
+    class FakeSession:
+        def get(self, url, **kwargs):
+            seen["url"] = url
+            return FakeResponse()
+
+    news.fetch_sector("코스닥", FakeSession(), suffix="지수")
+    assert "%EC%A7%80%EC%88%98" in seen["url"]      # '지수'
+    assert "when%3A3d" in seen["url"]
+
+
+def test_index_query_respects_custom_lookback():
+    """미국 지수는 7일을 본다. 기본값(3일)을 덮어쓸 수 있어야 한다."""
+    seen = {}
+
+    class FakeResponse:
+        status_code = 200
+        text = "<rss><channel></channel></rss>"
+
+    class FakeSession:
+        def get(self, url, **kwargs):
+            seen["url"] = url
+            return FakeResponse()
+
+    news.fetch_sector("나스닥", FakeSession(), suffix="지수", lookback_days=7)
+    assert "when%3A7d" in seen["url"]
+
+
+def test_tone_payload_shape():
+    """지수 카드가 쓰는 요약에는 점수와 양쪽 기사가 들어간다."""
+    items = [_item("코스닥 지수 급락"), _item("코스닥 반등 기대감")] * 5
+    tone = news.tone_payload(news.summarize("코스닥", items))
+    assert tone["score"] is not None
+    assert tone["hits"] == tone["positive_total"] + tone["negative_total"]
+    assert tone["positive"] and tone["negative"]
+    assert tone["error"] is None
+
+
+def test_tone_payload_passes_error_through():
+    tone = news.tone_payload(news.summarize("코스닥", [], error="HTTP 429"))
+    assert tone["error"] == "HTTP 429"
+    assert tone["score"] is None
+
+
 # --- 파서 -----------------------------------------------------------------
 
 

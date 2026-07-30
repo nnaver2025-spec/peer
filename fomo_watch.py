@@ -107,6 +107,17 @@ def merge_market_wide(market: dict[str, object], scan: core.ScanResult | None) -
     return merged
 
 
+def _collect_index_news() -> dict[str, dict[str, object]]:
+    """지수별 뉴스 논조. 통째로 실패해도 회차를 살린다."""
+    specs = [(i.label, i.lookback_days or core.LOOKBACK_DAYS) for i in INDICES]
+    try:
+        results = fomo_news.collect_indices(specs)
+    except Exception as exc:                      # noqa: BLE001 - 회차를 잃지 않는다
+        print(f"[지수 뉴스] 수집 실패: {type(exc).__name__}: {exc}", file=sys.stderr)
+        return {}
+    return {label: fomo_news.tone_payload(r) for label, r in results.items()}
+
+
 def _collect_news(market: dict[str, object]) -> dict[str, object] | None:
     """섹터별 뉴스 논조를 받는다. 통째로 실패해도 회차를 살린다.
 
@@ -259,13 +270,22 @@ def roll_daily(
     return trail[-DAILY_POINTS:]
 
 
-def scan_index(index, stamp: str, history: list, level: float | None = None) -> dict[str, object]:
+def scan_index(
+    index,
+    stamp: str,
+    history: list,
+    level: float | None = None,
+    news_tone: dict[str, object] | None = None,
+) -> dict[str, object]:
     """지수 하나를 별칭 묶음으로 스캔한다.
 
     점수는 core.index_score를 쓴다. 표본 하한(MIN_INDEX_HITS)을 넘겨야 값을 내고,
     그 위에서도 축소 추정으로 얇은 표본의 극단값을 눌러준다. 처음에는 지수 표본이
     두껍다고 보고 sentiment_score를 썼는데, 코스닥 태그율이 7.1%(코스피 22.0%)로
     낮아 히트 16회에서 1건 차이가 12.4점을 움직였다.
+
+    커뮤니티가 얇은 지수는 `news_tone`이 뉴스 논조를 함께 담아 보완한다. 점수는
+    섞지 않는다. 성격이 다른 표본이라 합치면 어느 쪽이 움직였는지 알 수 없다.
     """
     # 국내 지수는 종목과 같은 3일, 미국 지수는 언급이 드물어 7일을 본다.
     lookback = index.lookback_days or core.LOOKBACK_DAYS
@@ -298,6 +318,7 @@ def scan_index(index, stamp: str, history: list, level: float | None = None) -> 
         "fear_counts": stats.fear_counts,
         "hot_posts": report.hot_posts,
         "dropped_posts": report.dropped_posts,
+        "news": news_tone,
         "evidence": report.evidence(EVIDENCE_PER_INDEX),
         "per_source": [
             {
@@ -440,15 +461,24 @@ def main(argv: list[str] | None = None) -> int:
     indices: list[dict[str, object]] = []
     if not args.limit:
         levels = index_levels()
+        # 지수 뉴스 논조를 한 번에 받는다. 커뮤니티 표본이 얇은 코스닥·S&P500을
+        # 보완한다(실측 히트: 커뮤니티 11/4 -> 뉴스 92/88).
+        tones = _collect_index_news()
         for index in INDICES:
             time.sleep(STOCK_SLEEP_SEC)
             record = scan_index(
-                index, stamp, index_history.get(index.key, []), levels.get(index.key)
+                index,
+                stamp,
+                index_history.get(index.key, []),
+                levels.get(index.key),
+                tones.get(index.label),
             )
             indices.append(record)
+            tone = record.get("news") or {}
             print(
                 f"[지수] {index.label} {record['score']} {record['label_text']} "
                 f"수집 {record['total_posts']}개"
+                + (f" · 뉴스 {tone['score']} ({tone['hits']}회)" if tone.get("score") is not None else "")
             )
 
     market = core.aggregate(stocks)

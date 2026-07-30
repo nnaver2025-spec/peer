@@ -168,9 +168,20 @@ def _count(titles: list[str], words: tuple[str, ...]) -> tuple[int, dict[str, in
     return sum(ordered.values()), ordered
 
 
-def fetch_sector(sector: str, session=None) -> tuple[list[NewsItem], str | None]:
-    """섹터 하나의 최근 기사를 받는다. 실패하면 빈 목록과 이유를 돌려준다."""
-    query = quote(f"{sector} 주가 when:{LOOKBACK_DAYS}d")
+def fetch_sector(
+    sector: str,
+    session=None,
+    suffix: str = "주가",
+    lookback_days: int | None = None,
+) -> tuple[list[NewsItem], str | None]:
+    """검색어 하나의 최근 기사를 받는다. 실패하면 빈 목록과 이유를 돌려준다.
+
+    `suffix`로 검색어 꼬리를 바꾼다. 섹터는 `반도체 주가`가 맞지만 지수는
+    `코스닥 지수`가 훨씬 낫다(실측: 코스닥 태그 49 -> 69, S&P500 24 -> 63).
+    `주가`를 붙이면 개별 종목 기사가 섞이고 S&P500은 44건까지 줄었다.
+    """
+    days = lookback_days or LOOKBACK_DAYS
+    query = quote(f"{sector} {suffix} when:{days}d")
     try:
         # 세션 생성도 실패할 수 있다. cloudscraper는 내부적으로 임시 파일과
         # JS 인터프리터를 찾는데, launchd 환경에서는 TMPDIR과 PATH가 달라
@@ -186,7 +197,7 @@ def fetch_sector(sector: str, session=None) -> tuple[list[NewsItem], str | None]
     except Exception as exc:                      # noqa: BLE001 - 네트워크 사정은 다양하다
         return [], type(exc).__name__
 
-    cutoff = datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS + 1)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days + 1)
     items: list[NewsItem] = []
     for node in BeautifulSoup(res.text, "xml").find_all("item")[:PER_SECTOR_LIMIT]:
         title = (node.title.text if node.title else "").strip()
@@ -253,6 +264,64 @@ def collect(sectors: list[str]) -> list[SectorNews]:
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
         return list(pool.map(one, sectors))
+
+
+def index_tone(label: str, lookback_days: int) -> SectorNews:
+    """지수 하나의 뉴스 논조. 커뮤니티 표본이 얇은 지수를 보완한다.
+
+    커뮤니티에서 지수를 지수로 이야기하는 양이 지수마다 크게 다르다. 코스닥은
+    3일치 히트가 11회로 하한(20)에 못 미쳤고, 페이지·기간·별칭을 다 늘려봐도
+    15회가 한계였다. 미태그 제목 697건을 읽어보니 `나스닥 선물 현황`,
+    `코스피 예상 ㅋㅋㅋ`처럼 감정 판정이 불가능한 글이 대부분이었다.
+
+    뉴스는 같은 지수에서 태그가 훨씬 많이 잡힌다(실측 `지수` 검색 기준).
+
+    | 지수 | 커뮤니티 히트 | 뉴스 히트 |
+    |---|---|---|
+    | 코스피 | 68 | 73 |
+    | 코스닥 | 11 | 58 |
+    | S&P500 | 4 | 28 |
+    | 나스닥 | 63 | 55 |
+    """
+    items, error = fetch_sector(label, suffix="지수", lookback_days=lookback_days)
+    return summarize(label, items, error)
+
+
+def collect_indices(specs: list[tuple[str, int]]) -> dict[str, SectorNews]:
+    """지수별 뉴스 논조를 병렬로 받는다. specs는 (라벨, 기간) 목록이다."""
+
+    def one(spec: tuple[str, int]) -> tuple[str, SectorNews]:
+        label, days = spec
+        return label, index_tone(label, days)
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+        return dict(pool.map(one, specs))
+
+
+def tone_payload(result: SectorNews) -> dict:
+    """지수 카드에 넣을 뉴스 논조 요약."""
+    tagged = [i for i in result.items if i.side]
+    positive = [i for i in tagged if i.side == "positive"]
+    negative = [i for i in tagged if i.side == "negative"]
+    for group in (positive, negative):
+        group.sort(
+            key=lambda i: i.published or datetime.min.replace(tzinfo=timezone.utc),
+            reverse=True,
+        )
+    return {
+        "total": result.total,
+        "hits": result.positive_total + result.negative_total,
+        "positive_total": result.positive_total,
+        "negative_total": result.negative_total,
+        "score": result.score,
+        "zone": result.zone,
+        "label": result.label,
+        "positive_counts": result.positive_counts,
+        "negative_counts": result.negative_counts,
+        "positive": [_item_payload(i) for i in positive[:EVIDENCE_PER_SIDE]],
+        "negative": [_item_payload(i) for i in negative[:EVIDENCE_PER_SIDE]],
+        "error": result.error,
+    }
 
 
 def _item_payload(item: NewsItem) -> dict:
