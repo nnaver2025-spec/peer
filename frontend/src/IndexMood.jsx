@@ -17,7 +17,7 @@ const SOURCE_LABELS = {
 }
 
 // 접힌 상태의 요약. 점수와 추이만 보여 4개를 나란히 훑게 한다.
-function Summary({ index, zone, thin, trend, useDaily }) {
+function Summary({ index, zone, thin, trend, useDaily, minHits }) {
   return (
     <>
       <div className="flex items-baseline justify-between gap-2">
@@ -30,7 +30,15 @@ function Summary({ index, zone, thin, trend, useDaily }) {
           <div className={`tnum text-[26px] font-medium leading-none ${zone.text}`}>
             {thin ? '—' : index.score.toFixed(1)}
           </div>
-          <div className={`mt-1 text-[12px] ${zone.text}`}>{zone.label}</div>
+          {/* 표본이 얇아 값을 못 낸 경우는 왜 그런지 함께 알린다. `—`만 있으면
+              고장으로 읽힌다. */}
+          <div
+            className={`mt-1 text-[12px] ${zone.text}`}
+            title={thin ? `키워드 ${index.hits}회 · 최소 ${minHits}회 필요` : zone.note}
+          >
+            {zone.label}
+            {thin && minHits ? ` (${index.hits}/${minHits})` : ''}
+          </div>
         </div>
         {trend.length > 0 && (
           <div className="w-[92px] shrink-0">
@@ -149,7 +157,7 @@ function trendOf(index) {
   return { trend: useDaily ? daily : index.history ?? [], useDaily }
 }
 
-function IndexCell({ index, open, onToggle, panelId }) {
+function IndexCell({ index, open, onToggle, panelId, minHits }) {
   const zone = zoneOf(index)
   const { trend, useDaily } = trendOf(index)
 
@@ -171,6 +179,7 @@ function IndexCell({ index, open, onToggle, panelId }) {
         thin={index.score === null}
         trend={trend}
         useDaily={useDaily}
+        minHits={minHits}
       />
       <span
         className={`mt-2 flex items-center gap-1 text-[11px] ${
@@ -188,7 +197,7 @@ function IndexCell({ index, open, onToggle, panelId }) {
   )
 }
 
-export default function IndexMood({ indices }) {
+export default function IndexMood({ indices, minHits }) {
   // 한 번에 하나만 펼친다. 카드 높이를 고정해 네 칸을 계속 나란히 비교하게 하고,
   // 펼친 내용은 아래 전체 폭에 둔다.
   const [openKey, setOpenKey] = useState(null)
@@ -206,6 +215,7 @@ export default function IndexMood({ indices }) {
             index={index}
             open={openKey === index.key}
             panelId={panelId}
+            minHits={minHits}
             onToggle={() => setOpenKey(openKey === index.key ? null : index.key)}
           />
         ))}

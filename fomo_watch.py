@@ -262,8 +262,10 @@ def roll_daily(
 def scan_index(index, stamp: str, history: list, level: float | None = None) -> dict[str, object]:
     """지수 하나를 별칭 묶음으로 스캔한다.
 
-    지수는 게시글이 많고 키워드 표본도 두꺼워 sentiment_score를 바로 쓸 수 있다.
-    종목처럼 fomo_score(게시글 수로 나눔)를 쓰면 역시 50에 붙는다.
+    점수는 core.index_score를 쓴다. 표본 하한(MIN_INDEX_HITS)을 넘겨야 값을 내고,
+    그 위에서도 축소 추정으로 얇은 표본의 극단값을 눌러준다. 처음에는 지수 표본이
+    두껍다고 보고 sentiment_score를 썼는데, 코스닥 태그율이 7.1%(코스피 22.0%)로
+    낮아 히트 16회에서 1건 차이가 12.4점을 움직였다.
     """
     # 국내 지수는 종목과 같은 3일, 미국 지수는 언급이 드물어 7일을 본다.
     lookback = index.lookback_days or core.LOOKBACK_DAYS
@@ -272,7 +274,7 @@ def scan_index(index, stamp: str, history: list, level: float | None = None) -> 
         current_level=level,
     )
     stats = report.stats
-    score = core.sentiment_score(stats.greed_total, stats.fear_total)
+    score = core.index_score(stats.greed_total, stats.fear_total)
     zone, label = core.interpret(score) if score is not None else (None, "표본 부족")
     trail = list(history)
     if score is not None:
@@ -488,6 +490,7 @@ def main(argv: list[str] | None = None) -> int:
             "lookback_days": core.LOOKBACK_DAYS,
             "us_index_lookback_days": US_INDEX_LOOKBACK_DAYS,
             "min_sentiment_hits": core.MIN_SENTIMENT_HITS,
+            "min_index_hits": core.MIN_INDEX_HITS,
             "daily_points": DAILY_POINTS,
             "history_points": HISTORY_POINTS,
             "sources": [{"key": s.key, "label": s.label} for s in core.SOURCES],

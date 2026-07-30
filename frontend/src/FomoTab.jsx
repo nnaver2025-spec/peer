@@ -66,6 +66,7 @@ export default function FomoTab() {
         <MarketMood
           market={data.market}
           minHits={data.min_sentiment_hits ?? 10}
+          minIndexHits={data.min_index_hits ?? 20}
           indices={data.indices}
           gauge={data.market_gauge}
           generatedAt={data.generated_at}

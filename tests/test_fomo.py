@@ -772,6 +772,56 @@ def test_normal_source_is_not_unsupported():
     assert result.error is None
 
 
+# --- 지수 점수 -------------------------------------------------------------
+
+
+def test_index_score_withholds_thin_sample():
+    """코스닥이 히트 16회로 탐욕 8 / 공포 8이면 50.0이 아니라 표본 부족이다.
+
+    실측에서 원글은 `코스닥 700 붕괴`, `고점 대비 -42.84%`처럼 공포가 뚜렷했는데
+    상한가 5건(야간선물·잡주 얘기)이 균형을 만들어 중립이 나왔다. 1건 차이로
+    12.4점이 움직이는 표본이라 값을 내지 않는 편이 정직하다.
+    """
+    assert core.index_score(8, 8) is None
+    assert core.index_score(10, 6) is None      # 히트 16
+
+
+def test_index_score_uses_shrinkage_above_floor():
+    """하한을 넘기면 축소 추정으로 계산한다. sentiment_score보다 50에 가깝다."""
+    greed, fear = 14, 6                          # 히트 20
+    assert core.index_score(greed, fear) == core.shrunk_score(greed, fear)
+    assert core.index_score(greed, fear) < core.sentiment_score(greed, fear)
+
+
+def test_index_score_barely_moves_for_thick_sample():
+    """표본이 두꺼우면 축소 효과가 거의 없다. 코스피(72회)는 1.6점 차이였다."""
+    greed, fear = 28, 44
+    shrunk = core.index_score(greed, fear)
+    plain = core.sentiment_score(greed, fear)
+    assert abs(shrunk - plain) < 2.5
+
+
+def test_index_score_dampens_swing_on_thin_sample():
+    """얇은 표본에서 1건 차이의 흔들림이 줄어든다.
+
+    코스닥 히트 16회에서 sentiment_score는 12.4점, 축소 추정은 7.2점이었다.
+    """
+    greed, fear = 11, 11                         # 히트 22, 하한 통과
+    swing_shrunk = abs(
+        core.index_score(greed + 1, fear - 1) - core.index_score(greed - 1, fear + 1)
+    )
+    swing_plain = abs(
+        core.sentiment_score(greed + 1, fear - 1)
+        - core.sentiment_score(greed - 1, fear + 1)
+    )
+    assert swing_shrunk < swing_plain
+
+
+def test_index_floor_is_higher_than_market_floor():
+    """지수 하한이 시장·섹터보다 높다. 태그율이 3배씩 갈리기 때문이다."""
+    assert core.MIN_INDEX_HITS > core.MIN_SENTIMENT_HITS
+
+
 def test_scan_aliases_keeps_unsupported_flag(monkeypatch):
     """별칭을 합치는 과정에서 unsupported가 사라지면 안 된다.
 

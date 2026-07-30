@@ -48,6 +48,7 @@ function SectorChip({ sector, minHits }) {
 export default function MarketMood({
   market,
   minHits,
+  minIndexHits,
   indices,
   gauge,
   generatedAt,
@@ -186,7 +187,7 @@ export default function MarketMood({
         <div className="mt-5">
           <p className="text-[12px] text-faint">지수</p>
           <div className="mt-2">
-          <IndexMood indices={indices} />
+          <IndexMood indices={indices} minHits={minIndexHits} />
           </div>
         </div>
       )}
