@@ -25,7 +25,14 @@ export const COLUMNS = [
   },
   // 목록이 700px 아래로 좁아지면 접는다. 커플링/주도주/RS가 판단에 더 쓰인다.
   { id: 'trend', label: '추이', align: 'left', sortable: false, foldClass: '@max-[700px]:hidden' },
-  { id: 'coupling', label: '커플링', align: 'left', sortable: true },
+  // 좁을 때 셀은 색 점만 남으므로 헤더 글자도 줄바꿈 없이 흘린다.
+  {
+    id: 'coupling',
+    label: '커플링',
+    align: 'left',
+    sortable: true,
+    shortLabelClass: '@max-[420px]:hidden',
+  },
   { id: 'bellwether', label: '주도주', align: 'left', sortable: false },
   { id: 'bellwether_rs_rating', label: 'RS', align: 'right', sortable: true },
 ]
@@ -38,11 +45,13 @@ function HeaderCell({ column, sort, onSort }) {
   const active = sort.key === column.id
   const alignClass = column.align === 'right' ? 'text-right' : 'text-left'
   const fold = column.foldClass ?? ''
+  // 라벨이 셀보다 길면 세 줄로 쪼개진다. 좁을 때 줄바꿈을 막는다.
+  const labelClass = column.shortLabelClass ?? ''
 
   if (!column.sortable) {
     return (
       <th scope="col" className={`${CELL_X} py-2 font-normal text-faint ${alignClass} ${fold}`}>
-        {column.label}
+        <span className={labelClass}>{column.label}</span>
       </th>
     )
   }
@@ -57,7 +66,7 @@ function HeaderCell({ column, sort, onSort }) {
           active ? 'text-ink' : 'text-faint'
         }`}
       >
-        {column.label}
+        <span className={labelClass}>{column.label}</span>
         {active &&
           (sort.dir === 'asc' ? (
             <ArrowUp size={12} aria-hidden="true" />
@@ -114,10 +123,11 @@ function Row({ group, selected, onSelect }) {
           className="h-6 w-full"
         />
       </td>
-      <td className={`${CELL_X} py-2.5`}>
+      <td className={`${CELL_X} py-2.5`} title={coupling.label}>
         <span className={`inline-flex items-center gap-1.5 text-[13px] ${coupling.chip}`}>
           <span className={`size-1.5 rounded-full ${coupling.dot}`} aria-hidden="true" />
-          <span className="whitespace-nowrap">{coupling.label}</span>
+          {/* 가장 좁을 때는 색 점만 남긴다. 등급은 셀 title로 확인한다. */}
+          <span className="whitespace-nowrap @max-[420px]:hidden">{coupling.label}</span>
         </span>
       </td>
       <td

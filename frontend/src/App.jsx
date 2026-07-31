@@ -1,5 +1,15 @@
 import { useEffect, useMemo, useState } from 'react'
-import { AlertTriangle, LayoutGrid, List, Moon, RefreshCw, Search, Sun, X } from 'lucide-react'
+import {
+  AlertTriangle,
+  LayoutGrid,
+  List,
+  Moon,
+  RefreshCw,
+  Search,
+  SlidersHorizontal,
+  Sun,
+  X,
+} from 'lucide-react'
 import GroupTable from './GroupTable.jsx'
 import GroupCard from './GroupCard.jsx'
 import DetailPanel from './DetailPanel.jsx'
@@ -46,6 +56,48 @@ const TAB_KEY = 'peer:tab'
 const VIEW_KEY = 'peer:view'
 const DEFAULT_TAB = 'spread'
 
+// 사이드바와 모바일 시트가 같은 목록을 쓴다. 한쪽만 고치는 실수를 막는다.
+function FilterGroups({ filter, onFilter, sector, sectors, onSector }) {
+  const itemClass = (active) =>
+    `block w-full rounded-md px-2 py-1.5 text-left text-[14px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
+      active ? 'bg-raised text-ink' : 'text-muted hover:bg-surface hover:text-ink'
+    }`
+
+  return (
+    <>
+      <div>
+        <p className="px-2 pb-1.5 text-[12px] text-faint">보기</p>
+        {FILTERS.map((f) => (
+          <button
+            key={f.id}
+            type="button"
+            onClick={() => onFilter(f.id)}
+            aria-pressed={filter === f.id}
+            className={itemClass(filter === f.id)}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      <div>
+        <p className="px-2 pb-1.5 text-[12px] text-faint">섹터</p>
+        {['all', ...sectors].map((s) => (
+          <button
+            key={s}
+            type="button"
+            onClick={() => onSector(s)}
+            aria-pressed={sector === s}
+            className={itemClass(sector === s)}
+          >
+            {s === 'all' ? '전체 섹터' : s}
+          </button>
+        ))}
+      </div>
+    </>
+  )
+}
+
 // 정렬 값 추출. 커플링은 등급 순위로, 나머지는 크기 기준으로 비교한다.
 function sortValue(group, key) {
   if (key === 'coupling') return TIER_RANK[group.coupling?.tier ?? 'unknown']
@@ -91,6 +143,8 @@ export default function App() {
   )
   const [sort, setSort] = useState({ key: 'zscore', dir: 'desc' })
   const isSpread = tab === DEFAULT_TAB
+  // 좁은 화면에는 사이드바가 없다. 필터를 여는 경로를 하나 둔다.
+  const [filterOpen, setFilterOpen] = useState(false)
 
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}dashboard_data.json`)
@@ -102,14 +156,16 @@ export default function App() {
       .catch((err) => setError(err.message))
   }, [])
 
-  // Esc로 상세를 닫는다. 목록으로 빠르게 돌아오는 경로를 하나 보장한다.
+  // Esc로 닫는다. 필터 시트가 열려 있으면 그쪽이 먼저다.
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === 'Escape') setSelectedKey(null)
+      if (e.key !== 'Escape') return
+      if (filterOpen) setFilterOpen(false)
+      else setSelectedKey(null)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [])
+  }, [filterOpen])
 
   useEffect(() => {
     // 상세 해시는 스프레드 전용이다. 다른 탭에서 남으면 링크의 탭과 해시가 어긋난다.
@@ -258,43 +314,13 @@ export default function App() {
       <div className="flex min-h-0 flex-1">
         {isSpread && (
         <nav className="hidden w-[200px] shrink-0 flex-col gap-6 overflow-y-auto border-r border-line px-3 py-4 lg:flex">
-          <div>
-            <p className="px-2 pb-1.5 text-[12px] text-faint">보기</p>
-            {FILTERS.map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => setFilter(f.id)}
-                aria-pressed={filter === f.id}
-                className={`block w-full rounded-md px-2 py-1.5 text-left text-[14px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
-                  filter === f.id
-                    ? 'bg-raised text-ink'
-                    : 'text-muted hover:bg-surface hover:text-ink'
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
-
-          <div>
-            <p className="px-2 pb-1.5 text-[12px] text-faint">섹터</p>
-            {['all', ...sectors].map((s) => (
-              <button
-                key={s}
-                type="button"
-                onClick={() => setSector(s)}
-                aria-pressed={sector === s}
-                className={`block w-full rounded-md px-2 py-1.5 text-left text-[14px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
-                  sector === s
-                    ? 'bg-raised text-ink'
-                    : 'text-muted hover:bg-surface hover:text-ink'
-                }`}
-              >
-                {s === 'all' ? '전체 섹터' : s}
-              </button>
-            ))}
-          </div>
+          <FilterGroups
+            filter={filter}
+            onFilter={setFilter}
+            sector={sector}
+            sectors={sectors}
+            onSector={setSector}
+          />
         </nav>
         )}
 
@@ -328,6 +354,23 @@ export default function App() {
             </label>
 
             <div className="flex items-center gap-3">
+              <button
+                type="button"
+                data-testid="mobile-filter-toggle"
+                onClick={() => setFilterOpen(true)}
+                aria-expanded={filterOpen}
+                title="필터"
+                aria-label="필터"
+                className="relative rounded-md border border-line p-1.5 text-faint transition-colors hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 lg:hidden"
+              >
+                <SlidersHorizontal size={14} aria-hidden="true" />
+                {(filter !== 'all' || sector !== 'all') && (
+                  <span
+                    className="absolute -right-0.5 -top-0.5 size-2 rounded-full bg-accent"
+                    aria-hidden="true"
+                  />
+                )}
+              </button>
               <span className="tnum text-[13px] text-faint">{groups.length}개</span>
               <div
                 role="group"
@@ -386,6 +429,49 @@ export default function App() {
             </footer>
           </div>
         </main>
+        )}
+
+        {isSpread && filterOpen && (
+          <div className="fixed inset-0 z-30 lg:hidden">
+            <button
+              type="button"
+              onClick={() => setFilterOpen(false)}
+              aria-label="필터 닫기"
+              className="absolute inset-0 bg-canvas/70"
+            />
+            <div
+              data-testid="mobile-filter-sheet"
+              className="absolute inset-x-0 bottom-0 max-h-[75vh] overflow-y-auto rounded-t-lg border-t border-line bg-surface px-3 pb-6 pt-3"
+            >
+              <div className="mb-2 flex items-center justify-between px-2">
+                <p className="text-[14px] text-ink">필터</p>
+                <button
+                  type="button"
+                  onClick={() => setFilterOpen(false)}
+                  aria-label="필터 닫기"
+                  title="닫기"
+                  className="rounded p-1 text-faint transition-colors hover:bg-raised hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                >
+                  <X size={16} aria-hidden="true" />
+                </button>
+              </div>
+              <div className="flex flex-col gap-5">
+                <FilterGroups
+                  filter={filter}
+                  onFilter={(v) => {
+                    setFilter(v)
+                    setFilterOpen(false)
+                  }}
+                  sector={sector}
+                  sectors={sectors}
+                  onSector={(v) => {
+                    setSector(v)
+                    setFilterOpen(false)
+                  }}
+                />
+              </div>
+            </div>
+          </div>
         )}
 
         {/* 좁은 화면에서는 목록을 덮는 오버레이로, 넓은 화면에서는 우측 고정 패널로 둔다. */}
