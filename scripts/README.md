@@ -54,6 +54,11 @@ launchctl kickstart -p gui/$(id -u)/com.peer.tracker.update  # 즉시 실행
 - `~/.peer-cron/fomo_update.sh` - 락/로그를 관리하고 `fomo_watch.py`를 실행
 - `~/.peer-cron/logs/fomo.log` - 실행 로그 (5000줄 초과 시 자동 트림)
 
+plist에 `SoftResourceLimits.NumberOfFiles = 4096`을 둔다. launchd 기본 한도가
+256이라 병렬 수집(소스 8개 x 지수 별칭)에서 파일 디스크립터가 고갈된다. 실측에서
+지수 소스가 `[Errno 24] Too many open files`로 빠져 나스닥 표본이 줄었다. 로그인
+셸은 1048575인데 launchd는 그 값을 물려받지 않는다.
+
 ```bash
 mkdir -p ~/.peer-cron
 cp scripts/fomo_update.sh scripts/run_fomo.sh ~/.peer-cron/

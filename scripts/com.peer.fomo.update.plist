@@ -18,6 +18,15 @@
     <string>/Users/huisang/.peer-cron/fomo.out.log</string>
     <key>StandardErrorPath</key>
     <string>/Users/huisang/.peer-cron/fomo.err.log</string>
+    <!-- launchd 기본 maxfiles가 256이라 병렬 수집(소스 8개 x 지수 별칭)에서
+         파일 디스크립터가 고갈된다. 실측에서 지수 소스가 `[Errno 24] Too many
+         open files`로 빠져 표본이 줄었다. 로그인 셸(1048575)과 달리 launchd는
+         한도를 물려받지 않으므로 여기서 올려준다. -->
+    <key>SoftResourceLimits</key>
+    <dict>
+        <key>NumberOfFiles</key>
+        <integer>4096</integer>
+    </dict>
     <key>RunAtLoad</key>
     <false/>
 </dict>

@@ -2,7 +2,15 @@
 
 from datetime import datetime, timedelta, timezone
 
+import pytest
+
 import fomo_news as news
+
+
+@pytest.fixture(autouse=True)
+def _no_retry_sleep(monkeypatch):
+    """재시도 대기를 없애 테스트를 빠르게 유지한다."""
+    monkeypatch.setattr(news.time, "sleep", lambda _: None)
 
 
 def _item(title: str, published: datetime | None = None, source: str = "연합뉴스"):
@@ -256,6 +264,57 @@ def test_fetch_survives_network_failure():
     items, error = news.fetch_sector("반도체", FakeSession())
     assert items == []
     assert error == "TimeoutError"
+
+
+def test_fetch_retries_transient_connection_error():
+    """연결 실패는 재시도한다.
+
+    회차 끝(요청 700건 뒤)에 14섹터가 전부 ConnectionError로 죽는 일이 4회차
+    연속 있었다. 한 번 실패에 바로 포기하면 그 회차 뉴스를 통째로 잃는다.
+    """
+    fresh = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S %z")
+    xml = f"""<rss><channel>
+      <item><title>반도체 급락</title><link>https://n/1</link>
+        <pubDate>{fresh}</pubDate><source>연합뉴스</source></item>
+    </channel></rss>"""
+
+    class FakeResponse:
+        status_code = 200
+        text = xml
+
+    class FlakySession:
+        def __init__(self):
+            self.calls = 0
+
+        def get(self, *args, **kwargs):
+            self.calls += 1
+            if self.calls == 1:
+                raise ConnectionError("connection reset")
+            return FakeResponse()
+
+    session = FlakySession()
+    items, error = news.fetch_sector("반도체", session)
+    assert error is None
+    assert [i.title for i in items] == ["반도체 급락"]
+    assert session.calls == 2
+
+
+def test_fetch_gives_up_after_retry_budget():
+    """계속 실패하면 마지막 사유를 남기고 포기한다."""
+
+    class DeadSession:
+        def __init__(self):
+            self.calls = 0
+
+        def get(self, *args, **kwargs):
+            self.calls += 1
+            raise ConnectionError("connection reset")
+
+    session = DeadSession()
+    items, error = news.fetch_sector("반도체", session)
+    assert items == []
+    assert error == "ConnectionError"
+    assert session.calls == news.RETRY_COUNT + 1
 
 
 def test_query_includes_recency_filter(monkeypatch):

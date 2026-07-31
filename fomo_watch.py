@@ -118,13 +118,16 @@ def _collect_index_news() -> dict[str, dict[str, object]]:
     return {label: fomo_news.tone_payload(r) for label, r in results.items()}
 
 
-def _collect_news(market: dict[str, object]) -> dict[str, object] | None:
+def _collect_news(sectors: list[str]) -> dict[str, object] | None:
     """섹터별 뉴스 논조를 받는다. 통째로 실패해도 회차를 살린다.
 
     검색어는 섹터 이름을 쓴다(`반도체 주가`). 대표주 이름으로 검색하면 표본이
     3~9건으로 말라 종목 점수와 같은 문제가 재발한다.
+
+    회차 시작에 호출한다. 종목 30개를 돈 뒤(요청 700건 뒤)에 받았을 때 14섹터가
+    전부 ConnectionError로 죽는 일이 4회차 연속 있었다. 같은 코드가 단독 실행에서는
+    매번 성공했고, 회차 앞에서 받는 지수 뉴스는 늘 성공했다.
     """
-    sectors = [s["sector"] for s in market.get("sectors", [])]
     if not sectors:
         return None
 
@@ -441,6 +444,18 @@ def main(argv: list[str] | None = None) -> int:
         note = f" · 실패: {failed[0].error}" if failed and not ok else ""
         print(f"[인기글] 수집 {sum(r.count for r in ok)}개{note}")
 
+    # 뉴스도 같은 이유로 앞에서 받는다. 회차 끝에 호출했을 때 14섹터가 전부
+    # ConnectionError로 죽는 일이 4회차 연속 있었다.
+    news = None
+    if not args.limit:
+        seen: set[str] = set()
+        sectors = [
+            s
+            for s in (t.get("sector") or "기타" for t in targets)
+            if not (s in seen or seen.add(s))
+        ]
+        news = _collect_news(sectors)
+
     for index, target in enumerate(targets, start=1):
         if index > 1:
             time.sleep(STOCK_SLEEP_SEC)
@@ -508,10 +523,6 @@ def main(argv: list[str] | None = None) -> int:
                 if c["score"] is not None
             )
         )
-
-    # 섹터별 뉴스 논조. 커뮤니티 여론과 점수를 섞지 않고 나란히 둔다. 성격이 다른
-    # 표본이라 합치면 어느 쪽이 움직인 건지 알 수 없어진다.
-    news = _collect_news(market)
 
     write_output(
         {

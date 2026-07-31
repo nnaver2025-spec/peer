@@ -45,6 +45,12 @@ RSS_URL = (
 LOOKBACK_DAYS = 3
 TIMEOUT_SEC = 15
 MAX_WORKERS = 4      # 구글은 넉넉하지만 예의를 지킨다
+# 연결 실패는 재시도한다. 회차 끝(요청 700건 뒤)에 섹터 뉴스 14개가 전부
+# ConnectionError로 죽는 일이 4회차 연속 있었다. 같은 코드가 단독 실행에서는
+# 매번 성공했으니 소스 문제가 아니라 그 시점의 연결 상태였다. 지수 뉴스는 회차
+# 시작 무렵에 받아 늘 성공했다는 점도 같은 방향을 가리킨다.
+RETRY_COUNT = 2
+RETRY_SLEEP_SEC = 1.5
 PER_SECTOR_LIMIT = 100
 # 화면에 남길 섹터별 기사 수. 긍정/부정 각각 이만큼까지 담는다.
 EVIDENCE_PER_SIDE = 10
@@ -182,20 +188,31 @@ def fetch_sector(
     """
     days = lookback_days or LOOKBACK_DAYS
     query = quote(f"{sector} {suffix} when:{days}d")
-    try:
-        # 세션 생성도 실패할 수 있다. cloudscraper는 내부적으로 임시 파일과
-        # JS 인터프리터를 찾는데, launchd 환경에서는 TMPDIR과 PATH가 달라
-        # OSError가 났다. try 안에 두어 이 회차만 건너뛰게 한다.
-        own = session or _session()
-        res = own.get(
-            RSS_URL.format(query=query),
-            headers={"User-Agent": core.UA},
-            timeout=TIMEOUT_SEC,
-        )
-        if res.status_code != 200:
-            return [], f"HTTP {res.status_code}"
-    except Exception as exc:                      # noqa: BLE001 - 네트워크 사정은 다양하다
-        return [], type(exc).__name__
+    res = None
+    last_error = None
+    for attempt in range(RETRY_COUNT + 1):
+        try:
+            # 세션 생성도 실패할 수 있다. cloudscraper는 내부적으로 임시 파일과
+            # JS 인터프리터를 찾는데, launchd 환경에서는 TMPDIR과 PATH가 달라
+            # OSError가 났다. try 안에 두어 이 회차만 건너뛰게 한다.
+            own = session or _session()
+            res = own.get(
+                RSS_URL.format(query=query),
+                headers={"User-Agent": core.UA},
+                timeout=TIMEOUT_SEC,
+            )
+            if res.status_code == 200:
+                break
+            last_error = f"HTTP {res.status_code}"
+            res = None
+        except Exception as exc:                  # noqa: BLE001 - 네트워크 사정은 다양하다
+            last_error = type(exc).__name__
+            res = None
+        if attempt < RETRY_COUNT:
+            time.sleep(RETRY_SLEEP_SEC * (attempt + 1))
+
+    if res is None:
+        return [], last_error or "실패"
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=days + 1)
     items: list[NewsItem] = []
