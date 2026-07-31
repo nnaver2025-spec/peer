@@ -16,6 +16,7 @@ import DetailPanel from './DetailPanel.jsx'
 import FomoTab from './FomoTab.jsx'
 import BacktestTab from './BacktestTab.jsx'
 import Freshness from './Freshness.jsx'
+import Disclaimer from './Disclaimer.jsx'
 import { THRESHOLD, TIER_RANK, isTrusted } from './zone.js'
 import { useTheme } from './theme.js'
 
@@ -435,6 +436,7 @@ export default function App() {
             <footer className="tnum mt-8 text-[12px] text-faint">
               {data.z_window}일 Z · 임계 |Z| {data.alert_threshold} · {data.period.start} ~{' '}
               {data.period.end}
+              <Disclaimer />
             </footer>
           </div>
         </main>

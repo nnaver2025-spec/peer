@@ -3,6 +3,7 @@ import { AlertTriangle, RefreshCw } from 'lucide-react'
 import HotFeed from './HotFeed.jsx'
 import MarketMood from './MarketMood.jsx'
 import NewsPanel from './NewsPanel.jsx'
+import Disclaimer from './Disclaimer.jsx'
 
 // 요약을 고정하지 않고 전체를 한 흐름으로 스크롤한다.
 //
@@ -93,6 +94,7 @@ export default function FomoTab() {
           {data.us_index_lookback_days &&
             ` (미국 지수 ${data.us_index_lookback_days}일)`}
           {data.daily_points && ` · 추이 최대 ${data.daily_points}일`}
+          <Disclaimer />
         </footer>
       </div>
     </main>
