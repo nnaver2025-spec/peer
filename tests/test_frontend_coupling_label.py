@@ -30,8 +30,29 @@ def test_tier_labels_are_unambiguous():
     assert "'약함'" in source
 
 
-def test_tier_keeps_a_rank_for_sorting_and_gauge():
-    """라벨을 바꿔도 등급 서열과 게이지는 유지된다."""
+def test_tier_still_drives_the_color():
+    """등급은 색으로만 남는다. 길이와 숫자가 실제 강도를 말한다."""
     source = COUPLING.read_text(encoding="utf-8")
 
-    assert "rank" in source
+    assert "bar:" in source
+    assert "chip:" in source
+
+
+def test_table_shows_the_actual_strength_not_just_the_tier():
+    """등급만 보여주면 실제 차이가 왜곡된다.
+
+    강함 최하(통신 기자재 0.31)와 보통 최상(반도체 IP/디자인 0.29)의 차이는
+    0.02인데 3칸 대 2칸으로 갈렸다. 반대로 PCB/기판 0.59와 통신 기자재 0.31은
+    두 배 차이인데 같은 3칸이었다. 강함 내부 폭 0.28이 등급 경계보다 크다.
+    """
+    source = (SRC / "GroupTable.jsx").read_text(encoding="utf-8")
+
+    assert "corrPercent" in source
+    assert "TIER_STEPS" not in source
+
+
+def test_strength_number_is_visible_next_to_the_gauge():
+    """막대 길이만으로는 값을 비교하기 어렵다. Z-Score 열과 같은 문법을 쓴다."""
+    source = (SRC / "GroupTable.jsx").read_text(encoding="utf-8")
+
+    assert "strength" in source

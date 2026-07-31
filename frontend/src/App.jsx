@@ -18,7 +18,7 @@ import BacktestTab from './BacktestTab.jsx'
 import Freshness from './Freshness.jsx'
 import Disclaimer from './Disclaimer.jsx'
 import TabGuide from './TabGuide.jsx'
-import { THRESHOLD, TIER_RANK, isTrusted } from './zone.js'
+import { THRESHOLD, isTrusted } from './zone.js'
 import { useTheme } from './theme.js'
 
 function ThemeToggle({ theme, onToggle }) {
@@ -101,9 +101,10 @@ function FilterGroups({ filter, onFilter, sector, sectors, onSector }) {
   )
 }
 
-// 정렬 값 추출. 커플링은 등급 순위로, 나머지는 크기 기준으로 비교한다.
+// 정렬 값 추출. 커플링은 실제 강도로 비교한다. 등급으로 묶으면 같은 등급
+// 안에서 0.28까지 벌어진 차이가 정렬에 반영되지 않는다.
 function sortValue(group, key) {
-  if (key === 'coupling') return TIER_RANK[group.coupling?.tier ?? 'unknown']
+  if (key === 'coupling') return group.coupling?.strength ?? -1
   if (key === 'zscore' || key === 'spread') return Math.abs(group[key])
   // 등급이 없는 그룹은 항상 뒤로 보낸다.
   if (key === 'bellwether_rs_rating') return group[key] ?? -1

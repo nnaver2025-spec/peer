@@ -2,11 +2,13 @@
 // 등급 차이는 점(dot) 밝기로만 구분하고 방향성 강조색은 쓰지 않는다.
 //
 // 라벨에 '커플링'을 붙이지 않는다. 열 제목이 이미 커플링인데 '커플링 중'으로
-// 적으니 등급의 '중'이 '~하는 중'으로 읽혔다. rank는 세 칸 막대의 채움 수다.
+// 적으니 등급의 '중'이 '~하는 중'으로 읽혔다.
+//
+// 표에서는 등급 대신 실제 강도를 보여준다(GroupTable.jsx). 등급 폭이 경계
+// 차이보다 커서 3단계로 뭉치면 값이 왜곡됐다. 색만 등급을 따른다.
 export const COUPLING_META = {
   strong: {
     label: '강함',
-    rank: 3,
     chip: 'text-ink',
     dot: 'bg-good',
     bar: 'bg-good',
@@ -14,7 +16,6 @@ export const COUPLING_META = {
   },
   moderate: {
     label: '보통',
-    rank: 2,
     chip: 'text-muted',
     dot: 'bg-muted',
     bar: 'bg-muted',
@@ -22,7 +23,6 @@ export const COUPLING_META = {
   },
   weak: {
     label: '약함',
-    rank: 1,
     chip: 'text-faint',
     dot: 'bg-line-strong',
     bar: 'bg-line-strong',
@@ -30,7 +30,6 @@ export const COUPLING_META = {
   },
   unknown: {
     label: '표본 부족',
-    rank: 0,
     chip: 'text-faint',
     dot: 'bg-line',
     bar: 'bg-line',
@@ -41,8 +40,6 @@ export const COUPLING_META = {
 export function metaOf(coupling) {
   return COUPLING_META[coupling?.tier ?? 'unknown']
 }
-
-export const TIER_STEPS = 3
 
 // 상관 0.5를 게이지 만점으로 본다. 일간 수익률 상관에서 0.5는 이미 매우 높다.
 export function corrPercent(corr) {

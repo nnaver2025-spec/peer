@@ -1,7 +1,7 @@
 import { ArrowDown, ArrowUp } from 'lucide-react'
 import Sparkline from './Sparkline.jsx'
 import ZBar from './ZBar.jsx'
-import { metaOf, TIER_STEPS } from './coupling.js'
+import { corrPercent, metaOf } from './coupling.js'
 import { isTrusted, ratingTone, signed, zoneOf } from './zone.js'
 
 export const COLUMNS = [
@@ -41,18 +41,30 @@ export const COLUMNS = [
 // 모두 유지하려면 고정 폭이 아니라 컨테이너 폭에 따라 셀이 함께 좁아져야 한다.
 const CELL_X = 'px-3 @max-[1000px]:px-2 @max-[420px]:px-1.5'
 
-// 등급을 세 칸 막대로 보여준다. 색 점 하나로는 강약 서열이 읽히지 않았다.
-function TierMeter({ coupling }) {
+// 등급이 아니라 실제 강도를 보여준다.
+//
+// 3칸 막대로 등급만 보이던 때는 차이가 왜곡됐다. 강함 최하 0.31과 보통 최상
+// 0.29는 0.02 차이인데 3칸 대 2칸으로 갈렸고, 0.59와 0.31은 두 배 차이인데
+// 같은 3칸이었다. 등급은 색으로 남기고 길이와 숫자로 실제 값을 읽게 한다.
+function StrengthGauge({ coupling, meta }) {
+  const strength = coupling?.strength
+  if (strength == null) {
+    return <span className="text-[13px] text-faint">-</span>
+  }
+
   return (
-    <span className="inline-flex shrink-0 items-center gap-0.5" aria-hidden="true">
-      {Array.from({ length: TIER_STEPS }, (_, i) => (
+    <span className="flex items-center gap-2">
+      <span
+        className="relative h-1.5 w-[38px] shrink-0 overflow-hidden rounded-sm bg-line @max-[560px]:hidden"
+        aria-hidden="true"
+      >
         <span
-          key={i}
-          className={`h-2.5 w-[3px] rounded-sm ${
-            i < coupling.rank ? coupling.bar : 'bg-line'
-          }`}
+          className={`absolute inset-y-0 left-0 ${meta.bar}`}
+          style={{ width: `${corrPercent(strength)}%` }}
         />
-      ))}
+      </span>
+      {/* 좁으면 게이지를 접고 숫자만 남긴다. 숫자가 값을 그대로 말한다. */}
+      <span className="tnum text-[13px]">{strength.toFixed(2)}</span>
     </span>
   )
 }
@@ -139,11 +151,12 @@ function Row({ group, selected, onSelect }) {
           className="h-6 w-full"
         />
       </td>
-      <td className={`${CELL_X} py-2.5`} title={`커플링 ${coupling.label} · ${coupling.note}`}>
-        <span className={`inline-flex items-center gap-1.5 text-[13px] ${coupling.chip}`}>
-          <TierMeter coupling={coupling} />
-          {/* 가장 좁을 때는 막대만 남긴다. 등급 이름은 셀 title로 확인한다. */}
-          <span className="whitespace-nowrap @max-[420px]:hidden">{coupling.label}</span>
+      <td
+        className={`${CELL_X} py-2.5`}
+        title={`커플링 ${coupling.label} · 강도 ${group.coupling?.strength ?? '-'} · ${coupling.note}`}
+      >
+        <span className={`inline-flex items-center ${coupling.chip}`}>
+          <StrengthGauge coupling={group.coupling} meta={coupling} />
         </span>
       </td>
       <td
