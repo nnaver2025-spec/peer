@@ -269,8 +269,11 @@ export default function App() {
       <header className="flex shrink-0 flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-line bg-surface px-5 py-2.5">
         {/* 헤더에는 탭과 무관하게 유효한 것만 둔다. Z 기준이나 그룹 수는
             스프레드 전용이라 그 탭 안으로 내렸다. */}
-        <div className="flex min-w-0 items-baseline gap-3">
-          <h1 className="text-[15px] font-medium text-ink">Peer Spread Tracker</h1>
+        <div className="flex min-w-0 items-baseline gap-2.5">
+          <h1 className="text-[17px] font-medium text-ink">엇박</h1>
+          <p className="truncate text-[13px] text-faint max-[560px]:hidden">
+            해외가 먼저 간 자리
+          </p>
           {/* 스프레드 크론은 30분 주기다. 기본값 2시간을 쓰면 몇 시간 멈춰도 조용하다. */}
           <Freshness generatedAt={data.generated_at} intervalHours={0.5} />
         </div>
