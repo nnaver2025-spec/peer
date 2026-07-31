@@ -69,3 +69,37 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.peer.fomo.update.pli
 
 한 회차는 약 2분 걸린다. 즉시 실행은
 `launchctl kickstart -p gui/$(id -u)/com.peer.fomo.update`.
+
+## 백테스트 갱신 (launchd, 2시간 주기)
+
+검증 탭 데이터는 에이전트 `com.peer.backtest.update`가 2시간마다 갱신한다.
+
+이 에이전트가 없던 동안 검증 탭은 마지막 수동 실행 시점에 멈춰 있었다. 사례
+목록 맨 위의 "현재" 행이 `catchup_backtest.py`로만 만들어지기 때문에, 갭
+탭(30분 주기)과 날짜가 하루 이상 어긋났다.
+
+주기를 2시간으로 둔 이유는 6년치를 다시 계산하지만 확정된 과거 통계가 하루
+사이에 거의 움직이지 않기 때문이다. 실제로 바뀌는 값은 마지막 거래일 기준의
+현재 위치뿐이라 30분 간격으로 돌릴 이유가 없다.
+
+- `~/.peer-cron/run_backtest.sh` - launchd가 호출하는 런처
+- `~/.peer-cron/backtest_update.sh` - 락/로그를 관리하고 `catchup_backtest.py`를 실행
+- `~/.peer-cron/logs/backtest.log` - 실행 로그 (5000줄 초과 시 자동 트림)
+
+```bash
+mkdir -p ~/.peer-cron
+cp scripts/backtest_update.sh scripts/run_backtest.sh ~/.peer-cron/
+chmod +x ~/.peer-cron/backtest_update.sh ~/.peer-cron/run_backtest.sh
+cp scripts/com.peer.backtest.update.plist ~/Library/LaunchAgents/
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.peer.backtest.update.plist
+```
+
+한 회차는 약 30초 걸린다. 즉시 실행은
+`launchctl kickstart -p gui/$(id -u)/com.peer.backtest.update`.
+
+### 그룹마다 "현재" 날짜가 다른 이유
+
+`current_state`는 그룹 시계열의 마지막 값(`rel.iloc[-1]`)을 쓴다. 해외 티커가
+섞인 그룹은 시차와 휴일 때문에 국내보다 하루 이상 뒤처진다. 실측(2026-07-31
+15:16 갱신)에서 25개 그룹은 당일, 6개는 전일, 유럽 방산 1개는 이틀 전이었다.
+버그가 아니라 그 그룹에서 확보된 가장 최근 거래일이라는 뜻이다.

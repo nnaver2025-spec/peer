@@ -1,0 +1,106 @@
+# 대시보드 데이터를 주기적으로 갱신한다.
+#
+# 맥의 launchd를 대신한다. 세 JSON이 git에 추적되고 있어서, 커밋만 하면
+# Cloudflare Pages가 그 푸시를 받아 자동 재배포한다. 별도 배포 단계가 필요 없다.
+#
+# 에펨코리아 수집은 러너 IP가 차단될 수 있다. 그 경우 해당 소스만 빠지고
+# 나머지 지표는 정상 생성되므로, 수집 실패가 워크플로 전체를 멈추지 않게 둔다.
+name: update data
+
+on:
+  schedule:
+    # 2시간 주기. Cloudflare Pages 무료 플랜은 월 500빌드이고 커밋마다 배포가
+    # 걸린다. 30분 주기는 월 1,440회로 한도를 3배 넘긴다(2시간이면 월 360회).
+    # 크론은 UTC 기준이고 러너 대기 때문에 실제 실행은 몇 분 밀린다.
+    - cron: '5 */2 * * *'
+  workflow_dispatch:
+
+# 같은 브랜치에 연달아 커밋하면 충돌한다. 이전 실행이 끝나기를 기다린다.
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+          cache: pip
+
+      - name: install deps
+        run: pip install -r requirements.txt
+
+      - name: collect spread
+        id: spread
+        run: python peer_tracker.py
+
+      # 여론 지표는 커뮤니티/뉴스에 의존한다. 한쪽이 막혀도 나머지를 살린다.
+      - name: collect sentiment
+        id: sentiment
+        continue-on-error: true
+        run: python fomo_watch.py
+
+      - name: collect backtest
+        id: backtest
+        continue-on-error: true
+        run: python catchup_backtest.py
+
+      - name: verify payloads
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          # 깨진 JSON을 커밋하면 사이트가 빈 화면이 된다. 커밋 전에 막는다.
+          ok = True
+          for name in ('dashboard_data.json', 'fomo_data.json', 'backtest_data.json'):
+              path = Path('frontend/public') / name
+              if not path.exists():
+                  print(f'[skip] {name} 없음')
+                  continue
+              try:
+                  json.loads(path.read_text(encoding='utf-8'))
+                  print(f'[ok] {name} {path.stat().st_size:,} bytes')
+              except json.JSONDecodeError as exc:
+                  print(f'[fail] {name}: {exc}')
+                  ok = False
+          sys.exit(0 if ok else 1)
+          PY
+
+      - name: commit if changed
+        run: |
+          if git diff --quiet -- frontend/public; then
+            echo "변경 없음. 커밋하지 않는다."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add frontend/public/dashboard_data.json \
+                  frontend/public/fomo_data.json \
+                  frontend/public/backtest_data.json
+          git commit -m "chore(data): refresh dashboard payloads"
+          # 스케줄이 겹쳐 앞선 커밋이 올라갔을 수 있다. 재시도로 흡수한다.
+          for attempt in 1 2 3; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
+              git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            echo "push 재시도 ${attempt}"
+            sleep 5
+          done
+          exit 1
+
+      - name: report collection failures
+        if: steps.sentiment.outcome == 'failure' || steps.backtest.outcome == 'failure'
+        run: |
+          echo "일부 수집이 실패했다. 해당 지표는 이전 값으로 남는다." >> "$GITHUB_STEP_SUMMARY"
+          echo "- sentiment: ${{ steps.sentiment.outcome }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- backtest: ${{ steps.backtest.outcome }}" >> "$GITHUB_STEP_SUMMARY"

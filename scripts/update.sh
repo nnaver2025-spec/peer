@@ -6,9 +6,10 @@
 # 로그는 ~/.peer-cron/logs/update.log 에 누적된다.
 set -uo pipefail
 
-REPO="/Users/huisang/Documents/peer"
-PYTHON="$REPO/.venv/bin/python"
-LOG_DIR="/Users/huisang/.peer-cron/logs"
+# 경로는 환경변수로 덮을 수 있다. 기본값은 기존 launchd 설정과 같다.
+REPO="${PEER_REPO:-$HOME/Documents/peer}"
+PYTHON="${PEER_PYTHON:-$REPO/.venv/bin/python}"
+LOG_DIR="${PEER_LOG_DIR:-$HOME/.peer-cron/logs}"
 LOG="$LOG_DIR/update.log"
 LOCK="$LOG_DIR/update.lock"
 LOG_MAX_LINES=5000

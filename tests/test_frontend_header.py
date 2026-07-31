@@ -17,14 +17,27 @@ def test_header_shows_data_freshness():
     assert "임계 |Z|" not in source.split("<header")[1].split("</header>")[0]
 
 
-def test_freshness_uses_the_tracker_cron_interval():
-    """스프레드 크론은 30분 주기다(launchd StartInterval 1800).
+def test_freshness_matches_the_update_cron():
+    """경고 기준이 실제 갱신 주기와 어긋나면 신호가 거짓이 된다.
 
-    Freshness 기본값 2시간을 그대로 쓰면 4시간 멈춰도 경고가 뜨지 않는다.
+    주기보다 짧게 잡으면 정상 갱신인데도 경고가 뜨고, 길게 잡으면 크론이
+    멈춰도 조용하다. 배포 워크플로의 크론과 같은 값을 써야 한다.
     """
-    source = APP.read_text(encoding="utf-8")
+    import re
 
-    assert "intervalHours={0.5}" in source
+    source = APP.read_text(encoding="utf-8")
+    workflow = (
+        APP.parents[2] / ".github" / "workflows" / "update-data.yml"
+    ).read_text(encoding="utf-8")
+
+    hours = float(re.search(r"intervalHours=\{([\d.]+)\}", source).group(1))
+    # '5 */2 * * *' 형태에서 시간 간격을 읽는다.
+    cron = re.search(r"cron: '[\d,]+ \*/(\d+)", workflow)
+    assert cron, "크론이 시간 간격 형식이 아니다. 값을 직접 맞춰야 한다."
+
+    assert hours == float(cron.group(1)), (
+        f"Freshness {hours}시간 vs 크론 {cron.group(1)}시간 주기가 어긋난다"
+    )
 
 
 def test_spread_counts_moved_out_of_the_header():
