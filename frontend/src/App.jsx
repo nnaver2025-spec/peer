@@ -4,6 +4,7 @@ import GroupTable from './GroupTable.jsx'
 import GroupCard from './GroupCard.jsx'
 import DetailPanel from './DetailPanel.jsx'
 import FomoTab from './FomoTab.jsx'
+import BacktestTab from './BacktestTab.jsx'
 import { THRESHOLD, TIER_RANK, isTrusted } from './zone.js'
 import { useTheme } from './theme.js'
 
@@ -27,8 +28,10 @@ function ThemeToggle({ theme, onToggle }) {
 }
 
 const TABS = [
-  { id: 'spread', label: '괴리' },
-  { id: 'fomo', label: '여론' },
+  // id는 ?tab= 링크와 localStorage에 저장된 값이라 라벨만 바꾼다.
+  { id: 'spread', label: '스프레드' },
+  { id: 'fomo', label: '센티먼트' },
+  { id: 'backtest', label: '백테스트' },
 ]
 
 const FILTERS = [
@@ -38,6 +41,10 @@ const FILTERS = [
   { id: 'overshoot', label: '오버슈팅' },
   { id: 'undershoot', label: '언더슈팅' },
 ]
+
+const TAB_KEY = 'peer:tab'
+const VIEW_KEY = 'peer:view'
+const DEFAULT_TAB = 'spread'
 
 // 정렬 값 추출. 커플링은 등급 순위로, 나머지는 크기 기준으로 비교한다.
 function sortValue(group, key) {
@@ -64,23 +71,26 @@ export default function App() {
   const [filter, setFilter] = useState('all')
   const [sector, setSector] = useState('all')
   const [query, setQuery] = useState('')
-  // 탭도 뷰와 같은 방식으로 기억한다. ?tab=fomo로 바로 열 수 있다.
+  // 우선순위는 URL > 지난 방문 기록 > 스프레드. 첫 방문은 항상 스프레드로 연다.
   const [tab, setTab] = useState(() => {
     const fromUrl = new URLSearchParams(window.location.search).get('tab')
-    if (fromUrl === 'spread' || fromUrl === 'fomo') return fromUrl
-    return localStorage.getItem('peer:tab') ?? 'spread'
+    if (TABS.some((t) => t.id === fromUrl)) return fromUrl
+    const saved = localStorage.getItem(TAB_KEY)
+    if (TABS.some((t) => t.id === saved)) return saved
+    return DEFAULT_TAB
   })
   // 뷰 선택은 로컬에 남겨 다음 방문에도 유지한다. ?view=card로도 열 수 있다.
   const [view, setView] = useState(() => {
     const fromUrl = new URLSearchParams(window.location.search).get('view')
     if (fromUrl === 'card' || fromUrl === 'table') return fromUrl
-    return localStorage.getItem('peer:view') ?? 'table'
+    return localStorage.getItem(VIEW_KEY) ?? 'table'
   })
   // 선택 그룹을 URL 해시에 실어 새로고침/공유에도 상세가 유지되게 한다.
   const [selectedKey, setSelectedKey] = useState(
     () => window.location.hash.replace(/^#/, '') || null
   )
   const [sort, setSort] = useState({ key: 'zscore', dir: 'desc' })
+  const isSpread = tab === DEFAULT_TAB
 
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}dashboard_data.json`)
@@ -102,19 +112,29 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    const next = selectedKey ? `#${selectedKey}` : ''
+    // 상세 해시는 스프레드 전용이다. 다른 탭에서 남으면 링크의 탭과 해시가 어긋난다.
+    const next = isSpread && selectedKey ? `#${selectedKey}` : ''
     if (window.location.hash !== next) {
       const { pathname, search } = window.location
       window.history.replaceState(null, '', `${pathname}${search}${next}`)
     }
-  }, [selectedKey])
+  }, [selectedKey, isSpread])
 
   useEffect(() => {
-    localStorage.setItem('peer:view', view)
+    localStorage.setItem(VIEW_KEY, view)
   }, [view])
 
   useEffect(() => {
-    localStorage.setItem('peer:tab', tab)
+    localStorage.setItem(TAB_KEY, tab)
+    // 주소도 함께 맞춘다. ?tab=fomo로 들어온 뒤 다른 탭으로 옮겼을 때 주소가
+    // 그대로면 새로고침이나 링크 공유에서 의도와 다른 탭이 열린다.
+    const { pathname, search, hash } = window.location
+    const params = new URLSearchParams(search)
+    params.set('tab', tab)
+    const next = `${pathname}?${params}${hash}`
+    if (`${pathname}${search}${hash}` !== next) {
+      window.history.replaceState(null, '', next)
+    }
   }, [tab])
 
   const sectors = useMemo(
@@ -184,11 +204,10 @@ export default function App() {
 
   const alertCount = data.groups.filter((g) => g.alert).length
   const trustedCount = data.groups.filter(isTrusted).length
-  const isSpread = tab === 'spread'
 
   return (
     <div className="flex h-screen flex-col overflow-hidden">
-      <header className="flex shrink-0 flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-line bg-surface px-5 pt-3">
+      <header className="flex shrink-0 flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-line bg-surface px-5 py-2.5">
         <div className="flex min-w-0 items-baseline gap-3">
           <h1 className="text-[15px] font-medium text-ink">Peer Spread Tracker</h1>
           <p className="tnum truncate text-[13px] text-faint">
@@ -211,26 +230,26 @@ export default function App() {
           </div>
         </dl>
 
-        {/* 탭은 헤더 하단 경계에 붙여 활성 탭이 본문과 이어져 보이게 둔다. */}
-        <div className="-mb-px flex w-full items-center justify-between gap-3 border-t border-line pt-2 sm:w-auto sm:border-t-0 sm:pt-0">
-          <nav aria-label="지표 선택" className="flex gap-1">
+        <div className="flex w-full items-center justify-between gap-3 border-t border-line pt-2.5 sm:w-auto sm:border-t-0 sm:pt-0">
+          {/* 활성 탭만 배경을 채우는 알약형 스위처. 밑줄보다 시선이 덜 분산된다. */}
+          <nav aria-label="지표 선택" className="flex items-center gap-0.5 rounded-lg bg-raised p-1">
             {TABS.map((t) => (
               <button
                 key={t.id}
                 type="button"
                 onClick={() => setTab(t.id)}
                 aria-current={tab === t.id ? 'page' : undefined}
-                className={`rounded-t-md border-b-2 px-3 pb-2 pt-1 text-[14px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
+                className={`rounded-md px-3 py-1.5 text-[13px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
                   tab === t.id
-                    ? 'border-accent text-ink'
-                    : 'border-transparent text-muted hover:text-ink'
+                    ? 'bg-canvas text-ink shadow-sm ring-1 ring-line'
+                    : 'text-muted hover:text-ink'
                 }`}
               >
                 {t.label}
               </button>
             ))}
           </nav>
-          <div className="pb-1.5">
+          <div>
             <ThemeToggle theme={theme} onToggle={toggleTheme} />
           </div>
         </div>
@@ -281,6 +300,8 @@ export default function App() {
 
         {tab === 'fomo' ? (
           <FomoTab />
+        ) : tab === 'backtest' ? (
+          <BacktestTab />
         ) : (
         <main className="flex min-w-0 flex-1 flex-col">
           <div className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-2.5">

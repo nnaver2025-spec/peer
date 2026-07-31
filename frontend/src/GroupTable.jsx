@@ -6,29 +6,49 @@ import { isTrusted, ratingTone, signed, zoneOf } from './zone.js'
 
 export const COLUMNS = [
   { id: 'desc', label: '그룹', align: 'left', sortable: true },
-  { id: 'sector', label: '섹터', align: 'left', sortable: true },
+  // 섹터는 왼쪽 사이드바 필터로도 확인되므로 가장 마지막에 접는다.
+  {
+    id: 'sector',
+    label: '섹터',
+    align: 'left',
+    sortable: true,
+    foldClass: '@max-[420px]:hidden',
+  },
   { id: 'zscore', label: 'Z-Score', align: 'right', sortable: true },
-  { id: 'spread', label: 'Spread', align: 'right', sortable: true },
-  { id: 'trend', label: '추이', align: 'left', sortable: false },
+  // Spread는 Z-Score와 같은 괴리를 다른 단위로 보여주므로 가장 좁을 때 접는다.
+  {
+    id: 'spread',
+    label: 'Spread',
+    align: 'right',
+    sortable: true,
+    foldClass: '@max-[560px]:hidden',
+  },
+  // 목록이 700px 아래로 좁아지면 접는다. 커플링/주도주/RS가 판단에 더 쓰인다.
+  { id: 'trend', label: '추이', align: 'left', sortable: false, foldClass: '@max-[700px]:hidden' },
   { id: 'coupling', label: '커플링', align: 'left', sortable: true },
   { id: 'bellwether', label: '주도주', align: 'left', sortable: false },
   { id: 'bellwether_rs_rating', label: 'RS', align: 'right', sortable: true },
 ]
 
+// 상세 패널이 열리면 목록 폭이 1200px대에서 830px대로 줄어든다. 그때 8개 열을
+// 모두 유지하려면 고정 폭이 아니라 컨테이너 폭에 따라 셀이 함께 좁아져야 한다.
+const CELL_X = 'px-3 @max-[1000px]:px-2 @max-[420px]:px-1.5'
+
 function HeaderCell({ column, sort, onSort }) {
   const active = sort.key === column.id
   const alignClass = column.align === 'right' ? 'text-right' : 'text-left'
+  const fold = column.foldClass ?? ''
 
   if (!column.sortable) {
     return (
-      <th scope="col" className={`px-3 py-2 font-normal text-faint ${alignClass}`}>
+      <th scope="col" className={`${CELL_X} py-2 font-normal text-faint ${alignClass} ${fold}`}>
         {column.label}
       </th>
     )
   }
 
   return (
-    <th scope="col" className={`px-3 py-2 font-normal ${alignClass}`}>
+    <th scope="col" className={`${CELL_X} py-2 font-normal ${alignClass} ${fold}`}>
       <button
         type="button"
         onClick={() => onSort(column.id)}
@@ -63,7 +83,9 @@ function Row({ group, selected, onSelect }) {
         selected ? 'bg-accent-soft' : 'hover:bg-surface'
       }`}
     >
-      <td className="max-w-[220px] truncate px-3 py-2.5">
+      <td
+        className={`max-w-[220px] truncate ${CELL_X} py-2.5 @max-[1000px]:max-w-[150px] @max-[560px]:max-w-[108px]`}
+      >
         <span className="text-ink">{group.desc}</span>
         {group.alert && (
           <span
@@ -74,33 +96,37 @@ function Row({ group, selected, onSelect }) {
           </span>
         )}
       </td>
-      <td className="px-3 py-2.5 text-muted">{group.sector}</td>
+      <td className={`${CELL_X} py-2.5 text-muted @max-[420px]:hidden`}>{group.sector}</td>
       {/* Z-Score는 숫자와 바를 한 칸에 묶는다. 떨어뜨리면 시선이 두 번 움직인다. */}
-      <td className="w-[150px] px-3 py-2.5">
+      <td className={`w-[150px] ${CELL_X} py-2.5 @max-[1000px]:w-[96px]`}>
         <div className="flex flex-col items-end gap-1.5">
           <span className={`tnum text-[15px] leading-none ${tone}`}>{signed(group.zscore)}</span>
           <ZBar z={group.zscore} tone={trusted ? zone.bar : 'bg-line-strong'} />
         </div>
       </td>
-      <td className="tnum px-3 py-2.5 text-right text-muted">{signed(group.spread)}</td>
-      <td className="w-[120px] px-3 py-2.5">
+      <td className={`tnum ${CELL_X} py-2.5 text-right text-muted @max-[560px]:hidden`}>
+        {signed(group.spread)}
+      </td>
+      <td className={`w-[120px] ${CELL_X} py-2.5 @max-[1000px]:w-[72px] @max-[700px]:hidden`}>
         <Sparkline
           points={group.history}
           stroke={trusted ? zone.stroke : '--color-line-strong'}
           className="h-6 w-full"
         />
       </td>
-      <td className="px-3 py-2.5">
+      <td className={`${CELL_X} py-2.5`}>
         <span className={`inline-flex items-center gap-1.5 text-[13px] ${coupling.chip}`}>
           <span className={`size-1.5 rounded-full ${coupling.dot}`} aria-hidden="true" />
-          {coupling.label}
+          <span className="whitespace-nowrap">{coupling.label}</span>
         </span>
       </td>
-      <td className="max-w-[150px] truncate px-3 py-2.5 text-[13px] text-muted">
+      <td
+        className={`max-w-[150px] truncate ${CELL_X} py-2.5 text-[13px] text-muted @max-[1000px]:max-w-[104px] @max-[560px]:max-w-[76px]`}
+      >
         {group.bellwether_name ?? '-'}
       </td>
       <td
-        className="tnum px-3 py-2.5 text-right text-[13px]"
+        className={`tnum ${CELL_X} py-2.5 text-right text-[13px]`}
         title={
           group.bellwether_rs_rating != null
             ? '국내 유니버스 백분위 · 100이 최상위'
@@ -121,9 +147,12 @@ function Row({ group, selected, onSelect }) {
 
 export default function GroupTable({ groups, sort, onSort, selectedKey, onSelect }) {
   return (
-    <div className="overflow-x-auto rounded-lg border border-line bg-surface/40">
-      <table className="w-full min-w-[900px] border-collapse text-[14px]">
-        <thead className="border-b border-line text-[13px]">
+    <div
+      data-testid="group-table"
+      className="@container overflow-x-auto rounded-lg border border-line bg-surface/40"
+    >
+      <table className="w-full min-w-[320px] border-collapse text-[14px] @max-[1000px]:text-[13px]">
+        <thead className="border-b border-line text-[13px] @max-[1000px]:text-[12px]">
           <tr>
             {COLUMNS.map((c) => (
               <HeaderCell key={c.id} column={c} sort={sort} onSort={onSort} />
