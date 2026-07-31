@@ -14,7 +14,8 @@ export const COLUMNS = [
     sortable: true,
     foldClass: '@max-[420px]:hidden',
   },
-  { id: 'zscore', label: 'Z-Score', align: 'right', sortable: true },
+  // 셀 내용이 0을 중심으로 좌우 대칭이라 머리글도 가운데 세운다.
+  { id: 'zscore', label: 'Z-Score', align: 'center', sortable: true },
   // Spread는 Z-Score와 같은 괴리를 다른 단위로 보여주므로 가장 좁을 때 접는다.
   {
     id: 'spread',
@@ -79,7 +80,12 @@ function StrengthGauge({ coupling, meta, threshold }) {
 
 function HeaderCell({ column, sort, onSort }) {
   const active = sort.key === column.id
-  const alignClass = column.align === 'right' ? 'text-right' : 'text-left'
+  const alignClass =
+    column.align === 'right'
+      ? 'text-right'
+      : column.align === 'center'
+        ? 'text-center'
+        : 'text-left'
   const fold = column.foldClass ?? ''
   // 라벨이 셀보다 길면 세 줄로 쪼개진다. 좁을 때 줄바꿈을 막는다.
   const labelClass = column.shortLabelClass ?? ''
@@ -124,7 +130,7 @@ function Row({ group, selected, onSelect, strongFloor }) {
     <tr
       onClick={() => onSelect(group.key)}
       aria-selected={selected}
-      className={`cursor-pointer border-b border-line/70 transition-colors ${
+      className={`cursor-pointer border-b-[0.5px] border-line/70 transition-colors ${
         selected ? 'bg-accent-soft' : 'hover:bg-surface'
       }`}
     >
@@ -144,7 +150,9 @@ function Row({ group, selected, onSelect, strongFloor }) {
       <td className={`${CELL_X} py-2.5 text-muted @max-[420px]:hidden`}>{group.sector}</td>
       {/* Z-Score는 숫자와 바를 한 칸에 묶는다. 떨어뜨리면 시선이 두 번 움직인다. */}
       <td className={`w-[150px] ${CELL_X} py-2.5 @max-[1000px]:w-[96px]`}>
-        <div className="flex flex-col items-end gap-1.5">
+        {/* 바가 0을 중심으로 좌우 대칭이라 숫자도 같은 축에 세운다.
+            오른쪽에 붙이면 숫자와 바의 중심이 어긋나 열이 기울어 보인다. */}
+        <div className="flex flex-col items-center gap-1.5">
           <span className={`tnum text-[15px] leading-none ${tone}`}>{signed(group.zscore)}</span>
           <ZBar z={group.zscore} tone={trusted ? zone.bar : 'bg-line-strong'} />
         </div>

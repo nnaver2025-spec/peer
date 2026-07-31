@@ -57,3 +57,24 @@ def test_sector_column_folds_last():
     source = GROUP_TABLE.read_text(encoding="utf-8")
 
     assert '@max-[420px]:hidden' in source
+
+
+def test_zscore_cell_is_center_aligned():
+    """숫자와 바의 중심이 같은 축에 있어야 한다.
+
+    바는 0을 기준으로 좌우로 뻗는데 숫자만 오른쪽에 붙어 있으면 두 중심이
+    어긋나 열 전체가 기울어 보인다.
+    """
+    source = GROUP_TABLE.read_text(encoding="utf-8")
+
+    assert "flex flex-col items-center" in source
+    assert "flex flex-col items-end" not in source
+
+
+def test_zscore_header_matches_cell_alignment():
+    """머리글이 오른쪽에 남으면 셀 가운데 정렬과 어긋난다."""
+    source = GROUP_TABLE.read_text(encoding="utf-8")
+
+    assert "{ id: 'zscore', label: 'Z-Score', align: 'center'" in source
+    # center를 실제로 클래스로 바꿔주는 분기가 있어야 한다.
+    assert "text-center" in source

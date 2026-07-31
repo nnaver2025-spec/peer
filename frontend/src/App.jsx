@@ -19,7 +19,7 @@ import Freshness from './Freshness.jsx'
 import Disclaimer from './Disclaimer.jsx'
 import TabGuide from './TabGuide.jsx'
 import { THRESHOLD, isTrusted } from './zone.js'
-import { useTheme } from './theme.js'
+import { clearLegacySkin, useTheme } from './theme.js'
 
 function ThemeToggle({ theme, onToggle }) {
   const next = theme === 'dark' ? '라이트' : '다크'
@@ -42,9 +42,9 @@ function ThemeToggle({ theme, onToggle }) {
 
 const TABS = [
   // id는 ?tab= 링크와 localStorage에 저장된 값이라 라벨만 바꾼다.
-  { id: 'spread', label: '스프레드' },
-  { id: 'fomo', label: '센티먼트' },
-  { id: 'backtest', label: '백테스트' },
+  { id: 'spread', label: '갭' },
+  { id: 'fomo', label: '분위기' },
+  { id: 'backtest', label: '검증' },
 ]
 
 const FILTERS = [
@@ -124,6 +124,10 @@ export default function App() {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
   const [theme, toggleTheme] = useTheme()
+  // 실험 중 저장된 스킨 값을 한 번 정리한다.
+  useEffect(() => {
+    clearLegacySkin()
+  }, [])
   const [filter, setFilter] = useState('all')
   const [sector, setSector] = useState('all')
   const [query, setQuery] = useState('')
@@ -277,8 +281,10 @@ export default function App() {
           <p className="truncate text-[13px] text-faint max-[560px]:hidden">
             해외가 먼저 간 자리
           </p>
-          {/* 스프레드 크론은 30분 주기다. 기본값 2시간을 쓰면 몇 시간 멈춰도 조용하다. */}
-          <Freshness generatedAt={data.generated_at} intervalHours={0.5} />
+          {/* 갱신 주기와 맞춰야 한다. Pages 무료 빌드 한도 때문에 워크플로를
+              2시간 주기로 두었다(.github/workflows/update-data.yml). 0.5를 쓰면
+              정상 갱신인데도 1시간 뒤부터 경고가 뜬다. */}
+          <Freshness generatedAt={data.generated_at} intervalHours={2} />
         </div>
 
         <div className="flex w-full items-center justify-between gap-3 border-t border-line pt-2.5 sm:w-auto sm:border-t-0 sm:pt-0">

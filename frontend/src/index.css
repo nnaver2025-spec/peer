@@ -15,7 +15,9 @@
   --color-faint: #6b6e77;
 
   --color-accent: #7c8cff;
-  --color-accent-soft: #1e2138;
+  /* 선택 행 배경. 파란기가 남으면 언더슈팅(accent) 숫자가 배경에 묻힌다.
+     색조를 거의 빼고 밝기만 올려 선택 여부만 알리는 중립 표면으로 둔다. */
+  --color-accent-soft: #26272b;
   --color-warn: #ff5d73;
   --color-warn-soft: #2c1a20;
   --color-good: #4ec9a0;
@@ -29,11 +31,13 @@
 
 /* 라이트 팔레트. 다크에서 쓰던 채도 그대로 밝기만 뒤집으면 흰 배경에서 색이 떠서
    눈이 피로하다. 강조색은 채도를 올리고 명도를 낮춰 대비를 유지한다.
-   토큰 이름과 의미는 그대로라 컴포넌트는 손대지 않는다. */
+   토큰 이름과 의미는 그대로라 컴포넌트는 손대지 않는다.
+
+   바닥은 순백으로 둔다. 표면과 같은 흰색이므로 위계는 선으로만 만든다. */
 :root[data-theme='light'] {
-  --color-canvas: #fbfbfc;
+  --color-canvas: #ffffff;
   --color-surface: #ffffff;
-  --color-raised: #f1f2f4;
+  --color-raised: #f4f4f6;
   --color-line: #e3e5e9;
   --color-line-strong: #c8ccd3;
 
@@ -42,7 +46,8 @@
   --color-faint: #82868f;
 
   --color-accent: #3d4fd6;
-  --color-accent-soft: #e8ebfd;
+  /* 다크와 같은 이유로 색조를 뺀다. 파란 배경 위의 파란 숫자는 서로를 지운다. */
+  --color-accent-soft: #eaebee;
   --color-warn: #d92d4b;
   --color-warn-soft: #fdeaee;
   --color-good: #12866a;
@@ -78,16 +83,18 @@ body {
 }
 
 /* 데이터가 흐르고 있다는 신호. 크론이 멈추면 이 맥박도 멈춘다(Freshness.jsx).
-   숨쉬듯 느리게 두어 화면 훑는 시선을 빼앗지 않는다. */
+   숨쉬듯 느리게 두어 화면 훑는 시선을 빼앗지 않는다.
+   움직임은 webstylebook animation-lab의 pulse 프리셋을 따른다.
+   흐려지며 작아지는 게 아니라 살짝 커지며 밝아진다(scale 1 -> 1.18, opacity .68 -> 1). */
 @keyframes pulse-dot {
   0%,
   100% {
-    opacity: 1;
+    opacity: 0.68;
     transform: scale(1);
   }
   50% {
-    opacity: 0.35;
-    transform: scale(0.72);
+    opacity: 1;
+    transform: scale(1.18);
   }
 }
 
@@ -98,6 +105,62 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .animate-pulse-dot {
     animation: none;
+  }
+}
+
+/* 네이티브 톤. macOS 계열 도구에서 가져온 것만 남긴다.
+   시스템 타이포 스케일, 헤어라인 구분선, 세그먼티드 컨트롤 비율,
+   스크롤되는 표 위에 떠 있는 헤더 한 겹의 유리.
+   의미 색(오버/언더슈팅, 등락, RS)과 8열 밀도는 그대로 둔다. */
+
+/* 표 머리글은 작고 조용한 라벨. 글자를 키우지 않고 색으로만 물러나게 한다. */
+thead th {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* 행 구분선은 0.5px이다. 컴포넌트에서 border-b-[0.5px]로 직접 지정한다
+   (GroupTable.jsx). 여기서 덮으면 Tailwind 유틸리티와 우선순위 싸움이 된다. */
+
+/* 헤더와 툴바는 아래 내용이 스크롤되며 지나가는 층이다. 얇은 유리를 한 겹 둔다. */
+header {
+  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+/* 세그먼티드 컨트롤. 활성 알약에만 표면과 그림자를 준다. */
+nav[aria-label='지표 선택'] {
+  padding: 2px;
+  border-radius: 7px;
+}
+
+nav[aria-label='지표 선택'] button {
+  border-radius: 5px;
+}
+
+nav[aria-label='지표 선택'] button[aria-current='page'] {
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.16),
+    0 0 0 0.5px rgb(0 0 0 / 0.04);
+}
+
+/* 제품명은 시스템 Title2(17px) 자리에 둔다. */
+header h1 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* 선택 행은 컴포넌트의 bg-accent-soft가 담당한다(GroupTable.jsx).
+   여기서 진한 강조색으로 덮으면 Z-Score 같은 의미 색이 배경에 묻힌다.
+   네이티브 리스트는 강조색을 채우지만, 이 표는 셀마다 색이 신호를 지고 있어서
+   같은 방식을 쓸 수 없다. */
+
+@media (prefers-reduced-motion: reduce) {
+  header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 }
 

@@ -298,7 +298,7 @@ function EpisodeList({ group, horizon, chartBefore, zWindow }) {
                   </button>
                   <span
                     className="ml-2 text-[11px] text-accent"
-                    title="백테스트와 같은 60일 기준선으로 잰 값. 스프레드 탭은 20일 기준이라 값이 다르다."
+                    title="검증 탭과 같은 60일 기준선으로 잰 값. 갭 탭은 20일 기준이라 값이 다르다."
                   >
                     현재
                   </span>
@@ -325,10 +325,10 @@ function EpisodeList({ group, horizon, chartBefore, zWindow }) {
               {openDate === current.date && (
                 <tr className="border-t border-line/60">
                   <td colSpan={6} className="py-3">
-                    {/* 같은 그룹의 Z가 스프레드 탭과 다를 수 있다. 툴팁만으로는 놓치므로
+                    {/* 같은 그룹의 Z가 갭 탭과 다를 수 있다. 툴팁만으로는 놓치므로
                         차트 위에 기준을 적어 둔다(실측 10개 그룹에서 판단이 갈렸다). */}
                     <p className="mb-2 text-[12px] text-faint">
-                      백테스트 기준: {zWindow}일 이동평균 · 6년 로그 상대지수. 스프레드 탭은
+                      검증 기준: {zWindow}일 이동평균 · 6년 로그 상대지수. 갭 탭은
                       20일 기준 · 최근 6개월 정규화라 같은 그룹의 Z가 다르게 나온다.
                     </p>
                     <EpisodeChart

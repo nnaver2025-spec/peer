@@ -12,6 +12,18 @@ def test_first_visit_defaults_to_spread():
     assert "return DEFAULT_TAB" in source
 
 
+def test_tab_ids_stay_stable_when_labels_change():
+    """라벨은 한글로 바꿔도 id는 그대로 둔다.
+
+    id는 ?tab= 공유 링크와 localStorage에 저장된 값이다. 여기를 건드리면
+    기존 링크가 깨지고 저장된 탭 선택이 기본값으로 떨어진다.
+    """
+    source = APP.read_text(encoding="utf-8")
+
+    for tab_id, label in (("spread", "갭"), ("fomo", "분위기"), ("backtest", "검증")):
+        assert f"{{ id: '{tab_id}', label: '{label}' }}" in source
+
+
 def test_last_tab_is_restored_from_storage():
     """재방문은 마지막으로 보던 탭을 복원한다."""
     source = APP.read_text(encoding="utf-8")
