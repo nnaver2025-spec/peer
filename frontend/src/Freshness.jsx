@@ -41,7 +41,12 @@ export default function Freshness({ generatedAt, intervalHours = 2 }) {
           : generatedAt
       }
     >
-      {stale && <AlertTriangle size={11} aria-hidden="true" />}
+      {/* 맥박이 뛰면 데이터가 흐르는 중이다. 멈춘 데이터에 맥박을 두면 거짓 신호가 된다. */}
+      {stale ? (
+        <AlertTriangle size={11} aria-hidden="true" />
+      ) : (
+        <span className="animate-pulse-dot size-1.5 rounded-full bg-good" aria-hidden="true" />
+      )}
       {label(age)}
     </span>
   )

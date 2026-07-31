@@ -77,6 +77,30 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* 데이터가 흐르고 있다는 신호. 크론이 멈추면 이 맥박도 멈춘다(Freshness.jsx).
+   숨쉬듯 느리게 두어 화면 훑는 시선을 빼앗지 않는다. */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.72);
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-dot {
+    animation: none;
+  }
+}
+
 /* 다크에서 기본 스크롤바는 밝은 띠로 튄다. 표면 톤에 맞춰 낮춘다. */
 * {
   scrollbar-width: thin;
