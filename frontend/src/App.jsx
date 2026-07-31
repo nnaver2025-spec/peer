@@ -15,6 +15,7 @@ import GroupCard from './GroupCard.jsx'
 import DetailPanel from './DetailPanel.jsx'
 import FomoTab from './FomoTab.jsx'
 import BacktestTab from './BacktestTab.jsx'
+import Freshness from './Freshness.jsx'
 import { THRESHOLD, TIER_RANK, isTrusted } from './zone.js'
 import { useTheme } from './theme.js'
 
@@ -258,33 +259,21 @@ export default function App() {
     )
   }
 
-  const alertCount = data.groups.filter((g) => g.alert).length
-  const trustedCount = data.groups.filter(isTrusted).length
+  // 필터를 걸면 함께 움직여야 하는 값이다. 헤더에 있을 때는 전체 값만 보여줘서
+  // 방산만 골라도 '그룹 32'가 그대로였다.
+  const alertCount = groups.filter((g) => g.alert).length
+  const trustedCount = groups.filter(isTrusted).length
 
   return (
     <div className="flex h-screen flex-col overflow-hidden">
       <header className="flex shrink-0 flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-line bg-surface px-5 py-2.5">
+        {/* 헤더에는 탭과 무관하게 유효한 것만 둔다. Z 기준이나 그룹 수는
+            스프레드 전용이라 그 탭 안으로 내렸다. */}
         <div className="flex min-w-0 items-baseline gap-3">
           <h1 className="text-[15px] font-medium text-ink">Peer Spread Tracker</h1>
-          <p className="tnum truncate text-[13px] text-faint">
-            {data.z_window}일 Z · 임계 |Z| {data.alert_threshold} · {data.period.end}
-          </p>
+          {/* 스프레드 크론은 30분 주기다. 기본값 2시간을 쓰면 몇 시간 멈춰도 조용하다. */}
+          <Freshness generatedAt={data.generated_at} intervalHours={0.5} />
         </div>
-
-        <dl className="tnum flex items-baseline gap-5 text-[13px]">
-          <div className="flex items-baseline gap-1.5">
-            <dt className="text-faint">그룹</dt>
-            <dd className="text-ink">{data.groups.length}</dd>
-          </div>
-          <div className="flex items-baseline gap-1.5">
-            <dt className="text-faint">경고</dt>
-            <dd className={alertCount ? 'text-warn' : 'text-ink'}>{alertCount}</dd>
-          </div>
-          <div className="flex items-baseline gap-1.5">
-            <dt className="text-faint">커플링 유효</dt>
-            <dd className="text-ink">{trustedCount}</dd>
-          </div>
-        </dl>
 
         <div className="flex w-full items-center justify-between gap-3 border-t border-line pt-2.5 sm:w-auto sm:border-t-0 sm:pt-0">
           {/* 활성 탭만 배경을 채우는 알약형 스위처. 밑줄보다 시선이 덜 분산된다. */}
@@ -371,7 +360,23 @@ export default function App() {
                   />
                 )}
               </button>
-              <span className="tnum text-[13px] text-faint">{groups.length}개</span>
+              <dl
+                data-testid="spread-counts"
+                className="tnum flex items-baseline gap-3 text-[13px] sm:gap-4"
+              >
+                <div className="flex items-baseline gap-1.5">
+                  <dt className="text-faint">그룹</dt>
+                  <dd className="text-ink">{groups.length}</dd>
+                </div>
+                <div className="flex items-baseline gap-1.5">
+                  <dt className="text-faint">경고</dt>
+                  <dd className={alertCount ? 'text-warn' : 'text-ink'}>{alertCount}</dd>
+                </div>
+                <div className="flex items-baseline gap-1.5 max-[420px]:hidden">
+                  <dt className="text-faint">커플링</dt>
+                  <dd className="text-ink">{trustedCount}</dd>
+                </div>
+              </dl>
               <div
                 role="group"
                 aria-label="보기 방식"
@@ -425,7 +430,8 @@ export default function App() {
             )}
 
             <footer className="tnum mt-8 text-[12px] text-faint">
-              generated_at {data.generated_at} · {data.period.start} ~ {data.period.end}
+              {data.z_window}일 Z · 임계 |Z| {data.alert_threshold} · {data.period.start} ~{' '}
+              {data.period.end}
             </footer>
           </div>
         </main>
