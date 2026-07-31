@@ -56,3 +56,22 @@ def test_strength_number_is_visible_next_to_the_gauge():
     source = (SRC / "GroupTable.jsx").read_text(encoding="utf-8")
 
     assert "strength" in source
+
+
+def test_gauge_marks_the_strong_threshold():
+    """0.28이 좋은 값인지 알 방법이 없었다.
+
+    상관계수를 '10일 중 N일'로 바꾸면 0.5 + arcsin(r)/pi 기준으로 32개가
+    6일과 7일 두 값으로 뭉쳐 오히려 왜곡이 커진다. 값은 그대로 두고 등급
+    경계를 게이지에 새겨 어디쯤인지 보이게 한다(ZBar와 같은 방식).
+    """
+    source = (SRC / "GroupTable.jsx").read_text(encoding="utf-8")
+
+    assert "threshold" in source
+
+
+def test_threshold_comes_from_the_data_not_a_literal():
+    """경계값은 peer_tracker.py가 coupling_tiers로 내려준다."""
+    app = (SRC / "App.jsx").read_text(encoding="utf-8")
+
+    assert "coupling_tiers" in app

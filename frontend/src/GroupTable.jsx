@@ -46,7 +46,7 @@ const CELL_X = 'px-3 @max-[1000px]:px-2 @max-[420px]:px-1.5'
 // 3칸 막대로 등급만 보이던 때는 차이가 왜곡됐다. 강함 최하 0.31과 보통 최상
 // 0.29는 0.02 차이인데 3칸 대 2칸으로 갈렸고, 0.59와 0.31은 두 배 차이인데
 // 같은 3칸이었다. 등급은 색으로 남기고 길이와 숫자로 실제 값을 읽게 한다.
-function StrengthGauge({ coupling, meta }) {
+function StrengthGauge({ coupling, meta, threshold }) {
   const strength = coupling?.strength
   if (strength == null) {
     return <span className="text-[13px] text-faint">-</span>
@@ -55,13 +55,21 @@ function StrengthGauge({ coupling, meta }) {
   return (
     <span className="flex items-center gap-2">
       <span
-        className="relative h-1.5 w-[38px] shrink-0 overflow-hidden rounded-sm bg-line @max-[560px]:hidden"
+        className="relative h-2 w-[46px] shrink-0 overflow-hidden rounded-sm bg-line @max-[560px]:hidden"
         aria-hidden="true"
       >
         <span
           className={`absolute inset-y-0 left-0 ${meta.bar}`}
           style={{ width: `${corrPercent(strength)}%` }}
         />
+        {/* 강함 경계에 눈금을 둔다. 0.28이 좋은 값인지 판단할 기준이 없었다.
+            ZBar가 임계 +-1.5에 눈금을 두는 것과 같은 방식이다. */}
+        {threshold != null && (
+          <span
+            className="absolute -top-0.5 -bottom-0.5 w-[1.5px] bg-line-strong"
+            style={{ left: `${corrPercent(threshold)}%` }}
+          />
+        )}
       </span>
       {/* 좁으면 게이지를 접고 숫자만 남긴다. 숫자가 값을 그대로 말한다. */}
       <span className="tnum text-[13px]">{strength.toFixed(2)}</span>
@@ -106,7 +114,7 @@ function HeaderCell({ column, sort, onSort }) {
   )
 }
 
-function Row({ group, selected, onSelect }) {
+function Row({ group, selected, onSelect, strongFloor }) {
   const zone = zoneOf(group.zscore)
   const trusted = isTrusted(group)
   const coupling = metaOf(group.coupling)
@@ -153,10 +161,16 @@ function Row({ group, selected, onSelect }) {
       </td>
       <td
         className={`${CELL_X} py-2.5`}
-        title={`커플링 ${coupling.label} · 강도 ${group.coupling?.strength ?? '-'} · ${coupling.note}`}
+        title={[
+          `커플링 ${coupling.label} · 상관 ${group.coupling?.strength ?? '-'}`,
+          strongFloor != null ? `강함 기준 ${strongFloor} (눈금)` : null,
+          coupling.note,
+        ]
+          .filter(Boolean)
+          .join(' · ')}
       >
         <span className={`inline-flex items-center ${coupling.chip}`}>
-          <StrengthGauge coupling={group.coupling} meta={coupling} />
+          <StrengthGauge coupling={group.coupling} meta={coupling} threshold={strongFloor} />
         </span>
       </td>
       <td
@@ -184,7 +198,7 @@ function Row({ group, selected, onSelect }) {
   )
 }
 
-export default function GroupTable({ groups, sort, onSort, selectedKey, onSelect }) {
+export default function GroupTable({ groups, sort, onSort, selectedKey, onSelect, strongFloor }) {
   return (
     <div
       data-testid="group-table"
@@ -199,14 +213,15 @@ export default function GroupTable({ groups, sort, onSort, selectedKey, onSelect
           </tr>
         </thead>
         <tbody>
-          {groups.map((g) => (
-            <Row
-              key={g.key}
-              group={g}
-              selected={g.key === selectedKey}
-              onSelect={onSelect}
-            />
-          ))}
+            {groups.map((g) => (
+              <Row
+                key={g.key}
+                group={g}
+                selected={g.key === selectedKey}
+                onSelect={onSelect}
+                strongFloor={strongFloor}
+              />
+            ))}
         </tbody>
       </table>
     </div>

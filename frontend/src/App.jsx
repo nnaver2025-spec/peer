@@ -427,6 +427,7 @@ export default function App() {
                 onSort={onSort}
                 selectedKey={selectedKey}
                 onSelect={setSelectedKey}
+                strongFloor={data.coupling_tiers?.strong}
               />
             ) : (
               <section className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-3">
