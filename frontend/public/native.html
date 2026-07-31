@@ -1,0 +1,845 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>엇박 · 네이티브 테스트</title>
+    <style>
+      /* macOS 26 키트에서 남길 것만 가져왔다.
+
+         남긴 것: 시스템 타이포 스케일, 0.5pt 구분선, 네이티브 컨트롤 비율
+         (세그먼티드 22pt, 토글 38x22), 창 크롬에만 쓰는 얇은 유리, 소스 리스트,
+         인스펙터, 상태 줄.
+
+         버린 것: 데스크톱 배경 장면, 전역 메뉴바, Dock, 라이트/다크 사양 전시,
+         Text/Layer Styles 목록, 에셋 카운트 칩, 신호등 버튼.
+         전부 키트를 소개하는 장치였고 이 도구가 하는 일과 무관하다. */
+      :root {
+        color-scheme: light;
+
+        --accent: #0a84ff;
+        --up: #d92d4b;
+        --down: #1668cc;
+        --good: #12866a;
+        --warn: #d92d4b;
+
+        --label: #1d1d1f;
+        --label2: #5f6470;
+        --label3: #8e93a0;
+
+        --bg: #ffffff;
+        --panel: #f7f7f9;
+        --raised: #f0f2f5;
+        --sep: rgba(0, 0, 0, 0.11);
+        --sepStrong: #dcdce0;
+        --fill: rgba(120, 120, 128, 0.12);
+
+        --font: -apple-system, 'SF Pro Text', system-ui, 'Apple SD Gothic Neo', sans-serif;
+        --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font);
+        font-size: 13px;
+        line-height: 1.4;
+        color: var(--label);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* 창 크롬이 아니라 앱 자체다. 브라우저 안에서 전체를 차지한다. */
+      .app {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      /* 얇은 유리는 툴바에만. 스크롤되는 내용 위에 떠 있는 층이기 때문이다. */
+      .toolbar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+        height: 52px;
+        padding: 0 14px;
+        background: rgba(247, 247, 249, 0.8);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        border-bottom: 0.5px solid var(--sep);
+      }
+
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 7px;
+        min-width: 0;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 17px; /* Title2 */
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      .brand span {
+        font-size: 11px;
+        color: var(--label3);
+        white-space: nowrap;
+      }
+
+      /* Segmented Control — 네이티브 비율 유지 */
+      .segmented {
+        display: inline-flex;
+        padding: 2px;
+        border-radius: 7px;
+        background: var(--fill);
+      }
+
+      .segmented button {
+        min-width: 66px;
+        height: 22px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 5px;
+        background: transparent;
+        font: inherit;
+        font-size: 13px;
+        color: var(--label);
+        cursor: pointer;
+      }
+
+      .segmented button[aria-selected='true'] {
+        background: #fff;
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.16),
+          0 0 0 0.5px rgba(0, 0, 0, 0.04);
+      }
+
+      .searchField {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        width: 220px;
+        height: 24px;
+        padding: 0 8px;
+        border-radius: 6px;
+        background: #fff;
+        box-shadow: inset 0 0 0 0.5px var(--sepStrong);
+        color: var(--label3);
+      }
+
+      .searchField input {
+        flex: 1;
+        min-width: 0;
+        border: 0;
+        background: transparent;
+        font: inherit;
+        font-size: 13px;
+        color: var(--label);
+        outline: none;
+      }
+
+      .searchField:focus-within {
+        box-shadow:
+          inset 0 0 0 0.5px var(--accent),
+          0 0 0 3px rgba(10, 132, 255, 0.22);
+      }
+
+      .counts {
+        display: flex;
+        gap: 14px;
+        margin-left: auto;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .counts div {
+        display: flex;
+        align-items: baseline;
+        gap: 5px;
+      }
+
+      .counts dt {
+        margin: 0;
+        font-size: 11px;
+        color: var(--label3);
+      }
+
+      .counts dd {
+        margin: 0;
+        font-size: 13px;
+      }
+
+      /* 본문: 소스 리스트 + 표 + 인스펙터 */
+      .body {
+        display: grid;
+        grid-template-columns: 196px minmax(0, 1fr) 260px;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .sidebar {
+        padding: 8px;
+        overflow-y: auto;
+        background: var(--panel);
+        border-right: 0.5px solid var(--sep);
+      }
+
+      .sidebar h2 {
+        margin: 0;
+        padding: 10px 8px 4px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--label2);
+      }
+
+      .sourceItem {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        width: 100%;
+        height: 25px;
+        padding: 0 8px;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        font: inherit;
+        font-size: 13px;
+        color: var(--label);
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .sourceItem:hover {
+        background: rgba(120, 120, 128, 0.08);
+      }
+
+      .sourceItem[aria-current='true'] {
+        background: var(--fill);
+        font-weight: 500;
+      }
+
+      .sourceItem b {
+        margin-left: auto;
+        font-size: 11px;
+        font-weight: 400;
+        font-variant-numeric: tabular-nums;
+        color: var(--label3);
+      }
+
+      /* 표. 콘텐츠는 불투명하게 둔다. */
+      .listWrap {
+        overflow: auto;
+        background: var(--bg);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+
+      thead th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        padding: 6px 14px;
+        font-size: 11px;
+        font-weight: 500;
+        text-align: left;
+        white-space: nowrap;
+        color: var(--label2);
+        background: var(--bg);
+        border-bottom: 0.5px solid var(--sep);
+      }
+
+      thead th.num,
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      thead th button {
+        border: 0;
+        padding: 0;
+        background: none;
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      thead th[aria-sort] button {
+        color: var(--label);
+        font-weight: 600;
+      }
+
+      tbody tr {
+        cursor: default;
+        border-bottom: 0.5px solid var(--sep);
+      }
+
+      tbody tr:hover {
+        background: var(--raised);
+      }
+
+      tbody tr[aria-selected='true'] {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      tbody tr[aria-selected='true'] .sub,
+      tbody tr[aria-selected='true'] .z,
+      tbody tr[aria-selected='true'] .rs {
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      td {
+        padding: 5px 14px;
+      }
+
+      .name {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 220px;
+      }
+
+      .sub {
+        font-size: 11px;
+        color: var(--label3);
+      }
+
+      /* 넓은 화면에는 섹터 열이 따로 있으므로 부제에서는 감춘다. */
+      .onlyNarrow {
+        display: none;
+      }
+
+      /* 방향은 색으로만 알린다. 국내 관행대로 위는 적색. */
+      .z--over {
+        color: var(--up);
+      }
+      .z--under {
+        color: var(--down);
+      }
+      .rs--strong {
+        color: var(--good);
+      }
+
+      /* 게이지는 값의 크기를 길이로 보여준다. 등급 색은 쓰지 않는다. */
+      .gauge {
+        display: inline-block;
+        width: 42px;
+        height: 4px;
+        border-radius: 2px;
+        background: var(--fill);
+        overflow: hidden;
+        vertical-align: middle;
+        margin-right: 6px;
+      }
+
+      .gauge i {
+        display: block;
+        height: 100%;
+        background: var(--label2);
+      }
+
+      /* Inspector */
+      .inspector {
+        padding: 12px 14px;
+        overflow-y: auto;
+        background: var(--bg);
+        border-left: 0.5px solid var(--sep);
+      }
+
+      .inspector h2 {
+        margin: 0 0 2px;
+        font-size: 15px; /* Title3 */
+        font-weight: 600;
+      }
+
+      .inspector .sub {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 7px 0;
+        border-bottom: 0.5px solid var(--sep);
+      }
+
+      .row:last-of-type {
+        border-bottom: 0;
+      }
+
+      .row dt,
+      .row span:first-child {
+        font-size: 11px;
+        color: var(--label2);
+      }
+
+      .row dd {
+        margin: 0;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .switch {
+        position: relative;
+        width: 38px;
+        height: 22px;
+        flex-shrink: 0;
+        border: 0;
+        border-radius: 11px;
+        background: var(--fill);
+        cursor: pointer;
+        transition: background-color 0.18s ease;
+      }
+
+      .switch::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+        transition: transform 0.18s ease;
+      }
+
+      .switch[aria-checked='true'] {
+        background: var(--accent);
+      }
+
+      .switch[aria-checked='true']::after {
+        transform: translateX(16px);
+      }
+
+      input[type='range'] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 20px;
+        background: transparent;
+      }
+
+      input[type='range']::-webkit-slider-runnable-track {
+        height: 4px;
+        border-radius: 2px;
+        background: linear-gradient(
+          to right,
+          var(--accent) var(--pct, 50%),
+          var(--fill) var(--pct, 50%)
+        );
+      }
+
+      input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        margin-top: -6px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.3),
+          0 0 0 0.5px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 추이 스파크라인. 실제 history를 그린다. */
+      .spark {
+        display: block;
+        width: 100%;
+        height: 40px;
+        margin: 6px 0 10px;
+      }
+
+      /* Status Bar */
+      .statusBar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        height: 26px;
+        padding: 0 14px;
+        font-size: 11px;
+        color: var(--label2);
+        background: var(--panel);
+        border-top: 0.5px solid var(--sep);
+      }
+
+      .statusBar .mono {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--label3);
+      }
+
+      .empty {
+        padding: 48px 14px;
+        text-align: center;
+        color: var(--label3);
+      }
+
+      @media (max-width: 1080px) {
+        .body {
+          grid-template-columns: 176px minmax(0, 1fr);
+        }
+        .inspector {
+          display: none;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .toolbar {
+          height: auto;
+          flex-wrap: wrap;
+          padding: 10px 12px;
+          row-gap: 8px;
+        }
+        .searchField {
+          width: 100%;
+        }
+        .counts {
+          margin-left: 0;
+        }
+        .body {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .sidebar {
+          display: none;
+        }
+        /* 좁은 폭에서는 열을 접는다. Spread와 커플링은 상세에서 볼 수 있고,
+           Z-Score와 RS가 판단의 핵심이라 남긴다. */
+        th:nth-child(2),
+        td:nth-child(2),
+        th:nth-child(4),
+        td:nth-child(4),
+        th:nth-child(5),
+        td:nth-child(5) {
+          display: none;
+        }
+        td,
+        thead th {
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+        .name {
+          max-width: none;
+        }
+        .onlyNarrow {
+          display: inline;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .switch,
+        .switch::after {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div class="toolbar">
+        <div class="brand">
+          <h1>엇박</h1>
+          <span id="stamp">불러오는 중</span>
+        </div>
+
+        <div class="segmented" role="tablist" aria-label="정렬 기준">
+          <button type="button" role="tab" aria-selected="true" data-sort="zscore">Z-Score</button>
+          <button type="button" role="tab" aria-selected="false" data-sort="coupling">커플링</button>
+          <button type="button" role="tab" aria-selected="false" data-sort="rs">RS</button>
+        </div>
+
+        <label class="searchField">
+          <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+            <circle cx="6.2" cy="6.2" r="4.4" />
+            <path d="M9.6 9.6 13 13" />
+          </svg>
+          <input type="search" id="q" placeholder="그룹, 섹터, 종목" aria-label="검색" />
+        </label>
+
+        <dl class="counts">
+          <div><dt>그룹</dt><dd id="cGroups">-</dd></div>
+          <div><dt>경고</dt><dd id="cAlerts">-</dd></div>
+        </dl>
+      </div>
+
+      <div class="body">
+        <nav class="sidebar" aria-label="필터">
+          <h2>보기</h2>
+          <div id="views"></div>
+          <h2>섹터</h2>
+          <div id="sectors"></div>
+        </nav>
+
+        <div class="listWrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">그룹</th>
+                <th scope="col">섹터</th>
+                <th scope="col" class="num" aria-sort="descending">
+                  <button type="button" data-sort="zscore">Z-Score</button>
+                </th>
+                <th scope="col" class="num"><button type="button" data-sort="spread">Spread</button></th>
+                <th scope="col"><button type="button" data-sort="coupling">커플링</button></th>
+                <th scope="col" class="num"><button type="button" data-sort="rs">RS</button></th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+          <p class="empty" id="empty" hidden>조건에 맞는 그룹이 없습니다.</p>
+        </div>
+
+        <aside class="inspector" id="inspector" aria-label="상세"></aside>
+      </div>
+
+      <div class="statusBar">
+        <span id="status">-</span>
+        <span class="mono" style="margin-left: auto" id="thresholdLabel">Z 1.50</span>
+      </div>
+    </div>
+
+    <script>
+      const THRESHOLD = 1.5
+      const state = { data: null, view: 'all', sector: 'all', q: '', sort: 'zscore', selected: null, threshold: THRESHOLD }
+
+      const el = (id) => document.getElementById(id)
+      const signed = (v, d = 2) => (v > 0 ? '+' : '') + v.toFixed(d)
+
+      fetch('dashboard_data.json')
+        .then((r) => {
+          if (!r.ok) throw new Error('HTTP ' + r.status)
+          return r.json()
+        })
+        .then((d) => {
+          state.data = d
+          el('stamp').textContent = d.generated_at.replace('T', ' ') + ' 기준'
+          buildSidebar()
+          render()
+        })
+        .catch((e) => {
+          el('stamp').textContent = '데이터를 불러오지 못했습니다 (' + e.message + ')'
+        })
+
+      const VIEWS = [
+        ['all', '전체 그룹'],
+        ['alert', '경고'],
+        ['over', '오버슈팅'],
+        ['under', '언더슈팅'],
+      ]
+
+      function buildSidebar() {
+        const groups = state.data.groups
+        el('views').innerHTML = VIEWS.map(
+          ([id, label]) =>
+            `<button class="sourceItem" data-view="${id}" aria-current="${id === state.view}">${label}<b>${countFor(id, groups)}</b></button>`
+        ).join('')
+
+        const sectors = [...new Set(groups.map((g) => g.sector))].sort()
+        el('sectors').innerHTML =
+          `<button class="sourceItem" data-sector="all" aria-current="${state.sector === 'all'}">전체 섹터<b>${groups.length}</b></button>` +
+          sectors
+            .map(
+              (s) =>
+                `<button class="sourceItem" data-sector="${s}" aria-current="${state.sector === s}">${s}<b>${groups.filter((g) => g.sector === s).length}</b></button>`
+            )
+            .join('')
+      }
+
+      function countFor(id, groups) {
+        if (id === 'alert') return groups.filter((g) => g.alert).length
+        if (id === 'over') return groups.filter((g) => g.zscore >= state.threshold).length
+        if (id === 'under') return groups.filter((g) => g.zscore <= -state.threshold).length
+        return groups.length
+      }
+
+      function visible() {
+        let all = [...state.data.groups]
+        if (state.sector !== 'all') all = all.filter((g) => g.sector === state.sector)
+        if (state.view === 'alert') all = all.filter((g) => g.alert)
+        if (state.view === 'over') all = all.filter((g) => g.zscore >= state.threshold)
+        if (state.view === 'under') all = all.filter((g) => g.zscore <= -state.threshold)
+        const q = state.q.trim().toLowerCase()
+        if (q) {
+          all = all.filter((g) =>
+            [g.desc, g.sector, g.bellwether_name || '']
+              .concat((g.lead_tickers || []).map((t) => t.label))
+              .concat((g.lag_tickers || []).map((t) => t.label))
+              .some((v) => String(v).toLowerCase().includes(q))
+          )
+        }
+        const key = {
+          zscore: (g) => Math.abs(g.zscore),
+          spread: (g) => Math.abs(g.spread),
+          coupling: (g) => g.coupling?.strength ?? -1,
+          rs: (g) => g.bellwether_rs_rating ?? -1,
+        }[state.sort]
+        return all.sort((a, b) => key(b) - key(a))
+      }
+
+      function zClass(z) {
+        if (z >= state.threshold) return 'z z--over'
+        if (z <= -state.threshold) return 'z z--under'
+        return 'z'
+      }
+
+      function render() {
+        const list = visible()
+        el('cGroups').textContent = list.length
+        el('cAlerts').textContent = list.filter((g) => g.alert).length
+        el('empty').hidden = list.length > 0
+
+        el('rows').innerHTML = list
+          .map((g) => {
+            const strength = g.coupling?.strength
+            const pct = strength == null ? 0 : Math.min(100, Math.max(0, strength * 100))
+            const rs = g.bellwether_rs_rating
+            return `<tr data-key="${g.key}" aria-selected="${state.selected === g.key}">
+              <td><span class="name">${g.desc}</span><span class="sub"><span class="onlyNarrow">${g.sector} · </span>주도주 ${g.bellwether_name ?? '-'}</span></td>
+              <td class="sub">${g.sector}</td>
+              <td class="num"><span class="${zClass(g.zscore)}">${signed(g.zscore)}</span></td>
+              <td class="num sub">${signed(g.spread)}</td>
+              <td><span class="gauge" aria-hidden="true"><i style="width:${pct}%"></i></span><span class="sub">${strength == null ? '-' : strength.toFixed(2)}</span></td>
+              <td class="num"><span class="rs ${rs >= 80 ? 'rs--strong' : ''}">${rs ?? '-'}</span></td>
+            </tr>`
+          })
+          .join('')
+
+        for (const th of document.querySelectorAll('thead th')) th.removeAttribute('aria-sort')
+        const active = document.querySelector(`thead th button[data-sort="${state.sort}"]`)
+        if (active) active.closest('th').setAttribute('aria-sort', 'descending')
+
+        el('status').textContent = `${list.length}개 표시 · 전체 ${state.data.groups.length}개 · 경고 ${state.data.groups.filter((g) => g.alert).length}개`
+        el('thresholdLabel').textContent = 'Z ' + state.threshold.toFixed(2)
+        renderInspector(list)
+      }
+
+      function renderInspector(list) {
+        const g = state.data.groups.find((x) => x.key === state.selected) ?? list[0]
+        if (!g) {
+          el('inspector').innerHTML = ''
+          return
+        }
+        const h = g.history || []
+        el('inspector').innerHTML = `
+          <h2>${g.desc}</h2>
+          <span class="sub">${g.sector} · ${g.last_date ?? ''}</span>
+          ${spark(h)}
+          <dl style="margin:0">
+            <div class="row"><dt>Z-Score</dt><dd class="${zClass(g.zscore)}">${signed(g.zscore)}</dd></div>
+            <div class="row"><dt>Spread</dt><dd>${signed(g.spread)}</dd></div>
+            <div class="row"><dt>커플링</dt><dd>${g.coupling?.strength?.toFixed(2) ?? '-'}</dd></div>
+            <div class="row"><dt>주도주</dt><dd>${g.bellwether_name ?? '-'}</dd></div>
+            <div class="row"><dt>RS Rating</dt><dd>${g.bellwether_rs_rating ?? '-'}</dd></div>
+          </dl>
+          <div class="row">
+            <span>경고만 보기</span>
+            <button class="switch" type="button" role="switch" aria-checked="${state.view === 'alert'}" id="alertOnly" aria-label="경고만 보기"></button>
+          </div>
+          <div style="padding:8px 0 2px">
+            <div class="row" style="border:0;padding:0 0 2px">
+              <span>Z 임계값</span>
+              <span class="sub">${state.threshold.toFixed(1)}</span>
+            </div>
+            <input type="range" id="thr" min="0.5" max="3" step="0.1" value="${state.threshold}" aria-label="Z 임계값" />
+          </div>`
+
+        const thr = el('thr')
+        const pct = ((state.threshold - 0.5) / 2.5) * 100
+        thr.style.setProperty('--pct', pct + '%')
+        thr.addEventListener('input', () => {
+          state.threshold = Number(thr.value)
+          buildSidebar()
+          render()
+        })
+        el('alertOnly').addEventListener('click', () => {
+          state.view = state.view === 'alert' ? 'all' : 'alert'
+          buildSidebar()
+          render()
+        })
+      }
+
+      // 스파크라인. 값 범위를 그대로 쓰고 축은 그리지 않는다.
+      function spark(points) {
+        if (points.length < 2) return ''
+        const vals = points.map((p) => (typeof p === 'number' ? p : (p.zscore ?? p.spread ?? 0)))
+        const min = Math.min(...vals)
+        const max = Math.max(...vals)
+        const span = max - min || 1
+        const d = vals
+          .map((v, i) => {
+            const x = (i / (vals.length - 1)) * 100
+            const y = 34 - ((v - min) / span) * 30
+            return `${i ? 'L' : 'M'}${x.toFixed(2)} ${y.toFixed(2)}`
+          })
+          .join(' ')
+        const last = vals[vals.length - 1]
+        const color = last >= state.threshold ? 'var(--up)' : last <= -state.threshold ? 'var(--down)' : 'var(--label3)'
+        return `<svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none" aria-label="추이"><path d="${d}" fill="none" stroke="${color}" stroke-width="1.4" vector-effect="non-scaling-stroke" /></svg>`
+      }
+
+      // 이벤트 위임. 필터, 정렬, 선택 모두 한 곳에서 받는다.
+      document.querySelector('.sidebar').addEventListener('click', (e) => {
+        const btn = e.target.closest('.sourceItem')
+        if (!btn) return
+        if (btn.dataset.view) state.view = btn.dataset.view
+        if (btn.dataset.sector) state.sector = btn.dataset.sector
+        buildSidebar()
+        render()
+      })
+
+      document.querySelector('.segmented').addEventListener('click', (e) => {
+        const btn = e.target.closest('button')
+        if (!btn) return
+        state.sort = btn.dataset.sort
+        for (const b of document.querySelectorAll('.segmented button')) {
+          b.setAttribute('aria-selected', String(b === btn))
+        }
+        render()
+      })
+
+      document.querySelector('thead').addEventListener('click', (e) => {
+        const btn = e.target.closest('button')
+        if (!btn) return
+        state.sort = btn.dataset.sort
+        for (const b of document.querySelectorAll('.segmented button')) {
+          b.setAttribute('aria-selected', String(b.dataset.sort === state.sort))
+        }
+        render()
+      })
+
+      el('rows').addEventListener('click', (e) => {
+        const tr = e.target.closest('tr')
+        if (!tr) return
+        state.selected = tr.dataset.key
+        render()
+      })
+
+      el('q').addEventListener('input', (e) => {
+        state.q = e.target.value
+        render()
+      })
+    </script>
+  </body>
+</html>
