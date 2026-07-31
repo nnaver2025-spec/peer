@@ -17,6 +17,7 @@ import FomoTab from './FomoTab.jsx'
 import BacktestTab from './BacktestTab.jsx'
 import Freshness from './Freshness.jsx'
 import Disclaimer from './Disclaimer.jsx'
+import TabGuide from './TabGuide.jsx'
 import { THRESHOLD, TIER_RANK, isTrusted } from './zone.js'
 import { useTheme } from './theme.js'
 
@@ -298,7 +299,8 @@ export default function App() {
               </button>
             ))}
           </nav>
-          <div>
+          <div className="flex items-center gap-0.5">
+            <TabGuide tab={tab} />
             <ThemeToggle theme={theme} onToggle={toggleTheme} />
           </div>
         </div>
