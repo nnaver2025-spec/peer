@@ -29,7 +29,8 @@ export default function GroupCard({ group, onSelect }) {
           className={`flex shrink-0 items-center gap-1.5 text-[13px] ${coupling.chip}`}
         >
           <span className={`size-1.5 rounded-full ${coupling.dot}`} aria-hidden="true" />
-          {coupling.label}
+          {/* 카드에는 열 제목이 없으므로 무슨 값인지 밝힌다. */}
+          커플링 {coupling.label}
         </span>
       </header>
 

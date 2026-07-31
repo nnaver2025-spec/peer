@@ -28,11 +28,11 @@ def test_backtest_table_can_scroll_sideways():
     assert "overflow-x-auto" in source
 
 
-def test_coupling_label_collapses_to_a_dot_on_narrow_lists():
+def test_coupling_label_collapses_on_narrow_lists():
     """390px 화면에서 5개 열을 담으려면 커플링 라벨이 자리를 너무 먹는다.
 
-    '커플링 중' 텍스트가 77px를 차지해 RS가 밀려났다. 색 점만 남기고 등급은
-    title로 옮긴다.
+    라벨 텍스트가 77px를 차지해 RS가 밀려났다. 등급 막대만 남기고 이름은
+    셀 title로 옮긴다.
     """
     source = (SRC / "GroupTable.jsx").read_text(encoding="utf-8")
 

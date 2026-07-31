@@ -1,7 +1,7 @@
 import { ArrowDown, ArrowUp } from 'lucide-react'
 import Sparkline from './Sparkline.jsx'
 import ZBar from './ZBar.jsx'
-import { metaOf } from './coupling.js'
+import { metaOf, TIER_STEPS } from './coupling.js'
 import { isTrusted, ratingTone, signed, zoneOf } from './zone.js'
 
 export const COLUMNS = [
@@ -40,6 +40,22 @@ export const COLUMNS = [
 // 상세 패널이 열리면 목록 폭이 1200px대에서 830px대로 줄어든다. 그때 8개 열을
 // 모두 유지하려면 고정 폭이 아니라 컨테이너 폭에 따라 셀이 함께 좁아져야 한다.
 const CELL_X = 'px-3 @max-[1000px]:px-2 @max-[420px]:px-1.5'
+
+// 등급을 세 칸 막대로 보여준다. 색 점 하나로는 강약 서열이 읽히지 않았다.
+function TierMeter({ coupling }) {
+  return (
+    <span className="inline-flex shrink-0 items-center gap-0.5" aria-hidden="true">
+      {Array.from({ length: TIER_STEPS }, (_, i) => (
+        <span
+          key={i}
+          className={`h-2.5 w-[3px] rounded-sm ${
+            i < coupling.rank ? coupling.bar : 'bg-line'
+          }`}
+        />
+      ))}
+    </span>
+  )
+}
 
 function HeaderCell({ column, sort, onSort }) {
   const active = sort.key === column.id
@@ -123,10 +139,10 @@ function Row({ group, selected, onSelect }) {
           className="h-6 w-full"
         />
       </td>
-      <td className={`${CELL_X} py-2.5`} title={coupling.label}>
+      <td className={`${CELL_X} py-2.5`} title={`커플링 ${coupling.label} · ${coupling.note}`}>
         <span className={`inline-flex items-center gap-1.5 text-[13px] ${coupling.chip}`}>
-          <span className={`size-1.5 rounded-full ${coupling.dot}`} aria-hidden="true" />
-          {/* 가장 좁을 때는 색 점만 남긴다. 등급은 셀 title로 확인한다. */}
+          <TierMeter coupling={coupling} />
+          {/* 가장 좁을 때는 막대만 남긴다. 등급 이름은 셀 title로 확인한다. */}
           <span className="whitespace-nowrap @max-[420px]:hidden">{coupling.label}</span>
         </span>
       </td>
