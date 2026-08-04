@@ -40,6 +40,17 @@ function Article({ item, side }) {
           )}
         </span>
         <span className="flex flex-wrap items-center gap-x-2 text-[11px] text-faint">
+          {item.provider && (
+            <span
+              className={`rounded px-1 py-0.2 text-[10px] font-medium ${
+                item.provider === 'naver'
+                  ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
+                  : 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20'
+              }`}
+            >
+              {item.provider === 'naver' ? '네이버' : '구글'}
+            </span>
+          )}
           {item.source && <span>{item.source}</span>}
           {ago && <span>{ago}</span>}
           <span className={tone}>{words.join(' · ')}</span>

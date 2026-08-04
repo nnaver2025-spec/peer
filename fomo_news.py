@@ -113,6 +113,8 @@ class NewsItem:
     published: datetime | None
     positive: list[str] = field(default_factory=list)
     negative: list[str] = field(default_factory=list)
+    provider: str = "google"
+
 
     @property
     def side(self) -> str | None:
@@ -251,6 +253,7 @@ def fetch_naver(
                 published=published,
                 positive=positive,
                 negative=negative,
+                provider="naver",
             )
         )
     return items, None
@@ -555,6 +558,7 @@ def _item_payload(item: NewsItem) -> dict:
         "title": item.title,
         "url": item.url,
         "source": item.source,
+        "provider": item.provider,
         "published": item.published.isoformat() if item.published else None,
         "positive": item.positive,
         "negative": item.negative,
