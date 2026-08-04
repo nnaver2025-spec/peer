@@ -1,0 +1,8 @@
+name = "peer"
+compatibility_date = "2026-08-04"
+
+[build]
+command = "cd frontend && npm install && npm run build"
+
+[assets]
+directory = "./frontend/dist"
