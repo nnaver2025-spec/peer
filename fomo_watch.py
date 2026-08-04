@@ -118,7 +118,10 @@ def _collect_index_news() -> dict[str, dict[str, object]]:
     return {label: fomo_news.tone_payload(r) for label, r in results.items()}
 
 
-def _collect_news(sectors: list[str]) -> dict[str, object] | None:
+def _collect_news(
+    sectors: list[str],
+    members: dict[str, tuple[str, ...]] | None = None,
+) -> dict[str, object] | None:
     """섹터별 뉴스 논조를 받는다. 통째로 실패해도 회차를 살린다.
 
     검색어는 섹터 이름을 쓴다(`반도체 주가`). 대표주 이름으로 검색하면 표본이
@@ -132,7 +135,7 @@ def _collect_news(sectors: list[str]) -> dict[str, object] | None:
         return None
 
     try:
-        results = fomo_news.collect(sectors)
+        results = fomo_news.collect(sectors, members)
     except Exception as exc:                      # noqa: BLE001 - 회차를 잃지 않는다
         print(f"[뉴스] 수집 실패: {type(exc).__name__}: {exc}", file=sys.stderr)
         return None
@@ -454,7 +457,14 @@ def main(argv: list[str] | None = None) -> int:
             for s in (t.get("sector") or "기타" for t in targets)
             if not (s in seen or seen.add(s))
         ]
-        news = _collect_news(sectors)
+        # 섹터별 구성 종목명을 함께 넘긴다. 종목 기사가 그 섹터 논조의 실제
+        # 근거이므로, 섹터 고유어에 걸리지 않아도 남겨야 한다.
+        members: dict[str, list[str]] = {}
+        for t in targets:
+            name = t.get("name")
+            if name:
+                members.setdefault(t.get("sector") or "기타", []).append(name)
+        news = _collect_news(sectors, {k: tuple(v) for k, v in members.items()})
 
     for index, target in enumerate(targets, start=1):
         if index > 1:

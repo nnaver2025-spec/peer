@@ -26,6 +26,8 @@
 
 from __future__ import annotations
 
+import html as html_lib
+import os
 import re
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -42,6 +44,13 @@ import fomo_core as core
 RSS_URL = (
     "https://news.google.com/rss/search?q={query}&hl=ko&gl=KR&ceid=KR:ko"
 )
+# 네이버 뉴스 검색 API. 스크레이핑은 robots.txt가 전면 금지(`Disallow: /`)하므로
+# 공식 API만 쓴다. 하루 25,000회 무료이고 우리 사용량은 하루 300회 남짓이다.
+NAVER_URL = "https://openapi.naver.com/v1/search/news.json"
+NAVER_ID_ENV = "NAVER_CLIENT_ID"
+NAVER_SECRET_ENV = "NAVER_CLIENT_SECRET"
+# 한 검색어당 받을 건수. API 최댓값은 100이다.
+NAVER_DISPLAY = 100
 LOOKBACK_DAYS = 3
 TIMEOUT_SEC = 15
 MAX_WORKERS = 4      # 구글은 넉넉하지만 예의를 지킨다
@@ -144,6 +153,127 @@ def effective_half(title: str) -> str:
     return parts[-1] if len(parts) > 1 else title
 
 
+def naver_credentials() -> tuple[str, str] | None:
+    """네이버 API 키. 없으면 None이고 호출한 쪽이 그 소스를 건너뛴다.
+
+    키가 없어도 구글만으로 지표가 나와야 한다. 키를 넣는 순간 표본이 늘어나는
+    구조로 두어, 발급 전후에 코드를 고칠 일이 없게 한다.
+    """
+    cid = os.environ.get(NAVER_ID_ENV, "").strip()
+    secret = os.environ.get(NAVER_SECRET_ENV, "").strip()
+    return (cid, secret) if cid and secret else None
+
+
+def _clean_naver_title(raw: str) -> str:
+    """네이버는 검색어에 <b> 태그를 씌우고 HTML 엔티티를 그대로 준다.
+
+    태그가 남으면 감정 단어 매칭이 어긋나고(`<b>급등</b>`) 제목 기준 중복
+    제거도 실패한다.
+    """
+    return html_lib.unescape(re.sub(r"<[^>]+>", "", raw)).strip()
+
+
+def fetch_naver(
+    query: str,
+    session=None,
+    lookback_days: int | None = None,
+    allow: tuple[str, ...] = (),
+) -> tuple[list[NewsItem], str | None]:
+    """네이버 뉴스 검색 API로 최근 기사를 받는다.
+
+    구글 RSS와 같은 `NewsItem`을 돌려주므로 호출한 쪽에서 두 소스를 그냥 합칠 수
+    있다. 키가 없으면 빈 목록과 None을 준다(오류가 아니라 비활성이다).
+
+    `when:3d` 같은 기간 문법이 없어서 `sort=date`로 최신순을 받은 뒤 직접 자른다.
+    """
+    creds = naver_credentials()
+    if creds is None:
+        return [], None
+
+    cid, secret = creds
+    days = lookback_days or LOOKBACK_DAYS
+    own = session or _session()
+    res = None
+    last_error = None
+    for attempt in range(RETRY_COUNT + 1):
+        try:
+            res = own.get(
+                NAVER_URL,
+                params={"query": query, "display": NAVER_DISPLAY, "sort": "date"},
+                headers={
+                    "X-Naver-Client-Id": cid,
+                    "X-Naver-Client-Secret": secret,
+                    "User-Agent": core.UA,
+                },
+                timeout=TIMEOUT_SEC,
+            )
+            if res.status_code == 200:
+                break
+            last_error = f"HTTP {res.status_code}"
+            res = None
+        except Exception as exc:                  # noqa: BLE001 - 네트워크 사정은 다양하다
+            last_error = type(exc).__name__
+            res = None
+        if attempt < RETRY_COUNT:
+            time.sleep(RETRY_SLEEP_SEC * (attempt + 1))
+
+    if res is None:
+        return [], last_error or "실패"
+
+    try:
+        rows = res.json().get("items", [])
+    except ValueError:
+        return [], "JSON 아님"
+
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days + 1)
+    items: list[NewsItem] = []
+    for row in rows:
+        title = _clean_naver_title(row.get("title", ""))
+        if not title:
+            continue
+        if allow and not any(word in title for word in allow):
+            continue
+        published = None
+        if row.get("pubDate"):
+            try:
+                published = parsedate_to_datetime(row["pubDate"])
+            except (TypeError, ValueError):
+                published = None
+        if published and published < cutoff:
+            continue
+        positive, negative = match_words(title)
+        items.append(
+            NewsItem(
+                title=title,
+                # originallink는 언론사 원문이고 link는 네이버 중계다. 원문을 쓴다.
+                url=row.get("originallink") or row.get("link"),
+                source=_source_of(row.get("originallink") or ""),
+                published=published,
+                positive=positive,
+                negative=negative,
+            )
+        )
+    return items, None
+
+
+def _source_of(url: str) -> str:
+    """언론사 표기. 네이버 API는 매체명을 주지 않아 도메인으로 대신한다."""
+    m = re.match(r"https?://(?:www\.)?([^/]+)", url)
+    return m.group(1) if m else ""
+
+
+def _dedupe_key(title: str) -> str:
+    """두 소스가 같은 기사를 조금씩 다르게 준다.
+
+    구글 RSS는 제목 끝에 ` - 매체명`을 붙이고 네이버는 붙이지 않는다. 공백과
+    따옴표, 줄임표 표기도 갈린다(`급등세...`와 `급등세…`). 그대로 비교하면 같은
+    기사가 두 번 세어져 논조가 부풀려진다.
+    """
+    core_title = re.split(r"\s+-\s+[^-]+$", title)[0]
+    # 문장부호를 전부 지워 표기 차이를 흡수한다. 남는 건 글자와 숫자다.
+    return re.sub(r"[^0-9A-Za-z가-힣]+", "", core_title)
+
+
 def match_words(title: str) -> tuple[list[str], list[str]]:
     """제목에서 긍정/부정 어휘를 찾는다.
 
@@ -179,12 +309,18 @@ def fetch_sector(
     session=None,
     suffix: str = "주가",
     lookback_days: int | None = None,
+    allow: tuple[str, ...] = (),
 ) -> tuple[list[NewsItem], str | None]:
     """검색어 하나의 최근 기사를 받는다. 실패하면 빈 목록과 이유를 돌려준다.
 
     `suffix`로 검색어 꼬리를 바꾼다. 섹터는 `반도체 주가`가 맞지만 지수는
     `코스닥 지수`가 훨씬 낫다(실측: 코스닥 태그 49 -> 69, S&P500 24 -> 63).
     `주가`를 붙이면 개별 종목 기사가 섞이고 S&P500은 44건까지 줄었다.
+
+    `allow`가 있으면 제목에 그 단어가 있는 기사만 남긴다. 구글 뉴스는 검색어를
+    한 덩어리로 보고 관련도 순으로 돌려주므로, 걸러내지 않으면 섹터와 무관한
+    기사가 섞인다(실측: `광통신 주가` 27건 중 13건이 무관, 바이오 종목인
+    펩트론과 뉴욕증시 지수 기사까지 들어왔다).
     """
     days = lookback_days or LOOKBACK_DAYS
     query = quote(f"{sector} {suffix} when:{days}d")
@@ -219,6 +355,10 @@ def fetch_sector(
     for node in BeautifulSoup(res.text, "xml").find_all("item")[:PER_SECTOR_LIMIT]:
         title = (node.title.text if node.title else "").strip()
         if not title:
+            continue
+        # 섹터 어휘에 걸리지 않는 기사는 버린다. 점수는 제목 단어를 세어 내므로
+        # 무관한 기사가 섞이면 그 섹터 논조가 곧바로 왜곡된다.
+        if allow and not any(word in title for word in allow):
             continue
         published = None
         if node.pubDate:
@@ -272,12 +412,81 @@ def summarize(sector: str, items: list[NewsItem], error: str | None = None) -> S
     )
 
 
-def collect(sectors: list[str]) -> list[SectorNews]:
-    """섹터 목록을 병렬로 받는다. 한 섹터가 막혀도 나머지는 진행한다."""
+# 검색어를 섹터 실체에 맞게 바꾼다.
+#
+# 그룹 이름이 곧 좋은 검색어는 아니다. `AI인프라 주가`는 미국 AI 종목 기사만
+# 돌려줬는데(49건 중 우리 종목 관련 2건), 이 섹터의 실제 구성은 변압기·전력기기,
+# EPC 건설, 원전, 신재생이다. 검색어를 국내 테마어로 바꿔 표본을 되찾는다.
+SECTOR_QUERIES: dict[str, tuple[str, ...]] = {
+    "AI인프라": ("전력기기", "원전", "건설사", "신재생에너지"),
+    # `IP 주가`는 게임 IP와 International Paper까지 끌어온다. 이 섹터의 구성은
+    # 하이브·에스엠·JYP 같은 엔터와 콘텐츠 제작사다.
+    "IP": ("엔터주", "K팝", "콘텐츠주"),
+}
+
+
+# 섹터를 가리키는 고유 어휘. 종목명만으로는 부족한 경우를 메운다.
+#
+# 구글 뉴스가 `광통신 주가`를 한 덩어리로 보고 관련도 순으로 돌려주기 때문에
+# 걸러내지 않으면 섹터와 무관한 기사가 그 섹터 논조에 그대로 반영된다.
+# 종목명(구성 종목)과 아래 어휘 중 하나라도 제목에 있어야 통과시킨다.
+SECTOR_WORDS: dict[str, tuple[str, ...]] = {
+    "반도체": ("반도체", "메모리", "DRAM", "D램", "낸드", "NAND", "HBM", "파운드리", "웨이퍼"),
+    "AI인프라": ("전력", "변압기", "송전", "원전", "데이터센터", "전선", "케이블", "발전"),
+    "광통신": ("광통신", "광케이블", "트랜시버", "네트워크 장비", "통신장비", "광모듈"),
+    "조선": ("조선", "선박", "수주", "해운", "LNG선", "컨테이너선", "엔진"),
+    "방산": ("방산", "무기", "미사일", "전투기", "장갑차", "군수", "국방"),
+    "로봇": ("로봇", "협동로봇", "자동화", "감속기", "액추에이터"),
+    "우주": ("우주", "위성", "발사체", "로켓", "항공우주"),
+    "화학": ("화학", "배터리", "이차전지", "2차전지", "양극재", "음극재", "정유", "석유"),
+    "화장품": ("화장품", "뷰티", "ODM", "스킨", "코스메틱"),
+    "식품": ("식품", "라면", "제과", "음료", "건강기능식품"),
+    "IP": ("엔터", "아이돌", "콘텐츠", "드라마", "웹툰", "공연", "음반"),
+    "기계": ("건설기계", "굴착기", "농기계", "공작기계", "기계"),
+    "증권": ("증권", "은행", "금융지주", "보험", "카드"),
+    "지주": ("지주", "홀딩스", "그룹"),
+}
+
+
+def sector_allowlist(sector: str, members: tuple[str, ...] = ()) -> tuple[str, ...]:
+    """그 섹터 기사로 인정할 어휘. 구성 종목명 + 섹터 고유어."""
+    return tuple(dict.fromkeys((*members, *SECTOR_WORDS.get(sector, (sector,)))))
+
+
+def collect(
+    sectors: list[str],
+    members: dict[str, tuple[str, ...]] | None = None,
+) -> list[SectorNews]:
+    """섹터 목록을 병렬로 받는다. 한 섹터가 막혀도 나머지는 진행한다.
+
+    `members`로 섹터별 구성 종목명을 넘기면 그 이름이 제목에 있는 기사도
+    통과시킨다. 종목 기사가 섹터 논조의 실제 근거이므로 함께 남긴다.
+    """
+    names = members or {}
 
     def one(sector: str) -> SectorNews:
-        items, error = fetch_sector(sector)
-        return summarize(sector, items, error)
+        allow = sector_allowlist(sector, names.get(sector, ()))
+        queries = SECTOR_QUERIES.get(sector, (sector,))
+        merged: list[NewsItem] = []
+        seen: set[str] = set()
+        error = None
+        for query in queries:
+            # 구글 RSS와 네이버 API를 함께 받는다. 네이버 키가 없으면 그 소스만
+            # 조용히 비고 구글 결과로 지표가 나온다.
+            for items, err in (
+                fetch_sector(query, allow=allow),
+                fetch_naver(f"{query} 주가", allow=allow),
+            ):
+                error = error or err
+                for item in items:
+                    # 검색어가 여럿이고 소스도 둘이라 같은 기사가 겹친다.
+                    key = _dedupe_key(item.title)
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    merged.append(item)
+        # 하나라도 받았으면 성공으로 본다. 일부 검색어만 막히는 경우가 있다.
+        return summarize(sector, merged, None if merged else error)
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
         return list(pool.map(one, sectors))

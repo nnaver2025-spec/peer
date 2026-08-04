@@ -47,6 +47,11 @@ jobs:
       - name: collect sentiment
         id: sentiment
         continue-on-error: true
+        env:
+          # 네이버 뉴스 검색 API. 시크릿이 없으면 그 소스만 비고 구글 결과로
+          # 지표가 나온다(fomo_news.naver_credentials).
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
         run: python fomo_watch.py
 
       - name: collect backtest
