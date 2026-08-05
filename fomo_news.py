@@ -197,27 +197,47 @@ def fetch_naver(
     own = session or _session()
     res = None
     last_error = None
-    for attempt in range(RETRY_COUNT + 1):
-        try:
-            res = own.get(
-                NAVER_URL,
-                params={"query": query, "display": NAVER_DISPLAY, "sort": "date"},
-                headers={
-                    "X-Naver-Client-Id": cid,
-                    "X-Naver-Client-Secret": secret,
-                    "User-Agent": core.UA,
-                },
-                timeout=TIMEOUT_SEC,
-            )
-            if res.status_code == 200:
-                break
-            last_error = f"HTTP {res.status_code}"
-            res = None
-        except Exception as exc:                  # noqa: BLE001 - 네트워크 사정은 다양하다
-            last_error = type(exc).__name__
-            res = None
-        if attempt < RETRY_COUNT:
-            time.sleep(RETRY_SLEEP_SEC * (attempt + 1))
+
+    # NAVER API HUB (네이버 클라우드 플랫폼) 우선 시도, 실패 시 기존 개발자 센터 API 시도
+    targets = [
+        (
+            "https://naverapihub.apigw.ntruss.com/search/v1/news",
+            {
+                "X-NCP-APIGW-API-KEY-ID": cid,
+                "X-NCP-APIGW-API-KEY": secret,
+                "User-Agent": core.UA,
+            },
+        ),
+        (
+            "https://openapi.naver.com/v1/search/news.json",
+            {
+                "X-Naver-Client-Id": cid,
+                "X-Naver-Client-Secret": secret,
+                "User-Agent": core.UA,
+            },
+        ),
+    ]
+
+    for url, headers in targets:
+        for attempt in range(RETRY_COUNT + 1):
+            try:
+                res = own.get(
+                    url,
+                    params={"query": query, "display": NAVER_DISPLAY, "sort": "date"},
+                    headers=headers,
+                    timeout=TIMEOUT_SEC,
+                )
+                if res.status_code == 200:
+                    break
+                last_error = f"HTTP {res.status_code}"
+                res = None
+            except Exception as exc:                  # noqa: BLE001 - 네트워크 사정은 다양하다
+                last_error = type(exc).__name__
+                res = None
+            if attempt < RETRY_COUNT:
+                time.sleep(RETRY_SLEEP_SEC * (attempt + 1))
+        if res is not None:
+            break
 
     if res is None:
         return [], last_error or "실패"

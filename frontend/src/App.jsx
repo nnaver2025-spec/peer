@@ -42,9 +42,9 @@ function ThemeToggle({ theme, onToggle }) {
 
 const TABS = [
   // id는 ?tab= 링크와 localStorage에 저장된 값이라 라벨만 바꾼다.
-  { id: 'spread', label: '갭' },
-  { id: 'fomo', label: '분위기' },
-  { id: 'backtest', label: '검증' },
+  { id: 'spread', label: '괴리' },
+  { id: 'backtest', label: '기록' },
+  { id: 'fomo', label: '민심' },
 ]
 
 const FILTERS = [
@@ -60,31 +60,15 @@ const VIEW_KEY = 'peer:view'
 const DEFAULT_TAB = 'spread'
 
 // 사이드바와 모바일 시트가 같은 목록을 쓴다. 한쪽만 고치는 실수를 막는다.
-function FilterGroups({ filter, onFilter, sector, sectors, onSector }) {
+function FilterGroups({ sector, sectors, onSector }) {
   const itemClass = (active) =>
     `block w-full rounded-md px-2 py-1.5 text-left text-[14px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
       active ? 'bg-raised text-ink' : 'text-muted hover:bg-surface hover:text-ink'
     }`
 
   return (
-    <>
-      <div>
-        <p className="px-2 pb-1.5 text-[12px] text-faint">보기</p>
-        {FILTERS.map((f) => (
-          <button
-            key={f.id}
-            type="button"
-            onClick={() => onFilter(f.id)}
-            aria-pressed={filter === f.id}
-            className={itemClass(filter === f.id)}
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
-
-      <div>
-        <p className="px-2 pb-1.5 text-[12px] text-faint">섹터</p>
+    <div>
+      <p className="px-2 pb-1.5 text-[12px] text-faint">섹터</p>
         {['all', ...sectors].map((s) => (
           <button
             key={s}
@@ -97,7 +81,6 @@ function FilterGroups({ filter, onFilter, sector, sectors, onSector }) {
           </button>
         ))}
       </div>
-    </>
   )
 }
 
@@ -236,6 +219,9 @@ export default function App() {
     [data, selectedKey]
   )
 
+  const handleSelect = (key) =>
+    setSelectedKey((prev) => (prev === key ? null : key))
+
   const onSort = (key) =>
     setSort((prev) =>
       prev.key === key
@@ -277,10 +263,20 @@ export default function App() {
         {/* 헤더에는 탭과 무관하게 유효한 것만 둔다. Z 기준이나 그룹 수는
             스프레드 전용이라 그 탭 안으로 내렸다. */}
         <div className="flex min-w-0 items-center gap-x-2.5">
-          <h1 className="text-[22px] font-medium leading-tight text-ink">엇박</h1>
-          <p className="truncate text-[13px] text-faint max-[560px]:hidden">
-            해외가 먼저 간 자리
-          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setTab(DEFAULT_TAB)
+              setSelectedKey(null)
+            }}
+            title="갭(스프레드) 탭으로 이동"
+            className="flex items-baseline gap-x-2.5 rounded text-left transition-opacity hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+          >
+            <h1 className="text-[22px] font-medium leading-tight text-ink">엇박</h1>
+            <p className="truncate text-[13px] text-faint max-[560px]:hidden">
+              해외가 먼저 간 자리
+            </p>
+          </button>
           {/* 갱신 주기와 맞춰야 한다. Pages 무료 빌드 한도 때문에 워크플로를
               2시간 주기로 두었다(.github/workflows/update-data.yml). 0.5를 쓰면
               정상 갱신인데도 1시간 뒤부터 경고가 뜬다. */}
@@ -317,8 +313,6 @@ export default function App() {
         {isSpread && (
         <nav className="hidden w-[200px] shrink-0 flex-col gap-6 overflow-y-auto border-r border-line px-3 py-4 lg:flex">
           <FilterGroups
-            filter={filter}
-            onFilter={setFilter}
             sector={sector}
             sectors={sectors}
             onSector={setSector}
@@ -354,6 +348,55 @@ export default function App() {
                 </button>
               )}
             </label>
+
+            <div className="flex items-center gap-1.5 overflow-x-auto py-0.5 max-sm:w-full">
+              {FILTERS.map((f) => {
+                const active = filter === f.id
+                const badgeStyle =
+                  f.id === 'alert'
+                    ? active
+                      ? 'bg-amber-500/20 text-amber-600 dark:text-amber-400 border-amber-500/40 font-medium'
+                      : 'text-faint hover:text-ink hover:bg-surface border-transparent'
+                    : f.id === 'overshoot'
+                      ? active
+                        ? 'bg-rose-500/20 text-rose-600 dark:text-rose-400 border-rose-500/40 font-medium'
+                        : 'text-faint hover:text-ink hover:bg-surface border-transparent'
+                      : f.id === 'undershoot'
+                        ? active
+                          ? 'bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border-cyan-500/40 font-medium'
+                          : 'text-faint hover:text-ink hover:bg-surface border-transparent'
+                        : f.id === 'trusted'
+                          ? active
+                            ? 'bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-500/40 font-medium'
+                            : 'text-faint hover:text-ink hover:bg-surface border-transparent'
+                          : active
+                            ? 'bg-raised text-ink border-line-strong font-medium'
+                            : 'text-faint hover:text-ink hover:bg-surface border-transparent'
+
+                const labelWithIcon =
+                  f.id === 'alert'
+                    ? '⚠️ 경고'
+                    : f.id === 'trusted'
+                      ? '⚡ 커플링 유효'
+                      : f.id === 'overshoot'
+                        ? '🔥 오버슈팅'
+                        : f.id === 'undershoot'
+                          ? '🧊 언더슈팅'
+                          : f.label
+
+                return (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => setFilter(f.id)}
+                    aria-pressed={active}
+                    className={`shrink-0 rounded-full border px-2.5 py-1 text-[12px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${badgeStyle}`}
+                  >
+                    {labelWithIcon}
+                  </button>
+                )
+              })}
+            </div>
 
             <div className="flex items-center gap-3">
               <button
@@ -432,13 +475,13 @@ export default function App() {
                 sort={sort}
                 onSort={onSort}
                 selectedKey={selectedKey}
-                onSelect={setSelectedKey}
+                onSelect={handleSelect}
                 strongFloor={data.coupling_tiers?.strong}
               />
             ) : (
               <section className="grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-3">
                 {groups.map((g) => (
-                  <GroupCard key={g.key} group={g} onSelect={setSelectedKey} />
+                  <GroupCard key={g.key} group={g} onSelect={handleSelect} />
                 ))}
               </section>
             )}
@@ -478,11 +521,6 @@ export default function App() {
               </div>
               <div className="flex flex-col gap-5">
                 <FilterGroups
-                  filter={filter}
-                  onFilter={(v) => {
-                    setFilter(v)
-                    setFilterOpen(false)
-                  }}
                   sector={sector}
                   sectors={sectors}
                   onSector={(v) => {

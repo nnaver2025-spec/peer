@@ -20,7 +20,7 @@ def test_tab_ids_stay_stable_when_labels_change():
     """
     source = APP.read_text(encoding="utf-8")
 
-    for tab_id, label in (("spread", "갭"), ("fomo", "분위기"), ("backtest", "검증")):
+    for tab_id, label in (("spread", "괴리"), ("backtest", "기록"), ("fomo", "민심")):
         assert f"{{ id: '{tab_id}', label: '{label}' }}" in source
 
 

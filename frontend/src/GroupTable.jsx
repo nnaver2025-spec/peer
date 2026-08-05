@@ -5,37 +5,60 @@ import { corrPercent, metaOf } from './coupling.js'
 import { isTrusted, ratingTone, signed, zoneOf } from './zone.js'
 
 export const COLUMNS = [
-  { id: 'desc', label: '그룹', align: 'left', sortable: true },
-  // 섹터는 왼쪽 사이드바 필터로도 확인되므로 가장 마지막에 접는다.
+  {
+    id: 'desc',
+    label: '그룹',
+    align: 'left',
+    sortable: true,
+    title: '해외 주도주와 연결된 국내 섹터 및 후행주 그룹',
+  },
   {
     id: 'sector',
     label: '섹터',
     align: 'left',
     sortable: true,
     foldClass: '@max-[420px]:hidden',
+    title: '동일 산업 분류 (반도체, 2차전지 등)',
   },
-  // 셀 내용이 0을 중심으로 좌우 대칭이라 머리글도 가운데 세운다.
-  { id: 'zscore', label: 'Z-Score', align: 'center', sortable: true },
-  // Spread는 Z-Score와 같은 괴리를 다른 단위로 보여주므로 가장 좁을 때 접는다.
+  { id: 'zscore', label: 'Z-Score', align: 'center', sortable: true, title: '해외 대비 국내 주가의 치우침 정도 (±1.5 이상 시 괴리 발생)' },
   {
     id: 'spread',
     label: 'Spread',
     align: 'right',
     sortable: true,
     foldClass: '@max-[560px]:hidden',
+    title: '해외주와 국내주의 20일 누적 수익률 격차 (%)',
   },
-  // 목록이 700px 아래로 좁아지면 접는다. 커플링/주도주/RS가 판단에 더 쓰인다.
-  { id: 'trend', label: '추이', align: 'left', sortable: false, foldClass: '@max-[700px]:hidden' },
-  // 좁을 때 셀은 색 점만 남으므로 헤더 글자도 줄바꿈 없이 흘린다.
+  {
+    id: 'trend',
+    label: '추이',
+    align: 'left',
+    sortable: false,
+    foldClass: '@max-[700px]:hidden',
+    title: '최근 20일간의 Z-Score 변화 궤적',
+  },
   {
     id: 'coupling',
     label: '커플링',
     align: 'left',
     sortable: true,
     shortLabelClass: '@max-[420px]:hidden',
+    title: '해외주와 국내주의 동행/후행 상관관계 강도 (0.3 이상 권장)',
   },
-  { id: 'bellwether', label: '주도주', align: 'left', sortable: false },
-  { id: 'bellwether_rs_rating', label: 'RS', align: 'right', sortable: true },
+  {
+    id: 'bellwether',
+    label: '주도주',
+    align: 'left',
+    sortable: false,
+    title: '해외 시장 흐름을 이끄는 대표 선행 종목',
+  },
+  {
+    id: 'bellwether_rs_rating',
+    label: 'RS',
+    align: 'right',
+    sortable: true,
+    title: '국내 상장 종목 대비 상대적 상승 강도 백분위 (100이 최상위)',
+  },
 ]
 
 // 상세 패널이 열리면 목록 폭이 1200px대에서 830px대로 줄어든다. 그때 8개 열을
@@ -92,14 +115,22 @@ function HeaderCell({ column, sort, onSort }) {
 
   if (!column.sortable) {
     return (
-      <th scope="col" className={`${CELL_X} py-2 font-normal text-faint ${alignClass} ${fold}`}>
+      <th
+        scope="col"
+        title={column.title}
+        className={`${CELL_X} py-2 font-normal text-faint ${alignClass} ${fold}`}
+      >
         <span className={labelClass}>{column.label}</span>
       </th>
     )
   }
 
   return (
-    <th scope="col" className={`${CELL_X} py-2 font-normal ${alignClass} ${fold}`}>
+    <th
+      scope="col"
+      title={column.title}
+      className={`${CELL_X} py-2 font-normal ${alignClass} ${fold}`}
+    >
       <button
         type="button"
         onClick={() => onSort(column.id)}

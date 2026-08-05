@@ -13,11 +13,11 @@ function changeTone(value) {
 
 // 호버 시 뜨는 시세 카드. 브라우저 기본 title은 지연이 길고 스타일을 맞출 수
 // 없어 직접 띄운다. 키보드 포커스에서도 같이 열려 마우스 없이 확인 가능하다.
-function QuoteCard({ ticker, quote }) {
+function QuoteCard({ ticker, quote, positionClass }) {
   return (
     <span
       role="tooltip"
-      className="pointer-events-none absolute bottom-full left-0 z-30 mb-1 w-max rounded-md border border-line-strong bg-raised px-2.5 py-2 shadow-lg"
+      className={`pointer-events-none absolute bottom-full mb-1 z-30 w-max rounded-md border border-line-strong bg-raised px-2.5 py-2 shadow-lg ${positionClass}`}
     >
       <span className="tnum flex items-baseline gap-2">
         <span className="text-[15px] text-ink">{formatPrice(quote.close, ticker)}</span>
@@ -41,8 +41,30 @@ function QuoteCard({ ticker, quote }) {
 
 export default function TickerTag({ ticker }) {
   const [open, setOpen] = useState(false)
+  const [positionClass, setPositionClass] = useState('left-0')
   const quote = ticker.quote
   const canShow = Boolean(quote) && !ticker.missing
+
+  const handleOpen = (e) => {
+    if (e?.currentTarget) {
+      const parent = e.currentTarget.closest('section') || e.currentTarget.parentElement
+      if (parent) {
+        const parentRect = parent.getBoundingClientRect()
+        const tagRect = e.currentTarget.getBoundingClientRect()
+        const tagCenter = tagRect.left + tagRect.width / 2 - parentRect.left
+        const parentWidth = parentRect.width
+
+        if (tagCenter > parentWidth * 0.65) {
+          setPositionClass('right-0')
+        } else if (tagCenter < parentWidth * 0.35) {
+          setPositionClass('left-0')
+        } else {
+          setPositionClass('left-1/2 -translate-x-1/2')
+        }
+      }
+    }
+    setOpen(true)
+  }
 
   return (
     <span className="relative inline-block">
@@ -55,9 +77,9 @@ export default function TickerTag({ ticker }) {
             ? `${ticker.ticker} · 가격 데이터 없음 (계산 제외)`
             : `${ticker.ticker} 시세 보기`
         }
-        onMouseEnter={() => setOpen(true)}
+        onMouseEnter={handleOpen}
         onMouseLeave={() => setOpen(false)}
-        onFocus={() => setOpen(true)}
+        onFocus={handleOpen}
         onBlur={() => setOpen(false)}
         className={`group inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[13px] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
           ticker.missing
@@ -72,7 +94,9 @@ export default function TickerTag({ ticker }) {
           className="shrink-0 opacity-0 transition-opacity group-hover:opacity-60"
         />
       </a>
-      {open && canShow && <QuoteCard ticker={ticker.ticker} quote={quote} />}
+      {open && canShow && (
+        <QuoteCard ticker={ticker.ticker} quote={quote} positionClass={positionClass} />
+      )}
     </span>
   )
 }
