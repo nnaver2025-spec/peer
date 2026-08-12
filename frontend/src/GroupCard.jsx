@@ -11,6 +11,7 @@ export default function GroupCard({ group, onSelect }) {
   const { Icon } = zone
   const coupling = metaOf(group.coupling)
   const trusted = isTrusted(group)
+  const highs = group.recent_highs ?? []
 
   return (
     <article
@@ -19,7 +20,17 @@ export default function GroupCard({ group, onSelect }) {
     >
       <header className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h2 className="truncate text-[15px] font-medium leading-6 text-ink">{group.desc}</h2>
+          <h2 className="truncate text-[15px] font-medium leading-6 text-ink">
+            {group.desc}
+            {highs.length > 0 && (
+              <span
+                title={highs.map((h) => `${h.label} (${h.date})`).join('\n')}
+                className="ml-1.5 inline-flex items-center gap-0.5 rounded bg-amber-500/[0.12] px-1.5 py-0.5 text-[11px] font-semibold text-amber-500"
+              >
+                🔥 {highs.length}
+              </span>
+            )}
+          </h2>
           <p className="tnum mt-0.5 text-[13px] text-faint">
             {group.sector} · 해외 {group.lead_tickers.length} / 국내 {group.lag_tickers.length}
           </p>

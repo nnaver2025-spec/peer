@@ -117,7 +117,7 @@ SHEET_GROUPS: dict[str, dict[str, object]] = {
     "SHIP_Yard": {
         "sector": "조선",
         "desc": "조선",
-        "lead": ["600150.SS", "HII", "7003.T", "7011.T", "7014.T", "FCT.MI"],
+        "lead": ["600150.SS", "HII", "7003.T", "7011.T", "7014.T", "FCT.MI", "BS6.SI"],
         "lag": ["042660.KS", "010140.KS", "329180.KS", "009540.KS", "439260.KS", "097230.KS"],
     },
     "SHIP_Parts": {

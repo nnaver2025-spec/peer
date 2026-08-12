@@ -88,6 +88,14 @@ export default function TickerTag({ ticker }) {
         }`}
       >
         {ticker.label}
+        {ticker.is_recent_high && (
+          <span
+            title={`신고가 · ${ticker.high_date}`}
+            className="ml-0.5 text-[11px]"
+          >
+            🔥
+          </span>
+        )}
         <ExternalLink
           size={10}
           aria-hidden="true"

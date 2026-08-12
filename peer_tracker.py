@@ -77,6 +77,9 @@ COUPLING_TIERS = (                  # (등급, 최소 커플링 상관)
 
 OUTPUT_PATH = Path(__file__).parent / "frontend" / "public" / "dashboard_data.json"
 
+HIGH_PERSIST_DAYS = 7
+NEW_HIGHS_PATH = Path(__file__).parent / "frontend" / "public" / "new_highs.json"
+
 
 def label_of(ticker: str) -> str:
     """티커를 표시명으로 바꾼다.
@@ -398,6 +401,69 @@ def rolling_zscore(series: pd.Series) -> pd.Series:
     return z.replace([float("inf"), float("-inf")], float("nan")).dropna()
 
 
+
+def load_new_highs() -> dict[str, str]:
+    """티커 → 신고가 날짜(ISO). 파일이 없거나 손상되면 빈 dict."""
+    if not NEW_HIGHS_PATH.exists():
+        return {}
+    try:
+        return json.loads(NEW_HIGHS_PATH.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def save_new_highs(data: dict[str, str]) -> None:
+    """신고가 기록 저장."""
+    NEW_HIGHS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    NEW_HIGHS_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def detect_new_highs(closes: dict[str, 'pd.Series']) -> None:
+    """각 티커의 종가 시리즈에서 신고가를 감지해 new_highs.json에 기록.
+
+    이미 저장된 신고가 날짜가 있으면 그 이후 데이터만 확인한다.
+    7일이 지난 기록은 자동으로 제거한다.
+    """
+    today = date.today()
+    cutoff = today - timedelta(days=HIGH_PERSIST_DAYS)
+    stored = load_new_highs()
+
+    fresh = {t: d for t, d in stored.items() if d >= cutoff.isoformat()}
+
+    for ticker, series in closes.items():
+        if series.empty:
+            continue
+
+        prev_high_date = stored.get(ticker)
+        if prev_high_date:
+            try:
+                since = max(pd.Timestamp(prev_high_date), series.index[0])
+            except Exception:
+                since = series.index[0]
+        else:
+            since = series.index[0]
+
+        recent = series.loc[series.index >= since]
+        if len(recent) < 2:
+            continue
+
+        rolling_max = recent.shift(1).expanding().max()
+        new_high_mask = recent >= rolling_max * 0.999
+
+        new_high_dates = recent.index[new_high_mask & recent.index.to_series().apply(
+            lambda d: d.date() >= cutoff
+        )]
+
+        if len(new_high_dates) > 0:
+            latest = new_high_dates[-1].date().isoformat()
+            if latest > fresh.get(ticker, ""):
+                fresh[ticker] = latest
+
+    if fresh != stored:
+        save_new_highs(fresh)
+
+
+
 def analyze_group(
     key: str,
     cfg: dict,
@@ -503,16 +569,39 @@ def analyze_group(
             f"internal_z={z_text} top_pick={label_of(top_pick) if top_pick else 'n/a'}"
         )
 
+    # 최근 7일 이내 신고가를 찍은 티커 집합. 개별 태그에 뱃지 표시용.
+    highs_data = load_new_highs()
+    today = date.today()
+    recent_cutoff = today - timedelta(days=HIGH_PERSIST_DAYS)
+    recent_high_tickers: set[str] = {
+        t for t, d in highs_data.items() if d >= recent_cutoff.isoformat()
+    }
+    recent_highs: list[dict] = [
+        {"ticker": t, "label": label_of(t), "date": highs_data[t]}
+        for t in cfg["lead_tickers"] + cfg["lag_tickers"]
+        if t in recent_high_tickers
+    ]
+
     return {
         "key": key,
         "sector": cfg.get("sector", "기타"),
         "desc": cfg["desc"],
         "lead_tickers": [
-            {"ticker": t, "label": label_of(t), "missing": t in missing, "quote": quote_of(t)}
+            {
+                "ticker": t, "label": label_of(t), "missing": t in missing,
+                "quote": quote_of(t),
+                "is_recent_high": t in recent_high_tickers,
+                "high_date": highs_data.get(t),
+            }
             for t in cfg["lead_tickers"]
         ],
         "lag_tickers": [
-            {"ticker": t, "label": label_of(t), "missing": t in missing, "quote": quote_of(t)}
+            {
+                "ticker": t, "label": label_of(t), "missing": t in missing,
+                "quote": quote_of(t),
+                "is_recent_high": t in recent_high_tickers,
+                "high_date": highs_data.get(t),
+            }
             for t in cfg["lag_tickers"]
         ],
         "base_date": common[0].date().isoformat(),
@@ -547,6 +636,7 @@ def analyze_group(
         "alert": abs(latest_z) >= ALERT_THRESHOLD and tier in ("strong", "moderate"),
         "coupling": coupling,
         "direction": "overshoot" if latest_z > 0 else "undershoot",
+        "recent_highs": recent_highs,
         "history": [
             {
                 "date": idx.date().isoformat(),
@@ -590,6 +680,9 @@ def main() -> None:
     if unresolved:
         print(f"최종 누락: {', '.join(unresolved)}")
     print()
+
+    print("신고가 감지 중...")
+    detect_new_highs(closes)
 
     # 시가총액은 Top Pick(대장주) 표시용이라 국내(lag) 티커만 받는다.
     lag_universe = sorted(
