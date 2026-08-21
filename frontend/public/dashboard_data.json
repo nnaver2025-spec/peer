@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T10:36:55",
+  "generated_at": "2026-08-21T12:59:25",
   "period": {
     "start": "2026-02-19",
     "end": "2026-08-21"
@@ -1024,9 +1024,9 @@
           "label": "EXO.AS",
           "missing": false,
           "quote": {
-            "close": 70.7,
-            "change": 1.43,
-            "period": -2.04,
+            "close": 70.65,
+            "change": 1.36,
+            "period": -2.11,
             "date": "2026-08-21"
           }
         }
@@ -1134,10 +1134,10 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 105.49,
+      "lead_index": 105.46,
       "lag_index": 120.15,
-      "spread": 14.66,
-      "zscore": 0.83,
+      "spread": 14.68,
+      "zscore": 0.84,
       "bellwether_ticker": "402340.KS",
       "bellwether_name": "SK스퀘어",
       "bellwether_rs": 198.67,
@@ -1471,8 +1471,8 @@
         },
         {
           "date": "2026-08-21",
-          "spread": 14.66,
-          "z": 0.83
+          "spread": 14.68,
+          "z": 0.84
         }
       ]
     },
@@ -1497,9 +1497,9 @@
           "label": "ABBN.SW",
           "missing": false,
           "quote": {
-            "close": 80.1,
-            "change": 0.63,
-            "period": 16.25,
+            "close": 80.54,
+            "change": 1.18,
+            "period": 16.89,
             "date": "2026-08-21"
           }
         },
@@ -1673,10 +1673,10 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 101.93,
+      "lead_index": 102.14,
       "lag_index": 59.2,
-      "spread": -42.72,
-      "zscore": 0.65,
+      "spread": -42.93,
+      "zscore": 0.61,
       "bellwether_ticker": "108490.KQ",
       "bellwether_name": "로보티즈",
       "bellwether_rs": 89.44,
@@ -2010,8 +2010,8 @@
         },
         {
           "date": "2026-08-21",
-          "spread": -42.72,
-          "z": 0.65
+          "spread": -42.93,
+          "z": 0.61
         }
       ]
     },
@@ -2485,6 +2485,523 @@
           "date": "2026-08-21",
           "spread": -21.76,
           "z": 0.37
+        }
+      ]
+    },
+    {
+      "key": "POWR_Renewable",
+      "sector": "AI인프라",
+      "desc": "신재생",
+      "lead_tickers": [
+        {
+          "ticker": "BE",
+          "label": "BE",
+          "missing": false,
+          "quote": {
+            "close": 202.48,
+            "change": -2.01,
+            "period": 27.35,
+            "date": "2026-08-20"
+          }
+        },
+        {
+          "ticker": "FSLR",
+          "label": "FSLR",
+          "missing": false,
+          "quote": {
+            "close": 214.06,
+            "change": -3.75,
+            "period": -8.25,
+            "date": "2026-08-20"
+          }
+        },
+        {
+          "ticker": "ENPH",
+          "label": "ENPH",
+          "missing": false,
+          "quote": {
+            "close": 38.36,
+            "change": -2.57,
+            "period": -13.31,
+            "date": "2026-08-20"
+          }
+        },
+        {
+          "ticker": "VWS.CO",
+          "label": "VWS.CO",
+          "missing": false,
+          "quote": {
+            "close": 210.6,
+            "change": -0.89,
+            "period": 32.35,
+            "date": "2026-08-21"
+          }
+        }
+      ],
+      "lag_tickers": [
+        {
+          "ticker": "126340.KQ",
+          "label": "비나텍",
+          "missing": false,
+          "quote": {
+            "close": 62100.0,
+            "change": -7.45,
+            "period": -46.0,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "089890.KQ",
+          "label": "코세스",
+          "missing": false,
+          "quote": {
+            "close": 22050.0,
+            "change": -10.0,
+            "period": -0.23,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "322000.KS",
+          "label": "HD현대에너지솔루션",
+          "missing": false,
+          "quote": {
+            "close": 125400.0,
+            "change": -9.85,
+            "period": 39.96,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "009830.KS",
+          "label": "한화솔루션",
+          "missing": false,
+          "quote": {
+            "close": 32050.0,
+            "change": -8.95,
+            "period": -45.21,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "100090.KS",
+          "label": "SK오션플랜트",
+          "missing": false,
+          "quote": {
+            "close": 13030.0,
+            "change": -4.61,
+            "period": -30.58,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "475150.KS",
+          "label": "SK이터닉스",
+          "missing": false,
+          "quote": {
+            "close": 51300.0,
+            "change": -8.39,
+            "period": 80.63,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "112610.KS",
+          "label": "씨에스윈드",
+          "missing": false,
+          "quote": {
+            "close": 46550.0,
+            "change": -3.82,
+            "period": -7.64,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "297090.KQ",
+          "label": "씨에스베어링",
+          "missing": false,
+          "quote": {
+            "close": 3760.0,
+            "change": -3.22,
+            "period": -46.21,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "010060.KS",
+          "label": "OCI홀딩스",
+          "missing": false,
+          "quote": {
+            "close": 265000.0,
+            "change": -8.62,
+            "period": 67.3,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "005090.KS",
+          "label": "SGC에너지",
+          "missing": false,
+          "quote": {
+            "close": 62800.0,
+            "change": 0.48,
+            "period": 36.37,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "336260.KS",
+          "label": "두산퓨얼셀",
+          "missing": false,
+          "quote": {
+            "close": 37000.0,
+            "change": -8.98,
+            "period": 0.82,
+            "date": "2026-08-21"
+          }
+        }
+      ],
+      "base_date": "2026-02-19",
+      "last_date": "2026-08-21",
+      "lead_index": 109.53,
+      "lag_index": 104.47,
+      "spread": -5.06,
+      "zscore": 0.32,
+      "bellwether_ticker": "475150.KS",
+      "bellwether_name": "SK이터닉스",
+      "bellwether_rs": 180.63,
+      "bellwether_rs_rating": 95,
+      "bellwether_index": 180.63,
+      "top_pick_ticker": "009830.KS",
+      "top_pick_name": "한화솔루션",
+      "rest_index": 96.86,
+      "internal_spread": -83.78,
+      "bellwether_z_score": 0.66,
+      "bellwether_alert": false,
+      "z_extreme": false,
+      "alert": false,
+      "coupling": {
+        "tier": "strong",
+        "strength": 0.35,
+        "lead_channel": "next_day",
+        "corr": 0.13,
+        "corr_lag1": 0.35,
+        "sample_days": 1617,
+        "sample_from": "2020-01-02",
+        "by_year": {
+          "2020": 0.13,
+          "2021": 0.17,
+          "2022": 0.13,
+          "2023": 0.19,
+          "2024": 0.19,
+          "2025": 0.12,
+          "2026": 0.06
+        },
+        "year_min": 0.06,
+        "year_max": 0.19,
+        "negative_years": 0
+      },
+      "direction": "overshoot",
+      "history": [
+        {
+          "date": "2026-05-27",
+          "spread": 6.78,
+          "z": -1.25
+        },
+        {
+          "date": "2026-05-28",
+          "spread": 0.16,
+          "z": -1.43
+        },
+        {
+          "date": "2026-05-29",
+          "spread": -3.6,
+          "z": -1.46
+        },
+        {
+          "date": "2026-06-01",
+          "spread": -1.5,
+          "z": -1.23
+        },
+        {
+          "date": "2026-06-02",
+          "spread": -18.11,
+          "z": -1.85
+        },
+        {
+          "date": "2026-06-04",
+          "spread": -13.25,
+          "z": -1.46
+        },
+        {
+          "date": "2026-06-05",
+          "spread": -3.69,
+          "z": -0.89
+        },
+        {
+          "date": "2026-06-08",
+          "spread": -16.38,
+          "z": -1.43
+        },
+        {
+          "date": "2026-06-09",
+          "spread": -9.6,
+          "z": -0.99
+        },
+        {
+          "date": "2026-06-10",
+          "spread": 4.22,
+          "z": -0.11
+        },
+        {
+          "date": "2026-06-11",
+          "spread": -3.52,
+          "z": -0.51
+        },
+        {
+          "date": "2026-06-12",
+          "spread": -0.43,
+          "z": -0.21
+        },
+        {
+          "date": "2026-06-15",
+          "spread": 2.1,
+          "z": 0.12
+        },
+        {
+          "date": "2026-06-16",
+          "spread": 16.06,
+          "z": 1.43
+        },
+        {
+          "date": "2026-06-17",
+          "spread": 9.82,
+          "z": 0.98
+        },
+        {
+          "date": "2026-06-18",
+          "spread": -12.2,
+          "z": -1.18
+        },
+        {
+          "date": "2026-06-19",
+          "spread": -18.48,
+          "z": -1.62
+        },
+        {
+          "date": "2026-06-22",
+          "spread": -26.34,
+          "z": -2.03
+        },
+        {
+          "date": "2026-06-23",
+          "spread": -26.5,
+          "z": -1.77
+        },
+        {
+          "date": "2026-06-24",
+          "spread": -28.06,
+          "z": -1.67
+        },
+        {
+          "date": "2026-06-25",
+          "spread": -20.21,
+          "z": -0.95
+        },
+        {
+          "date": "2026-06-26",
+          "spread": -20.39,
+          "z": -0.87
+        },
+        {
+          "date": "2026-06-29",
+          "spread": -14.8,
+          "z": -0.38
+        },
+        {
+          "date": "2026-06-30",
+          "spread": -19.78,
+          "z": -0.71
+        },
+        {
+          "date": "2026-07-01",
+          "spread": -3.72,
+          "z": 0.52
+        },
+        {
+          "date": "2026-07-02",
+          "spread": -9.38,
+          "z": 0.05
+        },
+        {
+          "date": "2026-07-03",
+          "spread": -12.78,
+          "z": -0.18
+        },
+        {
+          "date": "2026-07-06",
+          "spread": -24.87,
+          "z": -1.09
+        },
+        {
+          "date": "2026-07-07",
+          "spread": -20.52,
+          "z": -0.7
+        },
+        {
+          "date": "2026-07-08",
+          "spread": -23.53,
+          "z": -0.84
+        },
+        {
+          "date": "2026-07-09",
+          "spread": -24.85,
+          "z": -0.86
+        },
+        {
+          "date": "2026-07-10",
+          "spread": -15.43,
+          "z": -0.06
+        },
+        {
+          "date": "2026-07-13",
+          "spread": -13.91,
+          "z": 0.14
+        },
+        {
+          "date": "2026-07-14",
+          "spread": -21.32,
+          "z": -0.44
+        },
+        {
+          "date": "2026-07-15",
+          "spread": -14.24,
+          "z": 0.68
+        },
+        {
+          "date": "2026-07-16",
+          "spread": -11.33,
+          "z": 1.11
+        },
+        {
+          "date": "2026-07-20",
+          "spread": -9.38,
+          "z": 1.28
+        },
+        {
+          "date": "2026-07-21",
+          "spread": -13.54,
+          "z": 0.59
+        },
+        {
+          "date": "2026-07-22",
+          "spread": -6.38,
+          "z": 1.52
+        },
+        {
+          "date": "2026-07-23",
+          "spread": 16.53,
+          "z": 3.26
+        },
+        {
+          "date": "2026-07-24",
+          "spread": 19.91,
+          "z": 2.68
+        },
+        {
+          "date": "2026-07-27",
+          "spread": -2.69,
+          "z": 0.72
+        },
+        {
+          "date": "2026-07-28",
+          "spread": -10.67,
+          "z": 0.04
+        },
+        {
+          "date": "2026-07-29",
+          "spread": -16.22,
+          "z": -0.45
+        },
+        {
+          "date": "2026-07-30",
+          "spread": -27.88,
+          "z": -1.28
+        },
+        {
+          "date": "2026-07-31",
+          "spread": -18.77,
+          "z": -0.5
+        },
+        {
+          "date": "2026-08-03",
+          "spread": -21.08,
+          "z": -0.64
+        },
+        {
+          "date": "2026-08-04",
+          "spread": -15.89,
+          "z": -0.27
+        },
+        {
+          "date": "2026-08-05",
+          "spread": -7.74,
+          "z": 0.34
+        },
+        {
+          "date": "2026-08-06",
+          "spread": -11.12,
+          "z": 0.02
+        },
+        {
+          "date": "2026-08-07",
+          "spread": -11.24,
+          "z": -0.05
+        },
+        {
+          "date": "2026-08-10",
+          "spread": -4.66,
+          "z": 0.48
+        },
+        {
+          "date": "2026-08-11",
+          "spread": -6.02,
+          "z": 0.32
+        },
+        {
+          "date": "2026-08-12",
+          "spread": -13.5,
+          "z": -0.38
+        },
+        {
+          "date": "2026-08-13",
+          "spread": -5.96,
+          "z": 0.26
+        },
+        {
+          "date": "2026-08-14",
+          "spread": -4.4,
+          "z": 0.37
+        },
+        {
+          "date": "2026-08-18",
+          "spread": -1.57,
+          "z": 0.59
+        },
+        {
+          "date": "2026-08-19",
+          "spread": -2.68,
+          "z": 0.44
+        },
+        {
+          "date": "2026-08-20",
+          "spread": 2.51,
+          "z": 0.85
+        },
+        {
+          "date": "2026-08-21",
+          "spread": -5.06,
+          "z": 0.32
         }
       ]
     },
@@ -3061,519 +3578,486 @@
       ]
     },
     {
-      "key": "POWR_Renewable",
-      "sector": "AI인프라",
-      "desc": "신재생",
+      "key": "SHIP_Yard",
+      "sector": "조선",
+      "desc": "조선",
       "lead_tickers": [
         {
-          "ticker": "BE",
-          "label": "BE",
+          "ticker": "600150.SS",
+          "label": "China CSSC Holdings",
           "missing": false,
           "quote": {
-            "close": 202.48,
-            "change": -2.01,
-            "period": 27.35,
+            "close": 33.68,
+            "change": 2.09,
+            "period": -8.72,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "HII",
+          "label": "HII",
+          "missing": false,
+          "quote": {
+            "close": 301.4,
+            "change": -3.32,
+            "period": -31.48,
             "date": "2026-08-20"
           }
         },
         {
-          "ticker": "FSLR",
-          "label": "FSLR",
+          "ticker": "7003.T",
+          "label": "Mitsui E&S",
           "missing": false,
           "quote": {
-            "close": 214.06,
-            "change": -3.75,
-            "period": -8.25,
-            "date": "2026-08-20"
+            "close": 4144.0,
+            "change": -1.43,
+            "period": -46.28,
+            "date": "2026-08-21"
           }
         },
         {
-          "ticker": "ENPH",
-          "label": "ENPH",
+          "ticker": "7011.T",
+          "label": "Mitsubishi Heavy Industries",
           "missing": false,
           "quote": {
-            "close": 38.36,
-            "change": -2.57,
-            "period": -13.31,
-            "date": "2026-08-20"
+            "close": 3932.0,
+            "change": -3.01,
+            "period": -20.37,
+            "date": "2026-08-21"
           }
         },
         {
-          "ticker": "VWS.CO",
-          "label": "VWS.CO",
+          "ticker": "7014.T",
+          "label": "Namura Shipbuilding",
           "missing": false,
           "quote": {
-            "close": 211.7,
-            "change": -0.38,
-            "period": 33.04,
+            "close": 4420.0,
+            "change": -3.6,
+            "period": -22.35,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "FCT.MI",
+          "label": "FCT.MI",
+          "missing": false,
+          "quote": {
+            "close": 12.45,
+            "change": 0.24,
+            "period": -14.26,
             "date": "2026-08-21"
           }
         }
       ],
       "lag_tickers": [
         {
-          "ticker": "126340.KQ",
-          "label": "비나텍",
+          "ticker": "042660.KS",
+          "label": "한화오션",
           "missing": false,
           "quote": {
-            "close": 62100.0,
-            "change": -7.45,
-            "period": -46.0,
+            "close": 84200.0,
+            "change": -4.86,
+            "period": -40.11,
             "date": "2026-08-21"
           }
         },
         {
-          "ticker": "089890.KQ",
-          "label": "코세스",
+          "ticker": "010140.KS",
+          "label": "삼성중공업",
           "missing": false,
           "quote": {
-            "close": 22050.0,
-            "change": -10.0,
-            "period": -0.23,
+            "close": 20200.0,
+            "change": -2.88,
+            "period": -30.1,
             "date": "2026-08-21"
           }
         },
         {
-          "ticker": "322000.KS",
-          "label": "HD현대에너지솔루션",
+          "ticker": "329180.KS",
+          "label": "HD현대중공업",
           "missing": false,
           "quote": {
-            "close": 125400.0,
-            "change": -9.85,
-            "period": 39.96,
+            "close": 453000.0,
+            "change": -4.73,
+            "period": -19.57,
             "date": "2026-08-21"
           }
         },
         {
-          "ticker": "009830.KS",
-          "label": "한화솔루션",
+          "ticker": "009540.KS",
+          "label": "HD한국조선해양",
           "missing": false,
           "quote": {
-            "close": 32050.0,
-            "change": -8.95,
-            "period": -45.21,
+            "close": 348500.0,
+            "change": -3.33,
+            "period": -14.48,
             "date": "2026-08-21"
           }
         },
         {
-          "ticker": "100090.KS",
-          "label": "SK오션플랜트",
+          "ticker": "439260.KS",
+          "label": "대한조선",
           "missing": false,
           "quote": {
-            "close": 13030.0,
-            "change": -4.61,
-            "period": -30.58,
+            "close": 49050.0,
+            "change": -2.68,
+            "period": -36.13,
             "date": "2026-08-21"
           }
         },
         {
-          "ticker": "475150.KS",
-          "label": "SK이터닉스",
+          "ticker": "097230.KS",
+          "label": "HJ중공업",
           "missing": false,
           "quote": {
-            "close": 51300.0,
-            "change": -8.39,
-            "period": 80.63,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "112610.KS",
-          "label": "씨에스윈드",
-          "missing": false,
-          "quote": {
-            "close": 46550.0,
-            "change": -3.82,
-            "period": -7.64,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "297090.KQ",
-          "label": "씨에스베어링",
-          "missing": false,
-          "quote": {
-            "close": 3760.0,
-            "change": -3.22,
-            "period": -46.21,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "010060.KS",
-          "label": "OCI홀딩스",
-          "missing": false,
-          "quote": {
-            "close": 265000.0,
-            "change": -8.62,
-            "period": 67.3,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "005090.KS",
-          "label": "SGC에너지",
-          "missing": false,
-          "quote": {
-            "close": 62800.0,
-            "change": 0.48,
-            "period": 36.37,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "336260.KS",
-          "label": "두산퓨얼셀",
-          "missing": false,
-          "quote": {
-            "close": 37000.0,
-            "change": -8.98,
-            "period": 0.82,
+            "close": 16940.0,
+            "change": -3.97,
+            "period": -33.57,
             "date": "2026-08-21"
           }
         }
       ],
-      "base_date": "2026-02-19",
+      "base_date": "2026-02-24",
       "last_date": "2026-08-21",
-      "lead_index": 109.71,
-      "lag_index": 104.47,
-      "spread": -5.23,
-      "zscore": 0.3,
-      "bellwether_ticker": "475150.KS",
-      "bellwether_name": "SK이터닉스",
-      "bellwether_rs": 180.63,
-      "bellwether_rs_rating": 95,
-      "bellwether_index": 180.63,
-      "top_pick_ticker": "009830.KS",
-      "top_pick_name": "한화솔루션",
-      "rest_index": 96.86,
-      "internal_spread": -83.78,
-      "bellwether_z_score": 0.66,
+      "lead_index": 76.68,
+      "lag_index": 67.47,
+      "spread": -9.21,
+      "zscore": -0.29,
+      "bellwether_ticker": "009540.KS",
+      "bellwether_name": "HD한국조선해양",
+      "bellwether_rs": 78.98,
+      "bellwether_rs_rating": 58,
+      "bellwether_index": 78.98,
+      "top_pick_ticker": "329180.KS",
+      "top_pick_name": "HD현대중공업",
+      "rest_index": 65.17,
+      "internal_spread": -13.8,
+      "bellwether_z_score": 1.48,
       "bellwether_alert": false,
       "z_extreme": false,
       "alert": false,
       "coupling": {
         "tier": "strong",
         "strength": 0.35,
-        "lead_channel": "next_day",
-        "corr": 0.13,
-        "corr_lag1": 0.35,
-        "sample_days": 1617,
+        "lead_channel": "same_day",
+        "corr": 0.35,
+        "corr_lag1": 0.11,
+        "sample_days": 1626,
         "sample_from": "2020-01-02",
         "by_year": {
-          "2020": 0.13,
-          "2021": 0.17,
-          "2022": 0.13,
-          "2023": 0.19,
-          "2024": 0.19,
-          "2025": 0.12,
-          "2026": 0.06
+          "2020": 0.35,
+          "2021": 0.26,
+          "2022": 0.27,
+          "2023": 0.2,
+          "2024": 0.27,
+          "2025": 0.44,
+          "2026": 0.49
         },
-        "year_min": 0.06,
-        "year_max": 0.19,
+        "year_min": 0.2,
+        "year_max": 0.49,
         "negative_years": 0
       },
-      "direction": "overshoot",
+      "direction": "undershoot",
       "history": [
         {
           "date": "2026-05-27",
-          "spread": 6.78,
-          "z": -1.25
+          "spread": 18.13,
+          "z": 0.29
         },
         {
           "date": "2026-05-28",
-          "spread": 0.16,
-          "z": -1.43
+          "spread": 13.91,
+          "z": -0.73
         },
         {
           "date": "2026-05-29",
-          "spread": -3.6,
-          "z": -1.46
+          "spread": 14.76,
+          "z": -0.43
         },
         {
           "date": "2026-06-01",
-          "spread": -1.5,
-          "z": -1.23
+          "spread": 17.37,
+          "z": 0.35
         },
         {
           "date": "2026-06-02",
-          "spread": -18.11,
-          "z": -1.85
+          "spread": 15.81,
+          "z": -0.05
         },
         {
           "date": "2026-06-04",
-          "spread": -13.25,
-          "z": -1.46
+          "spread": 15.89,
+          "z": 0.04
         },
         {
           "date": "2026-06-05",
-          "spread": -3.69,
-          "z": -0.89
+          "spread": 13.83,
+          "z": -0.53
         },
         {
           "date": "2026-06-08",
-          "spread": -16.38,
-          "z": -1.43
+          "spread": 10.08,
+          "z": -1.56
         },
         {
           "date": "2026-06-09",
-          "spread": -9.6,
-          "z": -0.99
+          "spread": 10.95,
+          "z": -1.16
         },
         {
           "date": "2026-06-10",
-          "spread": 4.22,
-          "z": -0.11
+          "spread": 14.41,
+          "z": 0.05
         },
         {
           "date": "2026-06-11",
-          "spread": -3.52,
-          "z": -0.51
+          "spread": 12.74,
+          "z": -0.49
         },
         {
           "date": "2026-06-12",
-          "spread": -0.43,
-          "z": -0.21
+          "spread": 15.22,
+          "z": 0.44
         },
         {
           "date": "2026-06-15",
-          "spread": 2.1,
-          "z": 0.12
+          "spread": 19.68,
+          "z": 1.9
         },
         {
           "date": "2026-06-16",
-          "spread": 16.06,
-          "z": 1.43
+          "spread": 19.53,
+          "z": 1.61
         },
         {
           "date": "2026-06-17",
-          "spread": 9.82,
-          "z": 0.98
+          "spread": 20.16,
+          "z": 1.6
         },
         {
           "date": "2026-06-18",
-          "spread": -12.2,
-          "z": -1.18
+          "spread": 17.41,
+          "z": 0.67
         },
         {
           "date": "2026-06-19",
-          "spread": -18.48,
-          "z": -1.62
+          "spread": 16.22,
+          "z": 0.19
         },
         {
           "date": "2026-06-22",
-          "spread": -26.34,
-          "z": -2.03
+          "spread": 11.65,
+          "z": -1.37
         },
         {
           "date": "2026-06-23",
-          "spread": -26.5,
-          "z": -1.77
+          "spread": 6.57,
+          "z": -2.44
         },
         {
           "date": "2026-06-24",
-          "spread": -28.06,
-          "z": -1.67
+          "spread": 8.91,
+          "z": -1.56
         },
         {
           "date": "2026-06-25",
-          "spread": -20.21,
-          "z": -0.95
+          "spread": 8.65,
+          "z": -1.45
         },
         {
           "date": "2026-06-26",
-          "spread": -20.39,
-          "z": -0.87
+          "spread": 6.74,
+          "z": -1.7
         },
         {
           "date": "2026-06-29",
-          "spread": -14.8,
+          "spread": 12.12,
           "z": -0.38
         },
         {
           "date": "2026-06-30",
-          "spread": -19.78,
-          "z": -0.71
+          "spread": 8.15,
+          "z": -1.19
         },
         {
           "date": "2026-07-01",
-          "spread": -3.72,
-          "z": 0.52
-        },
-        {
-          "date": "2026-07-02",
-          "spread": -9.38,
-          "z": 0.05
-        },
-        {
-          "date": "2026-07-03",
-          "spread": -12.78,
-          "z": -0.18
-        },
-        {
-          "date": "2026-07-06",
-          "spread": -24.87,
-          "z": -1.09
-        },
-        {
-          "date": "2026-07-07",
-          "spread": -20.52,
-          "z": -0.7
-        },
-        {
-          "date": "2026-07-08",
-          "spread": -23.53,
-          "z": -0.84
-        },
-        {
-          "date": "2026-07-09",
-          "spread": -24.85,
+          "spread": 9.18,
           "z": -0.86
         },
         {
+          "date": "2026-07-02",
+          "spread": 5.3,
+          "z": -1.55
+        },
+        {
+          "date": "2026-07-03",
+          "spread": 4.14,
+          "z": -1.58
+        },
+        {
+          "date": "2026-07-06",
+          "spread": -0.07,
+          "z": -2.05
+        },
+        {
+          "date": "2026-07-07",
+          "spread": -5.74,
+          "z": -2.4
+        },
+        {
+          "date": "2026-07-08",
+          "spread": -7.03,
+          "z": -2.13
+        },
+        {
+          "date": "2026-07-09",
+          "spread": -7.32,
+          "z": -1.84
+        },
+        {
           "date": "2026-07-10",
-          "spread": -15.43,
-          "z": -0.06
+          "spread": -5.58,
+          "z": -1.45
         },
         {
           "date": "2026-07-13",
-          "spread": -13.91,
-          "z": 0.14
+          "spread": -6.42,
+          "z": -1.4
         },
         {
           "date": "2026-07-14",
-          "spread": -21.32,
-          "z": -0.44
+          "spread": -9.3,
+          "z": -1.55
         },
         {
           "date": "2026-07-15",
-          "spread": -14.24,
-          "z": 0.68
+          "spread": -8.68,
+          "z": -1.37
         },
         {
           "date": "2026-07-16",
-          "spread": -11.33,
-          "z": 1.11
+          "spread": -6.38,
+          "z": -1.02
         },
         {
           "date": "2026-07-20",
-          "spread": -9.38,
-          "z": 1.28
+          "spread": -9.19,
+          "z": -1.25
         },
         {
           "date": "2026-07-21",
-          "spread": -13.54,
-          "z": 0.59
+          "spread": -10.39,
+          "z": -1.27
         },
         {
           "date": "2026-07-22",
-          "spread": -6.38,
-          "z": 1.52
+          "spread": -9.91,
+          "z": -1.09
         },
         {
           "date": "2026-07-23",
-          "spread": 16.53,
-          "z": 3.26
-        },
-        {
-          "date": "2026-07-24",
-          "spread": 19.91,
-          "z": 2.68
-        },
-        {
-          "date": "2026-07-27",
-          "spread": -2.69,
-          "z": 0.72
-        },
-        {
-          "date": "2026-07-28",
-          "spread": -10.67,
-          "z": 0.04
-        },
-        {
-          "date": "2026-07-29",
-          "spread": -16.22,
-          "z": -0.45
-        },
-        {
-          "date": "2026-07-30",
-          "spread": -27.88,
-          "z": -1.28
-        },
-        {
-          "date": "2026-07-31",
-          "spread": -18.77,
+          "spread": -5.7,
           "z": -0.5
         },
         {
-          "date": "2026-08-03",
-          "spread": -21.08,
+          "date": "2026-07-24",
+          "spread": -7.21,
+          "z": -0.62
+        },
+        {
+          "date": "2026-07-27",
+          "spread": -7.93,
           "z": -0.64
         },
         {
+          "date": "2026-07-28",
+          "spread": -12.98,
+          "z": -1.3
+        },
+        {
+          "date": "2026-07-29",
+          "spread": -14.72,
+          "z": -1.48
+        },
+        {
+          "date": "2026-07-30",
+          "spread": -13.15,
+          "z": -1.22
+        },
+        {
+          "date": "2026-07-31",
+          "spread": -10.93,
+          "z": -0.75
+        },
+        {
+          "date": "2026-08-03",
+          "spread": -11.4,
+          "z": -0.87
+        },
+        {
           "date": "2026-08-04",
-          "spread": -15.89,
-          "z": -0.27
+          "spread": -8.97,
+          "z": -0.01
         },
         {
           "date": "2026-08-05",
-          "spread": -7.74,
-          "z": 0.34
+          "spread": -6.17,
+          "z": 1.06
         },
         {
           "date": "2026-08-06",
-          "spread": -11.12,
-          "z": 0.02
+          "spread": -6.73,
+          "z": 0.83
         },
         {
           "date": "2026-08-07",
-          "spread": -11.24,
-          "z": -0.05
+          "spread": -6.82,
+          "z": 0.79
         },
         {
           "date": "2026-08-10",
-          "spread": -4.66,
-          "z": 0.48
+          "spread": -4.13,
+          "z": 1.69
         },
         {
           "date": "2026-08-11",
-          "spread": -6.02,
-          "z": 0.32
+          "spread": -6.06,
+          "z": 0.99
         },
         {
           "date": "2026-08-12",
-          "spread": -13.5,
-          "z": -0.38
+          "spread": -5.96,
+          "z": 0.94
         },
         {
           "date": "2026-08-13",
-          "spread": -5.96,
-          "z": 0.26
+          "spread": -6.99,
+          "z": 0.55
         },
         {
           "date": "2026-08-14",
-          "spread": -4.4,
-          "z": 0.37
+          "spread": -5.39,
+          "z": 1.07
         },
         {
           "date": "2026-08-18",
-          "spread": -1.57,
-          "z": 0.59
+          "spread": -8.19,
+          "z": 0.1
         },
         {
           "date": "2026-08-19",
-          "spread": -2.68,
-          "z": 0.44
+          "spread": -7.18,
+          "z": 0.39
         },
         {
           "date": "2026-08-20",
-          "spread": 2.51,
-          "z": 0.85
+          "spread": -7.27,
+          "z": 0.32
         },
         {
           "date": "2026-08-21",
-          "spread": -5.23,
-          "z": 0.3
+          "spread": -9.21,
+          "z": -0.29
         }
       ]
     },
@@ -4234,490 +4718,6 @@
           "date": "2026-08-21",
           "spread": -39.33,
           "z": 0.29
-        }
-      ]
-    },
-    {
-      "key": "SHIP_Yard",
-      "sector": "조선",
-      "desc": "조선",
-      "lead_tickers": [
-        {
-          "ticker": "600150.SS",
-          "label": "China CSSC Holdings",
-          "missing": false,
-          "quote": {
-            "close": 33.68,
-            "change": 2.09,
-            "period": -8.72,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "HII",
-          "label": "HII",
-          "missing": false,
-          "quote": {
-            "close": 301.4,
-            "change": -3.32,
-            "period": -31.48,
-            "date": "2026-08-20"
-          }
-        },
-        {
-          "ticker": "7003.T",
-          "label": "Mitsui E&S",
-          "missing": false,
-          "quote": {
-            "close": 4144.0,
-            "change": -1.43,
-            "period": -46.28,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "7011.T",
-          "label": "Mitsubishi Heavy Industries",
-          "missing": false,
-          "quote": {
-            "close": 3932.0,
-            "change": -3.01,
-            "period": -20.37,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "7014.T",
-          "label": "Namura Shipbuilding",
-          "missing": false,
-          "quote": {
-            "close": 4420.0,
-            "change": -3.6,
-            "period": -22.35,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "FCT.MI",
-          "label": "FCT.MI",
-          "missing": false,
-          "quote": {
-            "close": 12.39,
-            "change": -0.24,
-            "period": -14.67,
-            "date": "2026-08-21"
-          }
-        }
-      ],
-      "lag_tickers": [
-        {
-          "ticker": "042660.KS",
-          "label": "한화오션",
-          "missing": false,
-          "quote": {
-            "close": 84200.0,
-            "change": -4.86,
-            "period": -40.11,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "010140.KS",
-          "label": "삼성중공업",
-          "missing": false,
-          "quote": {
-            "close": 20200.0,
-            "change": -2.88,
-            "period": -30.1,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "329180.KS",
-          "label": "HD현대중공업",
-          "missing": false,
-          "quote": {
-            "close": 453000.0,
-            "change": -4.73,
-            "period": -19.57,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "009540.KS",
-          "label": "HD한국조선해양",
-          "missing": false,
-          "quote": {
-            "close": 348500.0,
-            "change": -3.33,
-            "period": -14.48,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "439260.KS",
-          "label": "대한조선",
-          "missing": false,
-          "quote": {
-            "close": 49050.0,
-            "change": -2.68,
-            "period": -36.13,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "097230.KS",
-          "label": "HJ중공업",
-          "missing": false,
-          "quote": {
-            "close": 16940.0,
-            "change": -3.97,
-            "period": -33.57,
-            "date": "2026-08-21"
-          }
-        }
-      ],
-      "base_date": "2026-02-24",
-      "last_date": "2026-08-21",
-      "lead_index": 76.61,
-      "lag_index": 67.47,
-      "spread": -9.14,
-      "zscore": -0.27,
-      "bellwether_ticker": "009540.KS",
-      "bellwether_name": "HD한국조선해양",
-      "bellwether_rs": 78.98,
-      "bellwether_rs_rating": 58,
-      "bellwether_index": 78.98,
-      "top_pick_ticker": "329180.KS",
-      "top_pick_name": "HD현대중공업",
-      "rest_index": 65.17,
-      "internal_spread": -13.8,
-      "bellwether_z_score": 1.48,
-      "bellwether_alert": false,
-      "z_extreme": false,
-      "alert": false,
-      "coupling": {
-        "tier": "strong",
-        "strength": 0.35,
-        "lead_channel": "same_day",
-        "corr": 0.35,
-        "corr_lag1": 0.11,
-        "sample_days": 1626,
-        "sample_from": "2020-01-02",
-        "by_year": {
-          "2020": 0.35,
-          "2021": 0.26,
-          "2022": 0.27,
-          "2023": 0.2,
-          "2024": 0.27,
-          "2025": 0.44,
-          "2026": 0.5
-        },
-        "year_min": 0.2,
-        "year_max": 0.5,
-        "negative_years": 0
-      },
-      "direction": "undershoot",
-      "history": [
-        {
-          "date": "2026-05-27",
-          "spread": 18.13,
-          "z": 0.29
-        },
-        {
-          "date": "2026-05-28",
-          "spread": 13.91,
-          "z": -0.73
-        },
-        {
-          "date": "2026-05-29",
-          "spread": 14.76,
-          "z": -0.43
-        },
-        {
-          "date": "2026-06-01",
-          "spread": 17.37,
-          "z": 0.35
-        },
-        {
-          "date": "2026-06-02",
-          "spread": 15.81,
-          "z": -0.05
-        },
-        {
-          "date": "2026-06-04",
-          "spread": 15.89,
-          "z": 0.04
-        },
-        {
-          "date": "2026-06-05",
-          "spread": 13.83,
-          "z": -0.53
-        },
-        {
-          "date": "2026-06-08",
-          "spread": 10.08,
-          "z": -1.56
-        },
-        {
-          "date": "2026-06-09",
-          "spread": 10.95,
-          "z": -1.16
-        },
-        {
-          "date": "2026-06-10",
-          "spread": 14.41,
-          "z": 0.05
-        },
-        {
-          "date": "2026-06-11",
-          "spread": 12.74,
-          "z": -0.49
-        },
-        {
-          "date": "2026-06-12",
-          "spread": 15.22,
-          "z": 0.44
-        },
-        {
-          "date": "2026-06-15",
-          "spread": 19.68,
-          "z": 1.9
-        },
-        {
-          "date": "2026-06-16",
-          "spread": 19.53,
-          "z": 1.61
-        },
-        {
-          "date": "2026-06-17",
-          "spread": 20.16,
-          "z": 1.6
-        },
-        {
-          "date": "2026-06-18",
-          "spread": 17.41,
-          "z": 0.67
-        },
-        {
-          "date": "2026-06-19",
-          "spread": 16.22,
-          "z": 0.19
-        },
-        {
-          "date": "2026-06-22",
-          "spread": 11.65,
-          "z": -1.37
-        },
-        {
-          "date": "2026-06-23",
-          "spread": 6.57,
-          "z": -2.44
-        },
-        {
-          "date": "2026-06-24",
-          "spread": 8.91,
-          "z": -1.56
-        },
-        {
-          "date": "2026-06-25",
-          "spread": 8.65,
-          "z": -1.45
-        },
-        {
-          "date": "2026-06-26",
-          "spread": 6.74,
-          "z": -1.7
-        },
-        {
-          "date": "2026-06-29",
-          "spread": 12.12,
-          "z": -0.38
-        },
-        {
-          "date": "2026-06-30",
-          "spread": 8.15,
-          "z": -1.19
-        },
-        {
-          "date": "2026-07-01",
-          "spread": 9.18,
-          "z": -0.86
-        },
-        {
-          "date": "2026-07-02",
-          "spread": 5.3,
-          "z": -1.55
-        },
-        {
-          "date": "2026-07-03",
-          "spread": 4.14,
-          "z": -1.58
-        },
-        {
-          "date": "2026-07-06",
-          "spread": -0.07,
-          "z": -2.05
-        },
-        {
-          "date": "2026-07-07",
-          "spread": -5.74,
-          "z": -2.4
-        },
-        {
-          "date": "2026-07-08",
-          "spread": -7.03,
-          "z": -2.13
-        },
-        {
-          "date": "2026-07-09",
-          "spread": -7.32,
-          "z": -1.84
-        },
-        {
-          "date": "2026-07-10",
-          "spread": -5.58,
-          "z": -1.45
-        },
-        {
-          "date": "2026-07-13",
-          "spread": -6.42,
-          "z": -1.4
-        },
-        {
-          "date": "2026-07-14",
-          "spread": -9.3,
-          "z": -1.55
-        },
-        {
-          "date": "2026-07-15",
-          "spread": -8.68,
-          "z": -1.37
-        },
-        {
-          "date": "2026-07-16",
-          "spread": -6.38,
-          "z": -1.02
-        },
-        {
-          "date": "2026-07-20",
-          "spread": -9.19,
-          "z": -1.25
-        },
-        {
-          "date": "2026-07-21",
-          "spread": -10.39,
-          "z": -1.27
-        },
-        {
-          "date": "2026-07-22",
-          "spread": -9.91,
-          "z": -1.09
-        },
-        {
-          "date": "2026-07-23",
-          "spread": -5.7,
-          "z": -0.5
-        },
-        {
-          "date": "2026-07-24",
-          "spread": -7.21,
-          "z": -0.62
-        },
-        {
-          "date": "2026-07-27",
-          "spread": -7.93,
-          "z": -0.64
-        },
-        {
-          "date": "2026-07-28",
-          "spread": -12.98,
-          "z": -1.3
-        },
-        {
-          "date": "2026-07-29",
-          "spread": -14.72,
-          "z": -1.48
-        },
-        {
-          "date": "2026-07-30",
-          "spread": -13.15,
-          "z": -1.22
-        },
-        {
-          "date": "2026-07-31",
-          "spread": -10.93,
-          "z": -0.75
-        },
-        {
-          "date": "2026-08-03",
-          "spread": -11.4,
-          "z": -0.87
-        },
-        {
-          "date": "2026-08-04",
-          "spread": -8.97,
-          "z": -0.01
-        },
-        {
-          "date": "2026-08-05",
-          "spread": -6.17,
-          "z": 1.06
-        },
-        {
-          "date": "2026-08-06",
-          "spread": -6.73,
-          "z": 0.83
-        },
-        {
-          "date": "2026-08-07",
-          "spread": -6.82,
-          "z": 0.79
-        },
-        {
-          "date": "2026-08-10",
-          "spread": -4.13,
-          "z": 1.69
-        },
-        {
-          "date": "2026-08-11",
-          "spread": -6.06,
-          "z": 0.99
-        },
-        {
-          "date": "2026-08-12",
-          "spread": -5.96,
-          "z": 0.94
-        },
-        {
-          "date": "2026-08-13",
-          "spread": -6.99,
-          "z": 0.55
-        },
-        {
-          "date": "2026-08-14",
-          "spread": -5.39,
-          "z": 1.07
-        },
-        {
-          "date": "2026-08-18",
-          "spread": -8.19,
-          "z": 0.1
-        },
-        {
-          "date": "2026-08-19",
-          "spread": -7.18,
-          "z": 0.39
-        },
-        {
-          "date": "2026-08-20",
-          "spread": -7.27,
-          "z": 0.32
-        },
-        {
-          "date": "2026-08-21",
-          "spread": -9.14,
-          "z": -0.27
         }
       ]
     },
@@ -5732,9 +5732,9 @@
           "label": "FCT.MI",
           "missing": false,
           "quote": {
-            "close": 12.39,
-            "change": -0.24,
-            "period": -14.67,
+            "close": 12.45,
+            "change": 0.24,
+            "period": -14.26,
             "date": "2026-08-21"
           }
         }
@@ -5864,10 +5864,10 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 74.08,
+      "lead_index": 74.19,
       "lag_index": 72.82,
-      "spread": -1.27,
-      "zscore": 0.12,
+      "spread": -1.37,
+      "zscore": 0.1,
       "bellwether_ticker": "443060.KS",
       "bellwether_name": "HD현대마린솔루션",
       "bellwether_rs": 116.14,
@@ -6201,514 +6201,8 @@
         },
         {
           "date": "2026-08-21",
-          "spread": -1.27,
-          "z": 0.12
-        }
-      ]
-    },
-    {
-      "key": "POWR_Transformer",
-      "sector": "AI인프라",
-      "desc": "변압기/전력기기",
-      "lead_tickers": [
-        {
-          "ticker": "GEV",
-          "label": "GEV",
-          "missing": false,
-          "quote": {
-            "close": 966.01,
-            "change": -2.17,
-            "period": 15.87,
-            "date": "2026-08-20"
-          }
-        },
-        {
-          "ticker": "ENR.DE",
-          "label": "ENR.DE",
-          "missing": false,
-          "quote": {
-            "close": 153.7,
-            "change": 0.73,
-            "period": -6.0,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "6501.T",
-          "label": "Hitachi",
-          "missing": false,
-          "quote": {
-            "close": 5196.0,
-            "change": -1.27,
-            "period": 4.69,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "6503.T",
-          "label": "Mitsubishi Electric",
-          "missing": false,
-          "quote": {
-            "close": 5602.0,
-            "change": -0.94,
-            "period": -1.7,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "6504.T",
-          "label": "Fuji Electric",
-          "missing": false,
-          "quote": {
-            "close": 13885.0,
-            "change": 1.83,
-            "period": 16.53,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "5803.T",
-          "label": "Fujikura",
-          "missing": false,
-          "quote": {
-            "close": 5280.0,
-            "change": -1.14,
-            "period": 38.69,
-            "date": "2026-08-21"
-          }
-        }
-      ],
-      "lag_tickers": [
-        {
-          "ticker": "267260.KS",
-          "label": "HD현대일렉트릭",
-          "missing": false,
-          "quote": {
-            "close": 718000.0,
-            "change": -3.75,
-            "period": -25.19,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "298040.KS",
-          "label": "효성중공업",
-          "missing": false,
-          "quote": {
-            "close": 2721000.0,
-            "change": -4.76,
-            "period": 10.93,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "010120.KS",
-          "label": "LS일렉트릭",
-          "missing": false,
-          "quote": {
-            "close": 187000.0,
-            "change": -6.12,
-            "period": 38.87,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "062040.KS",
-          "label": "산일전기",
-          "missing": false,
-          "quote": {
-            "close": 164800.0,
-            "change": -8.04,
-            "period": 12.65,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "103590.KS",
-          "label": "일진전기",
-          "missing": false,
-          "quote": {
-            "close": 65600.0,
-            "change": -6.29,
-            "period": -8.12,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "033100.KQ",
-          "label": "제룡전기",
-          "missing": false,
-          "quote": {
-            "close": 46250.0,
-            "change": -2.84,
-            "period": -13.71,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "000500.KS",
-          "label": "가온전선",
-          "missing": false,
-          "quote": {
-            "close": 158200.0,
-            "change": -4.06,
-            "period": 218.07,
-            "date": "2026-08-21"
-          }
-        },
-        {
-          "ticker": "001440.KS",
-          "label": "대한전선",
-          "missing": false,
-          "quote": {
-            "close": 26650.0,
-            "change": -6.0,
-            "period": -18.38,
-            "date": "2026-08-21"
-          }
-        }
-      ],
-      "base_date": "2026-02-19",
-      "last_date": "2026-08-21",
-      "lead_index": 111.35,
-      "lag_index": 126.89,
-      "spread": 15.54,
-      "zscore": 0.09,
-      "bellwether_ticker": "000500.KS",
-      "bellwether_name": "가온전선",
-      "bellwether_rs": 318.07,
-      "bellwether_rs_rating": 100,
-      "bellwether_index": 318.07,
-      "top_pick_ticker": "010120.KS",
-      "top_pick_name": "LS일렉트릭",
-      "rest_index": 99.58,
-      "internal_spread": -218.5,
-      "bellwether_z_score": -0.27,
-      "bellwether_alert": false,
-      "z_extreme": false,
-      "alert": false,
-      "coupling": {
-        "tier": "strong",
-        "strength": 0.43,
-        "lead_channel": "same_day",
-        "corr": 0.43,
-        "corr_lag1": 0.12,
-        "sample_days": 1612,
-        "sample_from": "2020-01-06",
-        "by_year": {
-          "2020": 0.38,
-          "2021": 0.33,
-          "2022": 0.42,
-          "2023": 0.27,
-          "2024": 0.43,
-          "2025": 0.51,
-          "2026": 0.55
-        },
-        "year_min": 0.27,
-        "year_max": 0.55,
-        "negative_years": 0
-      },
-      "direction": "overshoot",
-      "history": [
-        {
-          "date": "2026-05-27",
-          "spread": 65.79,
-          "z": -0.58
-        },
-        {
-          "date": "2026-05-28",
-          "spread": 56.9,
-          "z": -1.09
-        },
-        {
-          "date": "2026-05-29",
-          "spread": 53.37,
-          "z": -1.35
-        },
-        {
-          "date": "2026-06-01",
-          "spread": 66.29,
-          "z": -0.79
-        },
-        {
-          "date": "2026-06-02",
-          "spread": 60.1,
-          "z": -1.13
-        },
-        {
-          "date": "2026-06-04",
-          "spread": 51.36,
-          "z": -1.42
-        },
-        {
-          "date": "2026-06-05",
-          "spread": 41.72,
-          "z": -1.68
-        },
-        {
-          "date": "2026-06-08",
-          "spread": 36.77,
-          "z": -1.68
-        },
-        {
-          "date": "2026-06-09",
-          "spread": 48.69,
-          "z": -1.06
-        },
-        {
-          "date": "2026-06-10",
-          "spread": 53.72,
-          "z": -0.74
-        },
-        {
-          "date": "2026-06-11",
-          "spread": 52.92,
-          "z": -0.74
-        },
-        {
-          "date": "2026-06-12",
-          "spread": 44.56,
-          "z": -1.23
-        },
-        {
-          "date": "2026-06-15",
-          "spread": 51.25,
-          "z": -0.68
-        },
-        {
-          "date": "2026-06-16",
-          "spread": 51.06,
-          "z": -0.63
-        },
-        {
-          "date": "2026-06-17",
-          "spread": 60.1,
-          "z": 0.13
-        },
-        {
-          "date": "2026-06-18",
-          "spread": 59.86,
-          "z": 0.16
-        },
-        {
-          "date": "2026-06-19",
-          "spread": 50.12,
-          "z": -0.58
-        },
-        {
-          "date": "2026-06-22",
-          "spread": 40.9,
-          "z": -1.28
-        },
-        {
-          "date": "2026-06-23",
-          "spread": 34.67,
-          "z": -1.78
-        },
-        {
-          "date": "2026-06-24",
-          "spread": 30.87,
-          "z": -1.99
-        },
-        {
-          "date": "2026-06-25",
-          "spread": 27.35,
-          "z": -2.03
-        },
-        {
-          "date": "2026-06-26",
-          "spread": 28.77,
-          "z": -1.65
-        },
-        {
-          "date": "2026-06-29",
-          "spread": 38.16,
-          "z": -0.74
-        },
-        {
-          "date": "2026-06-30",
-          "spread": 50.79,
-          "z": 0.49
-        },
-        {
-          "date": "2026-07-01",
-          "spread": 78.58,
-          "z": 2.6
-        },
-        {
-          "date": "2026-07-02",
-          "spread": 67.99,
-          "z": 1.56
-        },
-        {
-          "date": "2026-07-03",
-          "spread": 62.41,
-          "z": 1.03
-        },
-        {
-          "date": "2026-07-06",
-          "spread": 57.05,
-          "z": 0.57
-        },
-        {
-          "date": "2026-07-07",
-          "spread": 49.39,
-          "z": -0.01
-        },
-        {
-          "date": "2026-07-08",
-          "spread": 37.94,
-          "z": -0.8
-        },
-        {
-          "date": "2026-07-09",
-          "spread": 37.5,
-          "z": -0.76
-        },
-        {
-          "date": "2026-07-10",
-          "spread": 47.67,
-          "z": -0.03
-        },
-        {
-          "date": "2026-07-13",
-          "spread": 40.7,
-          "z": -0.5
-        },
-        {
-          "date": "2026-07-14",
-          "spread": 33.8,
-          "z": -0.92
-        },
-        {
-          "date": "2026-07-15",
-          "spread": 38.05,
-          "z": -0.55
-        },
-        {
-          "date": "2026-07-16",
-          "spread": 29.91,
-          "z": -1.03
-        },
-        {
-          "date": "2026-07-20",
-          "spread": 20.85,
-          "z": -1.48
-        },
-        {
-          "date": "2026-07-21",
-          "spread": 22.72,
-          "z": -1.24
-        },
-        {
-          "date": "2026-07-22",
-          "spread": 33.08,
-          "z": -0.56
-        },
-        {
-          "date": "2026-07-23",
-          "spread": 43.2,
-          "z": 0.06
-        },
-        {
-          "date": "2026-07-24",
-          "spread": 30.66,
-          "z": -0.78
-        },
-        {
-          "date": "2026-07-27",
-          "spread": 29.24,
-          "z": -0.88
-        },
-        {
-          "date": "2026-07-28",
-          "spread": 16.84,
-          "z": -1.53
-        },
-        {
-          "date": "2026-07-29",
-          "spread": 3.69,
-          "z": -1.97
-        },
-        {
-          "date": "2026-07-30",
-          "spread": -8.76,
-          "z": -2.35
-        },
-        {
-          "date": "2026-07-31",
-          "spread": 3.89,
-          "z": -1.54
-        },
-        {
-          "date": "2026-08-03",
-          "spread": 5.92,
-          "z": -1.32
-        },
-        {
-          "date": "2026-08-04",
-          "spread": 10.61,
-          "z": -0.96
-        },
-        {
-          "date": "2026-08-05",
-          "spread": 17.38,
-          "z": -0.48
-        },
-        {
-          "date": "2026-08-06",
-          "spread": 15.26,
-          "z": -0.55
-        },
-        {
-          "date": "2026-08-07",
-          "spread": 10.11,
-          "z": -0.8
-        },
-        {
-          "date": "2026-08-10",
-          "spread": 16.1,
-          "z": -0.32
-        },
-        {
-          "date": "2026-08-11",
-          "spread": 13.89,
-          "z": -0.41
-        },
-        {
-          "date": "2026-08-12",
-          "spread": 17.79,
-          "z": -0.06
-        },
-        {
-          "date": "2026-08-13",
-          "spread": 19.11,
-          "z": 0.13
-        },
-        {
-          "date": "2026-08-14",
-          "spread": 17.46,
-          "z": 0.04
-        },
-        {
-          "date": "2026-08-18",
-          "spread": 17.51,
-          "z": 0.06
-        },
-        {
-          "date": "2026-08-19",
-          "spread": 20.4,
-          "z": 0.32
-        },
-        {
-          "date": "2026-08-20",
-          "spread": 22.2,
-          "z": 0.55
-        },
-        {
-          "date": "2026-08-21",
-          "spread": 15.54,
-          "z": 0.09
+          "spread": -1.37,
+          "z": 0.1
         }
       ]
     },
@@ -7274,6 +6768,512 @@
       ]
     },
     {
+      "key": "POWR_Transformer",
+      "sector": "AI인프라",
+      "desc": "변압기/전력기기",
+      "lead_tickers": [
+        {
+          "ticker": "GEV",
+          "label": "GEV",
+          "missing": false,
+          "quote": {
+            "close": 966.01,
+            "change": -2.17,
+            "period": 15.87,
+            "date": "2026-08-20"
+          }
+        },
+        {
+          "ticker": "ENR.DE",
+          "label": "ENR.DE",
+          "missing": false,
+          "quote": {
+            "close": 154.76,
+            "change": 1.43,
+            "period": -5.35,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "6501.T",
+          "label": "Hitachi",
+          "missing": false,
+          "quote": {
+            "close": 5196.0,
+            "change": -1.27,
+            "period": 4.69,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "6503.T",
+          "label": "Mitsubishi Electric",
+          "missing": false,
+          "quote": {
+            "close": 5602.0,
+            "change": -0.94,
+            "period": -1.7,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "6504.T",
+          "label": "Fuji Electric",
+          "missing": false,
+          "quote": {
+            "close": 13885.0,
+            "change": 1.83,
+            "period": 16.53,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "5803.T",
+          "label": "Fujikura",
+          "missing": false,
+          "quote": {
+            "close": 5280.0,
+            "change": -1.14,
+            "period": 38.69,
+            "date": "2026-08-21"
+          }
+        }
+      ],
+      "lag_tickers": [
+        {
+          "ticker": "267260.KS",
+          "label": "HD현대일렉트릭",
+          "missing": false,
+          "quote": {
+            "close": 718000.0,
+            "change": -3.75,
+            "period": -25.19,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "298040.KS",
+          "label": "효성중공업",
+          "missing": false,
+          "quote": {
+            "close": 2721000.0,
+            "change": -4.76,
+            "period": 10.93,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "010120.KS",
+          "label": "LS일렉트릭",
+          "missing": false,
+          "quote": {
+            "close": 187000.0,
+            "change": -6.12,
+            "period": 38.87,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "062040.KS",
+          "label": "산일전기",
+          "missing": false,
+          "quote": {
+            "close": 164800.0,
+            "change": -8.04,
+            "period": 12.65,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "103590.KS",
+          "label": "일진전기",
+          "missing": false,
+          "quote": {
+            "close": 65600.0,
+            "change": -6.29,
+            "period": -8.12,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "033100.KQ",
+          "label": "제룡전기",
+          "missing": false,
+          "quote": {
+            "close": 46250.0,
+            "change": -2.84,
+            "period": -13.71,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "000500.KS",
+          "label": "가온전선",
+          "missing": false,
+          "quote": {
+            "close": 158200.0,
+            "change": -4.06,
+            "period": 218.07,
+            "date": "2026-08-21"
+          }
+        },
+        {
+          "ticker": "001440.KS",
+          "label": "대한전선",
+          "missing": false,
+          "quote": {
+            "close": 26650.0,
+            "change": -6.0,
+            "period": -18.38,
+            "date": "2026-08-21"
+          }
+        }
+      ],
+      "base_date": "2026-02-19",
+      "last_date": "2026-08-21",
+      "lead_index": 111.46,
+      "lag_index": 126.89,
+      "spread": 15.43,
+      "zscore": 0.08,
+      "bellwether_ticker": "000500.KS",
+      "bellwether_name": "가온전선",
+      "bellwether_rs": 318.07,
+      "bellwether_rs_rating": 100,
+      "bellwether_index": 318.07,
+      "top_pick_ticker": "010120.KS",
+      "top_pick_name": "LS일렉트릭",
+      "rest_index": 99.58,
+      "internal_spread": -218.5,
+      "bellwether_z_score": -0.27,
+      "bellwether_alert": false,
+      "z_extreme": false,
+      "alert": false,
+      "coupling": {
+        "tier": "strong",
+        "strength": 0.43,
+        "lead_channel": "same_day",
+        "corr": 0.43,
+        "corr_lag1": 0.12,
+        "sample_days": 1612,
+        "sample_from": "2020-01-06",
+        "by_year": {
+          "2020": 0.38,
+          "2021": 0.33,
+          "2022": 0.42,
+          "2023": 0.27,
+          "2024": 0.43,
+          "2025": 0.51,
+          "2026": 0.55
+        },
+        "year_min": 0.27,
+        "year_max": 0.55,
+        "negative_years": 0
+      },
+      "direction": "overshoot",
+      "history": [
+        {
+          "date": "2026-05-27",
+          "spread": 65.79,
+          "z": -0.58
+        },
+        {
+          "date": "2026-05-28",
+          "spread": 56.9,
+          "z": -1.09
+        },
+        {
+          "date": "2026-05-29",
+          "spread": 53.37,
+          "z": -1.35
+        },
+        {
+          "date": "2026-06-01",
+          "spread": 66.29,
+          "z": -0.79
+        },
+        {
+          "date": "2026-06-02",
+          "spread": 60.1,
+          "z": -1.13
+        },
+        {
+          "date": "2026-06-04",
+          "spread": 51.36,
+          "z": -1.42
+        },
+        {
+          "date": "2026-06-05",
+          "spread": 41.72,
+          "z": -1.68
+        },
+        {
+          "date": "2026-06-08",
+          "spread": 36.77,
+          "z": -1.68
+        },
+        {
+          "date": "2026-06-09",
+          "spread": 48.69,
+          "z": -1.06
+        },
+        {
+          "date": "2026-06-10",
+          "spread": 53.72,
+          "z": -0.74
+        },
+        {
+          "date": "2026-06-11",
+          "spread": 52.92,
+          "z": -0.74
+        },
+        {
+          "date": "2026-06-12",
+          "spread": 44.56,
+          "z": -1.23
+        },
+        {
+          "date": "2026-06-15",
+          "spread": 51.25,
+          "z": -0.68
+        },
+        {
+          "date": "2026-06-16",
+          "spread": 51.06,
+          "z": -0.63
+        },
+        {
+          "date": "2026-06-17",
+          "spread": 60.1,
+          "z": 0.13
+        },
+        {
+          "date": "2026-06-18",
+          "spread": 59.86,
+          "z": 0.16
+        },
+        {
+          "date": "2026-06-19",
+          "spread": 50.12,
+          "z": -0.58
+        },
+        {
+          "date": "2026-06-22",
+          "spread": 40.9,
+          "z": -1.28
+        },
+        {
+          "date": "2026-06-23",
+          "spread": 34.67,
+          "z": -1.78
+        },
+        {
+          "date": "2026-06-24",
+          "spread": 30.87,
+          "z": -1.99
+        },
+        {
+          "date": "2026-06-25",
+          "spread": 27.35,
+          "z": -2.03
+        },
+        {
+          "date": "2026-06-26",
+          "spread": 28.77,
+          "z": -1.65
+        },
+        {
+          "date": "2026-06-29",
+          "spread": 38.16,
+          "z": -0.74
+        },
+        {
+          "date": "2026-06-30",
+          "spread": 50.79,
+          "z": 0.49
+        },
+        {
+          "date": "2026-07-01",
+          "spread": 78.58,
+          "z": 2.6
+        },
+        {
+          "date": "2026-07-02",
+          "spread": 67.99,
+          "z": 1.56
+        },
+        {
+          "date": "2026-07-03",
+          "spread": 62.41,
+          "z": 1.03
+        },
+        {
+          "date": "2026-07-06",
+          "spread": 57.05,
+          "z": 0.57
+        },
+        {
+          "date": "2026-07-07",
+          "spread": 49.39,
+          "z": -0.01
+        },
+        {
+          "date": "2026-07-08",
+          "spread": 37.94,
+          "z": -0.8
+        },
+        {
+          "date": "2026-07-09",
+          "spread": 37.5,
+          "z": -0.76
+        },
+        {
+          "date": "2026-07-10",
+          "spread": 47.67,
+          "z": -0.03
+        },
+        {
+          "date": "2026-07-13",
+          "spread": 40.7,
+          "z": -0.5
+        },
+        {
+          "date": "2026-07-14",
+          "spread": 33.8,
+          "z": -0.92
+        },
+        {
+          "date": "2026-07-15",
+          "spread": 38.05,
+          "z": -0.55
+        },
+        {
+          "date": "2026-07-16",
+          "spread": 29.91,
+          "z": -1.03
+        },
+        {
+          "date": "2026-07-20",
+          "spread": 20.85,
+          "z": -1.48
+        },
+        {
+          "date": "2026-07-21",
+          "spread": 22.72,
+          "z": -1.24
+        },
+        {
+          "date": "2026-07-22",
+          "spread": 33.08,
+          "z": -0.56
+        },
+        {
+          "date": "2026-07-23",
+          "spread": 43.2,
+          "z": 0.06
+        },
+        {
+          "date": "2026-07-24",
+          "spread": 30.66,
+          "z": -0.78
+        },
+        {
+          "date": "2026-07-27",
+          "spread": 29.24,
+          "z": -0.88
+        },
+        {
+          "date": "2026-07-28",
+          "spread": 16.84,
+          "z": -1.53
+        },
+        {
+          "date": "2026-07-29",
+          "spread": 3.69,
+          "z": -1.97
+        },
+        {
+          "date": "2026-07-30",
+          "spread": -8.76,
+          "z": -2.35
+        },
+        {
+          "date": "2026-07-31",
+          "spread": 3.89,
+          "z": -1.54
+        },
+        {
+          "date": "2026-08-03",
+          "spread": 5.92,
+          "z": -1.32
+        },
+        {
+          "date": "2026-08-04",
+          "spread": 10.61,
+          "z": -0.96
+        },
+        {
+          "date": "2026-08-05",
+          "spread": 17.38,
+          "z": -0.48
+        },
+        {
+          "date": "2026-08-06",
+          "spread": 15.26,
+          "z": -0.55
+        },
+        {
+          "date": "2026-08-07",
+          "spread": 10.11,
+          "z": -0.8
+        },
+        {
+          "date": "2026-08-10",
+          "spread": 16.1,
+          "z": -0.32
+        },
+        {
+          "date": "2026-08-11",
+          "spread": 13.89,
+          "z": -0.41
+        },
+        {
+          "date": "2026-08-12",
+          "spread": 17.79,
+          "z": -0.06
+        },
+        {
+          "date": "2026-08-13",
+          "spread": 19.11,
+          "z": 0.13
+        },
+        {
+          "date": "2026-08-14",
+          "spread": 17.46,
+          "z": 0.04
+        },
+        {
+          "date": "2026-08-18",
+          "spread": 17.51,
+          "z": 0.06
+        },
+        {
+          "date": "2026-08-19",
+          "spread": 20.4,
+          "z": 0.32
+        },
+        {
+          "date": "2026-08-20",
+          "spread": 22.2,
+          "z": 0.55
+        },
+        {
+          "date": "2026-08-21",
+          "spread": 15.43,
+          "z": 0.08
+        }
+      ]
+    },
+    {
       "key": "BEAUTY_SkinBooster",
       "sector": "화장품",
       "desc": "스킨부스터",
@@ -7283,9 +7283,9 @@
           "label": "OR.PA",
           "missing": false,
           "quote": {
-            "close": 381.55,
-            "change": -1.1,
-            "period": -1.51,
+            "close": 380.9,
+            "change": -1.27,
+            "period": -1.68,
             "date": "2026-08-21"
           }
         },
@@ -7404,10 +7404,10 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 93.27,
+      "lead_index": 93.23,
       "lag_index": 70.08,
-      "spread": -23.19,
-      "zscore": -2.17,
+      "spread": -23.15,
+      "zscore": -2.16,
       "bellwether_ticker": "214450.KQ",
       "bellwether_name": "파마리서치",
       "bellwether_rs": 113.46,
@@ -7741,8 +7741,8 @@
         },
         {
           "date": "2026-08-21",
-          "spread": -23.19,
-          "z": -2.17
+          "spread": -23.15,
+          "z": -2.16
         }
       ]
     },
@@ -7778,9 +7778,9 @@
           "label": "ALV.DE",
           "missing": false,
           "quote": {
-            "close": 439.2,
-            "change": 0.21,
-            "period": 23.03,
+            "close": 440.4,
+            "change": 0.48,
+            "period": 23.37,
             "date": "2026-08-21"
           }
         },
@@ -7888,10 +7888,10 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 119.57,
+      "lead_index": 119.65,
       "lag_index": 138.46,
-      "spread": 18.9,
-      "zscore": 1.96,
+      "spread": 18.81,
+      "zscore": 1.95,
       "bellwether_ticker": "085620.KS",
       "bellwether_name": "미래에셋생명",
       "bellwether_rs": 256.29,
@@ -8225,8 +8225,8 @@
         },
         {
           "date": "2026-08-21",
-          "spread": 18.9,
-          "z": 1.96
+          "spread": 18.81,
+          "z": 1.95
         }
       ]
     },
@@ -8240,9 +8240,9 @@
           "label": "BAS.DE",
           "missing": false,
           "quote": {
-            "close": 51.93,
-            "change": 0.83,
-            "period": 11.23,
+            "close": 51.86,
+            "change": 0.7,
+            "period": 11.08,
             "date": "2026-08-21"
           }
         },
@@ -8471,9 +8471,9 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 135.86,
+      "lead_index": 135.84,
       "lag_index": 80.81,
-      "spread": -55.05,
+      "spread": -55.03,
       "zscore": -1.81,
       "bellwether_ticker": "010950.KS",
       "bellwether_name": "S-Oil",
@@ -8808,7 +8808,7 @@
         },
         {
           "date": "2026-08-21",
-          "spread": -55.05,
+          "spread": -55.03,
           "z": -1.81
         }
       ]
@@ -9351,9 +9351,9 @@
           "label": "SAND.ST",
           "missing": false,
           "quote": {
-            "close": 377.9,
-            "change": 2.5,
-            "period": 1.69,
+            "close": 379.7,
+            "change": 2.98,
+            "period": 2.18,
             "date": "2026-08-21"
           }
         }
@@ -9461,10 +9461,10 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 99.4,
+      "lead_index": 99.52,
       "lag_index": 85.89,
-      "spread": -13.51,
-      "zscore": -1.16,
+      "spread": -13.63,
+      "zscore": -1.18,
       "bellwether_ticker": "019210.KQ",
       "bellwether_name": "와이지-원",
       "bellwether_rs": 164.04,
@@ -9798,8 +9798,8 @@
         },
         {
           "date": "2026-08-21",
-          "spread": -13.51,
-          "z": -1.16
+          "spread": -13.63,
+          "z": -1.18
         }
       ]
     },
@@ -10264,9 +10264,9 @@
           "label": "OR.PA",
           "missing": false,
           "quote": {
-            "close": 381.55,
-            "change": -1.1,
-            "period": -1.51,
+            "close": 380.9,
+            "change": -1.27,
+            "period": -1.68,
             "date": "2026-08-21"
           }
         },
@@ -10440,9 +10440,9 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 103.59,
+      "lead_index": 103.56,
       "lag_index": 124.96,
-      "spread": 21.37,
+      "spread": 21.4,
       "zscore": 0.95,
       "bellwether_ticker": "161890.KS",
       "bellwether_name": "한국콜마",
@@ -10777,7 +10777,7 @@
         },
         {
           "date": "2026-08-21",
-          "spread": 21.37,
+          "spread": 21.4,
           "z": 0.95
         }
       ]
@@ -10825,9 +10825,9 @@
           "label": "DTE.DE",
           "missing": false,
           "quote": {
-            "close": 28.82,
-            "change": 0.35,
-            "period": -8.81,
+            "close": 28.88,
+            "change": 0.56,
+            "period": -8.62,
             "date": "2026-08-21"
           }
         },
@@ -10891,9 +10891,9 @@
           "label": "ORA.PA",
           "missing": false,
           "quote": {
-            "close": 16.08,
-            "change": -0.12,
-            "period": -9.06,
+            "close": 16.03,
+            "change": -0.43,
+            "period": -9.34,
             "date": "2026-08-21"
           }
         }
@@ -10935,9 +10935,9 @@
       ],
       "base_date": "2026-02-20",
       "last_date": "2026-08-21",
-      "lead_index": 101.93,
+      "lead_index": 101.92,
       "lag_index": 98.23,
-      "spread": -3.7,
+      "spread": -3.69,
       "zscore": 0.84,
       "bellwether_ticker": "017670.KS",
       "bellwether_name": "SK텔레콤",
@@ -11272,7 +11272,7 @@
         },
         {
           "date": "2026-08-21",
-          "spread": -3.7,
+          "spread": -3.69,
           "z": 0.84
         }
       ]
@@ -11287,9 +11287,9 @@
           "label": "NESN.SW",
           "missing": false,
           "quote": {
-            "close": 79.54,
-            "change": 0.18,
-            "period": 1.67,
+            "close": 79.52,
+            "change": 0.15,
+            "period": 1.64,
             "date": "2026-08-21"
           }
         },
@@ -11430,7 +11430,7 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 109.69,
+      "lead_index": 109.68,
       "lag_index": 107.69,
       "spread": -2.0,
       "zscore": -0.84,
@@ -13377,9 +13377,9 @@
           "label": "BA.L",
           "missing": false,
           "quote": {
-            "close": 2123.0,
-            "change": -1.03,
-            "period": -1.84,
+            "close": 2128.0,
+            "change": -0.79,
+            "period": -1.61,
             "date": "2026-08-21"
           }
         },
@@ -13388,9 +13388,9 @@
           "label": "RHM.DE",
           "missing": false,
           "quote": {
-            "close": 1150.8,
-            "change": -0.98,
-            "period": -33.34,
+            "close": 1151.4,
+            "change": -0.93,
+            "period": -33.3,
             "date": "2026-08-21"
           }
         },
@@ -13399,9 +13399,9 @@
           "label": "HO.PA",
           "missing": false,
           "quote": {
-            "close": 253.2,
-            "change": -1.13,
-            "period": -2.53,
+            "close": 253.8,
+            "change": -0.9,
+            "period": -2.29,
             "date": "2026-08-21"
           }
         },
@@ -13410,9 +13410,9 @@
           "label": "AM.PA",
           "missing": false,
           "quote": {
-            "close": 301.2,
-            "change": -0.99,
-            "period": -12.42,
+            "close": 301.8,
+            "change": -0.79,
+            "period": -12.25,
             "date": "2026-08-21"
           }
         },
@@ -13421,9 +13421,9 @@
           "label": "SAF.PA",
           "missing": false,
           "quote": {
-            "close": 340.9,
-            "change": -0.79,
-            "period": 0.77,
+            "close": 344.0,
+            "change": 0.12,
+            "period": 1.69,
             "date": "2026-08-21"
           }
         },
@@ -13432,9 +13432,9 @@
           "label": "LDO.MI",
           "missing": false,
           "quote": {
-            "close": 56.77,
-            "change": -0.98,
-            "period": -2.94,
+            "close": 56.75,
+            "change": -1.01,
+            "period": -2.98,
             "date": "2026-08-21"
           }
         },
@@ -13454,9 +13454,9 @@
           "label": "KOG.OL",
           "missing": false,
           "quote": {
-            "close": 315.4,
-            "change": -1.78,
-            "period": -18.6,
+            "close": 316.8,
+            "change": -1.34,
+            "period": -18.24,
             "date": "2026-08-21"
           }
         },
@@ -13465,9 +13465,9 @@
           "label": "RR.L",
           "missing": false,
           "quote": {
-            "close": 1487.2,
-            "change": -0.81,
-            "period": 12.34,
+            "close": 1502.8,
+            "change": 0.23,
+            "period": 13.51,
             "date": "2026-08-21"
           }
         },
@@ -13476,9 +13476,9 @@
           "label": "HAG.DE",
           "missing": false,
           "quote": {
-            "close": 88.72,
-            "change": -1.4,
-            "period": 6.78,
+            "close": 88.36,
+            "change": -1.8,
+            "period": 6.35,
             "date": "2026-08-21"
           }
         },
@@ -13498,9 +13498,9 @@
           "label": "IDR.MC",
           "missing": false,
           "quote": {
-            "close": 60.36,
-            "change": -0.82,
-            "period": 13.37,
+            "close": 60.66,
+            "change": -0.33,
+            "period": 13.93,
             "date": "2026-08-21"
           }
         },
@@ -13509,9 +13509,9 @@
           "label": "QQ.L",
           "missing": false,
           "quote": {
-            "close": 541.5,
-            "change": 1.03,
-            "period": 4.45,
+            "close": 540.67,
+            "change": 0.87,
+            "period": 4.29,
             "date": "2026-08-21"
           }
         },
@@ -13520,9 +13520,9 @@
           "label": "BAB.L",
           "missing": false,
           "quote": {
-            "close": 1109.5,
-            "change": -0.76,
-            "period": -20.58,
+            "close": 1113.0,
+            "change": -0.45,
+            "period": -20.33,
             "date": "2026-08-21"
           }
         },
@@ -13531,9 +13531,9 @@
           "label": "CHG.L",
           "missing": false,
           "quote": {
-            "close": 577.5,
-            "change": -2.28,
-            "period": 10.65,
+            "close": 578.65,
+            "change": -2.09,
+            "period": 10.87,
             "date": "2026-08-21"
           }
         },
@@ -13542,9 +13542,9 @@
           "label": "MTX.DE",
           "missing": false,
           "quote": {
-            "close": 352.5,
-            "change": -1.89,
-            "period": -10.55,
+            "close": 355.3,
+            "change": -1.11,
+            "period": -9.84,
             "date": "2026-08-21"
           }
         }
@@ -13685,10 +13685,10 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 95.16,
+      "lead_index": 95.43,
       "lag_index": 78.49,
-      "spread": -16.67,
-      "zscore": -0.35,
+      "spread": -16.93,
+      "zscore": -0.41,
       "bellwether_ticker": "079550.KS",
       "bellwether_name": "LIG넥스원",
       "bellwether_rs": 150.71,
@@ -14022,8 +14022,8 @@
         },
         {
           "date": "2026-08-21",
-          "spread": -16.67,
-          "z": -0.35
+          "spread": -16.93,
+          "z": -0.41
         }
       ]
     },
@@ -14037,9 +14037,9 @@
           "label": "WRT1V.HE",
           "missing": false,
           "quote": {
-            "close": 29.49,
-            "change": 0.2,
-            "period": -17.15,
+            "close": 29.5,
+            "change": 0.24,
+            "period": -17.12,
             "date": "2026-08-21"
           }
         },
@@ -14059,9 +14059,9 @@
           "label": "MTX.DE",
           "missing": false,
           "quote": {
-            "close": 352.5,
-            "change": -1.89,
-            "period": -10.55,
+            "close": 355.3,
+            "change": -1.11,
+            "period": -9.84,
             "date": "2026-08-21"
           }
         }
@@ -14103,10 +14103,10 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 75.34,
+      "lead_index": 75.59,
       "lag_index": 69.35,
-      "spread": -5.99,
-      "zscore": -0.28,
+      "spread": -6.23,
+      "zscore": -0.32,
       "bellwether_ticker": "082740.KS",
       "bellwether_name": "한화엔진",
       "bellwether_rs": 79.89,
@@ -14440,8 +14440,8 @@
         },
         {
           "date": "2026-08-21",
-          "spread": -5.99,
-          "z": -0.28
+          "spread": -6.23,
+          "z": -0.32
         }
       ]
     },
@@ -14972,9 +14972,9 @@
           "label": "RR.L",
           "missing": false,
           "quote": {
-            "close": 1487.2,
-            "change": -0.81,
-            "period": 12.34,
+            "close": 1502.8,
+            "change": 0.23,
+            "period": 13.51,
             "date": "2026-08-21"
           }
         },
@@ -15203,10 +15203,10 @@
       ],
       "base_date": "2026-02-19",
       "last_date": "2026-08-21",
-      "lead_index": 81.43,
+      "lead_index": 81.53,
       "lag_index": 64.29,
-      "spread": -17.14,
-      "zscore": 0.11,
+      "spread": -17.24,
+      "zscore": 0.09,
       "bellwether_ticker": "032820.KQ",
       "bellwether_name": "우리기술",
       "bellwether_rs": 91.81,
@@ -15540,8 +15540,8 @@
         },
         {
           "date": "2026-08-21",
-          "spread": -17.14,
-          "z": 0.11
+          "spread": -17.24,
+          "z": 0.09
         }
       ]
     },
