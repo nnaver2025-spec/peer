@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10 20:49:58",
+  "generated_at": "2026-09-11 00:01:26",
   "interval_hours": 2,
   "lookback_days": 3,
   "us_index_lookback_days": 7,
@@ -46,17 +46,17 @@
     }
   ],
   "market": {
-    "score": 58.8,
+    "score": 58.3,
     "zone": "greed",
     "label": "탐욕",
-    "greed_total": 50,
+    "greed_total": 49,
     "fear_total": 35,
-    "hits": 85,
-    "total_posts": 501,
+    "hits": 84,
+    "total_posts": 498,
     "hot_posts": 27,
-    "dropped_posts": 12,
+    "dropped_posts": 13,
     "stocks": 30,
-    "greed_leaning": 11,
+    "greed_leaning": 10,
     "fear_leaning": 6,
     "keyword_totals": {
       "greed": {
@@ -67,9 +67,9 @@
         "풀매수": 6,
         "떡상": 3,
         "익절": 3,
-        "호재": 2,
         "반등": 2,
         "물타기": 1,
+        "호재": 1,
         "존버": 1
       },
       "fear": {
@@ -124,9 +124,9 @@
       {
         "sector": "광통신",
         "stocks": 2,
-        "greed_total": 5,
+        "greed_total": 4,
         "fear_total": 0,
-        "hits": 5,
+        "hits": 4,
         "score": null,
         "zone": null
       },
@@ -428,10 +428,6 @@
     ],
     "history": [
       {
-        "ts": "2026-09-04 04:00",
-        "score": 50.0
-      },
-      {
         "ts": "2026-09-04 08:45",
         "score": 50.2
       },
@@ -570,6 +566,10 @@
       {
         "ts": "2026-09-10 20:43",
         "score": 58.8
+      },
+      {
+        "ts": "2026-09-10 23:55",
+        "score": 58.3
       }
     ],
     "daily": [
@@ -720,27 +720,27 @@
       },
       {
         "date": "2026-09-10",
-        "score": 55.7,
-        "n": 4
+        "score": 56.2,
+        "n": 5
       }
     ]
   },
   "market_gauge": {
-    "score": 46.4,
+    "score": 46.5,
     "zone": "neutral",
     "label": "중립",
-    "as_of": "2026-09-10",
+    "as_of": "2026-09-11",
     "components": [
       {
         "key": "momentum",
         "label": "모멘텀",
-        "score": 20.8,
+        "score": 21.0,
         "detail": "125일선 대비 +1.2%"
       },
       {
         "key": "volatility",
         "label": "변동성",
-        "score": 47.6,
+        "score": 47.8,
         "detail": "20일 변동성 44%"
       },
       {
@@ -767,35 +767,34 @@
   "news": {
     "lookback_days": 3,
     "min_hits": 8,
-    "score": 74.6,
+    "score": 74.5,
     "zone": "greed",
     "label": "탐욕",
-    "positive_total": 270,
-    "negative_total": 92,
-    "total": 453,
+    "positive_total": 260,
+    "negative_total": 89,
+    "total": 452,
     "sectors": [
       {
         "sector": "광통신",
-        "total": 38,
-        "hits": 49,
-        "positive_total": 46,
-        "negative_total": 3,
-        "score": 93.9,
+        "total": 35,
+        "hits": 45,
+        "positive_total": 43,
+        "negative_total": 2,
+        "score": 95.6,
         "zone": "extreme_greed",
         "label": "극단적 탐욕",
         "positive_counts": {
-          "급등": 10,
-          "상승": 9,
+          "급등": 9,
+          "상승": 8,
           "강세": 8,
           "훈풍": 6,
           "상한가": 6,
           "순매수": 4,
           "호재": 1,
-          "기대감": 1,
-          "랠리": 1
+          "기대감": 1
         },
         "negative_counts": {
-          "하락": 3
+          "하락": 2
         },
         "positive": [
           {
@@ -834,11 +833,11 @@
             "negative": []
           },
           {
-            "title": "09일, 외국인 코스닥에서 엘앤씨바이오(+3.75%), 대한광통신(+9.20%) 등 순매수 - Nate News",
-            "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBYX3otUDhpNGl6c0pHSERJdkhoeFZsbkdtcWhXZHYzdGZGaURGNURBbkltYnhvcVZ4c2YwQXh4S2lKQVI2Y2FuMDFxSjJndlIwaHVVNFJramxkRjVJdjR5cjFxM2lMX21DZF83WkdNTGJsQVUxT0gzVQ?oc=5",
-            "source": "Nate News",
+            "title": "09일, 외국인 코스닥에서 엘앤씨바이오(+3.75%), 대한광통신(+9.20%) 등 순매수 - 한국경제",
+            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9IbFRRS0FWdWRtaUZhVnlCdkdxQ1RlbEVrSW9vTk1zcEdBbDRKalR0S3hibXJYbXpFZXBoaFFRRkdxMUpsWk5LUHFVQnpnVXBfZ3d6WlNsSXdLdw?oc=5",
+            "source": "한국경제",
             "provider": "google",
-            "published": "2026-09-09T09:36:00+00:00",
+            "published": "2026-09-09T09:35:35+00:00",
             "positive": [
               "순매수"
             ],
@@ -905,9 +904,9 @@
             "negative": []
           },
           {
-            "title": "美 광통신주 호재에 국내도 훈풍…머큐리·RF머트리얼즈 20%대 급등 - 매일신문",
+            "title": "美 광통신주 호재에 국내도 훈풍…머큐리·RF머트리얼즈 20%대 급등 - imaeil.com",
             "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE8xc0stMklzUjFzY2k2VVVELS0zWkZQRHJjcUp5Q2dLZHFFSWtMTGxKckpLQ083MlR1bmVjVDVDOU5KRlJrT0RjekotWmRjRl9jd2oxZy16OTRFVHZxNWE0bUhn?oc=5",
-            "source": "매일신문",
+            "source": "imaeil.com",
             "provider": "google",
             "published": "2026-09-09T01:15:21+00:00",
             "positive": [
@@ -940,54 +939,40 @@
             "negative": [
               "하락"
             ]
-          },
-          {
-            "title": "美 S&P500 '하락'..테슬라·퍼스트솔라·광통신주 '뛰고', 여행주 '뚝' - choicenews.co.kr",
-            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE16T0xCVHFqZTRDQXkzUmRGekd0cTlfU0dCWnNtUlJZOXNUZ21UcXZkX3dyYlN2RjFPRnhfekxCZTlIQUlCT2VpaVJsOWNCUDg4N0l0dmVGeWxWeUJzc2VzczJFbUJETFNwZ3hzZk9Vb2zSAXNBVV95cUxQczVYQXZHT0tDbENEcHN0ZjRUODNjYUpFcGVpbGNkOFlQMEpFX0hNWFlSbXJjMFRQTzZLVVhBZ2J6SEg3eXpPRkRHUEFrSXRKSl9sdkx0V0syM1RyNU42SVdVZGlsUWhWRGZvZnB1bnozWTB3?oc=5",
-            "source": "choicenews.co.kr",
-            "provider": "google",
-            "published": "2026-09-08T22:08:34+00:00",
-            "positive": [],
-            "negative": [
-              "하락"
-            ]
           }
         ],
         "error": null
       },
       {
         "sector": "로봇",
-        "total": 38,
-        "hits": 29,
-        "positive_total": 21,
-        "negative_total": 8,
-        "score": 72.4,
+        "total": 35,
+        "hits": 22,
+        "positive_total": 16,
+        "negative_total": 6,
+        "score": 72.7,
         "zone": "greed",
         "label": "탐욕",
         "positive_counts": {
-          "수혜": 6,
-          "급등": 3,
           "강세": 3,
+          "급등": 3,
+          "수혜": 3,
           "상승": 3,
-          "호재": 2,
+          "호재": 1,
           "순매수": 1,
-          "목표가 상향": 1,
           "기대감": 1,
           "상한가": 1
         },
         "negative_counts": {
-          "하락": 2,
           "약세": 2,
-          "부진": 1,
-          "주춤": 1,
+          "하락": 2,
           "악재": 1,
-          "목표주가 하향": 1
+          "주춤": 1
         },
         "positive": [
           {
-            "title": "유가 100달러 돌파 속 에너지·로봇 급등 (2026.09.10) - contents.premium.naver.com",
+            "title": "유가 100달러 돌파 속 에너지·로봇 급등 (2026.09.10) - 네이버 프리미엄콘텐츠",
             "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOcXBYeTNWZUZxT2tRQ2cwTVltQ245VW1CV05wU0tRNUFSVFBRSm4tcGx0bWh2aTJSbXE5V0xFeEZKUk94bjZIdEhrdW1BZENnal9TakZoU1VQbUpheHp1bzItcTgxcVgwcWx6V29jdG93MkUzdU1EckFCc1JETTJndlhrYzluLWd1Y2c?oc=5",
-            "source": "contents.premium.naver.com",
+            "source": "네이버 프리미엄콘텐츠",
             "provider": "google",
             "published": "2026-09-10T07:32:00+00:00",
             "positive": [
@@ -1001,17 +986,6 @@
             "source": "한국경제",
             "provider": "google",
             "published": "2026-09-10T07:05:26+00:00",
-            "positive": [
-              "호재"
-            ],
-            "negative": []
-          },
-          {
-            "title": "한국투자증권 \"로보티즈, 허깅페이스 '마이크로덕' 돌풍에 겹호재…목표가 45만 원\" - 와이드경제",
-            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1WRnlxS1ZlV3c1QnlTVmNUeFRKTHc1NW82ckxYRGtySklqM1NMMjh3ZEpzVkRVbjMwalhCZmJLSmE1NkpGUGJFMy11ZDJ4MUNkbm1lRTd5d091V1NsRC0tWWtRaE5za0pPbWdWUg?oc=5",
-            "source": "와이드경제",
-            "provider": "google",
-            "published": "2026-09-10T01:01:02+00:00",
             "positive": [
               "호재"
             ],
@@ -1086,9 +1060,9 @@
             "negative": []
           },
           {
-            "title": "두산로보틱스, 로봇 산업 성장 기대감 속 장중 소폭 상승세 : 기업주식정보 - 재경일보",
+            "title": "두산로보틱스, 로봇 산업 성장 기대감 속 장중 소폭 상승세 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9OV21HTE5HeGlWdlNGQmdtdl9NR2dIb1lnQXp4UjFKRUlDRmJUZzRIR2pTb2Y0ckVqSGhBOFZGekpmczgwbEpGRmV3?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-08T02:12:00+00:00",
             "positive": [
@@ -1096,13 +1070,24 @@
               "기대감"
             ],
             "negative": []
+          },
+          {
+            "title": "KB證 \"DB하이텍, 중국 AI·로봇 성장 수혜…목표가 20만원\" - 경제투데이",
+            "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE16cU9Gd0dBN0ctbWRKLXNFRWhzTEpZc3lQXzl1SlpWd2R3cVRocXhzdVZpMkQ1T1FqdTI0ZTB1NUg5dWQwdU9KalowS2w0Z0F4U1dTNG14UWdQVG5vb2ZPYS0zTDJDNDA?oc=5",
+            "source": "경제투데이",
+            "provider": "google",
+            "published": "2026-09-08T00:58:00+00:00",
+            "positive": [
+              "수혜"
+            ],
+            "negative": []
           }
         ],
         "negative": [
           {
-            "title": "'네 마녀의 날'·고유가 악재 속 출렁인 증시…반도체 약세·로봇·장비주 강세 - 프리진뉴스",
-            "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE44Q2JFYVhDWWc2Wm52b3hIVmhfT1lQbDhYX0Zpa2VTaWlrTmlzTkhQcjRQSXprMl9OZGpVbGlUNDV4WW5hX3RKaTNHbzBzbFpOTjFlOUVjUm4xRWVpNmNhR3FJRzRBWHFSMk53d2pIWQ?oc=5",
-            "source": "프리진뉴스",
+            "title": "'네 마녀의 날'·고유가 악재 속 출렁인 증시…반도체 약세·로봇·장비주 강세 - freezine.co.kr",
+            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE03SksxRkduVmgtVV92Z256OW1ZTXppRkU0cDVqMUp3em1hbXRrYnNhRThDRWhoUXdKYzBBNU1tN0hiMVNsSmpwVzFuLWJnSHdVOElnR1JNYVNiQ01BUVZ4TGQ0YVBYVGJ1ZmNKaA?oc=5",
+            "source": "freezine.co.kr",
             "provider": "google",
             "published": "2026-09-10T08:29:39+00:00",
             "positive": [
@@ -1147,36 +1132,14 @@
             ]
           },
           {
-            "title": "레인보우로보 주춤할 때 30% 뛴 로보티즈…로봇주 판도 바뀌나 - 아이뉴스24",
-            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBMNjdCVFFieFdxT241OVhRbmVQNzVxcGlkeFlhOW93QmdvYU4ybEM3OHJ5U1RQQkFXN1JNMzQ4U3R1R3ZYeHp1MF9HVQ?oc=5",
-            "source": "아이뉴스24",
+            "title": "레인보우로보 주춤할 때 30% 뛴 로보티즈…로봇주 판도 바뀌나 - v.daum.net",
+            "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFAzWGllV0wxTTg1NlJ1TEhNLWRMRDNhWmZpUEcxTFQzTHdQZE1CUmUybE5BVmVtMVFSVDl2Y3lvbTBrQWI0LUE?oc=5",
+            "source": "v.daum.net",
             "provider": "google",
-            "published": "2026-09-08T05:04:31+00:00",
+            "published": "2026-09-08T05:06:41+00:00",
             "positive": [],
             "negative": [
               "주춤"
-            ]
-          },
-          {
-            "title": "'4조 빅딜' 알테오젠, 58만→45만원 목표주가 하향…DB하이텍, 中 AI·로봇 수요 폭발에 저평가 매력 [株토피아] - Nate News",
-            "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE40Ti03SF90bElZaXVBU1JuY0N3emRRVXZQV0E0eTN6bDBCY040RGtVVDhfNFVEelVBMU16cVdiRnVsQjZyN0M2a2pVUTU2RUtqVVVxWDRPVGI4amNWVzhONWc3enJGM1NjWWZ6RnVWeGxZQl9hbzNFNQ?oc=5",
-            "source": "Nate News",
-            "provider": "google",
-            "published": "2026-09-08T02:13:00+00:00",
-            "positive": [],
-            "negative": [
-              "목표주가 하향"
-            ]
-          },
-          {
-            "title": "\"중국산 로봇의 역습\"…화낙·야스카와 실적호조에도 주가 부진 - 한국경제",
-            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE0xQnRibUJqUDNzUU50Mk1ZV1hOQVNoeVJmb05ROTVMQlFnN3ZlN0dSR0tNSG9DTGZmcy1wcDBpV3QxMXRwd0hDVGVkOE1OZWs2MDgybmF3UUt0dw?oc=5",
-            "source": "한국경제",
-            "provider": "google",
-            "published": "2026-09-07T23:20:03+00:00",
-            "positive": [],
-            "negative": [
-              "부진"
             ]
           }
         ],
@@ -1184,29 +1147,55 @@
       },
       {
         "sector": "반도체",
-        "total": 79,
-        "hits": 58,
-        "positive_total": 45,
-        "negative_total": 13,
-        "score": 77.6,
+        "total": 78,
+        "hits": 55,
+        "positive_total": 44,
+        "negative_total": 11,
+        "score": 80.0,
         "zone": "extreme_greed",
         "label": "극단적 탐욕",
         "positive_counts": {
           "상승": 15,
-          "강세": 10,
-          "급등": 5,
+          "강세": 9,
+          "급등": 6,
           "반등": 4,
-          "랠리": 3,
           "순매수": 3,
-          "훈풍": 3,
-          "기대감": 2
+          "기대감": 2,
+          "랠리": 2,
+          "훈풍": 2,
+          "수혜": 1
         },
         "negative_counts": {
-          "하락": 9,
-          "약세": 3,
-          "급락": 1
+          "하락": 7,
+          "급락": 2,
+          "약세": 2
         },
         "positive": [
+          {
+            "title": "삼양엔씨켐, 반도체 PR 소재 국산화 수혜-유안타 - 인포스탁데일리",
+            "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE83QXpFWDE5TldLZDVhZTluTXBJOUF3Z01ZVEoyeXR6SEJGWkVxU3d1bTk5Y0gtMTZfbTR2Z1M5UkJ2dURzdmprMGoya2xoX2E1MC0zRk12WFNhaVo5UmlCOHcyYXl5MlhPTVNLd2kzd0Zqc0dYT3c?oc=5",
+            "source": "인포스탁데일리",
+            "provider": "google",
+            "published": "2026-09-10T22:37:02+00:00",
+            "positive": [
+              "수혜"
+            ],
+            "negative": []
+          },
+          {
+            "title": "[美증시 특징주] 반도체 급락속 스카이웍스 9% 급등…코보 인수합병 기대감 - 미디어펜",
+            "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5fR0hHUk01OV83OUpGTHFUYzJ4MGpERDNMMHhwSzltWHNRbVl3c0NYeUR6SmdVanR5YXlibzh5TFVQUlY5VUcySXN4NVRhekZ3X01kONIBWEFVX3lxTFBzLThFekt6UzlKczNMSG9sRi1xZWlZSGhMLS0tdmlzakQteUlVZFZ1clh5OHNHbS1GOFlJMUhBaEh0MDZBY3dZNmJtODJuTi1IajdZSEdYZEk?oc=5",
+            "source": "미디어펜",
+            "provider": "google",
+            "published": "2026-09-10T22:04:19+00:00",
+            "positive": [
+              "급등",
+              "기대감"
+            ],
+            "negative": [
+              "급락"
+            ]
+          },
           {
             "title": "\"SK하이닉스, 대외 변수 없었다면 200만원 초중반 반등…대형주 수급 주목\" - 뉴시스",
             "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1CVG9pbXQ1Y3NMbnE0Wk9OV1RVRFFQd29jWUpsY2xyWk10dE9oTmI3N2xvdElqb3NQMWtlQXBiRkJyYU5zczZZSW83YjUwQzFiWFdVU2pIMzIxRlVtUkhST1UxMEltaWd5R1BYdWpMQ3E2VXNfY19lU9IBeEFVX3lxTE1CVG9pbXQ1Y3NMbnE0Wk9OV1RVRFFQd29jWUpsY2xyWk10dE9oTmI3N2xvdElqb3NQMWtlQXBiRkJyYU5zczZZSW83YjUwQzFiWFdVU2pIMzIxRlVtUkhST1UxMEltaWd5R1BYdWpMQ3E2VXNfY19lUw?oc=5",
@@ -1219,9 +1208,9 @@
             "negative": []
           },
           {
-            "title": "한미반도체, 소폭 상승 마감...25만원대 안착 시도 : 기업주식정보 - 재경일보",
+            "title": "한미반도체, 소폭 상승 마감...25만원대 안착 시도 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9yWmZnRVZ1T0gzUVVYZ1k0eTBaaTdQQ3FmSFRXMnJ5SkNveUdMUjNtTFNWMlJCZlhKXzM3N0tpQUx4aE0wc3VPX2F3?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-10T07:02:00+00:00",
             "positive": [
@@ -1294,28 +1283,6 @@
               "순매수"
             ],
             "negative": []
-          },
-          {
-            "title": "신한證 “반도체·AI 주도주 반등…차익실현보다 보유·추매해야” [코주부] - 서울경제",
-            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5FNVpta1ZwSXRIZllxSjVoOEFFZUNHQ3J0QXloWnFiRjN0cW1YcFp2UUtWSUJfNXVvS0NMalNRRXh4cjllbUVLTFpOMVV2cVVoZHfSAVNBVV95cUxNZC12aWFmSFM4d3ZGcVpobllMNExoSVNtNjZqc2Izd2hVdXpTQl9nUDFkeWUyNTdUNlJJRV9LeGxiZHNQVzlQUTI1aUJRN2RJU294dw?oc=5",
-            "source": "서울경제",
-            "provider": "google",
-            "published": "2026-09-09T23:26:59+00:00",
-            "positive": [
-              "반등"
-            ],
-            "negative": []
-          },
-          {
-            "title": "인공지능 열풍에 메모리 반도체 매출 폭발, 주가도 급등세 - 공감신문",
-            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE01eXYxNUZpbHJIaXNEa1Z0b2VSd0dxM3pQVU5KVldEeUlKa3RTVXd6b2xpdVh5VXBna1lUQWNlUTZPZDNYZkN4Rmg2SkFRcVZsMm9KZmlVbndMc1E4REhaSE5VcUVWNWRX?oc=5",
-            "source": "공감신문",
-            "provider": "google",
-            "published": "2026-09-09T23:13:10+00:00",
-            "positive": [
-              "급등"
-            ],
-            "negative": []
           }
         ],
         "negative": [
@@ -1375,17 +1342,6 @@
             ]
           },
           {
-            "title": "메타 6.55%·SK하이닉스 ADR 7.09% 급등…애플은 폴더블폰 공개에도 하락 [뉴욕증시 특징주] - citytimes.co.kr",
-            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE50MlVGLUotZWtaaUlBLVdPYmpmbThzRHBmblZOeDh0bElRNmpPSGxpbXZKUFc2RHRrMURZV3QzazBBcXJ0Sk5COENVRmhwZEpJZ1dtckM2SUlONlFiRXlJZ0JvbUt3TnFmRUt6bnNR0gFyQVVfeXFMUEtKS1RocW1yQzhYS09hMGZHdFdXZTQ2eHEyeExhOHdfaDN3REhHanZOcVBZQm1aekRUem5ldkxiRk94WDh1S2JHYm5LdUV4bVpZTmpwRFo1MTZWdlJ1eG1BZktvZHdDM2twOG9lR2xrc2tn?oc=5",
-            "source": "citytimes.co.kr",
-            "provider": "google",
-            "published": "2026-09-09T22:26:03+00:00",
-            "positive": [],
-            "negative": [
-              "하락"
-            ]
-          },
-          {
             "title": "[AI MY 뉴스] 유가 100달러·금리 부담에 반도체주 약세…인텔 2%대↓ - 뉴스핌",
             "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE81WDdjZVVxdTMxenplTW9Pc05wam5DcV9udjNLTk5ldWxYR3UzODRGMnZNQ091dlZPak1MNXVWUnF3bHI2bm5GNURQcmR5V2FQUzMxSTNyNVVUbGVC?oc=5",
             "source": "뉴스핌",
@@ -1409,27 +1365,25 @@
             ]
           },
           {
-            "title": "[도쿄증시-마감] 중동 불안에 하락…일부 반도체·전선 관련주 강세 - KB Think",
-            "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE50djVpd0MxUWozbXJoV2dKQkxPeUFMYks1cVZpVlNIODZuWUdka09fb2I3UmYycmk0NGZHSjY0ajQwaDNRcWRpakhLSTN3TmJma1FvNTVqT2wxSF9vcDUxaG51Vk9BVS1UclBNcjRCOWc0QQ?oc=5",
-            "source": "KB Think",
-            "provider": "google",
-            "published": "2026-09-09T06:39:29+00:00",
-            "positive": [
-              "강세"
-            ],
-            "negative": [
-              "하락"
-            ]
-          },
-          {
-            "title": "한 달 새 33% 뛴 반도체 ETF...7월 급락 딛고 다시 수익률 주도 - 녹색경제신문",
+            "title": "한 달 새 33% 뛴 반도체 ETF...7월 급락 딛고 다시 수익률 주도 - greened.kr",
             "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1MQXJIN2tvLWFYQl91VFdvNW1QcEpsRkxuaDZtUGo4Z2ZEeUFaa3VkOWhvMmtHN2I5d2dPNXFCVU9aWDg3RlQ1MUZpWlRveW5FTXJMVmZ5SUtDRFBSV193ZmJ5N2szN003?oc=5",
-            "source": "녹색경제신문",
+            "source": "greened.kr",
             "provider": "google",
             "published": "2026-09-09T05:56:54+00:00",
             "positive": [],
             "negative": [
               "급락"
+            ]
+          },
+          {
+            "title": "[TODAY엔비디아]\"AI 반도체 중 가장 저평가된 주식\"…2% 하락 마감 - edaily.co.kr",
+            "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQclpOU0VjUUE5VFVaSExtU3F6ZFhBdkhvekcxRUZBeDhzYjFXZFJveFlXbVFOSGhqZGd0ZWl3bV83cHVfZWhEOTVUZy1ocXRpUFN1SkhrbjN3UTUzNDIyQXQ3Rk1GRFhGbXE0Uzd0R3JFLWhnSkNCa1JvbFpJU0lhSQ?oc=5",
+            "source": "edaily.co.kr",
+            "provider": "google",
+            "published": "2026-09-08T21:23:18+00:00",
+            "positive": [],
+            "negative": [
+              "하락"
             ]
           }
         ],
@@ -1439,29 +1393,31 @@
         "sector": "지주",
         "total": 43,
         "hits": 35,
-        "positive_total": 15,
-        "negative_total": 20,
-        "score": 42.9,
+        "positive_total": 14,
+        "negative_total": 21,
+        "score": 40.0,
         "zone": "fear",
         "label": "공포",
         "positive_counts": {
-          "상승": 11,
+          "상승": 10,
           "호재": 2,
           "기대감": 1,
           "최대실적": 1
         },
         "negative_counts": {
           "하락": 11,
-          "악재": 6,
+          "악재": 5,
+          "부진": 1,
+          "주춤": 1,
           "목표주가 하향": 1,
           "약세": 1,
           "목표가 하향": 1
         },
         "positive": [
           {
-            "title": "세아베스틸지주, 뚜렷한 재료 없이 소폭 상승 마감 : 기업주식정보 - 재경일보",
+            "title": "세아베스틸지주, 뚜렷한 재료 없이 소폭 상승 마감 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5wa29EbnRORk85VTVzUFl4elpZdjlITWdXYnZGdmQ3SzBLRU1tY2s2YmVxOGx2VklxeWpwVGtpNWpoR1ZJQjBFMENn?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-10T08:18:00+00:00",
             "positive": [
@@ -1470,9 +1426,9 @@
             "negative": []
           },
           {
-            "title": "[마감분석] 메리츠금융지주, 상승 마감 속 뚜렷한 호재 부재 : 기업주식정보 - 재경일보",
+            "title": "[마감분석] 메리츠금융지주, 상승 마감 속 뚜렷한 호재 부재 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE51N1VGUEZQdDg5YlVJNEY3NmtvRURMaGxTazNKVTNiM01VTDBleHhPcEE2bVNVMTROWTdXencxMkRvRE1Nd0hCM21B?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-10T07:03:00+00:00",
             "positive": [
@@ -1482,9 +1438,9 @@
             "negative": []
           },
           {
-            "title": "우리금융지주, IR 기대감 속 1.49% 상승 마감 : 기업주식정보 - 재경일보",
+            "title": "우리금융지주, IR 기대감 속 1.49% 상승 마감 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBIb3B3dFFmRk5iREZHN0NIQVNsUWU0bFA1TmFwQU1JOVg5Zk1BLUtUbk5kUTNDMnI4WVE1a3B6N3EtY2k1Sm5PNnBB?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-10T07:01:00+00:00",
             "positive": [
@@ -1494,9 +1450,9 @@
             "negative": []
           },
           {
-            "title": "하나금융지주, 특별한 이슈 없이 소폭 상승 마감 : 기업주식정보 - 재경일보",
+            "title": "하나금융지주, 특별한 이슈 없이 소폭 상승 마감 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1kLTF6WFpRTWVzSk9lWTZFXzhkOFRtTWtITzVaQ1dvSGdCTV9QRmRnMTYwVmk0b1BURFhtRkJjQjBfWDlyUS1LWXVn?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-10T06:56:00+00:00",
             "positive": [
@@ -1527,9 +1483,9 @@
             "negative": []
           },
           {
-            "title": "롯데지주, 채무증권 발행 공시 속 2%대 상승 마감 : 기업주식정보 - 재경일보",
+            "title": "롯데지주, 채무증권 발행 공시 속 2%대 상승 마감 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE82WWlFNWpXd0liSXJUTHQwWW56dWpHS3h6NTNvb1pNZGJCNkFFYVcyc2Vmd1E4RFJLLWNTaE5vc3ktTURmUTB6eWFR?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T07:59:00+00:00",
             "positive": [
@@ -1549,9 +1505,9 @@
             "negative": []
           },
           {
-            "title": "[특징주] iM금융지주, 특별한 호재 없이 장중 소폭 상승세 지속 : 기업주식정보 - 재경일보",
+            "title": "[특징주] iM금융지주, 특별한 호재 없이 장중 소폭 상승세 지속 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1UdERZOTU1RTR4WkRUVmNzcWJGSjBQY0RGTjY1NmNDWG8xNm9uREtCLXhVeXBvSTFiMEtzVFY0Q2JBM2xvRjhHNnNn?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T02:22:00+00:00",
             "positive": [
@@ -1574,6 +1530,18 @@
         ],
         "negative": [
           {
+            "title": "[뉴스락 주식네비] 한국금융지주, 증시 부진에 3분기 실적 '주춤' - newslock.co.kr",
+            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBYYkJreVRkR1lkQWhTd1FHYmo5S2dJYnlWTXVmRTFVNDd6U3FfQl9ZUUxxVU1fX0Jnc0VKaEJIZWNVdS1rYTZrSVdJelh3eVJIaHY3ZFc1NkhTcTBpd3hPakdjZGE3bE80SU1ZUA?oc=5",
+            "source": "newslock.co.kr",
+            "provider": "google",
+            "published": "2026-09-10T04:50:55+00:00",
+            "positive": [],
+            "negative": [
+              "부진",
+              "주춤"
+            ]
+          },
+          {
             "title": "유안타증권 \"한국금융지주 목표주가 하향, 거래대금 감소에 3분기 실적 둔화\" - 비즈니스포스트",
             "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5kcHJaYzVQMTljR0owLUtmNS1NM0Z2bWY3ZDl5YWFDNFpTci1hZ204cE5pMkxrY1h3eDRtdEYzMWdmTkdhcFpSV25xZVhtV0QtNHlFZlVZU1BFOW1OVFdfWWhEZDk5djY1a0l0U1llRkFyVGc?oc=5",
             "source": "비즈니스포스트",
@@ -1585,9 +1553,9 @@
             ]
           },
           {
-            "title": "순익 기대치 22% 밑돈다…한국금융지주 목표가 하향 - 파이낸셜뉴스",
+            "title": "순익 기대치 22% 밑돈다…한국금융지주 목표가 하향 - fnnews.com",
             "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBaa1ZFRkFYMlFlcjdvbU54MHFTbGNTa2FDUlZiX3dVelJtOXdJY2Q4LUhDU3hEZWUyd19OaGRvaGJOZ3dQNHJNaG5udU1jbnkxY2ItVFdRV242Zw?oc=5",
-            "source": "파이낸셜뉴스",
+            "source": "fnnews.com",
             "provider": "google",
             "published": "2026-09-09T23:57:38+00:00",
             "positive": [],
@@ -1597,7 +1565,7 @@
           },
           {
             "title": "신한지주 주가 2,600원 하락 후 장마감 - 아시아뉴스통신",
-            "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9HRjF0dmVCd0Z2RFZJR1hGNHM4OHhEVnhFRm42aWtCMXB3TTNoOWpnbTRPUDFjLVgxTEZ1TnFONlJoZExwT3prZ3JETmZ3SUFTVm45Ym5NcHh1SWtHWG5FSTNn?oc=5",
+            "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9oeXRacEFQQnpGNXpWM3EzVVdpNmF2VDF2dnpfTFJVcU5jRXdKbXNXR1lmRG1DREloRmpiT1RLc013SlRVUW45V3pDbHF4N3NLcFdIWHYzbEotR2hfd2hTU2twVG43VWRMVXRaYnpCZnVCdkhO?oc=5",
             "source": "아시아뉴스통신",
             "provider": "google",
             "published": "2026-09-09T10:14:03+00:00",
@@ -1618,9 +1586,9 @@
             ]
           },
           {
-            "title": "iM금융지주, 뚜렷한 악재 없이 소폭 하락 마감 : 기업주식정보 - 재경일보",
+            "title": "iM금융지주, 뚜렷한 악재 없이 소폭 하락 마감 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9tcHhHTGdHdDhEU1BpMnc2VUV4OVhTNno0YUhmM1FqMEItZ0NKUThKcXRZT1dJTTlSOEtTaU5UUUgzTGxIR3lGcFNn?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T07:52:00+00:00",
             "positive": [],
@@ -1630,21 +1598,9 @@
             ]
           },
           {
-            "title": "JB금융지주, 특별한 악재 없이 0.64% 하락 마감 : 기업주식정보 - 재경일보",
-            "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1CQ2V1SGN1NEIxN00xM2lkOHRZMkVneTBnaFdPSVg1N0hxUG5oVlRIRkRLVWVnSnJ5WnFsM3VzYUpiTDRsclBTU1Zn?oc=5",
-            "source": "재경일보",
-            "provider": "google",
-            "published": "2026-09-09T07:32:00+00:00",
-            "positive": [],
-            "negative": [
-              "하락",
-              "악재"
-            ]
-          },
-          {
-            "title": "[특징주] 한국금융지주, 장중 약세 지속... 수급 불균형 영향 : 기업주식정보 - 재경일보",
+            "title": "[특징주] 한국금융지주, 장중 약세 지속... 수급 불균형 영향 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1rdW81bkdRSFJNUGRCc2ZJWmF3RHJ3WHpBVDRSSzdzTG1lZW5DbDBGTVhWYnR1Qm9ZYXNIV3VsazVGUDU2aGpFcVFR?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T01:50:00+00:00",
             "positive": [],
@@ -1653,9 +1609,9 @@
             ]
           },
           {
-            "title": "[특징주] 메리츠금융지주, 최대주주 지분 변동 공시 부담에 3%대 하락세 : 기업주식정보 - 재경일보",
+            "title": "[특징주] 메리츠금융지주, 최대주주 지분 변동 공시 부담에 3%대 하락세 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE13LU5jTzZNMjYxMEN0YThhS08yWkFQcFVqRGFXcmdyS2w5aFY1RHVYMlhaZ2RodjJlSmhDTlQ2bWhaVkZVenZ6cmZB?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T01:37:00+00:00",
             "positive": [],
@@ -1664,9 +1620,9 @@
             ]
           },
           {
-            "title": "[특징주] 하나금융지주, 장중 2%대 하락…확인된 악재 없는 수급 불균형 : 기업주식정보 - 재경일보",
+            "title": "[특징주] 하나금융지주, 장중 2%대 하락…확인된 악재 없는 수급 불균형 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5pOTFMSlJUcEZRdndjcUtmdDl5QjdIUW84VlZNc05tUDdmb1hTZ09McWM4V0ozSDVkUVBJR3RnRy1sN3Y2ZGdCbzhn?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T01:30:00+00:00",
             "positive": [],
@@ -1691,17 +1647,17 @@
       },
       {
         "sector": "AI인프라",
-        "total": 66,
-        "hits": 60,
-        "positive_total": 56,
-        "negative_total": 4,
-        "score": 93.3,
+        "total": 68,
+        "hits": 57,
+        "positive_total": 54,
+        "negative_total": 3,
+        "score": 94.7,
         "zone": "extreme_greed",
         "label": "극단적 탐욕",
         "positive_counts": {
-          "급등": 14,
-          "기대감": 12,
-          "상승": 8,
+          "급등": 13,
+          "기대감": 10,
+          "상승": 9,
           "수혜": 7,
           "강세": 5,
           "호재": 5,
@@ -1711,7 +1667,6 @@
         },
         "negative_counts": {
           "부진": 1,
-          "목표가 하향": 1,
           "약세": 1,
           "하락": 1
         },
@@ -1763,9 +1718,9 @@
             "negative": []
           },
           {
-            "title": "대한전선 8%대 급등, 전력인프라 투자 확대 기대감 반영 : 기업주식정보 - 재경일보",
+            "title": "대한전선 8%대 급등, 전력인프라 투자 확대 기대감 반영 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5TX2M2M1MzZ2txZVBBZXZnaUZzakU1TFRub0RxcWxvdUE5aGJ0MnN6NVFfcUlZSVJKSzIxSmFXT1k4elE4S0RUck1n?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T07:40:00+00:00",
             "positive": [
@@ -1786,6 +1741,17 @@
             "negative": []
           },
           {
+            "title": "미국 원전 건설 계획이 상승세를 이끄는 가운데 두산에너빌리티 주가는 저항선을 돌파할 수 있을까? - Traders Union",
+            "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxONXBNNFdObHE5dWN3U2FmRGhXekNpdUNuUkVHbGtvbkdHbHpiREIteVVvX29ZWVhyel8xaGNxODVId0ZKNHFOUlQzcDJRZ0U4dXJ5NmZCN0ZJU29fOC1Rb2hPRlhNcEZfSUVxbDNFUVN6THdBQ1Q5dmRoVEtJb3lkS3hFVjd4SUNab25fNldsYnhvVHVvU1dKUFRSTQ?oc=5",
+            "source": "Traders Union",
+            "provider": "google",
+            "published": "2026-09-09T03:56:17+00:00",
+            "positive": [
+              "상승"
+            ],
+            "negative": []
+          },
+          {
             "title": "우리기술 주가 16% 급등...美 8기 대형원전 건설 '주목' - gukjenews.com",
             "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE96ZWRRenAwY1V4SXd1alJSU0VvOUhqRm14OXd1a2NLN0l2LXFIcFNhc0dqUVVhMHZnN2Y0MWRZa18yM3FYM2t1YVg5U1UxU2lPRHRNUkxnY3g1YTJqV1FFb19tUlhrUnpDVEhCeUpB?oc=5",
             "source": "gukjenews.com",
@@ -1797,9 +1763,9 @@
             "negative": []
           },
           {
-            "title": "SK이터닉스, 특별한 호재 없이도 상승세 지속 : 기업주식정보 - 재경일보",
+            "title": "SK이터닉스, 특별한 호재 없이도 상승세 지속 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFA4SkxHblBjV0hRSVBlVGkwR01HQXkzRUtNSXhObVM2ZkRsa0F3cGxKTFJYVndCelNEQWlBajNqci1CekZKMWdOLTB3?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T03:08:00+00:00",
             "positive": [
@@ -1818,19 +1784,6 @@
               "급등"
             ],
             "negative": []
-          },
-          {
-            "title": "일진전기, 뚜렷한 호재 없이 8%대 급등…전력설비주 강세 속 수급 집중 : 기업주식정보 - 재경일보",
-            "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE43cGtwNEVtQkJ0QXBCc25zdG9GbFNKMHppNU1kV1NHSk9hWXZ6R3dMcVJBbVpUV2VrSEUzY2x3eXhmdDFZUkRnd1NR?oc=5",
-            "source": "재경일보",
-            "provider": "google",
-            "published": "2026-09-09T02:15:00+00:00",
-            "positive": [
-              "강세",
-              "급등",
-              "호재"
-            ],
-            "negative": []
           }
         ],
         "negative": [
@@ -1846,9 +1799,9 @@
             ]
           },
           {
-            "title": "[특징주] 대우건설, 공급계약에도 채무보증 부담에 장중 하락세 : 기업주식정보 - 재경일보",
+            "title": "[특징주] 대우건설, 공급계약에도 채무보증 부담에 장중 하락세 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5iSUV3bzZnRDR1MVVWaUNTOU5tb1ZfcXBjNFZtN3NZeG9TRDJERm13QTJjMWZncnZrN2VsSmJwQmxVeWJoSVVIZVZB?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T01:54:00+00:00",
             "positive": [],
@@ -1868,34 +1821,22 @@
             "negative": [
               "부진"
             ]
-          },
-          {
-            "title": "한국전력, 중동전쟁에 목표가 하향…원전·AI 장기 모멘텀 유효-LS증권 - 머니투데이 - 머니투데이",
-            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBwOTEzNHRNa2J2dHpzQ3doNFZOOW5sNy1XUGtuaFlVME9SYnBoNEdRaTJhRnZLaExfTDdhTzhPSGNTU2VQU2ktVEg1RjMxTGtvdm96M0NleGpzVkFYUVJ4NS1nVnhMUkQ3bFZiVXVn0gFuQVVfeXFMUHA5MTM0dE1rYnZ0enNDd2g0Vk45bmw3LVdQa25oWVUwT1JicGg0R1FpMmFGdktoTF9MN2FPOE9IY1NTZVBTaS1USDVGMzFMa292b3ozQ2V4anNWQVhRUng1LWdWeExSRDdsVmJVdWc?oc=5",
-            "source": "머니투데이",
-            "provider": "google",
-            "published": "2026-09-07T23:41:42+00:00",
-            "positive": [],
-            "negative": [
-              "목표가 하향"
-            ]
           }
         ],
         "error": null
       },
       {
         "sector": "화학",
-        "total": 18,
-        "hits": 18,
-        "positive_total": 12,
-        "negative_total": 6,
-        "score": 66.7,
+        "total": 16,
+        "hits": 17,
+        "positive_total": 10,
+        "negative_total": 7,
+        "score": 58.8,
         "zone": "greed",
         "label": "탐욕",
         "positive_counts": {
-          "상승": 3,
-          "급등": 2,
-          "랠리": 2,
+          "상승": 4,
+          "급등": 1,
           "반등": 1,
           "목표주가 상향": 1,
           "수혜": 1,
@@ -1903,7 +1844,7 @@
           "상한가": 1
         },
         "negative_counts": {
-          "하락": 2,
+          "하락": 3,
           "악재": 2,
           "약세": 1,
           "순매도": 1
@@ -1947,32 +1888,9 @@
             "negative": []
           },
           {
-            "title": "화학업종 최악 통과하나…롯데케미칼 18% 폭등랠리 - 핀포인트뉴스",
-            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1NUk44TmxpbnFjWXdKWFVYQ204WTdwLWhkRFE0ZFpsV2xBaS1KcGFXU3dXek1lUm1iWVVJZkV2Q1BPYVpzbHNVamRKMl9QcW9kb19OX1hKbF9ZVm02Mmdfdlo2LWRnOU5rSm1LczktOWg5VzDSAXdBVV95cUxQYU5JeXZhcHBpWDR0ZTJRbVZrLTJ3TlNMU1IxSl9jYy1KeDFiamV6LXBXRXpkczRJWXdPYW1RNDBwYlBndFQxQ3VCU2gtMkFJRlVQd3NXMTFJUHNJanIwWm84ZUxFLUJBQnc3SDNFcjlYaUxpaDZGYw?oc=5",
-            "source": "핀포인트뉴스",
-            "provider": "google",
-            "published": "2026-09-09T06:50:14+00:00",
-            "positive": [
-              "랠리"
-            ],
-            "negative": []
-          },
-          {
-            "title": "‘기름값 폭등’에 정유·석화 랠리…롯데케미칼·대한유화 10%대 급등 [이런국장 저런주식] - 서울경제",
-            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE82RmVIMTUtbXF1Y3lTWUI4THk3Z045V2pfeGZzMm95UURydmN2S0JYVHVIN2xsdVNTY0VFeVdGbkE5VEpOd0VjUHo1TXpzcGpHaXfSAVNBVV95cUxNeHc2VF9JQlRWZW4teGFqMnotcTU4eXpCX1VIdTZ5emZNR0p4bFpZdjVvQWt2T0diV0N0bG1HbHVVMTJwVWY3ckNsMHAxWmU0UXJBOA?oc=5",
-            "source": "서울경제",
-            "provider": "google",
-            "published": "2026-09-09T04:48:32+00:00",
-            "positive": [
-              "급등",
-              "랠리"
-            ],
-            "negative": []
-          },
-          {
-            "title": "금호석유화학, IR 및 최대주주 변동 공시에 장중 상승세 : 기업주식정보 - 재경일보",
+            "title": "금호석유화학, IR 및 최대주주 변동 공시에 장중 상승세 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE05TjNPdEx4cE5lVkxMcEM1T2Z5SmI3dktmYW9MaVJoTXNkNUlWZ2U1S0ctTHpuSmZBcFd3LTlqeHZvd2VUYUEzOGZR?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T02:18:00+00:00",
             "positive": [
@@ -1982,7 +1900,7 @@
           },
           {
             "title": "LG화학 주가 상승 중 - 아시아뉴스통신",
-            "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5OcWpFWkJucTYyTVJ1QTllMFJsQU9xdk5mbURzUklqVkU2TEdpMF9EbFhSRWp6ZTV1dXFtM0FfdzFJYUItN0VFNzVuamlYN0pVTnJ5LTRzdlRyekt0UTR0UllJVjBQTTZLcjg3VEFhZ2NJX01Y?oc=5",
+            "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFB0OVc2djhLUmx1N2JOWXlyUUJKeU05d3JyXzhSUTBEbElTMkg2UUxxVE9Yckp3MEJnOVQxY2dkTC11UlZVdEdmQnFLdmczLVJ5OWpNR1V1VFNzWUpPdG9lX3hB?oc=5",
             "source": "아시아뉴스통신",
             "provider": "google",
             "published": "2026-09-09T00:15:31+00:00",
@@ -1994,9 +1912,22 @@
         ],
         "negative": [
           {
-            "title": "LG화학, 특별한 악재 없이 소폭 하락 마감하며 28만원대 지켜 : 기업주식정보 - 재경일보",
+            "title": "디클로로실란의 주가 하락세가 신에츠 화학의 주가 상승 전망을 바꿀까? - simplywall.st",
+            "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPSzJSMF85dm5XYVNQTVhUMWsxSXl4RW5reHRXYWVXbFBDU0pyRVg3emtGRlRWeFlWaHpIa3NHWkttaFJ1OGVWd0pYZkFLU0ZMbm44cTlEajl4Y0VwNlBPbGFJSXhHU0F0LUtQWS1SQi1JZ0JkaU9EXy1TWHU1UUg4LUZieTBUOEdvZ1BaTlYxd2NkUDBBUjVKRG1tUjM4SGxUb0trN3NlY1bSAagBQVVfeXFMT0syUjBfOXZuV2FTUE1YVDFrMUl5eEVua3h0V2FlV2xQQ1NKckVYN3prRkZUVnhZVmh6SGtzR1pLbWhSdThlVndKWGZBS1NGTG5uOHE5RGo5eGNFcDZQT2xhSUl4R1NBdC1LUFktUkItSWdCZGlPRF8tU1h1NVFIOC1GYnkwVDhHb2dQWk5WMXdjZFAwQVI1SkRtbVIzOEhsVG9LazdzZWNW?oc=5",
+            "source": "simplywall.st",
+            "provider": "google",
+            "published": "2026-09-10T10:42:58+00:00",
+            "positive": [
+              "상승"
+            ],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "LG화학, 특별한 악재 없이 소폭 하락 마감하며 28만원대 지켜 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1Ma054dE5aRTVqRVMyWEp2aW5rdFl1YldBbUQ3c0Rfc3Nma0lOMW16X0lkc1EtMm1OWUhkOEc0UWRUcE5yV1Q0YW9B?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-10T07:04:00+00:00",
             "positive": [],
@@ -2039,9 +1970,9 @@
             ]
           },
           {
-            "title": "LG화학, 장중 약보합세 이어가...확인된 악재 없어 : 기업주식정보 - 재경일보",
+            "title": "LG화학, 장중 약보합세 이어가...확인된 악재 없어 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5xeUN5ODA0VnozRFNPNWlyZDBLWUExM2VXMW9MR3hkZHJDSjhTWWoycmdRVTFsTFBSamdRMHNJSFAxYTJ3OUJ5WE5B?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-08T01:41:00+00:00",
             "positive": [],
@@ -2054,21 +1985,22 @@
       },
       {
         "sector": "조선",
-        "total": 37,
-        "hits": 21,
-        "positive_total": 17,
+        "total": 38,
+        "hits": 24,
+        "positive_total": 20,
         "negative_total": 4,
-        "score": 81.0,
+        "score": 83.3,
         "zone": "extreme_greed",
         "label": "극단적 탐욕",
         "positive_counts": {
-          "상승": 6,
+          "상승": 7,
           "강세": 3,
+          "기대감": 3,
           "랠리": 2,
-          "기대감": 2,
           "실적 호조": 1,
           "호재": 1,
           "순매수": 1,
+          "반등": 1,
           "급등": 1
         },
         "negative_counts": {
@@ -2076,6 +2008,29 @@
           "폭락": 1
         },
         "positive": [
+          {
+            "title": "HD현대중공업 엔진 증설 발표…마침내 조선주 재반등 신호탄-메리츠 - edaily.co.kr",
+            "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNd2xqcmZKQTU2cmpOYTFkSU92Z29FdjFhMWR1d0hCemhpT3hVdlRZWWZwLV81UHl6MmRvdjRzaTFQeE5kYjRmVUFvd1h4YnJyeUhkbDBnSXNQSWxTQXEzVDBLcXFUcVpUaldHd2s2NEV2eUdDZEl3ZVN1MW1DdEpURw?oc=5",
+            "source": "edaily.co.kr",
+            "provider": "google",
+            "published": "2026-09-10T22:58:02+00:00",
+            "positive": [
+              "반등"
+            ],
+            "negative": []
+          },
+          {
+            "title": "STX그린로지스, 소폭 상승 마감... 조선업황 기대감 지속 : 기업주식정보 - news.jkn.co.kr",
+            "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5KZHpKcjBlMjFYNmFaQjlwbXlLN2ZyWEU4ZmlSeV8wMFZxUk85TVl2SVhZUXVfcmxLYTJvd21oYTBsa2ZTTm9UOFhR?oc=5",
+            "source": "news.jkn.co.kr",
+            "provider": "google",
+            "published": "2026-09-10T07:53:00+00:00",
+            "positive": [
+              "상승",
+              "기대감"
+            ],
+            "negative": []
+          },
           {
             "title": "증권사 2분기 순익 5조 돌파…거래대금·주가 상승에 ‘쑥’ - 조선비즈 - Chosunbiz",
             "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOMjlCSC1NMG1VenMwTGp4SjFRX2R6eWVidl80ckNRZVVRMDk0UEJfenItMnV3dWZoQ2pLR3FmZ2pJVVp4UHhXeEladWtjcGVTei1UMW0zZVZtck1Qc3RUclQwaVU3RGtVcUdndDktamZ0cGRUY1V6WkpTbFZCYVRkQ3daSUJkdnc2ajMwRkVnMGpwMk85SnhUV0F3X0rSAZwBQVVfeXFMTjI5QkgtTTBtVXpzMExqeEoxUV9kenllYnZfNHJDUWVVUTA5NFBCX3pyLTJ1d3VmaENqS0dxZmdqSVVaeFB4V3hJWnVrY3BlU3otVDFtM2VWbXJNUHN0VHJUMGlVN0RrVXFHZ3Q5LWpmdHBkVGNVelpKU2xWQmFUZEN3WklCZHZ3NmozMEZFZzBqcDJPOUp4VFdBd19K?oc=5",
@@ -2121,9 +2076,9 @@
             "negative": []
           },
           {
-            "title": "대한조선, 개별 호재 없이 조선 업황 기대감에 소폭 상승 : 기업주식정보 - 재경일보",
+            "title": "대한조선, 개별 호재 없이 조선 업황 기대감에 소폭 상승 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5Way1vNTd1cmN5LUxTMDdBN1g0UHpOT3pseF9Rc3ZIOWZybU11N3dfMzZuNGdIUTJIYlNsSm1YMFpMclhEQjRHMnp3?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T03:07:00+00:00",
             "positive": [
@@ -2166,29 +2121,6 @@
               "급등"
             ],
             "negative": []
-          },
-          {
-            "title": "코스피 7000 공방 속 전력·조선 뛰고 코스닥 ‘소부장 랠리’ [이런국장 저런주식] - 서울경제",
-            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9RQ290YVZxVDlsa3Qwd0JGOXVNdDl0cWg3aXhwcGJHeDMxZ1kxLVdtR3dNNHlyb1RPSktDNFVjN1BmVjk0NHNLZmFaRnl5MWFpV0HSAVNBVV95cUxPOEd2V2VpTjcyRjRlbFlUa2F0WWpTWmR2VDNuNTdmUVVOR3NQa2RGTHlXM202Q3otZDZUd2ZIUXk5LUdGU0g1S3dSTzI2dE55SVNmVQ?oc=5",
-            "source": "서울경제",
-            "provider": "google",
-            "published": "2026-09-09T00:42:29+00:00",
-            "positive": [
-              "랠리"
-            ],
-            "negative": []
-          },
-          {
-            "title": "흥국證 “HD현대, 자회사 가치 상승·실적 호조 지속… 목표가 33만원으로↑” - 조선비즈 - Chosunbiz",
-            "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQNkFmb2pDd0pGZ1p1SDBKWGVBd0tPOHIwT3JSZk5RYnV3QXF1QmRXTzgtZ1pWRDNoX2xUTXJ4LTlsZUNLVU1xWHdKd1pfYlNKZjdxLWhmSGJyQTNlUWhCZ1pmUm1mRVo2WW1GUmlBQ3ZIVmQ4NzRxTmF5VjBuTVg0bmZpUFpKV0FOcEtmSEZqQVlUZ2pibDU5UHVSRkvSAZwBQVVfeXFMUDZBZm9qQ3dKRmdadUgwSlhlQXdLTzhyME9yUmZOUWJ1d0FxdUJkV084LWdaVkQzaF9sVE1yeC05bGVDS1VNcVh3SndaX2JTSmY3cS1oZkhickEzZVFoQmdaZlJtZkVaNlltRlJpQUN2SFZkODc0cU5heVYwbk1YNG5maVBaSldBTnBLZkhGakFZVGdqYmw1OVB1UkZL?oc=5",
-            "source": "Chosunbiz",
-            "provider": "google",
-            "published": "2026-09-08T23:42:00+00:00",
-            "positive": [
-              "상승",
-              "실적 호조"
-            ],
-            "negative": []
           }
         ],
         "negative": [
@@ -2204,9 +2136,9 @@
             ]
           },
           {
-            "title": "HD한국조선해양, 관망세 속 소폭 하락 마감…매물 출회 영향 : 기업주식정보 - 재경일보",
+            "title": "HD한국조선해양, 관망세 속 소폭 하락 마감…매물 출회 영향 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBBdWRrVC1nVzh0TDFLdTl4X1BoYmdrXzNUVjRzb1luWmJOcy1JeThaYlBaN0ZXVHpidzA1RVkyTWsyQ19JSmdoSGhR?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-10T07:02:00+00:00",
             "positive": [],
@@ -2241,7 +2173,7 @@
       },
       {
         "sector": "방산",
-        "total": 16,
+        "total": 15,
         "hits": 11,
         "positive_total": 11,
         "negative_total": 0,
@@ -2302,9 +2234,9 @@
             "negative": []
           },
           {
-            "title": "한화시스템, 방산 업종 강세 속 소폭 상승세…수급 흐름 주목 : 기업주식정보 - 재경일보",
+            "title": "한화시스템, 방산 업종 강세 속 소폭 상승세…수급 흐름 주목 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9mNnNaY05teVFoYmZZY3MxLWpIbWtkR2RNV3Y3X2h4bVd6cVpVNF9ZZUY3bGdmZ25ndkFBQzZjZ3dQeVRIaktZWFZB?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-09T01:47:00+00:00",
             "positive": [
@@ -2363,15 +2295,15 @@
       },
       {
         "sector": "우주",
-        "total": 22,
-        "hits": 6,
-        "positive_total": 5,
+        "total": 19,
+        "hits": 5,
+        "positive_total": 4,
         "negative_total": 1,
         "score": null,
         "zone": null,
         "label": "표본 부족",
         "positive_counts": {
-          "상승": 4,
+          "상승": 3,
           "호재": 1
         },
         "negative_counts": {
@@ -2384,17 +2316,6 @@
             "source": "Investing.com 한국어",
             "provider": "google",
             "published": "2026-09-09T13:28:00+00:00",
-            "positive": [
-              "상승"
-            ],
-            "negative": []
-          },
-          {
-            "title": "[마감분석] 한국항공우주, IR 개최 공시 속 1%대 소폭 상승 마감 : 기업주식정보 - 재경일보",
-            "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9ReW9nMTh1ajdzb01aNjJsODcwV1RGbFhxWHBuUTRPNlBsNlpobDlQeF9OWFk3RGpuS2F1eUp2bGtVYm54NUkyM1dR?oc=5",
-            "source": "재경일보",
-            "provider": "google",
-            "published": "2026-09-09T07:15:00+00:00",
             "positive": [
               "상승"
             ],
@@ -2436,9 +2357,9 @@
         ],
         "negative": [
           {
-            "title": "한국항공우주, 1.24% 하락 마감...12만7천원대 유지 : 기업주식정보 - 재경일보",
+            "title": "한국항공우주, 1.24% 하락 마감...12만7천원대 유지 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1ZM3dRNVVXdlNvTWowbEE3MjRlcFpCOG0yejBpSDhwOWlBZzB1cUpnUG5ZODVweGZJeS1HX1h4WG40RUNZdE5HRS13?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-08T07:17:00+00:00",
             "positive": [],
@@ -2451,7 +2372,7 @@
       },
       {
         "sector": "화장품",
-        "total": 15,
+        "total": 17,
         "hits": 8,
         "positive_total": 4,
         "negative_total": 4,
@@ -2459,9 +2380,9 @@
         "zone": null,
         "label": "표본 부족",
         "positive_counts": {
-          "수혜": 1,
+          "반등": 1,
           "강세": 1,
-          "신고가": 1,
+          "수혜": 1,
           "급등": 1
         },
         "negative_counts": {
@@ -2471,11 +2392,22 @@
         },
         "positive": [
           {
-            "title": "원화값 강세에…잘나가던 화장품株 숨고르기 - Nate News",
-            "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5lbEVQdjVXZTdsQ1c2MlJlZVhPWm9ob3UzTnFPTWt0WVE2LXEyNGh0WkI3eTNTWHNpUy1FMkNQZWtiX2pKUVlQb2J6WWRDQnNvcGRz?oc=5",
-            "source": "Nate News",
+            "title": "“화장품주, 10월엔 반등할 것…조정은 매수 기회” - edaily.co.kr",
+            "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOVFgxMlR1QWZibGJySzVpbDMtTGFFR0tKVUxIelAzU2YxRVMxaXl4QmJLRElIRjJ1R0NKajlHX3AxLTVoLWhhMjU0bWJrLVdueHFyaUh4eVFOaFlkaVJfRFUxZkpLNklZcVlLNEJXUVREQlRrRURYYkpfYTJIcS05Tg?oc=5",
+            "source": "edaily.co.kr",
             "provider": "google",
-            "published": "2026-09-09T08:46:00+00:00",
+            "published": "2026-09-10T22:55:20+00:00",
+            "positive": [
+              "반등"
+            ],
+            "negative": []
+          },
+          {
+            "title": "원화값 강세에…잘나가던 화장품株 숨고르기 - v.daum.net",
+            "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5CM2h0UWxidUNzTmRrdE40Rk5DcnFuOHRjdVREOUlPNU5TdDFkRU0zaHdjTF9HYXBLbllDME5BVVhEdVFZRnp1dHV0U1hiNjg2MGFFag?oc=5",
+            "source": "v.daum.net",
+            "provider": "google",
+            "published": "2026-09-09T08:48:08+00:00",
             "positive": [
               "강세"
             ],
@@ -2483,10 +2415,10 @@
           },
           {
             "title": "한 달 만에 73% 급등했는데 \"더 오른다\"…'역대급 실적' 한국콜마, 3분기도 '맑음'[이주의 관.종] - v.daum.net",
-            "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1Fazd0YU9raW1HdDZkNVZVQmh5VkhTQjVYNDJTRHAxdV96UEJuU21aaUZMU0QtcmFkS3NxeXpIMGhIVzRKTGpHVEV4aE9ySElSRTFSdA?oc=5",
+            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFB3M0N1N09BWGo1YUxyLXVQa2lFOFRHSTFBbEJhUWJ2UWQ2Sml0MWVHbXYxUzVaazVacmFsQ3VfMDJDVjZWWjZWbWdxMA?oc=5",
             "source": "v.daum.net",
             "provider": "google",
-            "published": "2026-09-08T22:37:27+00:00",
+            "published": "2026-09-08T22:37:00+00:00",
             "positive": [
               "급등"
             ],
@@ -2500,17 +2432,6 @@
             "published": "2026-09-08T05:53:05+00:00",
             "positive": [
               "수혜"
-            ],
-            "negative": []
-          },
-          {
-            "title": "[코스피 현미경 분석] 한국콜마, 글로벌 MNC향 수주 증가로 주가 신고가 행진? - 데일리인베스트",
-            "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1HUGotdHM4ZGxnODRLaW1MVk1SR1E0LWozZThlclBJU3ZFd01fenctMy1nVi04Z2tRMG53RlV0NGQ0VjJ3UFd6cHp5MGVLalhFbXZUdXMzSm1pVV9CS1ZUZEVOWkYwZlhyZVdr0gFvQVVfeXFMTTA3bDNsNElZeVFUWU1NaTJteEg3NjZ2c0pLWkZ1Zk5CZmJGUXEzcFRYOGJoTmpjaDdXZlVCTjF2SW95RUtyYV9xdWxLbUpPclBtOG5LbnVHMG5VWW9JQVdDVHoxUXBMSVdobHFqTE1r?oc=5",
-            "source": "데일리인베스트",
-            "provider": "google",
-            "published": "2026-09-07T23:30:00+00:00",
-            "positive": [
-              "신고가"
             ],
             "negative": []
           }
@@ -2539,9 +2460,9 @@
             ]
           },
           {
-            "title": "[특징주] 한국콜마, 특별한 악재 없이 장중 하락세…수급 불안정 심화 : 기업주식정보 - 재경일보",
+            "title": "[특징주] 한국콜마, 특별한 악재 없이 장중 하락세…수급 불안정 심화 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBkN1o1TmY5V0JLYWVIWC1DclhJTUxNb1lrNGdPenRnbHF2ZjNhclRHcTVGNHU1alRmV1YycWlPY1ZFVzFDMFNUQ1ZR?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-08T02:19:00+00:00",
             "positive": [],
@@ -2555,34 +2476,79 @@
       },
       {
         "sector": "증권",
-        "total": 45,
-        "hits": 33,
-        "positive_total": 19,
-        "negative_total": 14,
-        "score": 57.6,
+        "total": 50,
+        "hits": 37,
+        "positive_total": 22,
+        "negative_total": 15,
+        "score": 59.5,
         "zone": "greed",
         "label": "탐욕",
         "positive_counts": {
-          "상승": 7,
-          "반등": 3,
-          "강세": 2,
+          "상승": 5,
+          "반등": 4,
+          "수혜": 4,
           "목표가 상향": 2,
+          "강세": 2,
           "목표주가 상향": 2,
+          "신고가": 1,
           "호재": 1,
-          "기대감": 1,
-          "수혜": 1
+          "기대감": 1
         },
         "negative_counts": {
-          "하락": 6,
+          "하락": 8,
           "목표주가 하향": 2,
           "고점": 1,
           "우려": 1,
-          "목표가 하향": 1,
-          "약세": 1,
           "폭락": 1,
-          "부진": 1
+          "약세": 1,
+          "목표가 하향": 1
         },
         "positive": [
+          {
+            "title": "포스코인터내셔널, 한율·유가에도 역량 강화…목표가 상향-흥국증권 - 머니투데이 - 머니투데이",
+            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9OSHd4dUxCVUFka1JIRmt0WGE2djFaSjJIcW9XZEJxYTJwMEdWTVA5Zy0tcUdYSlVvczdwSVphRHRwbFhmQXdFWVhrQjhhdElWYzBuZkVNQU05ZmpVMTdqYnpKZUtIR25V0gFuQVVfeXFMTUxTbHVTRFJPUE9EYV92dDZ6WURXdVNRYnYxZTNId3ZCOUgwanVIeHZERlZZak15WVVZbmZwNWJ6NlNEaWtFMGFacFdJZmNvcDk2SDk5RWVWMmhHQ3ZWZEVJdHRVODlWaTJmV2hLNWc?oc=5",
+            "source": "머니투데이",
+            "provider": "google",
+            "published": "2026-09-10T23:47:19+00:00",
+            "positive": [
+              "목표가 상향"
+            ],
+            "negative": []
+          },
+          {
+            "title": "[리포트 브리핑]풍산, '동가격 신고가와 방산 성장의 동반 수혜' 목표가 110,000원 - 하나증권 - 뉴스핌",
+            "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBxakUzdTdfZ1YxNHYxOG5sZHZlckxSdHBkSXg0NkQ1WktmNTJHazZ1Umd6WFNMVW5pTzl0M3owWkRsLURDR2R2OUo4M1pqYWRtWlhHZlRZZGZIVFRa?oc=5",
+            "source": "뉴스핌",
+            "provider": "google",
+            "published": "2026-09-10T23:32:00+00:00",
+            "positive": [
+              "신고가",
+              "수혜"
+            ],
+            "negative": []
+          },
+          {
+            "title": "[리포트 브리핑]산일전기, '미국 정책 트랙 수혜주' 목표가 300,000원 - KB증권 - 뉴스핌",
+            "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE0tMnY4SVYxek11SGdFVGNsWkRIUHlobGtqZ0pvSklxRWdfOWZZOVB4VHFIeEZpdkNLcEtPQjZaNXlsYkhXQks0YmlfM3ZLcFdYMFZRUTI3VEFKb2h5?oc=5",
+            "source": "뉴스핌",
+            "provider": "google",
+            "published": "2026-09-10T23:32:00+00:00",
+            "positive": [
+              "수혜"
+            ],
+            "negative": []
+          },
+          {
+            "title": "KB증권 \"산일전기, 美 전력 정책 트랙 수혜주…목표가 30만원\" - v.daum.net",
+            "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFA2Q04teFpsZmtwQTRfUW1IUzN3RkhEdWg3N283WEZrUkpOcHFYaVAyWEtSNVBtZWNONW95NENvMVJfZTgySG03WURZeDMxUDQ?oc=5",
+            "source": "v.daum.net",
+            "provider": "google",
+            "published": "2026-09-10T22:52:00+00:00",
+            "positive": [
+              "수혜"
+            ],
+            "negative": []
+          },
           {
             "title": "트릴로지 메탈스, 토론토증권거래소 우수 기업 'TSX30' 선정…3년간 주가 570% 상승 - 데이터투자",
             "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE10cjRxTjFLMnlqbHNJUjBuUHNLWERKLTA3MEVaMGpYaDdpaW9EZ0Z1ZW91aExPUUlvRnFxNFB2bHdacEtBel9CWVdwMUhTLUhfNGE4UUxJczh5Q3BHN1NEYWREV284bHNBaTJZMGQwM0M3eEE?oc=5",
@@ -2648,54 +2614,44 @@
               "상승"
             ],
             "negative": []
-          },
-          {
-            "title": "[리포트 브리핑]키움증권, '개인투자자 회전율 회복에 따라 주가 상승' 목표가 470,000원 - 유안타증권 - 뉴스핌",
-            "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE4tY2R2dElmeFFpRjZPRXpSbGxxMGstQXBYUUU5R1pHSVNBSmlSWkhpWThOMUZqTkozYW5XazIyb01sd0xZeEY3a1VpTE4yQTh1RTlSUjhKQnB6cC1u?oc=5",
-            "source": "뉴스핌",
-            "provider": "google",
-            "published": "2026-09-10T00:55:00+00:00",
-            "positive": [
-              "상승"
-            ],
-            "negative": []
-          },
-          {
-            "title": "NH투자증권 \"컴투스, ‘제우스: 오만의 신’ 매출 1위.. 목표가 상향\" - 글로벌이코노믹",
-            "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPY013UmVmY0lXc1BpTTNSbzR5Q1p6d3dOUERhWXNTNHcxVkpRNkV3SE9XNDJUNkFDMkNxQkp5ZVVqMzNJc1VUOXVUMlFZeEZEdGlXR1ZNQlJ3Wm5mNnBUYm5LSnRDWjRsN1pTNG8xbHRncGNoc3o3NVVsc2JQaFg3aVNZRnFoaEQt?oc=5",
-            "source": "글로벌이코노믹",
-            "provider": "google",
-            "published": "2026-09-10T00:17:06+00:00",
-            "positive": [
-              "목표가 상향"
-            ],
-            "negative": []
-          },
-          {
-            "title": "컴투스, 증권사 목표가 상향에 강세…3.04% - 매일경제 마켓",
-            "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1NVWItd2ZSb1drOFVtUmd6V3VNUVRKRDlSRG1kSGdyS1FZRkF1WEtQa1NjV1FUeFhrNTkybnQtQUJfVXNLWUlGcWFPdzBXc1ZTVnc?oc=5",
-            "source": "매일경제 마켓",
-            "provider": "google",
-            "published": "2026-09-10T00:03:23+00:00",
-            "positive": [
-              "강세",
-              "목표가 상향"
-            ],
-            "negative": []
-          },
-          {
-            "title": "유안타증권 \"증권주 조정 마무리 국면, 반등에 시간 필요…목표가↓\" - 연합뉴스",
-            "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE55T0l5dERkRWxLa1I0V3FfeHpvVWlUUU5QaWJlNklvT0N5eVM0emhEMzM3Z1ViOXljWkZJVU5uMXItLUU3WjZKdld5T1VRcVVHU3hkcFgtR29hSkNzZjN5dtIBYEFVX3lxTE55T0l5dERkRWxLa1I0V3FfeHpvVWlUUU5QaWJlNklvT0N5eVM0emhEMzM3Z1ViOXljWkZJVU5uMXItLUU3WjZKdld5T1VRcVVHU3hkcFgtR29hSkNzZjN5dg?oc=5",
-            "source": "연합뉴스",
-            "provider": "google",
-            "published": "2026-09-09T23:44:36+00:00",
-            "positive": [
-              "반등"
-            ],
-            "negative": []
           }
         ],
         "negative": [
+          {
+            "title": "SK증권, 주가 하락에 LS 목표가↓…\"하반기 실적 개선은 지속\" - 연합뉴스",
+            "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1QYmNZVUhGc0dkME1XYzk0cE5iSDYxVmRUQTJ3YUkzRGtxTHZfVnJXaklkZW05dGQzcUhrTkdoV0FLOWUxd2ZrbjRaR0RZdzM3VTA1QlRLYWVfd1nSAWBBVV95cUxOWnQ4bUZ0WFpfQU1JaUJ2djVYOGhMSlRUNGZ3RXdPbms4UmlkX2QwMDZWUkc0cHJsdFlaS3VfbVJxRndnbkdVaG9Zc2lNTGptSFFpc2UxTERLZGFES0pRd24?oc=5",
+            "source": "연합뉴스",
+            "provider": "google",
+            "published": "2026-09-10T23:44:19+00:00",
+            "positive": [],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "NH투자증권 \"롯데쇼핑, 할인점 매출 반등.. 주가 하락 과도\" - 글로벌이코노믹",
+            "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQeXFDZGdiMV9ZcEZwZHJrR21VUUQ0d2xMOXRlMld2UEU3Qkt3bnJtc1pfTExidWNXdHVEWjRwWjduclFSNG1KSkY1UzFuazZxZlFEbE1xRC1wT0d0THFFbVQwUTFLRmJoTFJOOUVLN1J1d0dVMnJueElmdnFmclpUbkRGNlhsaklC?oc=5",
+            "source": "글로벌이코노믹",
+            "provider": "google",
+            "published": "2026-09-10T23:36:29+00:00",
+            "positive": [
+              "반등"
+            ],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "LS, 일렉트릭 주가 하락 반영…목표가 54만원으로 하향-SK증권 - 마켓인",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0zY1I2NVl5dnBSRUU5WXdGM3Rfc2FILXlQUnpVZ250V3pSWTFDM2JvMW1RN1NpaU5zQ05IY3ZQSEY2V1pTdHg3MloxV1NVRC1JcHlmeEpMYktoM09Kb0pnMFVfem8wMXR0MlpNYUVjTHBZREE?oc=5",
+            "source": "마켓인",
+            "provider": "google",
+            "published": "2026-09-10T23:16:14+00:00",
+            "positive": [],
+            "negative": [
+              "하락"
+            ]
+          },
           {
             "title": "카피증권(KAI): 주가가 최고점 대비 40% 이상 하락했으며, 상반기 이익은 미실현 자산에 크게 의존하고 있습니다. - Vietnam.vn",
             "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPMWp2WnkxY3lEdzB3dzY4aWo5OFozWGI2LTVUTnJmY1FqVHNUZzRoUnF2eXdBMTVWeEI3RXNaam9ycTZybmJHN1Z2aUIzaEQxQm9DTGI5QTVLckRFZzNGRDlZeldfTFFWX2xRUEl4enh4RWNKbEh1WDB1Y1RFQmhOc2ZXNHFxLVdJSzROaW04VEN5N2FtMlNVTkc5dXhHdUtKUEdOaW4ycGdXVE9zRU9ZNlZqRy1veWpGZzlxSzViWklsc2pQZmhsdndYSUhvdw?oc=5",
@@ -2744,17 +2700,6 @@
             ]
           },
           {
-            "title": "이마트, 스타벅스 부진에 3분기 실적 ‘빨간불’…본업은 호조-IBK투자증권 - PRESS9",
-            "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5RMExLUXNrN1NkZnhvNDZjMFhzUUdqZTZ2Z2kyRHBPVjE1b09MNkUxWjVfS3RnNTZQQ0Eyc3hVZWo4R1pMVDlHZUNCY3ZTUDVBN2hhTW5rYjZpWlJOQ0NuVXlrSlM?oc=5",
-            "source": "PRESS9",
-            "provider": "google",
-            "published": "2026-09-10T00:32:29+00:00",
-            "positive": [],
-            "negative": [
-              "부진"
-            ]
-          },
-          {
             "title": "키움증권 주가 하락 중 - 아시아뉴스통신",
             "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8tazV1dE1DQjRReU1KQXg0TnNZN0NNa0taRzlWYm1PeWpxOTRzOVkzR202Mzg0X19FZ2VDd3Y0YnlnbU9CR3J0OEtUMXdUdnNCS0pQRlpCQUZ5eDJ5R2tnaDY5VVZqNndZM3NvNGMwTG9oZHJ4?oc=5",
             "source": "아시아뉴스통신",
@@ -2786,60 +2731,46 @@
             "negative": [
               "우려"
             ]
-          },
-          {
-            "title": "삼성증권, 실적 추정치 조정에 목표가 하향…유안타증권 - 머니투데이 - 머니투데이",
-            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1fSk8zaHdqSWdaSXpTV0Fob3dCbkY1a3NzNzhDN3diTVRyZm41b1Nuai1wVlI1Z1Fqa19KUTMyVmJKOUJMbHpvcG5ZaktqMWw2ZkVMbmFpWkdzUElfS1JKVHFSRW81S3laa0l0ajJn0gFuQVVfeXFMTV9KTzNod2pJZ1pJelNXQWhvd0JuRjVrc3M3OEM3d2JNVHJmbjVvU25qLXBWUjVnUWprX0pRMzJWYko5Qkxsem9wbllqS2oxbDZmRUxuYWlaR3NQSV9LUkpUcVJFbzVLeVprSXRqMmc?oc=5",
-            "source": "머니투데이",
-            "provider": "google",
-            "published": "2026-09-09T23:41:35+00:00",
-            "positive": [],
-            "negative": [
-              "목표가 하향"
-            ]
-          },
-          {
-            "title": "금리 오르면 주가 폭락?…\"오히려 호재\" 증권가 목표가 '줄상향' [주식R] - v.daum.net",
-            "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5aNUpQeGUzWFJibHFXWV9PbVRmVHhlaElxV3BieVNJSGFaUXItdzJxMHZNZzYyRTg1NmNZME9rSGdLN1Rfa3RLeklNaGl0WFE?oc=5",
-            "source": "v.daum.net",
-            "provider": "google",
-            "published": "2026-09-09T13:05:32+00:00",
-            "positive": [
-              "호재"
-            ],
-            "negative": [
-              "폭락"
-            ]
           }
         ],
         "error": null
       },
       {
         "sector": "식품",
-        "total": 27,
-        "hits": 26,
-        "positive_total": 11,
+        "total": 28,
+        "hits": 28,
+        "positive_total": 13,
         "negative_total": 15,
-        "score": 42.3,
-        "zone": "fear",
-        "label": "공포",
+        "score": 46.4,
+        "zone": "neutral",
+        "label": "중립",
         "positive_counts": {
-          "상한가": 5,
-          "급등": 3,
+          "상한가": 6,
+          "급등": 4,
           "상승": 2,
-          "수혜": 1
+          "강세": 1
         },
         "negative_counts": {
           "하락": 11,
+          "악재": 2,
           "급락": 1,
-          "고점": 1,
-          "주춤": 1,
-          "악재": 1
+          "고점": 1
         },
         "positive": [
           {
+            "title": "식품공사(FCC): 라몬드 부동산으로 사명을 변경한 이 회사의 주가가 수십억 달러 규모의 프로젝트를 앞두고 700% 급등했습니다. - Vietnam.vn",
+            "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPNDliTTZhSXVmS2FKRkhiZkFnejkxcHJrSU9TdDJuejVzaEJndGxPeFp1Z3RsQklidFRPZ2IyS01aQWVCMkV5SWNYa0w1Vkc2MTlwb091Mm45dHFFYTZzZm9uY29NUnJOUWVxLXNFaFRUV0tvLWtvcDNPNkVFM2ZaNHpVajhtbUU4VXRTU1FnLTJ2a19NRERwbUVjZlRIRlNLc2RWNHJTalBnd3RSNVlfbXZ3UVVuU3gzNHI4QTlTOA?oc=5",
+            "source": "Vietnam.vn",
+            "provider": "google",
+            "published": "2026-09-10T16:18:10+00:00",
+            "positive": [
+              "급등"
+            ],
+            "negative": []
+          },
+          {
             "title": "[상한가 종목] 샘표-샘표식품 이어 원익피앤이-알파칩스 등 마감 - 이코노뉴스",
-            "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1lbWx3eWxRX3oxd0JWNkI0MkhBTGRQQVpVN25fMVJZZ3k4b25Fb2w1R1NicXM5TzZoQWhVNFR2TmNWR0x6U21zSmE4Tng5UXlFM3ZDQmFfVi1nOFJpYmJyVl9fLUNVdFpETUlRMVVn?oc=5",
+            "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5JeW5uQklKQTM1eVhEdmwzZmF3X2NXNDdiNEdPMlZkalF6OXVZbmZ5N3NhbGVxem1nVzhxb0tQeXBtbkRhSXYyaThwYVR4WGwzNG9zb1M1d19NS2Iwa0dCdGE5c2V1Y01VSFZ4bEpZRQ?oc=5",
             "source": "이코노뉴스",
             "provider": "google",
             "published": "2026-09-10T12:30:00+00:00",
@@ -2856,6 +2787,18 @@
             "published": "2026-09-10T10:40:00+00:00",
             "positive": [
               "급등",
+              "상한가"
+            ],
+            "negative": []
+          },
+          {
+            "title": "[특징주] 샘표, 자사주 30% 전량 소각에 상한가…샘표식품도 '강세’ - moneystorm.kr",
+            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBOUU5FNHRHcjdvT3czLW1GZDduUzg2N1M3Q1dvODNmNmtRQWhvXzJwVktjVTdjdDV3ckNOS0J5Y3VZVERVZHRnYWd2VFpmTmhaZXp3WlhfUVFUWS1uX21LcmRZZFNtWmZJRUE?oc=5",
+            "source": "moneystorm.kr",
+            "provider": "google",
+            "published": "2026-09-10T06:43:20+00:00",
+            "positive": [
+              "강세",
               "상한가"
             ],
             "negative": []
@@ -2910,17 +2853,6 @@
         ],
         "negative": [
           {
-            "title": "삼양식품 원/달러 환율 하락의 '무풍지대', 김정수 '압도적 해외수요'로 환리스크 넘는다 - 비즈니스포스트",
-            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBudjNQYzJaY1FjSHV6aEZfUXpvMUZTTTFTYTVPNGhKdEs5T1NYWC1rYXRqeU1xX08yaFF6QTRfNUc4dDRJZi16X2RIOGJUWmF4Um5KeWtkUFZ1Q056azhJbVE2akZCWFVxZVAySXp1OWtFZnM?oc=5",
-            "source": "비즈니스포스트",
-            "provider": "google",
-            "published": "2026-09-10T06:20:00+00:00",
-            "positive": [],
-            "negative": [
-              "하락"
-            ]
-          },
-          {
             "title": "삼양식품 주가, 9월 10일 장중 1,238,000원 2.13% 하락 - 톱스타뉴스",
             "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5uOEY5Z0xJUnAzSVZUc2lTZmxQLWplQXFFdE1OY1FhekRqZkdCZGdQd1N1ZnZEVm5nak5wNnR5Y2JzMWdXaktKRVVDdWh6VGQ4RV80N2gtYnlyR2dBMXJTR2hRLUhMQmc2V2pzcU1jSDdIdw?oc=5",
             "source": "톱스타뉴스",
@@ -2948,6 +2880,17 @@
             "source": "아시아뉴스통신",
             "provider": "google",
             "published": "2026-09-10T00:29:27+00:00",
+            "positive": [],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "[마감분석] 삼양식품, 차익실현 매물 출회에 2%대 하락 마감 : 기업주식정보 - news.jkn.co.kr",
+            "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1aa2VUM1VFVUhROVo1RE1uUFo3UTZ4bmZNNXBZQ1hZazViTFMtbXFFSDRHa1NTM3RXYTFuSlgtU2h3OVVrc2xTYlhR?oc=5",
+            "source": "news.jkn.co.kr",
+            "provider": "google",
+            "published": "2026-09-09T07:21:00+00:00",
             "positive": [],
             "negative": [
               "하락"
@@ -2998,9 +2941,9 @@
             ]
           },
           {
-            "title": "삼양식품, 특별한 악재 없이 2%대 하락 마감...차익실현 관측 : 기업주식정보 - 재경일보",
+            "title": "삼양식품, 특별한 악재 없이 2%대 하락 마감...차익실현 관측 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9LdW1jdVFyNUJuOW1RalBTYkVxdTB6aGctOVRYcVFQeElUdy14UEd2N2IwcG9tY2N6SHl1bDEwVThUSWozOEVHajVn?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-08T07:23:00+00:00",
             "positive": [],
@@ -3010,14 +2953,12 @@
             ]
           },
           {
-            "title": "원화값 오르자 여행·식품주 들썩…환율 하락 수혜주 주목 - 핀포인트뉴스",
-            "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFBpX2lSZzhHT2JrS1lDVXFyVUpNVVlBQVU4T3NOVl9GUHZ1SEEwWTdlbGdZZ3hrLXpaUUVQZXBRMG83X1pKSnluSmh0eXJyWjRsZVJ6dkN6Y3ZScWRfVGdnZGw0c0V4ZjJhemJJQTJqQi1uZ2pGbWx30gF3QVVfeXFMUGlfaVJnOEdPYmtLWUNVcXJVSk1VWUFBVThPc05WX0ZQdnVIQTBZN2VsZ1lneGstelpRRVBlcFEwbzdfWkpKeW5KaHR5cnJaNGxlUnp2Q3pjdlJxZF9UZ2dkbDRzRXhmMmF6YklBMmpCLW5nakZtbHc?oc=5",
-            "source": "핀포인트뉴스",
+            "title": "환율 하락하자 직격탄 맞은 K-라면株, 지금이 매수 시점인가? - 센머니",
+            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9pc3MyaVVTWHdXOGJpUjZXSTlveXhwN3JvQmlNTUV1VkU4MmQwYmh6OHQyWXd0RTZId1ZYUkZjVUlDeEFYNURpc0F1TXlhMUNTZFhMNW9LUS1aRHQ5bkJiVWtVeEpMQjBETGR6cw?oc=5",
+            "source": "센머니",
             "provider": "google",
-            "published": "2026-09-08T05:37:24+00:00",
-            "positive": [
-              "수혜"
-            ],
+            "published": "2026-09-08T04:20:00+00:00",
+            "positive": [],
             "negative": [
               "하락"
             ]
@@ -3042,38 +2983,23 @@
       },
       {
         "sector": "기계",
-        "total": 6,
-        "hits": 8,
-        "positive_total": 8,
+        "total": 7,
+        "hits": 5,
+        "positive_total": 5,
         "negative_total": 0,
         "score": null,
         "zone": null,
         "label": "표본 부족",
         "positive_counts": {
-          "상승": 5,
-          "강세": 1,
-          "호재": 1,
+          "상승": 4,
           "기대감": 1
         },
         "negative_counts": {},
         "positive": [
           {
-            "title": "HD건설기계, 3%대 상승 마감...개별 호재 없이 주가 강세 : 기업주식정보 - 재경일보",
-            "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE8tNG9nTEJ0amJmVXBxM3BZT2F4TTF5eHk1MXdzblE2bzVyTW0weHVIcmpDaDVKNmtoaHhPQ2loTjFLMU1ySlUzUlZR?oc=5",
-            "source": "재경일보",
-            "provider": "google",
-            "published": "2026-09-09T07:27:00+00:00",
-            "positive": [
-              "상승",
-              "강세",
-              "호재"
-            ],
-            "negative": []
-          },
-          {
-            "title": "[MK시그널] HD건설기계, 신흥시장 공략 가속화 및 엔진 사업의 재평가 등에 주가 상승세... MK시그널 추천 후 상승률 17.04% 기록 - 매일경제",
+            "title": "[MK시그널] HD건설기계, 신흥시장 공략 가속화 및 엔진 사업의 재평가 등에 주가 상승세... MK시그널 추천 후 상승률 17.04% 기록 - mk.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE0zSXRQSXVRbTNZRnFSejJqUXRQVHdVZ3FKV2IzRnNPVkJXVTBSVXExZUpjaTUxUVBjcTI3bDdtdTNmbTRuc1E?oc=5",
-            "source": "매일경제",
+            "source": "mk.co.kr",
             "provider": "google",
             "published": "2026-09-09T00:18:50+00:00",
             "positive": [
@@ -3093,9 +3019,9 @@
             "negative": []
           },
           {
-            "title": "HD건설기계, 장중 2%대 상승…수급·업종 기대감 반영 : 기업주식정보 - 재경일보",
+            "title": "HD건설기계, 장중 2%대 상승…수급·업종 기대감 반영 : 기업주식정보 - news.jkn.co.kr",
             "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9PdFpTYUNIREVWZ3NOdlB6bWpkWkxHaDZPRFcyZHF0UkNWVlY2M1I5RU9IbG1QUzM5TkQxTnhuRTU5dlZfT2JidkVR?oc=5",
-            "source": "재경일보",
+            "source": "news.jkn.co.kr",
             "provider": "google",
             "published": "2026-09-08T02:01:00+00:00",
             "positive": [
@@ -3121,50 +3047,61 @@
       ],
       "current_level": 7033.92,
       "lookback_days": 3,
-      "score": 29.4,
+      "score": 33.3,
       "zone": "fear",
       "label_text": "공포",
-      "total_posts": 123,
-      "greed_total": 4,
+      "total_posts": 159,
+      "greed_total": 6,
       "fear_total": 18,
-      "hits": 22,
+      "hits": 24,
       "greed_counts": {
-        "상승": 2,
+        "상승": 3,
         "가즈아": 1,
+        "우상향": 1,
         "반등": 1
       },
       "fear_counts": {
-        "폭락": 10,
-        "하락": 3,
+        "폭락": 8,
+        "하락": 6,
         "고점": 2,
         "나락": 1,
-        "떡락": 1,
-        "붕괴": 1
+        "떡락": 1
       },
-      "hot_posts": 15,
-      "dropped_posts": 7,
+      "hot_posts": 9,
+      "dropped_posts": 16,
       "news": {
         "total": 100,
-        "hits": 57,
+        "hits": 47,
         "positive_total": 17,
-        "negative_total": 40,
-        "score": 29.8,
+        "negative_total": 30,
+        "score": 36.2,
         "zone": "fear",
         "label": "공포",
         "positive_counts": {
-          "상승": 11,
-          "급등": 4,
-          "반등": 1,
-          "훈풍": 1
+          "상승": 13,
+          "급등": 2,
+          "훈풍": 1,
+          "반등": 1
         },
         "negative_counts": {
-          "하락": 20,
+          "하락": 15,
           "악재": 8,
-          "순매도": 6,
-          "약세": 5,
-          "우려": 1
+          "순매도": 4,
+          "약세": 2,
+          "급락": 1
         },
         "positive": [
+          {
+            "title": "[0911개장체크] 美 30년물 국채금리 19년 만에 최고치 경신…국제유가 상승세 지속 - 인포스탁데일리",
+            "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9jVV8wQ0NXVVlVMEx5VDMtZVF6OHFFSDVjU1E3bTlrMmd5Z3ZjTlZKdUs4RmJLZFJIUEE3cHpfZXJJQjl5cU1CdjdvSTdRNmE2WTVVT2hnYW5xUkdSQTNQcUYxTDFvdW5VclN5Uk1BeXlFN1lSY1E?oc=5",
+            "source": "인포스탁데일리",
+            "provider": "google",
+            "published": "2026-09-10T22:48:00+00:00",
+            "positive": [
+              "상승"
+            ],
+            "negative": []
+          },
           {
             "title": "\"'꿈의 9000피' 상승 기여도…진짜 '삼전·닉스'였다\" - v.daum.net",
             "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1Qdmwzdm5rSTY0NnFuM1ZObU55OU9HUVhJRkFlRGhUcTh4alE4SGRnSDdWN0lzNU9CZzVwaF84VUpMY2EteXluTUViU25rbTg?oc=5",
@@ -3233,7 +3170,7 @@
           },
           {
             "title": "낙폭 줄인 코스피 7000선에서 고지전…코스닥은 상승 전환[장중시황] - v.daum.net",
-            "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE4xN3Y4bmJvcHZhRjRmYmxNbjhMTS11MFRpNFdnZU12czlHRnh0dmxaT2lrOS1QZ2VFeVJ5MmRteDZHNjkxV1E?oc=5",
+            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBBYmdWWGx6bVhsVk5BbEcxTVhfQUpmVXV4eVVkeHh1LWVIb0JLOW56Q3A4ejNCSWsxMldRM2prUXgxMGZOUGFiOS1WVQ?oc=5",
             "source": "v.daum.net",
             "provider": "google",
             "published": "2026-09-10T04:37:55+00:00",
@@ -3243,49 +3180,35 @@
             "negative": []
           },
           {
-            "title": "낙폭 줄인 코스피 7000선에서 고지전…코스닥은 상승 전환[장중시황] - 뉴스1",
-            "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1kS3pNWHJzdVhfcENSMEYyV0U2XzBCbVlVYVpqWU5fc2V3anU0ZDF4aWRtc01NYTJkaUM2MjIwZmtvS09NOGt2dFE3VXYyc29kSFZlQU5YbkJDc0NwQXRUUNIBYEFVX3lxTE1kS3pNWHJzdVhfcENSMEYyV0U2XzBCbVlVYVpqWU5fc2V3anU0ZDF4aWRtc01NYTJkaUM2MjIwZmtvS09NOGt2dFE3VXYyc29kSFZlQU5YbkJDc0NwQXRUUA?oc=5",
-            "source": "뉴스1",
+            "title": "낙폭 줄인 코스피 7000선에서 고지전…코스닥은 상승 전환[장중시황] - v.daum.net",
+            "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE4xN3Y4bmJvcHZhRjRmYmxNbjhMTS11MFRpNFdnZU12czlHRnh0dmxaT2lrOS1QZ2VFeVJ5MmRteDZHNjkxV1E?oc=5",
+            "source": "v.daum.net",
             "provider": "google",
-            "published": "2026-09-10T04:36:34+00:00",
+            "published": "2026-09-10T04:37:00+00:00",
             "positive": [
               "상승"
             ],
             "negative": []
           },
           {
-            "title": "[0909마감체크] 코스피, 33거래일 만에 7000선 탈환... AI 훈풍 지속 By 인포스탁데일리 - Investing.com 한국어",
-            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1wTGVldjlYelhNMTBjZ2JUQU5IN3V0SWtfV0FzVUYzZ2k0TE8ydmozQlZBdnRtUzA4eENOTkRvZWVNR2E0Q0NHTHRJd1pQQ19CV3NGLWVzY19ldGpXb2FDMlhyak5waUxaWUFVOS0zVW0?oc=5",
-            "source": "Investing.com 한국어",
+            "title": "낙폭 줄인 코스피 7000선에서 고지전…코스닥은 상승 전환[장중시황] - v.daum.net",
+            "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5BUXhOeVpkcy14WEVoM2ZDZHVBc29KMHVYZ0tsaUVIMU1jaURNeXZmYkxoQW44RlFSWE4yaDRxUEdsVnNBT25QUXhSQU1MRHVFbExtNQ?oc=5",
+            "source": "v.daum.net",
             "provider": "google",
-            "published": "2026-09-09T09:58:00+00:00",
+            "published": "2026-09-10T04:37:00+00:00",
             "positive": [
-              "훈풍"
+              "상승"
             ],
             "negative": []
           }
         ],
         "negative": [
           {
-            "title": "코스피, 중동 악재 발 국제유가 상승 여파에 7030선 하락 마감 - ksdaily.co.kr",
-            "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1paTM1Z0I3UFdLd3VWQzVoX2VSSXhVdGFQNUluLXR4UXU1aUVGZHJ2V2pfUTk4Z0tKbzZkcl9qaXcwVmQwZG9XZ3hxaEZnUVVVaXp1T0RPYWVTRjktVGw5SlZ3WjNDb0hVTXNF?oc=5",
-            "source": "ksdaily.co.kr",
+            "title": "[오늘의 투자전략] 美 금리·유가 급등에 코스피 하락 출발 전망 - 이투데이",
+            "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFAxY3hpQy1vOTBRUGpBWmRwRE55M3VESV8yWGFpLU4tX3ZwN0NkZldBLTBJdGU4czQycmR5ZnlpSHpFV1BPRVJMakx6SWlsbUtOVU9rWg?oc=5",
+            "source": "이투데이",
             "provider": "google",
-            "published": "2026-09-10T10:12:03+00:00",
-            "positive": [
-              "상승"
-            ],
-            "negative": [
-              "하락",
-              "악재"
-            ]
-          },
-          {
-            "title": "코스피, 국제 유가 급등 여파에 소폭 하락…‘7천피’는 지켜 - v.daum.net",
-            "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9mUThsX0dCSS1CZGRuaWpNb3lNSVRtNk9uSE9ZSDBTNFFMQVAxazJHSXdpZzAyakVtZENaWDFyRjVrZHJldVBYdkRGcDVXOWs?oc=5",
-            "source": "v.daum.net",
-            "provider": "google",
-            "published": "2026-09-10T09:10:00+00:00",
+            "published": "2026-09-10T23:20:00+00:00",
             "positive": [
               "급등"
             ],
@@ -3294,14 +3217,60 @@
             ]
           },
           {
-            "title": "‘네 마녀의 날’ 코스피 장 중 6900선까지 하락…막판 낙폭 줄여 7000선 방어 - industrynews.co.kr",
-            "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE4zb3BUQ01fYW05QmFUUHBHZ0N0YVVxMzJWZVVpcVVNMFAteWItRlhUNEg1T0VBR2FtNmJCTk9TallBYXVMSDdjVWNWcWVCa2RiTTNpU1d6aWt5aUFfVXh2bkx4V0dNRUV6T29VOWpMSUQwUQ?oc=5",
-            "source": "industrynews.co.kr",
+            "title": "[모닝 리포트] \"금리·유가 급등에 코스피 하락 출발 전망\" - 뉴스핌",
+            "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1MMTV1bXZkdVo3TGJwTUJiMHphelgtNmxiMlRFYWZiOF9VYkF0dklxbXA2SEQ5TG5jVUEycW53Y2ZsdmNyc05ncXVXV1pBVDdvQnpjNTZ3dEpfVzYy?oc=5",
+            "source": "뉴스핌",
             "provider": "google",
-            "published": "2026-09-10T08:59:32+00:00",
+            "published": "2026-09-10T23:18:00+00:00",
+            "positive": [
+              "급등"
+            ],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "[굿모닝 증시]'금리·유가'에 흔들린 美 증시…코스피 하락 출발할 듯 - core.asiae.co.kr",
+            "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5qRERHTGZnYTltem45dFB1OEprbE03aHZDRE5OdE1ibGZLZmdERU9nR0kzWW5RN0I0U1EtU1lYa0ZQcWNZb3pYWjFLOV9BcjNyZGtDbE05VzQxOHdLMFZVNXVn?oc=5",
+            "source": "core.asiae.co.kr",
+            "provider": "google",
+            "published": "2026-09-10T23:04:00+00:00",
             "positive": [],
             "negative": [
               "하락"
+            ]
+          },
+          {
+            "title": "[마켓뷰] 유가·금리 고공행진 악재…코스피, 7000선 지켜낼까 - 연합뉴스",
+            "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1mZGFpT1JOWnp2dEhPYjJEN3ZJQktDMjZiUzVOUE1ZZ2syQ2ZiM1ZMVTR2XzA4N05adnVuLUdIYjZtZUk0WDlIV2YwWklleTJ4YnZiQ2F5Y3BraVnSAWBBVV95cUxOVS1abkpyREp5aUtjMXFpVDlhSXdZMUdFMS1BZXBJV3QxUzNKb016MmhEMmV2Y1pUa2RxV2hVWlp6WVhfQkFwNDdvTjc5ME5KUXpfeHU5N3JNQXMzbk5qbHU?oc=5",
+            "source": "연합뉴스",
+            "provider": "google",
+            "published": "2026-09-10T22:53:04+00:00",
+            "positive": [],
+            "negative": [
+              "악재"
+            ]
+          },
+          {
+            "title": "[오늘의 증시]美 유가·금리 부담에 하락…코스피, 7000선 밑으로 - 뉴시스",
+            "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE0zVzBIZ09NQWFVWXZtd3ptRWxCMnpJaHBOTWVKNGFUTzM3dTltaW1QYktBM1AtbnhHQk52OG1YNUtTVFlvRG9HeEcxVnMzbTZLdkk5UEhBWlZtOFA5OExxbtIBeEFVX3lxTE5XY0xDQVBybFM3TTlTM0dCem1yNXJUZW5udHZrWTJRNFp4c0xkeHVaODAzQmozZC1mTDRXT1ZKb3RxSDZHZkduNUFrdUxSVnpBeVMtcEN6bXJDRDR2V21uMXI5V3BTOTYxdVVtMGRMMU5lbkNPclAxWA?oc=5",
+            "source": "뉴시스",
+            "provider": "google",
+            "published": "2026-09-10T22:51:07+00:00",
+            "positive": [],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "美 반도체주 급락에 코스피도 조정 압력…외국인 향방 안갯속 - ebn.co.kr",
+            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5LSF80MW9fT0FrcHVqUmdhbDFXenNJWGZsbmJWQzZ4LWJXVldZSnhvYlRSejVtRFhCWTJLa2xRRHlmNzgyTlk0TWZKVU5KWDZVSlhQaWZjU3pyRW54ZFBhY0ZCM1JRaHdi?oc=5",
+            "source": "ebn.co.kr",
+            "provider": "google",
+            "published": "2026-09-10T21:45:54+00:00",
+            "positive": [],
+            "negative": [
+              "급락"
             ]
           },
           {
@@ -3347,56 +3316,22 @@
             "negative": [
               "악재"
             ]
-          },
-          {
-            "title": "'네 마녀의 날' 코스피 소폭 하락…7000선은 지켜 - 미디어펜",
-            "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1jMzFDTndnWFVqT25aX09LdXJmUTRmVlV1eTJsY0Q3STJXcTdXd0tLM005QWVtaTRqczRDaGZqbFB6RktVWUhkTHlFOEtBbjRpb3cyMtIBWEFVX3lxTFB5MHIyM0FoZGdockU0RE1lWkxYUmJNVVROV2g3YXgzRVk4R2ZNNDFVLThBdnB4bGRXOVJpenVPdWl5dXloRy1Fam5JUS1nZkNaYzFPVm1EUm0?oc=5",
-            "source": "미디어펜",
-            "provider": "google",
-            "published": "2026-09-10T07:24:26+00:00",
-            "positive": [],
-            "negative": [
-              "하락"
-            ]
-          },
-          {
-            "title": "外人 투매, 코스피 '하락'...한화생명·GS건설은 '껑충' - 초이스경제",
-            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5nQ0t0R2hDdnFxTC0zM1Zzd2p1VDJLM1hqY0JIa3VrWENtUXU1bDcyVTZic1Jrd1Z4Mm5jSjlUV2JSajRkVWpsMHlEcW5sbFJ1bzlKLWM3T1VzdWVLeXg5N2Q0MUQ3RlVmaU5KYjJYczPSAXNBVV95cUxOeGJnODZNYnh3cXNMamxUX3VseVpXYjQzYjdDalpWdXpHeVdMSGhXWUh2SXlQdG54cVU1eWRpb3puaTlsU0xlWTF1cUlobkVUMThfOXRwYktoTk1oejk3LVIzbm5SdkRMbjJSX2NCZm80QmNR?oc=5",
-            "source": "초이스경제",
-            "provider": "google",
-            "published": "2026-09-10T07:14:35+00:00",
-            "positive": [],
-            "negative": [
-              "하락"
-            ]
-          },
-          {
-            "title": "코스피, 중동 악재에 하락…7,000선은 사수 - 연합뉴스",
-            "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE15Wmw2YkRzTGQyWmpfWHFMZFpxRGR5T1BnOTh3QnVPOWo1WGZBSEVJTV84d25MaDFlb3dfVDhNR1JYOEh5eVBvOTV6a3EtZnVjcU5zZ3NTNC01bEk5b3N6WNIBYEFVX3lxTE15Wmw2YkRzTGQyWmpfWHFMZFpxRGR5T1BnOTh3QnVPOWo1WGZBSEVJTV84d25MaDFlb3dfVDhNR1JYOEh5eVBvOTV6a3EtZnVjcU5zZ3NTNC01bEk5b3N6WA?oc=5",
-            "source": "연합뉴스",
-            "provider": "google",
-            "published": "2026-09-10T07:08:27+00:00",
-            "positive": [],
-            "negative": [
-              "하락",
-              "악재"
-            ]
           }
         ],
         "error": null
       },
       "evidence": [
         {
-          "title": "코스피 파멸적 상승 언제함",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3455470&s_type=search_subject&s_keyword=코스피&page=3",
-          "source": "dc_krstock",
+          "title": "코스피야간선물 +0.6% 상승 마감",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=3&divpage=1&search_type=sub_memo&keyword=%C4%DA%BD%BA%C7%C7&no=435361",
+          "source": "ppomppu",
           "greed": [
             "상승"
           ],
           "fear": [],
-          "views": 119,
-          "votes": 0,
-          "comments": 2
+          "views": 879,
+          "votes": 2,
+          "comments": 1
         },
         {
           "title": "쪽집게 기관투자자의KOSPI폭락 코멘트",
@@ -3411,14 +3346,62 @@
           "comments": 10
         },
         {
+          "title": "코스피 파멸적 상승 언제함",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3455470&s_type=search_subject&s_keyword=코스피&page=4",
+          "source": "dc_krstock",
+          "greed": [
+            "상승"
+          ],
+          "fear": [],
+          "views": 119,
+          "votes": 0,
+          "comments": 2
+        },
+        {
+          "title": "역시나코스피는 오늘 하락하고 있습니다.",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=1&divpage=1&search_type=sub_memo&keyword=%C4%DA%BD%BA%C7%C7&no=435706",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "하락"
+          ],
+          "views": 1340,
+          "votes": 4,
+          "comments": 21
+        },
+        {
+          "title": "코스피변동성 낮아지고 찔끔찌끔 우상향 하는 것 같아서 매우 고무적이네요",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=1&divpage=1&search_type=sub_memo&keyword=%C4%DA%BD%BA%C7%C7&no=435782",
+          "source": "ppomppu",
+          "greed": [
+            "우상향"
+          ],
+          "fear": [],
+          "views": 441,
+          "votes": null,
+          "comments": 1
+        },
+        {
+          "title": "짤녀 꼴릴수록 코스피 파멸적 하락 ㅋㅋㅋㅋㅋㅋㅋ",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3460823&s_type=search_subject&s_keyword=코스피&page=1",
+          "source": "dc_krstock",
+          "greed": [],
+          "fear": [
+            "하락"
+          ],
+          "views": 223,
+          "votes": 2,
+          "comments": 13
+        },
+        {
           "title": "주식 투자 소모임 코스피 반등 기념 난교 파티.jpg",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17714145&s_type=search_subject&s_keyword=코스피&page=1",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17714145&s_type=search_subject&s_keyword=코스피&page=2",
           "source": "dc_stockus",
           "greed": [
             "반등"
           ],
           "fear": [],
-          "views": 121,
+          "views": 122,
           "votes": 0,
           "comments": 1
         },
@@ -3436,7 +3419,7 @@
         },
         {
           "title": "난 이번 코스피 떡락신호를 환율 상승으로 보고잇는데",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17716040&s_type=search_subject&s_keyword=코스피&page=1",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17716040&s_type=search_subject&s_keyword=코스피&page=2",
           "source": "dc_stockus",
           "greed": [
             "상승"
@@ -3444,13 +3427,73 @@
           "fear": [
             "떡락"
           ],
-          "views": 70,
+          "views": 72,
           "votes": 0,
           "comments": null
         },
         {
+          "title": "실시간 코스피대폭락ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17721966&s_type=search_subject&s_keyword=코스피&page=1",
+          "source": "dc_stockus",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ],
+          "views": 120,
+          "votes": 1,
+          "comments": 10
+        },
+        {
+          "title": "자 말아올리자~ 코스피1만가자 닉스400만가즈아~",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17712146&s_type=search_subject&s_keyword=코스피&page=3",
+          "source": "dc_stockus",
+          "greed": [
+            "가즈아"
+          ],
+          "fear": [],
+          "views": 38,
+          "votes": 0,
+          "comments": null
+        },
+        {
+          "title": "실시간 코스피대폭락ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3460677&s_type=search_subject&s_keyword=코스피&page=1",
+          "source": "dc_krstock",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ],
+          "views": 284,
+          "votes": 0,
+          "comments": 8
+        },
+        {
+          "title": "코스피야간선물 -3.51% 하락 마감",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=1&divpage=1&search_type=sub_memo&keyword=%C4%DA%BD%BA%C7%C7&no=435941",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "하락"
+          ],
+          "views": 2021,
+          "votes": 2,
+          "comments": 1
+        },
+        {
+          "title": "코스피야간선물 -0.35% 하락 마감",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=2&divpage=1&search_type=sub_memo&keyword=%C4%DA%BD%BA%C7%C7&no=435639",
+          "source": "ppomppu",
+          "greed": [],
+          "fear": [
+            "하락"
+          ],
+          "views": 1119,
+          "votes": 2,
+          "comments": 1
+        },
+        {
           "title": "나스닥? 야선? 폭락인데 왜 코스피랩 하닉 -1퍼임? (진짜몰름)",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3457574&s_type=search_subject&s_keyword=코스피&page=2",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3457574&s_type=search_subject&s_keyword=코스피&page=3",
           "source": "dc_krstock",
           "greed": [],
           "fear": [
@@ -3461,32 +3504,8 @@
           "comments": 4
         },
         {
-          "title": "자 말아올리자~ 코스피1만가자 닉스400만가즈아~",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17712146&s_type=search_subject&s_keyword=코스피&page=2",
-          "source": "dc_stockus",
-          "greed": [
-            "가즈아"
-          ],
-          "fear": [],
-          "views": 37,
-          "votes": 0,
-          "comments": null
-        },
-        {
-          "title": "실시간 코스피대폭락ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17713759&s_type=search_subject&s_keyword=코스피&page=1",
-          "source": "dc_stockus",
-          "greed": [],
-          "fear": [
-            "폭락"
-          ],
-          "views": 175,
-          "votes": 0,
-          "comments": 2
-        },
-        {
           "title": "미장 반도치 폭락 내일 코스피 마십 보겠는데?",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3456715&s_type=search_subject&s_keyword=코스피&page=3",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3456715&s_type=search_subject&s_keyword=코스피&page=4",
           "source": "dc_krstock",
           "greed": [],
           "fear": [
@@ -3497,20 +3516,20 @@
           "comments": null
         },
         {
-          "title": "코스피 최고점에서 찍었던 사진",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3454126&s_type=search_subject&s_keyword=코스피&page=4",
-          "source": "dc_krstock",
+          "title": "일단코스피차트가 박스권 고점이네요",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=3&divpage=1&search_type=sub_memo&keyword=%C4%DA%BD%BA%C7%C7&no=435248",
+          "source": "ppomppu",
           "greed": [],
           "fear": [
             "고점"
           ],
-          "views": 92,
-          "votes": 0,
-          "comments": 2
+          "views": 828,
+          "votes": null,
+          "comments": 1
         },
         {
           "title": "코스피 나락가야되는 이유 생겼다",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17712611&s_type=search_subject&s_keyword=코스피&page=2",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17712611&s_type=search_subject&s_keyword=코스피&page=3",
           "source": "dc_stockus",
           "greed": [],
           "fear": [
@@ -3522,7 +3541,7 @@
         },
         {
           "title": "코스피에서 10년넘게 고점 회복 못한 종목있냐??",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17712284&s_type=search_subject&s_keyword=코스피&page=2",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17712284&s_type=search_subject&s_keyword=코스피&page=3",
           "source": "dc_stockus",
           "greed": [],
           "fear": [
@@ -3533,8 +3552,20 @@
           "comments": 1
         },
         {
+          "title": "실시간 코스피대폭락ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3460870&s_type=search_subject&s_keyword=코스피&page=1",
+          "source": "dc_krstock",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ],
+          "views": 122,
+          "votes": 0,
+          "comments": null
+        },
+        {
           "title": "코스피 대폭락 하면 고배당주 담는 거 어떨까",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3457732&s_type=search_subject&s_keyword=코스피&page=1",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3457732&s_type=search_subject&s_keyword=코스피&page=3",
           "source": "dc_krstock",
           "greed": [],
           "fear": [
@@ -3546,25 +3577,13 @@
         },
         {
           "title": "내일 하락장이면 남은 현금 털어서 코스피 종배 간다",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3455122&s_type=search_subject&s_keyword=코스피&page=3",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3455122&s_type=search_subject&s_keyword=코스피&page=4",
           "source": "dc_krstock",
           "greed": [],
           "fear": [
             "하락"
           ],
-          "views": 55,
-          "votes": 0,
-          "comments": null
-        },
-        {
-          "title": "실시간 코스피대폭락ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3454145&s_type=search_subject&s_keyword=코스피&page=4",
-          "source": "dc_krstock",
-          "greed": [],
-          "fear": [
-            "폭락"
-          ],
-          "views": 66,
+          "views": 56,
           "votes": 0,
           "comments": null
         },
@@ -3576,19 +3595,7 @@
           "fear": [
             "하락"
           ],
-          "views": 61,
-          "votes": 0,
-          "comments": null
-        },
-        {
-          "title": "코스피7k완전붕괴 삼닉 쾌속운지 ㅋㅋㅋㅋㅋㅋㅋㅋ",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17711647&s_type=search_subject&s_keyword=코스피&page=2",
-          "source": "dc_stockus",
-          "greed": [],
-          "fear": [
-            "붕괴"
-          ],
-          "views": 48,
+          "views": 72,
           "votes": 0,
           "comments": null
         }
@@ -3613,12 +3620,6 @@
           "unsupported": false
         },
         {
-          "key": "dc_neostock",
-          "count": 2,
-          "error": null,
-          "unsupported": false
-        },
-        {
           "key": "arca",
           "count": 0,
           "error": "연속 실패로 건너뜀",
@@ -3632,16 +3633,12 @@
         },
         {
           "key": "ppomppu",
-          "count": 9,
+          "count": 47,
           "error": null,
           "unsupported": false
         }
       ],
       "history": [
-        {
-          "ts": "2026-08-31 08:30",
-          "score": 43.8
-        },
         {
           "ts": "2026-08-31 17:31",
           "score": 42.9
@@ -3781,6 +3778,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 29.4
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 33.3
         }
       ],
       "daily": [
@@ -3932,7 +3933,7 @@
         {
           "date": "2026-09-10",
           "score": 33.3,
-          "n": 4
+          "n": 5
         }
       ]
     },
@@ -3960,33 +3961,44 @@
         "급등": 1
       },
       "fear_counts": {},
-      "hot_posts": 5,
-      "dropped_posts": 3,
+      "hot_posts": 8,
+      "dropped_posts": 4,
       "news": {
         "total": 100,
-        "hits": 88,
+        "hits": 87,
         "positive_total": 51,
-        "negative_total": 37,
-        "score": 58.0,
+        "negative_total": 36,
+        "score": 58.6,
         "zone": "greed",
         "label": "탐욕",
         "positive_counts": {
-          "상승": 35,
-          "급등": 7,
+          "상승": 36,
+          "급등": 5,
           "강세": 4,
           "훈풍": 3,
           "순매수": 1,
+          "반등": 1,
           "랠리": 1
         },
         "negative_counts": {
-          "하락": 26,
-          "약세": 7,
+          "하락": 25,
+          "약세": 8,
           "순매도": 1,
           "위축": 1,
-          "악재": 1,
-          "급락": 1
+          "악재": 1
         },
         "positive": [
+          {
+            "title": "코스닥, 장중 반등…에코프로비엠·주성엔지니어링·로보티즈↑ 알테오젠↓ - CBC뉴스",
+            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBDa290Y094U2lCRS1ROHI2T2VYQlNBbGRrdjczLXBMdFN0RTN2ay1icHFtelVjNUhvSGVydUxZWGFneHR2R01JU0gybjBFM3hEUGRQUjJsRVJKOUZydUJBWkwxOA?oc=5",
+            "source": "CBC뉴스",
+            "provider": "google",
+            "published": "2026-09-10T15:41:00+00:00",
+            "positive": [
+              "반등"
+            ],
+            "negative": []
+          },
           {
             "title": "코스닥 '또 상승'...주성엔지니어링 · 티에스이 · 펩트론 '껑충' - 초이스경제",
             "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1MMG5ORTBIS1hNYzFQQjFlbVgycTItU0VNbHFrQmRiejctY2JQLUJ6eC05NmxMNUhlLW5naUFVRkRYRXphWUJ3cVctQjdWeDE2Z1ZFZlNKeTlDUWhFWjVHdlZfVjhvVTRjRWNwWTBKQk1JUTTSAXNBVV95cUxNTDBuTkUwSEtYTWMxUEIxZW1YMnEyLVNFTWxxa0JkYno3LWNiUC1CengtOTZsTDVIZS1uZ2lBVUZEWEV6YVlCd3FXLUI3VngxNmdWRWZTSnk5Q1FoRVo1R3ZWX1Y4b1U0Y0VjcFkwSkJNSVE0?oc=5",
@@ -4033,10 +4045,10 @@
           },
           {
             "title": "코스닥, 소폭 상승 마감 - 뉴시스",
-            "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9sd3VaMnhscXNCeEZzRDVLc2k1TXdLbVZCUDZYRUF1U0N6a19ORGsweTJET0NJbFIyVlZzaGtfU21mMFhRQUxzY3RjMmpVbEEtZVRaRVA4bWY1aU5oQXVMN0FRdXlvekFXN0REUDBubDFDcDNxWEVPQ9IBeEFVX3lxTE9sd3VaMnhscXNCeEZzRDVLc2k1TXdLbVZCUDZYRUF1U0N6a19ORGsweTJET0NJbFIyVlZzaGtfU21mMFhRQUxzY3RjMmpVbEEtZVRaRVA4bWY1aU5oQXVMN0FRdXlvekFXN0REUDBubDFDcDNxWEVPQw?oc=5",
+            "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9FTnRxZ2hKUm9NWmUyOHB5bUZJMlVrMVFMZGZndVpKTGZvWjFUbURTT3Rnd0hrYmpvX0luQjNKRktSdWhPWmtwUy1ZX1lBd3hJMHpIQVdVdFZpbmF5ZW1keU5pb2o5ZDVGdUdlbUZfdjBqcVp5TVdsQtIBeEFVX3lxTE9FTnRxZ2hKUm9NWmUyOHB5bUZJMlVrMVFMZGZndVpKTGZvWjFUbURTT3Rnd0hrYmpvX0luQjNKRktSdWhPWmtwUy1ZX1lBd3hJMHpIQVdVdFZpbmF5ZW1keU5pb2o5ZDVGdUdlbUZfdjBqcVp5TVdsQg?oc=5",
             "source": "뉴시스",
             "provider": "google",
-            "published": "2026-09-10T06:55:32+00:00",
+            "published": "2026-09-10T06:55:31+00:00",
             "positive": [
               "상승"
             ],
@@ -4086,17 +4098,6 @@
               "훈풍"
             ],
             "negative": []
-          },
-          {
-            "title": "코스피, 7000선서 등락…外人 순매수에 하단 지지 - 뉴시스",
-            "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1RRDEyajBsTHBSYmVPUXlZWnVvUUNybW5EMUNHRkpmOUJiRzdHTGtMWDJmX2FvejQ1eUpNOXEwUnhfUTVMSGpHS2ltYzQzTHZmY1pvb3FVMjV3aDZwY1lFV01VZFp2ejBnZkRiOUFVZERnQTlwSVZtcNIBeEFVX3lxTE1RRDEyajBsTHBSYmVPUXlZWnVvUUNybW5EMUNHRkpmOUJiRzdHTGtMWDJmX2FvejQ1eUpNOXEwUnhfUTVMSGpHS2ltYzQzTHZmY1pvb3FVMjV3aDZwY1lFV01VZFp2ejBnZkRiOUFVZERnQTlwSVZtcA?oc=5",
-            "source": "뉴시스",
-            "provider": "google",
-            "published": "2026-09-10T00:23:01+00:00",
-            "positive": [
-              "순매수"
-            ],
-            "negative": []
           }
         ],
         "negative": [
@@ -4134,6 +4135,28 @@
             "positive": [
               "상승"
             ],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "코스피 0.25% 하락…7,033.92 마감 - 뉴스1",
+            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5MZmVhOTBXcWRLRlBDLXhzM0RvZWlOeUV5X0xPMV9vMm9WRmZoOS1ZcXc2UUk5UXZZSldqZ2ZOYzJIS1ZQbks1NnYxNA?oc=5",
+            "source": "뉴스1",
+            "provider": "google",
+            "published": "2026-09-10T06:46:22+00:00",
+            "positive": [],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "코스피, 7033.92로 하락 마감 - 뉴스1",
+            "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1mdVpCRnQ3RGRIT0hZS2dpZHgxYkJuWm94T1ZkSThwaUF3N0dONDExLU1JQ2hpYzhtMkRHck1JSi1fMmw1UnN6MEVybw?oc=5",
+            "source": "뉴스1",
+            "provider": "google",
+            "published": "2026-09-10T06:46:01+00:00",
+            "positive": [],
             "negative": [
               "하락"
             ]
@@ -4183,20 +4206,6 @@
             ]
           },
           {
-            "title": "코스피, 유가·美국채금리 급등에 '하락'…코스닥은 '급락' - 컨슈머타임스",
-            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9rQjVJVEdaQXk2UnJQTHU2ek9ROTRMZUZFUUtiYUZiRXltVGNOSmhoUl9BaXRRcDZURllURklXQkRUNXQ0NXpOVEd6ZnBoVDJ5X2VhMmJ0Tjg1TGxHZUlvVnBYU29xSlpPNmc?oc=5",
-            "source": "컨슈머타임스",
-            "provider": "google",
-            "published": "2026-09-10T00:33:08+00:00",
-            "positive": [
-              "급등"
-            ],
-            "negative": [
-              "하락",
-              "급락"
-            ]
-          },
-          {
             "title": "[개장시황] 중동 불안·금리 급등에 코스피 장초반 약세…7000선 위태 - 아주경제",
             "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1mQmlaSDRmVklLZkxlQzQ2YVBUcmZxZ19rRlZadUZYS01fU3JKak0wQnVnNWt3ZUdlNUlCS1Jpdm1VOUh6OFl2LTJCWGJOemZvUGtfXzNMVDLSAVhBVV95cUxNZkJpWkg0ZlZJS2ZMZUM0NmFQVHJmcWdfa0ZWWnVGWEtNX1NySmpNMEJ1ZzVrd2VHZTVJQktSaXZtVTlIejhZdi0yQlhiTnpmb1BrX18zTFQy?oc=5",
             "source": "아주경제",
@@ -4206,20 +4215,6 @@
               "급등"
             ],
             "negative": [
-              "약세"
-            ]
-          },
-          {
-            "title": "코스피 국제유가·미국 국채금리 상승에 장중 하락 7030선, 코스닥도 약세 - 비즈니스포스트",
-            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE04M0V1cmkxeU1XNXJjREdVZGs1Z0F6YWQ3X2NHbl9meFBmOWtXWDI0NG9oeHAxSFRCQy0wWFpwY1dmTERWcmpRSHdaMTlCTktIRnVZZmRXYXNjUmd4dmNIT1FLT3h6LUZRcXEyalMtNFBFaVE?oc=5",
-            "source": "비즈니스포스트",
-            "provider": "google",
-            "published": "2026-09-10T00:29:58+00:00",
-            "positive": [
-              "상승"
-            ],
-            "negative": [
-              "하락",
               "약세"
             ]
           }
@@ -4235,19 +4230,19 @@
             "상승"
           ],
           "fear": [],
-          "views": 307,
+          "views": 333,
           "votes": 0,
           "comments": 2
         },
         {
           "title": "ppi에 모든걸 걸고 코스닥잡주들 풀매수해볼까...",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3455671&s_type=search_subject&s_keyword=코스닥&page=1",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3455671&s_type=search_subject&s_keyword=코스닥&page=2",
           "source": "dc_krstock",
           "greed": [
             "풀매수"
           ],
           "fear": [],
-          "views": 133,
+          "views": 137,
           "votes": 0,
           "comments": 1
         },
@@ -4259,19 +4254,19 @@
             "급등"
           ],
           "fear": [],
-          "views": 267,
+          "views": 270,
           "votes": 0,
           "comments": null
         },
         {
           "title": "코스닥 파멸적으로 함 상승해주라",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3455464&s_type=search_subject&s_keyword=코스닥&page=1",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3455464&s_type=search_subject&s_keyword=코스닥&page=2",
           "source": "dc_krstock",
           "greed": [
             "상승"
           ],
           "fear": [],
-          "views": 34,
+          "views": 35,
           "votes": 0,
           "comments": null
         },
@@ -4461,7 +4456,7 @@
       "score": null,
       "zone": null,
       "label_text": "표본 부족",
-      "total_posts": 34,
+      "total_posts": 32,
       "greed_total": 3,
       "fear_total": 2,
       "hits": 5,
@@ -4477,21 +4472,21 @@
       "dropped_posts": 0,
       "news": {
         "total": 100,
-        "hits": 51,
+        "hits": 54,
         "positive_total": 20,
-        "negative_total": 31,
-        "score": 39.2,
+        "negative_total": 34,
+        "score": 37.0,
         "zone": "fear",
         "label": "공포",
         "positive_counts": {
-          "급등": 9,
-          "상승": 5,
-          "강세": 4,
-          "랠리": 1,
+          "급등": 11,
+          "상승": 4,
+          "강세": 3,
+          "호실적": 1,
           "반등": 1
         },
         "negative_counts": {
-          "하락": 25,
+          "하락": 28,
           "우려": 2,
           "약세": 2,
           "실망": 1,
@@ -4532,17 +4527,6 @@
             "negative": []
           },
           {
-            "title": "[뉴욕증시 22일]기술주 중심으로 '산타 랠리' 시동 - 미주조선일보",
-            "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQck1jUDVYNXFTQ1ZJeWw3bVlHRDdjOUNkelhKVk95SjR0WHg4eW1LQmFhV1ZkSzNpT3QzNGhvSzNhckFWMXZnVkdnUkladmxEazM0ZFpEdWJlREN6Z0tRd0xMWi0wYWF4VGNzUVpNV0c2RlhuekNFLTFoN1pTNnRmZV9zdHFwc1dQbkIxZ0tGdU02Wlh6ZzIzTk1Md2x2RktKWVlVV2ZzdlZocFpDYmpvczhybHQ4ZGZLeUhVZWMtLUlpNndw?oc=5",
-            "source": "미주조선일보",
-            "provider": "google",
-            "published": "2026-09-07T09:28:35+00:00",
-            "positive": [
-              "랠리"
-            ],
-            "negative": []
-          },
-          {
             "title": "[뉴욕증시 13일] 미·이란 종전 합의 기대에 반등 - 미주조선일보",
             "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQT1k2bjN6VnE3XzN4eWlOVE5weDBHQUxLSUdyek9sa1o4VGVGTV9PUnRoaVRWdl9xaUFRVTVDRUhJMlYxM3NqNWFVU285ZXFERnBKcXlkNGtyMmxBdWVlY3gtNmpGbEFLbU96SFBBZGtrTzhkVHNYVmdoQjZVVWhlOHgyTHhPTnJkVTc3N3Z0V2wyX2ZSMThuU3d0WUVTT01Md0dwMzl2alI1aEZ4?oc=5",
             "source": "미주조선일보",
@@ -4550,17 +4534,6 @@
             "published": "2026-09-06T18:58:57+00:00",
             "positive": [
               "반등"
-            ],
-            "negative": []
-          },
-          {
-            "title": "[뉴욕증시 19일] 저가매수세 유입으로 강세 마감 - 미주조선일보",
-            "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOSGE2ZXF5ZUViZXBLWWdZbm1JWjZoaGg1al91dEJqNWZqU21qTVhrczZuMXBXRktsNUI1WEotVWhpdTgtZGxjYkViSVlqcVBQcFhwbDR6V0N3U0cybWlMdnN1ZmlkRV94M2hNWDVHaUFWcldOX09ia3Q5bXgyRVl2dW9wbmNkTDh1Mnl2ejBFVnhPaTNaN1F6RDBhRmdEV203amRHcHJ1aFVuZDd0OGdEdnpEYWQ0Z1NYQjdtMkV6MUNNMnI0?oc=5",
-            "source": "미주조선일보",
-            "provider": "google",
-            "published": "2026-09-06T18:28:33+00:00",
-            "positive": [
-              "강세"
             ],
             "negative": []
           },
@@ -4575,9 +4548,79 @@
               "강세"
             ],
             "negative": []
+          },
+          {
+            "title": "[뉴욕증시 4월 30일] 빅테크 호실적에 S&P500·나스닥 사상 최고치 - 미주조선일보",
+            "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQQzdKSFJFbGt6bkYtcWgxRG55NnJBSHduY0JZYjVucnNpaWFEYl9iUkZRQWhkOW5Ic1ZqYmdWQWx0Qk1yN2FsaGlVZjN0R0xrSW00b1FuQm5ZLUt0SWY3NWxWeFBBdUY2dElrT1pyWG9QbzdkWWRCc2l1TDdIa1UzZFhyMkE4cEtGbzRYbU51WmxpMEFCVzRMRDNWUGhKT2tiaHhaOGxfcVVOM0Nmd2FrVDRtQ2hUb0s4MnBRSF9tX3d0ejZhOTNnaXJn?oc=5",
+            "source": "미주조선일보",
+            "provider": "google",
+            "published": "2026-09-06T04:00:11+00:00",
+            "positive": [
+              "호실적"
+            ],
+            "negative": []
           }
         ],
         "negative": [
+          {
+            "title": "브렌트유 109달러, 10년물 4.94%. S&P500 4거래일 연속 하락 중 애플 +3.56% 홀로 급등, 오라클 실적 발표는... - 네이버 프리미엄콘텐츠",
+            "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQVngtUWI3eUtHc2h3cGF6ek1VZWt5SGhaZkVVcXJiYnZuZUZpTl9MeDV3d00xSGpERlZNVWlHSXFyc2ZFRWdkOTlJRnJkc2lqckh3TzZjSnRTc3JWZVRsX1ZYT1Awc2c3RnFzaWc4NENJZmJjZDRXSHZtZVpjQ0tadlR3?oc=5",
+            "source": "네이버 프리미엄콘텐츠",
+            "provider": "google",
+            "published": "2026-09-10T23:20:00+00:00",
+            "positive": [
+              "급등"
+            ],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "미국증시 S&P500 '하락'...애플 관련주 '껑충' vs 마이크론 '뚝' - 초이스경제",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE4yUU5KYXBSQTBtQ0h2SUJMUnI4VEI3clpWMlFfdDFic2d4WXpnOGtxSndMWHJ1cWhqNmNUSURhbHJwMWEyX2ZnVldSRGt2YjBxVEZ1S211VF8xaFZDcWVpVXBWaEFzNDZSbklJNl91X2lUenPSAXNBVV95cUxOMlFOSmFwUkEwbUNIdklCTFJyOFRCN3JaVjJRX3QxYnNneFl6ZzhrcUp3TFhydXFoajZjVElEYWxycDFhMl9mZ1ZXUkRrdmIwcVRGdUttdVRfMWhWQ3FlaVVwVmhBczQ2Um5JSTZfdV9pVHpz?oc=5",
+            "source": "초이스경제",
+            "provider": "google",
+            "published": "2026-09-10T22:21:40+00:00",
+            "positive": [],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "[속보]미국 증시 4대 지수 동반 하락…다우 316포인트↓·러셀2000 0.98%↓ - CBC뉴스",
+            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1ZcnRTeEhObFJseC1Ib09JZFN4QzFNb2oxaW1qRzZ2X0JpVlgxZU9nUzNxRllRSmV5QVBFWllmZW5LdFBnZmh5VDlham8yNXlNY01HVWp4a2NhbXhYOXpmM2IxcHBLRU92?oc=5",
+            "source": "CBC뉴스",
+            "provider": "google",
+            "published": "2026-09-10T22:13:39+00:00",
+            "positive": [],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "[속보] 뉴욕증시, 유가 고공행진·美 국채금리 급등에 나흘째 하락⋯다우 0.60%↓ - 데일리안",
+            "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE93VEl5TEF2SWlJLWhDYmpIYXM1MnY1bFFnMHZWU05YOHBHS0s2Ri1fRXJ3bXNlYjcyRlNzTHZVaUlJYjB2SEo2Uk1PMkNXd0tFMVM2Nw?oc=5",
+            "source": "데일리안",
+            "provider": "google",
+            "published": "2026-09-10T21:42:00+00:00",
+            "positive": [
+              "급등"
+            ],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "[속보] 뉴욕증시 하락⋯다우 0.60%↓ - 이투데이",
+            "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9JUUlES2Y5bFRWVTZIcmx2WFJrZmpfSXJoT3FrX3RXQWxqWnB5MGRGdXgzS1NtNXNJQnNIWTJEWkRpWC0yY3MzbERnQ0prQ1cxZ0xZQw?oc=5",
+            "source": "이투데이",
+            "provider": "google",
+            "published": "2026-09-10T21:04:00+00:00",
+            "positive": [],
+            "negative": [
+              "하락"
+            ]
+          },
           {
             "title": "뉴욕증시, 유가 상승세 지속에 나흘째 하락…나스닥 0.65%↓ - 뉴스핌",
             "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBzUDJjcVpiX2ZQNlpmbEdYZ1YzYmNNUDdCYmpRNnhrRnc2bWN3LWxTYjJOVHJ3dWU2aDBuS3FuRzd1NnpsVFAwbEw2b1I4azBJTVlEalljd3F5Q3RT?oc=5",
@@ -4586,6 +4629,19 @@
             "published": "2026-09-10T20:36:00+00:00",
             "positive": [
               "상승"
+            ],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "뉴욕증시 마감 1시간 前...4대지수 '하락', 애플 '급등' vs 오라클 '뚝' - 초이스경제",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5fUXRvMnVlSkZQbDNWWUlpTDlEN05lazRQMXVYMkl0a3hBaWthV1FDQTVTck14ZVNSMDhvdUk5TUExamF5RTRRbmNORl9YeU5tbVJGQ19vMXk0cVdoMFRpakt5STNlQ19XWHVKMHlZX0tUd1nSAXNBVV95cUxOX1F0bzJ1ZUpGUGwzVllJaUw5RDdOZWs0UDF1WDJJdGt4QWlrYVdRQ0E1U3JNeGVTUjA4b3VJOU1BMWpheUU0UW5jTkZfWHlObW1SRkNfbzF5NHFXaDBUaWpLeUkzZUNfV1h1SjB5WV9LVHdZ?oc=5",
+            "source": "초이스경제",
+            "provider": "google",
+            "published": "2026-09-10T19:56:58+00:00",
+            "positive": [
+              "급등"
             ],
             "negative": [
               "하락"
@@ -4624,78 +4680,6 @@
             "positive": [],
             "negative": [
               "약세"
-            ]
-          },
-          {
-            "title": "[마켓무버] 고유가·고금리 '이중 부담'…뉴욕증시 3대 지수 일제히 하락 - 이데일리TV",
-            "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1YR0pETTZha1N3M3ZrT0hRaFUzbHJRY2xrTVg1RlRrNkVUcV9DWGNiVU9JSVdlLV9nNnlBRWxHWlFOZ25sOXJfdU5VbXhjRzFlR1ZNSE5PSjNGYVdDRTg4TURzcm1OZ3E3d1ZCZHJxTURrZEpOTS1RVC1URQ?oc=5",
-            "source": "이데일리TV",
-            "provider": "google",
-            "published": "2026-09-09T23:48:00+00:00",
-            "positive": [],
-            "negative": [
-              "하락"
-            ]
-          },
-          {
-            "title": "유가 100달러·바이백 실망에 S&P500 0.48%↓ [뉴욕증시] - 매일일보",
-            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5leHh2anZKa2RYTzRRa25KQU82Q3BGWHJzeHZ6eTM0eVBWakFJOFk0Q2g0ZHhCN25EV1ZZdE8zb2dfeDV3elRSU3R1ZGM4cnZFU3lSX1JUXzd6ZC1jcFhmaTl3ZUk1QWR60gFoQVVfeXFMTmV4eHZqdkprZFhPNFFrbkpBTzZDcEZYcnN4dnp5MzR5UFZqQUk4WTRDaDRkeEI3bkRXVll0TzNvZ194NXd6VFJTdHVkYzhydkVTeVJfUlRfN3pkLWNwWGZpOXdlSTVBZHo?oc=5",
-            "source": "매일일보",
-            "provider": "google",
-            "published": "2026-09-09T23:22:33+00:00",
-            "positive": [],
-            "negative": [
-              "실망"
-            ]
-          },
-          {
-            "title": "\"국채금리 4.85% 급등에 유가 100불 돌파\"…뉴욕증시, 3일 연속 하락 마감 - theconnectmoney.com",
-            "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBKcmtraGg5RHhWS2Vic3Y3NGVhZ3I1Q0NEVVNEdkItUmIwaG9RYlJTVC1hTkZaTk5BQ3piaUVVbTRBNmRuTWlHUXgxR2VaXzQwb2JjRG1GQXhCajAxUkQ2NA?oc=5",
-            "source": "theconnectmoney.com",
-            "provider": "google",
-            "published": "2026-09-09T22:50:00+00:00",
-            "positive": [
-              "급등"
-            ],
-            "negative": [
-              "하락"
-            ]
-          },
-          {
-            "title": "유가 배럴당 100달러 돌파하면서 S&P500지수 하락 마감 - TradingView",
-            "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE92VkhrVmtYeFk4ZGkzaUFJYjNWLUQzeGlnMkxwVFBFOFkxZ25hSFlBaVlaTFJKakd0UVJoSGtMWEVnZ3N0UXdOX3FxNHItZU1sMXNjVmVrWHU5ZlJqSWx2R3BhRkdmTlJoekNlNEE5LThvcEZUNldzaA?oc=5",
-            "source": "TradingView",
-            "provider": "google",
-            "published": "2026-09-09T21:59:12+00:00",
-            "positive": [],
-            "negative": [
-              "하락"
-            ]
-          },
-          {
-            "title": "[속보] 뉴욕증시, 유가 100달러 돌파·美 국채금리 상승에 3대 지수 또 하락⋯다우 0.77%↓ - 데일리안",
-            "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPbDRpbEx3SnRESjE4UDZaZ0owWlpmLUV0b3J0RWFZdDNDOTliZU92eVdEdzBxd096TjU0aEtZeEtIcVV2OHhBbWFWaDJBNW4zVktzLXR4ZDZYcHVOV1Q3YmtRRnNfczBJVFVkb0FEMU9UeG5kMFdSU0VVSkxyLXM0djhuNTZtWExfUzJYTU9rVS1EZm1tRjdPNm5iTmU3RzRyOWNlNnI0cHQ4eGwwTmhRMVIxdHNnR3hvTzRVSWpZZzV3dXBPSjI4VHJyaTRWcjhLa3ZiWjg3cjZ6NDljdWpwZ3VfU2lJMGg5S2oxOWlHNkpONlZPd1pkczdUMWltX0FDUThv?oc=5",
-            "source": "데일리안",
-            "provider": "google",
-            "published": "2026-09-09T21:44:00+00:00",
-            "positive": [
-              "상승"
-            ],
-            "negative": [
-              "하락"
-            ]
-          },
-          {
-            "title": "[뉴욕증시] 유가·국채 금리 급등에 사흘째 하락…폴더블폰 진출 애플, 0.3%↓ - v.daum.net",
-            "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1NSVYySURqWU5aMTVYOS05UmRTUmczZ2VyeTgybjg3bVpCMFBiNWtsTUE0SW9kdWdhTXhsbnZ3LWgxcldLR2c?oc=5",
-            "source": "v.daum.net",
-            "provider": "google",
-            "published": "2026-09-09T20:33:00+00:00",
-            "positive": [
-              "급등"
-            ],
-            "negative": [
-              "하락"
             ]
           }
         ],
@@ -4778,7 +4762,7 @@
         },
         {
           "key": "dc_stockus",
-          "count": 2,
+          "count": 1,
           "error": null,
           "unsupported": false
         },
@@ -4796,7 +4780,7 @@
         },
         {
           "key": "ppomppu",
-          "count": 30,
+          "count": 29,
           "error": null,
           "unsupported": false
         }
@@ -4889,13 +4873,13 @@
       ],
       "current_level": 26081.724609375,
       "lookback_days": 7,
-      "score": 41.0,
+      "score": 42.1,
       "zone": "fear",
       "label_text": "공포",
-      "total_posts": 140,
+      "total_posts": 134,
       "greed_total": 10,
-      "fear_total": 17,
-      "hits": 27,
+      "fear_total": 16,
+      "hits": 26,
       "greed_counts": {
         "반등": 5,
         "상승": 2,
@@ -4906,41 +4890,76 @@
       "fear_counts": {
         "폭락": 6,
         "하락": 4,
-        "고점": 3,
-        "손절": 1,
+        "고점": 2,
         "나락": 1,
         "곡소리": 1,
+        "반토막": 1,
         "패닉": 1
       },
-      "hot_posts": 8,
-      "dropped_posts": 8,
+      "hot_posts": 7,
+      "dropped_posts": 11,
       "news": {
         "total": 100,
-        "hits": 92,
-        "positive_total": 55,
-        "negative_total": 37,
-        "score": 59.8,
+        "hits": 101,
+        "positive_total": 56,
+        "negative_total": 45,
+        "score": 55.4,
         "zone": "greed",
         "label": "탐욕",
         "positive_counts": {
-          "순매수": 25,
-          "상승": 13,
-          "급등": 6,
-          "강세": 4,
-          "기대감": 2,
+          "순매수": 26,
+          "급등": 14,
+          "상승": 6,
+          "반등": 4,
           "랠리": 2,
-          "반등": 2,
-          "신고가": 1
+          "기대감": 2,
+          "신고가": 1,
+          "호실적": 1
         },
         "negative_counts": {
-          "하락": 26,
-          "우려": 6,
-          "약세": 2,
+          "하락": 34,
+          "우려": 5,
+          "약세": 3,
           "주춤": 1,
           "악재": 1,
           "폭락": 1
         },
         "positive": [
+          {
+            "title": "미래에셋자산운용 'TIGER 나스닥100 ETF', 개인 순매수 2조원 넘어 - 비즈월드",
+            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1BMWZncU5mWlpJYjRCZnZiMko2ZjhhR3BscG14MG5Jc00yaWd1QVJHSnp0SncxZDhBNGZTbVpqcTIzUk5oVmxXYU54d2gwMUhPeEJlWlI2a25oRnZDUjFWNXI1dWxLcHZWWUE?oc=5",
+            "source": "비즈월드",
+            "provider": "google",
+            "published": "2026-09-10T23:37:00+00:00",
+            "positive": [
+              "순매수"
+            ],
+            "negative": []
+          },
+          {
+            "title": "[뉴욕 증시] 유가 100달러 고공행진·PPI 반등에 국채금리 급등... 나스닥 0.65%↓ - 중앙신문",
+            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5KaGwwZmlqSkM3dnVWT0UtRnVUMXhrYzJnV3o2R2dqeEVOSDBkSTVYd3VJTTFCendSWEhCcGZhT0VHczM4T3pJbkJMZU9PaFJXY0FlcnNoSVpQeHhVdHRTLS1nR2luTHBm?oc=5",
+            "source": "중앙신문",
+            "provider": "google",
+            "published": "2026-09-10T23:16:59+00:00",
+            "positive": [
+              "급등",
+              "반등"
+            ],
+            "negative": []
+          },
+          {
+            "title": "유가 100달러·PPI 반등에 금리 급등... 나스닥 0.65%↓ [뉴욕증시] - 매일일보",
+            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFB3YXdDVlJuMS1NUkM0bW9SSHBOQWRsX0ZybG5kOGprQ3U4aDFubDh1TTVZZm1kYmZwSlc2ZVlVRW5xQTVUNE83aDJwbXp4VnNXdjRxVXpfdy1nWEF5Y2daVlFZd9IBaEFVX3lxTFA0YWgwY1JDcXRQTk5lVVdkYXNlX25zckxEWWUyZkE2UHRsMUlnT0Y0RHJiRkNQeEl6b0xjei1wb2VJYWphY1JuSVplaVpPaV8tVVVES19STWk5RzB0bXRQSTNMSFRyamtJ?oc=5",
+            "source": "매일일보",
+            "provider": "google",
+            "published": "2026-09-10T23:10:58+00:00",
+            "positive": [
+              "급등",
+              "반등"
+            ],
+            "negative": []
+          },
           {
             "title": "뉴욕 증시, 유가·국채금리 상승에 속락 마감…다우 0,6%↓ 나스닥 0.65%↓ - 뉴시스",
             "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBlbFBuUEtRYjVYRFowZE9nY0FzSkg0cWVpT2lyWUZBQ1l6UTFGc1ZlMXlSTmRQVmxZTTdwZklqcUlSRG1hdlB2NGtSQnl3WkprNGkxREtCX0lMUjRJTXMwT9IBeEFVX3lxTE03OF82cVdRSnFwNGxlSnFJc1kzcy1SQnlXMlc4R3E4bE9NQW9PTEstOUsxUE5nRXRoUVhpaDZKajdReGxOMWtzSEJSUndmSUFRQzRWQ29sN1hRYWdjdWw5aU1md1hjdlJOMU9aV1VveHY2RUU4SUxlOQ?oc=5",
@@ -5017,117 +5036,80 @@
               "순매수"
             ],
             "negative": []
-          },
-          {
-            "title": "'국내 최장수' 나스닥100 ETF 올해 개인 순매수 2조원 돌파 - edaily.co.kr",
-            "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPX3lTSS1MWl9sMVdYWVhBbHc1bUYyM2paVUE2Nm5USTc5Q21hbmMzMDJKQ3k4dFNsb242Mjk2b3VrQTVvZFhPOXdOMUpLU3QtOWVDdnUzRzVhSUl5LVFEMzR1QXBKNGdsd3lYUk8wZGhkaGN5allmdnlfbzVUcGtjUQ?oc=5",
-            "source": "edaily.co.kr",
-            "provider": "google",
-            "published": "2026-09-10T08:46:37+00:00",
-            "positive": [
-              "순매수"
-            ],
-            "negative": []
-          },
-          {
-            "title": "미래에셋운용, TIGER ETF에 개인 뭉칫돈…나스닥100 순매수 2조원 - 뉴스투데이",
-            "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9XcE14ZkRKU214U0NueTZSY2JGT0F2VGNNb0d0RGN4U29Ea2lxSWtGMk1TdExaX3VRWUlVaUludFI2NmRwUGRqOGEwUTBmYUFCUDRrZ214ampJalpfeGc?oc=5",
-            "source": "뉴스투데이",
-            "provider": "google",
-            "published": "2026-09-10T08:41:00+00:00",
-            "positive": [
-              "순매수"
-            ],
-            "negative": []
-          },
-          {
-            "title": "미래에셋, 'TIGER 미국나스닥100 ETF' 개인 순매수 2조원 넘어 - 1conomynews.co.kr",
-            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5STW43S21sUVluX29Gd2c0OUM4Y2dsMmZUbG54T3ZQa3YtR3J1TldQTmFFUXI1d0tIN2FRX0ZiYjdoeFlhb2FjRmt1YVBkSElvNjZhTUQzaVdzaFl5TVdtbXJwaGk0aUcyYTU3MU13SzY?oc=5",
-            "source": "1conomynews.co.kr",
-            "provider": "google",
-            "published": "2026-09-10T08:35:47+00:00",
-            "positive": [
-              "순매수"
-            ],
-            "negative": []
           }
         ],
         "negative": [
           {
-            "title": "뉴욕증시, 유가 상승세 지속에 나흘째 하락…나스닥 0.65%↓ - 뉴스핌",
-            "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBzUDJjcVpiX2ZQNlpmbEdYZ1YzYmNNUDdCYmpRNnhrRnc2bWN3LWxTYjJOVHJ3dWU2aDBuS3FuRzd1NnpsVFAwbEw2b1I4azBJTVlEalljd3F5Q3RT?oc=5",
-            "source": "뉴스핌",
+            "title": "[해외시황] 뉴욕증시, 유가·국채금리 급등에 4거래일째 '하락'…나스닥 0.65%↓ - 프라임경제",
+            "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE43c1RTTFZpU3JqdkxLdTAwdDNwR0phcFhYQmRGRlZJWEJ2Y0k2X2dEa2hxelFJb1JwQjFuYVRkeXBiMTFYdGx3X2gxbklndHlnS1d3dmZTdUYxdXp6LThfdA?oc=5",
+            "source": "프라임경제",
             "provider": "google",
-            "published": "2026-09-10T20:36:00+00:00",
+            "published": "2026-09-10T23:38:07+00:00",
             "positive": [
-              "상승"
+              "급등"
             ],
             "negative": [
               "하락"
             ]
           },
           {
-            "title": "뉴욕증시, 하락세로 마감…나스닥 0.65%↓ - 블루밍비트",
-            "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1MU3lMWVQ5dFRGc2NrMzBuUzhnTzFfdk4yVm5TUDE5RGJ6ZXlXeHA4aUhVOHVVSXRtNFVPeTh3dURUWkdScTRaRU96YnZscmhf?oc=5",
-            "source": "블루밍비트",
+            "title": "유가·금리 불안에 뉴욕증시 하락…나스닥 0.6%↓ - 중소기업신문",
+            "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5BSVlXNDMxWnpZOUl6Tnk5Z3RvcFFZVkRHV1N2bzg4eTQxYllmdjZOVVhzUXNnLUdzTFdaUkZ1RjczTWJ2NXliUjktN3hqMnZjUGtPamY3dFAtbDdySlNfdk5BQjRENHNCbS1oVg?oc=5",
+            "source": "중소기업신문",
             "provider": "google",
-            "published": "2026-09-10T20:27:02+00:00",
+            "published": "2026-09-10T22:41:19+00:00",
             "positive": [],
             "negative": [
               "하락"
             ]
           },
           {
-            "title": "나스닥 하락 마감…유가 우려에 반도체 등 기술주 변동성 커져 - Nate News",
-            "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9HX0ljbEJ2N2FVQVk2WmpsNUh3Q0d1SnJqbnVBTXVjMjA1TVJIbmJVbXNiV1dLdldvX0Q3a2JBSmVmWVIzQVFnWVlmWkJNb3NJbUhz?oc=5",
-            "source": "Nate News",
+            "title": "뉴욕증시, 중동정세 격화 나흘째 하락 나스닥 0.65%↓...국제유가 6% 넘게 급등 100달러 돌파 - 퍼블릭타임스",
+            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9TWmR5VmFaNFdLajlBN1BvSXVnQTNaa21NTlJqOHpkU1d3TnFBRVgyemxoUHZGMy1DRGRRUWNFV3VPT3dYemRUWUJSTzlnNzkwZVN0U3BEeXdPczRvRmhoYVVSUm9oSmFIZ3fSAW5BVV95cUxOS051bzhuUzhSdUFYeW5pci1MSEY5OHRWMWRIRDZjemNSczRZNGJlMGhtRHBlMkpqSjdpOEZFLTRpYi1JVGdJcF8xMl9abUtKUDZEVXk3eGVmTzlPSlBoUWZZcEF1UFBYektGQ2RXUQ?oc=5",
+            "source": "퍼블릭타임스",
             "provider": "google",
-            "published": "2026-09-10T20:23:07+00:00",
-            "positive": [],
+            "published": "2026-09-10T22:28:30+00:00",
+            "positive": [
+              "급등"
+            ],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "뉴욕증시, 중동 불안·유가 급등에 하락…나스닥 나흘째 약세 - v.daum.net",
+            "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE55VmxkUmxYR2lBWGluLV93YnF4V2Q0V2dBdVFkWU8wZEk3R056RURqc015bmxNQThKTzFTeHhGeXh0U0w0VDExcDJXeTc5bjQ?oc=5",
+            "source": "v.daum.net",
+            "provider": "google",
+            "published": "2026-09-10T22:22:00+00:00",
+            "positive": [
+              "급등"
+            ],
             "negative": [
               "하락",
-              "우려"
-            ]
-          },
-          {
-            "title": "뉴욕증시, 하락세로 전환…나스닥 0.47%↓ - 블루밍비트",
-            "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBsUGlFV1l4ZzN6b2VXdWo0SlYtUnBzQUtVSV9QX09kc0JhYlBJdlg5M0dEa0U5OUVhazAzUEtqeDJTQ2VNY0tGOWdhRzN3c1ly?oc=5",
-            "source": "블루밍비트",
-            "provider": "google",
-            "published": "2026-09-10T16:03:09+00:00",
-            "positive": [],
-            "negative": [
-              "하락"
-            ]
-          },
-          {
-            "title": "[속보]미국증시 10일 오후 일제히 약세…나스닥 0.82%↓ - CBC뉴스",
-            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1DTWRTTDA5bWhocXpjbkg3SDhNSnM2QWdiS1hUS012bWJacE1pdWdxSkJ0cHc3SllWMVhSa2xZZ3oybDB0Mmd6cHJjampxVTFtaUhSNi0yaDFVcnVIN1dkcjNqOWd2VE13?oc=5",
-            "source": "CBC뉴스",
-            "provider": "google",
-            "published": "2026-09-10T13:43:00+00:00",
-            "positive": [],
-            "negative": [
               "약세"
             ]
           },
           {
-            "title": "미국 8월 PPI, 시장 예상 웃돈 전년비 5.4%↑…나스닥 선물 1%대 하락 - 머니투데이 - 머니투데이",
-            "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9WVmtIWmVNSUgxclRlQ3ZQYnh3R2Y0MTF4UVFMYzJMa1A2eFRSRFhOaFJvN0llWkx1SnhTVlpoRFV0WWVmQWlHa2FsYmplWTZlRXFZZEpBck1YRjF4dC1taGVqSG9lQUw30gFuQVVfeXFMUHJ2WjlodWotdzB5Y055N3lrd3RRenV5S2pYUkFTOFk4eGxybURtazZWVllsMGF4OFAtUDFEYUZUdFM0YUpvR1NwdTBSS2dod2hhaE1yWFQ2ZXpZcUdZZ0RVYzdLRU95XzlFZ2JlQ2c?oc=5",
-            "source": "머니투데이",
+            "title": "뉴욕증시, 중동 불안·유가 급등에 하락…나스닥 나흘째 약세 - 더팩트",
+            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE53UEtPa29pZjZTeVdGY25JXzkzQ2g4QmVLM01ZRkdHanhtcFoyRkQzVGdjcVh1UkoyQ3EybzNMaFF3bW1Xa3BVaUdYai1iaDRaUFppMzdpOTN1Z9IBVEFVX3lxTE9RMUZWV29iTF9QN05ZQlZDNUYyM2gwZ1lqX3FydG9tV1lyaWdHZzZlaWNsNE9ucm5McmR4aXZpSHFiV2xPcE9hRWRVMzBaRFlMLWh5eg?oc=5",
+            "source": "더팩트",
             "provider": "google",
-            "published": "2026-09-10T12:56:00+00:00",
-            "positive": [],
+            "published": "2026-09-10T22:20:40+00:00",
+            "positive": [
+              "급등"
+            ],
             "negative": [
-              "하락"
+              "하락",
+              "약세"
             ]
           },
           {
-            "title": "[해외시황] 뉴욕증시, 유가 100달러 돌파·국채금리 급등에 '하락'…나스닥 0.64%↓ - 프라임경제",
-            "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE54d3hTeFFiMGFyTWd1MnM5Ymoyc1ZzckY0c3dJRU1XcDJfelM3NjJWempMTEFXX3dScVJscU5VcW1UcC1qa05DUnBVbkFoNzZzY3g0dXpidjJVeUdkV0dlWmJZVQ?oc=5",
-            "source": "프라임경제",
+            "title": "[뉴욕증시 마감] 유가·국채금리 급등에 나흘째 하락…나스닥 0.65%↓ - 아주경제",
+            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9LN2pKTERIaVRKeEFoeU1ZMkpBeWdqd0FhYWIwbGRQZVNHdlRiUXVobG5JQThhZHA5akZHM0Z5cVc0UXIyWjktV3VkbDQ5dzNFQTlvOUlVUVlGQdIBWEFVX3lxTE5BU1pDTWREWGdoOTBtS2NjcFpCNFZUQ2RNc0ZNWGYwOHZ4YlRLLTR4Q08xazNieUhSTEF4bGpwOW1kZFRya2diMHFWMFJ4Zktxa3RVYThLWFc?oc=5",
+            "source": "아주경제",
             "provider": "google",
-            "published": "2026-09-09T23:34:27+00:00",
+            "published": "2026-09-10T22:00:13+00:00",
             "positive": [
               "급등"
             ],
@@ -5136,11 +5118,22 @@
             ]
           },
           {
-            "title": "미국 뉴욕증시, 유가 100달러·국채금리 급등에 다우존스·S&P500·나스닥지수 사흘째 하락 - 한국강사신문",
-            "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5VYVFJRW1pX0dvWF9ScXk0djBON2RSeXdTQmE5OFhySXQwZWltWWhyb2JWQVQ1b2N4MEY3SGk5cW03RkxTSkkzcW1XSjBfV0JQcFJBVWlXSDlmeWhPOG5fNDBzUTJGaFV5bTZ2dnUwWWQ?oc=5",
-            "source": "한국강사신문",
+            "title": "뉴욕증시, 유가·국채금리 ‘이중 충격’에 하락…나스닥 0.65%↓[종합] - v.daum.net",
+            "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9icC1NQWxMZ3E1bktfRDVuT1FXYVBDdTlrZUUtU3Rab0lDSlhkQTR4S1JUUlBSZFUwTHVLbmVFZVYyT0hUWDEydHpRQTIyTEk?oc=5",
+            "source": "v.daum.net",
             "provider": "google",
-            "published": "2026-09-09T23:01:01+00:00",
+            "published": "2026-09-10T21:56:03+00:00",
+            "positive": [],
+            "negative": [
+              "하락"
+            ]
+          },
+          {
+            "title": "[속보] 뉴욕증시, 유가 고공행진·美 국채금리 급등에 나흘째 하락⋯다우 0.60%↓ - 데일리안",
+            "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE93VEl5TEF2SWlJLWhDYmpIYXM1MnY1bFFnMHZWU05YOHBHS0s2Ri1fRXJ3bXNlYjcyRlNzTHZVaUlJYjB2SEo2Uk1PMkNXd0tFMVM2Nw?oc=5",
+            "source": "데일리안",
+            "provider": "google",
+            "published": "2026-09-10T21:42:00+00:00",
             "positive": [
               "급등"
             ],
@@ -5149,25 +5142,23 @@
             ]
           },
           {
-            "title": "뉴욕증시,중동 정세 격화 3일째 하락 다우 0.77%↓·나스닥 0.64%↓…국제유가 브렌트유 100달러 돌파 - 퍼블릭타임스",
-            "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9YNV9oenhVUzdzWlJZeXhJYlNtOFhUS3pLNFp2a3U4RU1senFDSk85TTZmZE5FTnVkS1JXcTZhcVA1NlNQOWgtZUxXbUx6VmlYNzF3Rnh4YjNlV3Rub1N6b2NmbG1Wck9EN1HSAW5BVV95cUxNTXNfMllmcVBqOWlEby1CSFktb3Z0RWs2SUVmdWYtWTkwMEdaVWxhWm43T2l3VXdGWU9kN1hmampvdVlHaVhVZ1p1ZmNmSVdjeHpvdFFfSS1WVkxuaWVmUVZlcnJzNV9YM3VBQXRDdw?oc=5",
-            "source": "퍼블릭타임스",
+            "title": "[한입시황] 3대 지수 4일 연속 하락세 - 머니네버슬립",
+            "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE0xcGhMRGFqWUR3NFNQODFJelpsZXh1dURiWm9GMjVhbkRXTnJqM3k0WlNfQTZ1UDByTDFSeUdPQ3E0MS04UUNMSlo0VVZmTC1sdEpYbVc5Q2EzdEVaaGtOWVZPZ0psN0YyUXA0eDV1cWdXNTTSAXdBVV95cUxPLW5CellhQ3Z0cXZJZmlCUmlOOWNlQUpicE5ERk1sZHVla3VSRVNSZDhxWmJXT09PWTQ2ZTQ5eDVyaktoT1pncTBoajl4alJNUHE4Q1h5VF9qZjJGS1RwV1p1VFZCb0FVakx3QWE0bzAzQ2VIZUpfVQ?oc=5",
+            "source": "머니네버슬립",
             "provider": "google",
-            "published": "2026-09-09T22:32:37+00:00",
+            "published": "2026-09-10T21:25:36+00:00",
             "positive": [],
             "negative": [
               "하락"
             ]
           },
           {
-            "title": "[속보]美상장 SK하닉ADR 7% 폭등 ‘신고가경신’…나스닥은 0.64% 하락 - munhwa.com",
-            "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFAtQlFWX0YtX3R0UlVQVEZfRm80dmoxb2QxbFJjNWtVOW4yZzFmZUcyRUtFQTRLa0plQXAzSWZJcnY2cXRhbzVqT2JWS0Y1NEVH?oc=5",
-            "source": "munhwa.com",
+            "title": "유가 103달러·美금리 4.95%…다우·나스닥 나흘째 하락 - 경북매일",
+            "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9meHVDOGE3djRyU2ZMbDJ3aHQ4UnZiMlFhYW5ULVdVS090MHBrQUQ5Q25nT2NWN3dlMU1JZzk3WnZkWEhETWJlUk1Qdnppc1FlZ3c0R3JSWmQxdw?oc=5",
+            "source": "경북매일",
             "provider": "google",
-            "published": "2026-09-09T21:35:16+00:00",
-            "positive": [
-              "신고가"
-            ],
+            "published": "2026-09-10T20:53:00+00:00",
+            "positive": [],
             "negative": [
               "하락"
             ]
@@ -5196,7 +5187,7 @@
           "fear": [
             "하락"
           ],
-          "views": 1638,
+          "views": 1654,
           "votes": 2,
           "comments": 26
         },
@@ -5213,16 +5204,17 @@
           "comments": 4
         },
         {
-          "title": "미국 지수도QQQ는 고점대비 6%정도 빠졌는데",
-          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=4&divpage=1&search_type=sub_memo&keyword=QQQ&no=408059",
+          "title": "코인,반도체,나스닥, 넥장 다 하락중 패닉장",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=4&divpage=1&search_type=sub_memo&keyword=%B3%AA%BD%BA%B4%DA&no=433887",
           "source": "ppomppu",
           "greed": [],
           "fear": [
-            "고점"
+            "하락",
+            "패닉"
           ],
-          "views": 2183,
-          "votes": null,
-          "comments": 8
+          "views": 1484,
+          "votes": 1,
+          "comments": 3
         },
         {
           "title": "미 증시,'금리동결' 시사 상승,나스닥1.4%",
@@ -5237,17 +5229,16 @@
           "comments": null
         },
         {
-          "title": "코인,반도체,나스닥, 넥장 다 하락중 패닉장",
-          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=4&divpage=1&search_type=sub_memo&keyword=%B3%AA%BD%BA%B4%DA&no=433887",
-          "source": "ppomppu",
+          "title": "실시간 나스닥대폭락ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3458042&s_type=search_subject&s_keyword=나스닥&page=1",
+          "source": "dc_krstock",
           "greed": [],
           "fear": [
-            "하락",
-            "패닉"
+            "폭락"
           ],
-          "views": 1484,
-          "votes": 1,
-          "comments": 3
+          "views": 106,
+          "votes": 0,
+          "comments": 5
         },
         {
           "title": "나 여잔데 오늘 QQQ VOO 풀매수 했엉",
@@ -5257,21 +5248,21 @@
             "풀매수"
           ],
           "fear": [],
-          "views": 147,
+          "views": 152,
           "votes": 0,
           "comments": 2
         },
         {
-          "title": "실시간 나스닥대폭락ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3458042&s_type=search_subject&s_keyword=나스닥&page=1",
-          "source": "dc_krstock",
+          "title": "나스닥 전고점에서 5퍼도 안 떨어진건가",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17720007&s_type=search_subject&s_keyword=나스닥&page=1",
+          "source": "dc_stockus",
           "greed": [],
           "fear": [
-            "폭락"
+            "고점"
           ],
-          "views": 102,
-          "votes": 0,
-          "comments": 5
+          "views": 136,
+          "votes": 1,
+          "comments": 3
         },
         {
           "title": "나스닥은 반등하는데 야선은 계속 꼬라박네요",
@@ -5283,30 +5274,6 @@
           "fear": [],
           "views": 1147,
           "votes": null,
-          "comments": 1
-        },
-        {
-          "title": "나스닥 전고점에서 5퍼도 안 떨어진건가",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17720007&s_type=search_subject&s_keyword=나스닥&page=1",
-          "source": "dc_stockus",
-          "greed": [],
-          "fear": [
-            "고점"
-          ],
-          "views": 124,
-          "votes": 1,
-          "comments": 3
-        },
-        {
-          "title": "근데 ppi 개박았는데 나스닥 개장하고 떡상하는 그림은없지않음?",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17717419&s_type=search_subject&s_keyword=나스닥&page=4",
-          "source": "dc_stockus",
-          "greed": [
-            "떡상"
-          ],
-          "fear": [],
-          "views": 104,
-          "votes": 0,
           "comments": 1
         },
         {
@@ -5322,6 +5289,30 @@
           "comments": 4
         },
         {
+          "title": "근데 ppi 개박았는데 나스닥 개장하고 떡상하는 그림은없지않음?",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17717419&s_type=search_subject&s_keyword=나스닥&page=4",
+          "source": "dc_stockus",
+          "greed": [
+            "떡상"
+          ],
+          "fear": [],
+          "views": 104,
+          "votes": 0,
+          "comments": 1
+        },
+        {
+          "title": "트럼프 입터는 순간 나스닥 폭락",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17719855&s_type=search_subject&s_keyword=나스닥&page=2",
+          "source": "dc_stockus",
+          "greed": [],
+          "fear": [
+            "폭락"
+          ],
+          "views": 110,
+          "votes": 1,
+          "comments": null
+        },
+        {
           "title": "혐오스런 나스닥 억지반등 하는구나",
           "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17719232&s_type=search_subject&s_keyword=나스닥&page=2",
           "source": "dc_stockus",
@@ -5330,30 +5321,6 @@
           ],
           "fear": [],
           "views": 61,
-          "votes": 0,
-          "comments": null
-        },
-        {
-          "title": "트럼프 입터는 순간 나스닥 폭락",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17719855&s_type=search_subject&s_keyword=나스닥&page=1",
-          "source": "dc_stockus",
-          "greed": [],
-          "fear": [
-            "폭락"
-          ],
-          "views": 107,
-          "votes": 1,
-          "comments": null
-        },
-        {
-          "title": "나스닥 회복 중 진짜임 속슬 2퍼이상 상승 중",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17718335&s_type=search_subject&s_keyword=나스닥&page=3",
-          "source": "dc_stockus",
-          "greed": [
-            "상승"
-          ],
-          "fear": [],
-          "views": 35,
           "votes": 0,
           "comments": null
         },
@@ -5370,6 +5337,30 @@
           "comments": 2
         },
         {
+          "title": "나스닥 회복 중 진짜임 속슬 2퍼이상 상승 중",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17718335&s_type=search_subject&s_keyword=나스닥&page=3",
+          "source": "dc_stockus",
+          "greed": [
+            "상승"
+          ],
+          "fear": [],
+          "views": 35,
+          "votes": 0,
+          "comments": null
+        },
+        {
+          "title": "나스닥 바겐세일 중인데 왜 곡소리가 들리냐",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17718822&s_type=search_subject&s_keyword=나스닥&page=3",
+          "source": "dc_stockus",
+          "greed": [],
+          "fear": [
+            "곡소리"
+          ],
+          "views": 64,
+          "votes": 0,
+          "comments": 1
+        },
+        {
           "title": "니들이 분명 나스닥이랑 환율은 우상향이라고 그랬잖아.",
           "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17717767&s_type=search_subject&s_keyword=나스닥&page=3",
           "source": "dc_stockus",
@@ -5377,31 +5368,7 @@
             "우상향"
           ],
           "fear": [],
-          "views": 69,
-          "votes": 0,
-          "comments": null
-        },
-        {
-          "title": "나스닥 바겐세일 중인데 왜 곡소리가 들리냐",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17718822&s_type=search_subject&s_keyword=나스닥&page=2",
-          "source": "dc_stockus",
-          "greed": [],
-          "fear": [
-            "곡소리"
-          ],
-          "views": 63,
-          "votes": 0,
-          "comments": 1
-        },
-        {
-          "title": "환율 반등하기 시작하니까 나스닥 빅쇼트 머냐",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17717109&s_type=search_subject&s_keyword=나스닥&page=4",
-          "source": "dc_stockus",
-          "greed": [
-            "반등"
-          ],
-          "fear": [],
-          "views": 40,
+          "views": 70,
           "votes": 0,
           "comments": null
         },
@@ -5418,6 +5385,18 @@
           "comments": 1
         },
         {
+          "title": "환율 반등하기 시작하니까 나스닥 빅쇼트 머냐",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17717109&s_type=search_subject&s_keyword=나스닥&page=4",
+          "source": "dc_stockus",
+          "greed": [
+            "반등"
+          ],
+          "fear": [],
+          "views": 41,
+          "votes": 0,
+          "comments": null
+        },
+        {
           "title": "나스닥 슨피 고점대비 3%도 안빠짐",
           "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17716890&s_type=search_subject&s_keyword=나스닥&page=4",
           "source": "dc_stockus",
@@ -5425,9 +5404,21 @@
           "fear": [
             "고점"
           ],
-          "views": 67,
+          "views": 72,
           "votes": 0,
           "comments": 1
+        },
+        {
+          "title": "진짜 나스닥 반토막날듯..",
+          "url": "https://gall.dcinside.com/mgallery/board/view/?id=stockus&no=17721312&s_type=search_subject&s_keyword=나스닥&page=1",
+          "source": "dc_stockus",
+          "greed": [],
+          "fear": [
+            "반토막"
+          ],
+          "views": 104,
+          "votes": 0,
+          "comments": null
         },
         {
           "title": "나스닥 이제 폭락 시작이냐",
@@ -5475,7 +5466,7 @@
         },
         {
           "key": "dc_krstock",
-          "count": 29,
+          "count": 33,
           "error": null,
           "unsupported": false
         },
@@ -5499,16 +5490,12 @@
         },
         {
           "key": "ppomppu",
-          "count": 39,
+          "count": 29,
           "error": null,
           "unsupported": false
         }
       ],
       "history": [
-        {
-          "ts": "2026-08-30 04:54",
-          "score": 48.0
-        },
         {
           "ts": "2026-08-30 11:42",
           "score": 53.1
@@ -5648,6 +5635,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 41.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 42.1
         }
       ],
       "daily": [
@@ -5798,8 +5789,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 41.0,
-          "n": 3
+          "score": 41.3,
+          "n": 4
         }
       ]
     }
@@ -5812,32 +5803,17 @@
       "group_desc": "통신 기자재",
       "sector": "광통신",
       "current_level": 6700.0,
-      "score": 53.8,
+      "score": 50.0,
       "zone": "neutral",
       "label": "중립",
-      "total_posts": 26,
-      "greed_total": 1,
+      "total_posts": 17,
+      "greed_total": 0,
       "fear_total": 0,
-      "greed_counts": {
-        "호재": 1
-      },
+      "greed_counts": {},
       "fear_counts": {},
       "hot_posts": 0,
       "dropped_posts": 0,
-      "evidence": [
-        {
-          "title": "우리로 작작 팔아봐 아직 대형호재 남았는데",
-          "url": "https://gall.dcinside.com/mgallery/board/view/?id=krstock&no=3450662&s_type=search_subject&s_keyword=우리로&page=1",
-          "source": "dc_krstock",
-          "greed": [
-            "호재"
-          ],
-          "fear": [],
-          "views": 94,
-          "votes": 0,
-          "comments": 6
-        }
-      ],
+      "evidence": [],
       "per_source": [
         {
           "key": "naver",
@@ -5847,7 +5823,7 @@
         },
         {
           "key": "dc_krstock",
-          "count": 23,
+          "count": 14,
           "error": null,
           "unsupported": false
         },
@@ -5889,10 +5865,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 66.7
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 66.7
@@ -6032,6 +6004,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 53.8
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 50.0
         }
       ],
       "daily": [
@@ -6182,8 +6158,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 57.6,
-          "n": 4
+          "score": 56.1,
+          "n": 5
         }
       ]
     },
@@ -6197,7 +6173,7 @@
       "score": 57.1,
       "zone": "greed",
       "label": "탐욕",
-      "total_posts": 32,
+      "total_posts": 31,
       "greed_total": 2,
       "fear_total": 0,
       "greed_counts": {
@@ -6242,7 +6218,7 @@
         },
         {
           "key": "dc_krstock",
-          "count": 5,
+          "count": 4,
           "error": null,
           "unsupported": false
         },
@@ -6284,10 +6260,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 75.0
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 79.5
@@ -6427,6 +6399,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 57.1
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 57.1
         }
       ],
       "daily": [
@@ -6477,8 +6453,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 58.8,
-          "n": 4
+          "score": 58.5,
+          "n": 5
         }
       ]
     },
@@ -6606,10 +6582,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 66.0
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 62.5
@@ -6748,6 +6720,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 50.0
         }
       ],
@@ -6899,8 +6875,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 52.6,
-          "n": 4
+          "score": 52.1,
+          "n": 5
         }
       ]
     },
@@ -6973,10 +6949,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 53.3
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 53.3
@@ -7115,6 +7087,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 50.0
         }
       ],
@@ -7266,8 +7242,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 50.4,
-          "n": 4
+          "score": 50.3,
+          "n": 5
         }
       ]
     },
@@ -7308,7 +7284,7 @@
         },
         {
           "title": "SK스퀘어는 결국 고점에서 반토막 났네요;",
-          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=3&divpage=1&search_type=sub_memo&keyword=SK%BD%BA%C4%F9%BE%EE&no=399718",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=stock&page=4&divpage=1&search_type=sub_memo&keyword=SK%BD%BA%C4%F9%BE%EE&no=399718",
           "source": "ppomppu",
           "greed": [],
           "fear": [
@@ -7483,6 +7459,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 46.7
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 46.7
         }
       ],
       "daily": [
@@ -7508,8 +7488,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 44.6,
-          "n": 4
+          "score": 45.0,
+          "n": 5
         }
       ]
     },
@@ -7597,10 +7577,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 46.5
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 47.6
@@ -7739,6 +7715,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 46.2
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 46.2
         }
       ],
@@ -7881,7 +7861,7 @@
         {
           "date": "2026-09-10",
           "score": 46.0,
-          "n": 4
+          "n": 5
         }
       ]
     },
@@ -7895,7 +7875,7 @@
       "score": 53.8,
       "zone": "neutral",
       "label": "중립",
-      "total_posts": 16,
+      "total_posts": 17,
       "greed_total": 1,
       "fear_total": 0,
       "greed_counts": {
@@ -7927,7 +7907,7 @@
         },
         {
           "key": "dc_krstock",
-          "count": 10,
+          "count": 11,
           "error": null,
           "unsupported": false
         },
@@ -7969,10 +7949,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 72.0
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 80.9
@@ -8111,6 +8087,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 53.8
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 53.8
         }
       ],
@@ -8262,8 +8242,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 52.2,
-          "n": 4
+          "score": 52.5,
+          "n": 5
         }
       ]
     },
@@ -8414,6 +8394,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 40.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 40.0
         }
       ],
       "daily": [
@@ -8434,8 +8418,260 @@
         },
         {
           "date": "2026-09-10",
-          "score": 39.7,
-          "n": 4
+          "score": 39.8,
+          "n": 5
+        }
+      ]
+    },
+    {
+      "key": "443060.KS",
+      "name": "HD현대마린솔루션",
+      "ticker": "443060",
+      "group_desc": "조선 기자재",
+      "sector": "조선",
+      "current_level": 229500.0,
+      "score": 50.0,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 8,
+      "greed_total": 0,
+      "fear_total": 0,
+      "greed_counts": {},
+      "fear_counts": {},
+      "hot_posts": 0,
+      "dropped_posts": 1,
+      "evidence": [],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": "연속 실패로 건너뜀",
+          "unsupported": false
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": "연속 실패로 건너뜀",
+          "unsupported": false
+        },
+        {
+          "key": "ppomppu",
+          "count": 8,
+          "error": null,
+          "unsupported": false
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-09-04 08:45",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-04 14:08",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-04 18:56",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-04 22:17",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-05 03:58",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-05 08:16",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-05 13:21",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-05 16:43",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-05 20:12",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-05 23:43",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-06 04:03",
+          "score": 63.6
+        },
+        {
+          "ts": "2026-09-06 08:37",
+          "score": 63.6
+        },
+        {
+          "ts": "2026-09-06 13:31",
+          "score": 63.6
+        },
+        {
+          "ts": "2026-09-06 16:49",
+          "score": 63.6
+        },
+        {
+          "ts": "2026-09-06 20:17",
+          "score": 63.6
+        },
+        {
+          "ts": "2026-09-06 23:41",
+          "score": 63.6
+        },
+        {
+          "ts": "2026-09-07 04:03",
+          "score": 63.6
+        },
+        {
+          "ts": "2026-09-07 09:16",
+          "score": 63.6
+        },
+        {
+          "ts": "2026-09-07 15:42",
+          "score": 63.6
+        },
+        {
+          "ts": "2026-09-07 19:48",
+          "score": 63.6
+        },
+        {
+          "ts": "2026-09-07 22:43",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-08 04:04",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-08 08:49",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-08 14:19",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-08 19:22",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-08 22:30",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-09 04:11",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-09 11:05",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-09 16:23",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-09 20:48",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-09 23:59",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-10 04:09",
+          "score": 65.7
+        },
+        {
+          "ts": "2026-09-10 11:02",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 16:12",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 20:43",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 50.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-09-04",
+          "score": 62.5,
+          "n": 5
+        },
+        {
+          "date": "2026-09-05",
+          "score": 62.5,
+          "n": 6
+        },
+        {
+          "date": "2026-09-06",
+          "score": 63.6,
+          "n": 6
+        },
+        {
+          "date": "2026-09-07",
+          "score": 64.0,
+          "n": 5
+        },
+        {
+          "date": "2026-09-08",
+          "score": 65.7,
+          "n": 5
+        },
+        {
+          "date": "2026-09-09",
+          "score": 65.7,
+          "n": 5
+        },
+        {
+          "date": "2026-09-10",
+          "score": 53.2,
+          "n": 5
         }
       ]
     },
@@ -8508,10 +8744,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 40.0
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 40.0
@@ -8651,6 +8883,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 50.0
         }
       ],
       "daily": [
@@ -8711,8 +8947,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 48.9,
-          "n": 4
+          "score": 49.1,
+          "n": 5
         }
       ]
     },
@@ -8726,7 +8962,7 @@
       "score": 62.5,
       "zone": "greed",
       "label": "탐욕",
-      "total_posts": 20,
+      "total_posts": 18,
       "greed_total": 4,
       "fear_total": 0,
       "greed_counts": {
@@ -8757,7 +8993,7 @@
             "급등"
           ],
           "fear": [],
-          "views": 90,
+          "views": 91,
           "votes": 0,
           "comments": null
         }
@@ -8771,7 +9007,7 @@
         },
         {
           "key": "dc_krstock",
-          "count": 5,
+          "count": 3,
           "error": null,
           "unsupported": false
         },
@@ -8813,10 +9049,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 53.8
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 24.5
@@ -8955,6 +9187,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 62.5
         }
       ],
@@ -9106,8 +9342,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 54.9,
-          "n": 4
+          "score": 56.4,
+          "n": 5
         }
       ]
     },
@@ -9180,10 +9416,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 63.3
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 65.5
@@ -9323,6 +9555,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 50.0
         }
       ],
       "daily": [
@@ -9398,260 +9634,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 51.7,
-          "n": 4
-        }
-      ]
-    },
-    {
-      "key": "443060.KS",
-      "name": "HD현대마린솔루션",
-      "ticker": "443060",
-      "group_desc": "조선 기자재",
-      "sector": "조선",
-      "current_level": 229500.0,
-      "score": 50.0,
-      "zone": "neutral",
-      "label": "중립",
-      "total_posts": 0,
-      "greed_total": 0,
-      "fear_total": 0,
-      "greed_counts": {},
-      "fear_counts": {},
-      "hot_posts": 0,
-      "dropped_posts": 0,
-      "evidence": [],
-      "per_source": [
-        {
-          "key": "naver",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_krstock",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_stockus",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_neostock",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_jusik",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "arca",
-          "count": 0,
-          "error": "연속 실패로 건너뜀",
-          "unsupported": false
-        },
-        {
-          "key": "fmkorea",
-          "count": 0,
-          "error": "연속 실패로 건너뜀",
-          "unsupported": false
-        },
-        {
-          "key": "ppomppu",
-          "count": 0,
-          "error": "연결 실패",
-          "unsupported": false
-        }
-      ],
-      "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 62.5
-        },
-        {
-          "ts": "2026-09-04 08:45",
-          "score": 62.5
-        },
-        {
-          "ts": "2026-09-04 14:08",
-          "score": 62.5
-        },
-        {
-          "ts": "2026-09-04 18:56",
-          "score": 62.5
-        },
-        {
-          "ts": "2026-09-04 22:17",
-          "score": 62.5
-        },
-        {
-          "ts": "2026-09-05 03:58",
-          "score": 62.5
-        },
-        {
-          "ts": "2026-09-05 08:16",
-          "score": 62.5
-        },
-        {
-          "ts": "2026-09-05 13:21",
-          "score": 62.5
-        },
-        {
-          "ts": "2026-09-05 16:43",
-          "score": 62.5
-        },
-        {
-          "ts": "2026-09-05 20:12",
-          "score": 62.5
-        },
-        {
-          "ts": "2026-09-05 23:43",
-          "score": 62.5
-        },
-        {
-          "ts": "2026-09-06 04:03",
-          "score": 63.6
-        },
-        {
-          "ts": "2026-09-06 08:37",
-          "score": 63.6
-        },
-        {
-          "ts": "2026-09-06 13:31",
-          "score": 63.6
-        },
-        {
-          "ts": "2026-09-06 16:49",
-          "score": 63.6
-        },
-        {
-          "ts": "2026-09-06 20:17",
-          "score": 63.6
-        },
-        {
-          "ts": "2026-09-06 23:41",
-          "score": 63.6
-        },
-        {
-          "ts": "2026-09-07 04:03",
-          "score": 63.6
-        },
-        {
-          "ts": "2026-09-07 09:16",
-          "score": 63.6
-        },
-        {
-          "ts": "2026-09-07 15:42",
-          "score": 63.6
-        },
-        {
-          "ts": "2026-09-07 19:48",
-          "score": 63.6
-        },
-        {
-          "ts": "2026-09-07 22:43",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-08 04:04",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-08 08:49",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-08 14:19",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-08 19:22",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-08 22:30",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-09 04:11",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-09 11:05",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-09 16:23",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-09 20:48",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-09 23:59",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-10 04:09",
-          "score": 65.7
-        },
-        {
-          "ts": "2026-09-10 11:02",
-          "score": 50.0
-        },
-        {
-          "ts": "2026-09-10 16:12",
-          "score": 50.0
-        },
-        {
-          "ts": "2026-09-10 20:43",
-          "score": 50.0
-        }
-      ],
-      "daily": [
-        {
-          "date": "2026-09-04",
-          "score": 62.5,
+          "score": 51.4,
           "n": 5
-        },
-        {
-          "date": "2026-09-05",
-          "score": 62.5,
-          "n": 6
-        },
-        {
-          "date": "2026-09-06",
-          "score": 63.6,
-          "n": 6
-        },
-        {
-          "date": "2026-09-07",
-          "score": 64.0,
-          "n": 5
-        },
-        {
-          "date": "2026-09-08",
-          "score": 65.7,
-          "n": 5
-        },
-        {
-          "date": "2026-09-09",
-          "score": 65.7,
-          "n": 5
-        },
-        {
-          "date": "2026-09-10",
-          "score": 54.0,
-          "n": 4
         }
       ]
     },
@@ -9665,7 +9649,7 @@
       "score": 68.4,
       "zone": "greed",
       "label": "탐욕",
-      "total_posts": 41,
+      "total_posts": 40,
       "greed_total": 7,
       "fear_total": 0,
       "greed_counts": {
@@ -9782,7 +9766,7 @@
         },
         {
           "key": "dc_krstock",
-          "count": 4,
+          "count": 3,
           "error": null,
           "unsupported": false
         },
@@ -9824,10 +9808,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 48.2
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 48.6
@@ -9966,6 +9946,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 68.4
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 68.4
         }
       ],
@@ -10117,8 +10101,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 63.8,
-          "n": 4
+          "score": 64.7,
+          "n": 5
         }
       ]
     },
@@ -10244,10 +10228,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 46.9
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 42.9
@@ -10387,6 +10367,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 62.5
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 62.5
         }
       ],
       "daily": [
@@ -10457,8 +10441,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 63.2,
-          "n": 4
+          "score": 63.1,
+          "n": 5
         }
       ]
     },
@@ -10582,6 +10566,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 50.0
         }
       ],
       "daily": [
@@ -10597,8 +10585,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 49.6,
-          "n": 4
+          "score": 49.7,
+          "n": 5
         }
       ]
     },
@@ -10683,7 +10671,7 @@
             "풀매수"
           ],
           "fear": [],
-          "views": 53,
+          "views": 54,
           "votes": 0,
           "comments": null
         }
@@ -10739,10 +10727,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 43.9
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 40.5
@@ -10882,6 +10866,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 58.8
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 58.8
         }
       ],
       "daily": [
@@ -10942,8 +10930,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 59.5,
-          "n": 4
+          "score": 59.4,
+          "n": 5
         }
       ]
     },
@@ -11044,10 +11032,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 50.9
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 48.9
@@ -11186,6 +11170,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 62.5
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 62.5
         }
       ],
@@ -11337,8 +11325,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 60.0,
-          "n": 4
+          "score": 60.5,
+          "n": 5
         }
       ]
     },
@@ -11506,10 +11494,6 @@
       ],
       "history": [
         {
-          "ts": "2026-09-04 04:00",
-          "score": 50.8
-        },
-        {
           "ts": "2026-09-04 08:45",
           "score": 48.3
         },
@@ -11647,6 +11631,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 55.6
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 55.6
         }
       ],
@@ -11798,8 +11786,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 55.3,
-          "n": 4
+          "score": 55.4,
+          "n": 5
         }
       ]
     },
@@ -11971,6 +11959,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 50.0
         }
       ],
       "daily": [
@@ -11996,8 +11988,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 55.1,
-          "n": 4
+          "score": 54.1,
+          "n": 5
         }
       ]
     },
@@ -12085,10 +12077,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 21.7
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 19.6
@@ -12227,6 +12215,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 53.8
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 53.8
         }
       ],
@@ -12378,8 +12370,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 45.2,
-          "n": 4
+          "score": 46.9,
+          "n": 5
         }
       ]
     },
@@ -12575,6 +12567,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 55.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 55.0
         }
       ],
       "daily": [
@@ -12590,8 +12586,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 50.1,
-          "n": 4
+          "score": 51.1,
+          "n": 5
         }
       ]
     },
@@ -12664,10 +12660,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 51.9
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 51.9
@@ -12806,6 +12798,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 50.0
         }
       ],
@@ -12957,8 +12953,94 @@
         },
         {
           "date": "2026-09-10",
-          "score": 51.5,
-          "n": 4
+          "score": 51.2,
+          "n": 5
+        }
+      ]
+    },
+    {
+      "key": "432720.KQ",
+      "name": "퀄리타스반도체",
+      "ticker": "432720",
+      "group_desc": "반도체 IP/디자인",
+      "sector": "반도체",
+      "current_level": 10080.0,
+      "score": 50.0,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 3,
+      "greed_total": 0,
+      "fear_total": 0,
+      "greed_counts": {},
+      "fear_counts": {},
+      "hot_posts": 0,
+      "dropped_posts": 0,
+      "evidence": [],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_krstock",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_stockus",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": "연속 실패로 건너뜀",
+          "unsupported": false
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": "연속 실패로 건너뜀",
+          "unsupported": false
+        },
+        {
+          "key": "ppomppu",
+          "count": 3,
+          "error": null,
+          "unsupported": false
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-09-10 20:43",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 50.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-09-10",
+          "score": 50.0,
+          "n": 2
         }
       ]
     },
@@ -13031,10 +13113,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 52.9
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 51.5
@@ -13173,6 +13251,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 50.0
         }
       ],
@@ -13319,90 +13401,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 43.9,
-          "n": 4
-        }
-      ]
-    },
-    {
-      "key": "432720.KQ",
-      "name": "퀄리타스반도체",
-      "ticker": "432720",
-      "group_desc": "반도체 IP/디자인",
-      "sector": "반도체",
-      "current_level": 10080.0,
-      "score": 50.0,
-      "zone": "neutral",
-      "label": "중립",
-      "total_posts": 3,
-      "greed_total": 0,
-      "fear_total": 0,
-      "greed_counts": {},
-      "fear_counts": {},
-      "hot_posts": 0,
-      "dropped_posts": 0,
-      "evidence": [],
-      "per_source": [
-        {
-          "key": "naver",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_krstock",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_stockus",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_neostock",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_jusik",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "arca",
-          "count": 0,
-          "error": "연속 실패로 건너뜀",
-          "unsupported": false
-        },
-        {
-          "key": "fmkorea",
-          "count": 0,
-          "error": "연속 실패로 건너뜀",
-          "unsupported": false
-        },
-        {
-          "key": "ppomppu",
-          "count": 3,
-          "error": null,
-          "unsupported": false
-        }
-      ],
-      "history": [
-        {
-          "ts": "2026-09-10 20:43",
-          "score": 50.0
-        }
-      ],
-      "daily": [
-        {
-          "date": "2026-09-10",
-          "score": 50.0,
-          "n": 1
+          "score": 45.1,
+          "n": 5
         }
       ]
     },
@@ -13475,10 +13475,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 50.0
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 48.3
@@ -13618,6 +13614,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 50.0
         }
       ],
       "daily": [
@@ -13653,8 +13653,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 52.0,
-          "n": 4
+          "score": 51.6,
+          "n": 5
         }
       ]
     },
@@ -13756,10 +13756,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 31.0
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 30.0
@@ -13898,6 +13894,10 @@
         },
         {
           "ts": "2026-09-10 20:43",
+          "score": 40.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
           "score": 40.0
         }
       ],
@@ -14049,355 +14049,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 35.1,
-          "n": 4
-        }
-      ]
-    },
-    {
-      "key": "016360.KS",
-      "name": "삼성증권",
-      "ticker": "016360",
-      "group_desc": "증권",
-      "sector": "증권",
-      "current_level": 87400.0,
-      "score": 50.0,
-      "zone": "neutral",
-      "label": "중립",
-      "total_posts": 25,
-      "greed_total": 0,
-      "fear_total": 0,
-      "greed_counts": {},
-      "fear_counts": {},
-      "hot_posts": 2,
-      "dropped_posts": 1,
-      "evidence": [],
-      "per_source": [
-        {
-          "key": "naver",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_krstock",
-          "count": 1,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_stockus",
-          "count": 1,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_neostock",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "dc_jusik",
-          "count": 0,
-          "error": null,
-          "unsupported": false
-        },
-        {
-          "key": "arca",
-          "count": 0,
-          "error": "연속 실패로 건너뜀",
-          "unsupported": false
-        },
-        {
-          "key": "fmkorea",
-          "count": 0,
-          "error": "연속 실패로 건너뜀",
-          "unsupported": false
-        },
-        {
-          "key": "ppomppu",
-          "count": 23,
-          "error": null,
-          "unsupported": false
-        }
-      ],
-      "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 34.1
-        },
-        {
-          "ts": "2026-09-04 08:45",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-04 14:08",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-04 18:56",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-04 22:17",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-05 03:58",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-05 08:16",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-05 13:21",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-05 16:43",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-05 20:12",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-05 23:43",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-06 04:03",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-06 08:37",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-06 13:31",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-06 16:49",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-06 20:17",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-06 23:41",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-07 04:03",
-          "score": 37.2
-        },
-        {
-          "ts": "2026-09-07 09:16",
-          "score": 34.1
-        },
-        {
-          "ts": "2026-09-07 15:42",
-          "score": 34.1
-        },
-        {
-          "ts": "2026-09-07 19:48",
-          "score": 34.1
-        },
-        {
-          "ts": "2026-09-07 22:43",
-          "score": 34.1
-        },
-        {
-          "ts": "2026-09-08 04:04",
-          "score": 34.1
-        },
-        {
-          "ts": "2026-09-08 08:49",
-          "score": 38.7
-        },
-        {
-          "ts": "2026-09-08 14:19",
-          "score": 40.0
-        },
-        {
-          "ts": "2026-09-08 19:22",
-          "score": 40.0
-        },
-        {
-          "ts": "2026-09-08 22:30",
-          "score": 40.0
-        },
-        {
-          "ts": "2026-09-09 04:11",
-          "score": 41.4
-        },
-        {
-          "ts": "2026-09-09 11:05",
-          "score": 43.3
-        },
-        {
-          "ts": "2026-09-09 16:23",
-          "score": 43.3
-        },
-        {
-          "ts": "2026-09-09 20:48",
-          "score": 43.3
-        },
-        {
-          "ts": "2026-09-09 23:59",
-          "score": 41.4
-        },
-        {
-          "ts": "2026-09-10 04:09",
-          "score": 41.4
-        },
-        {
-          "ts": "2026-09-10 11:02",
-          "score": 50.0
-        },
-        {
-          "ts": "2026-09-10 16:12",
-          "score": 50.0
-        },
-        {
-          "ts": "2026-09-10 20:43",
-          "score": 50.0
-        }
-      ],
-      "daily": [
-        {
-          "date": "2026-08-16",
-          "score": 53.9,
-          "n": 12
-        },
-        {
-          "date": "2026-08-17",
-          "score": 53.6,
-          "n": 12
-        },
-        {
-          "date": "2026-08-18",
-          "score": 55.0,
-          "n": 12
-        },
-        {
-          "date": "2026-08-19",
-          "score": 54.8,
-          "n": 12
-        },
-        {
-          "date": "2026-08-20",
-          "score": 59.4,
-          "n": 12
-        },
-        {
-          "date": "2026-08-21",
-          "score": 58.7,
-          "n": 12
-        },
-        {
-          "date": "2026-08-22",
-          "score": 53.6,
-          "n": 12
-        },
-        {
-          "date": "2026-08-23",
-          "score": 53.2,
-          "n": 12
-        },
-        {
-          "date": "2026-08-24",
-          "score": 52.9,
-          "n": 12
-        },
-        {
-          "date": "2026-08-25",
-          "score": 45.8,
-          "n": 12
-        },
-        {
-          "date": "2026-08-26",
-          "score": 41.7,
-          "n": 11
-        },
-        {
-          "date": "2026-08-27",
-          "score": 41.0,
-          "n": 2
-        },
-        {
-          "date": "2026-08-28",
-          "score": 41.0,
-          "n": 2
-        },
-        {
-          "date": "2026-08-29",
-          "score": 41.0,
-          "n": 4
-        },
-        {
-          "date": "2026-08-30",
-          "score": 40.6,
+          "score": 36.1,
           "n": 5
-        },
-        {
-          "date": "2026-08-31",
-          "score": 38.3,
-          "n": 4
-        },
-        {
-          "date": "2026-09-01",
-          "score": 37.6,
-          "n": 5
-        },
-        {
-          "date": "2026-09-02",
-          "score": 39.0,
-          "n": 5
-        },
-        {
-          "date": "2026-09-03",
-          "score": 36.5,
-          "n": 5
-        },
-        {
-          "date": "2026-09-04",
-          "score": 36.6,
-          "n": 5
-        },
-        {
-          "date": "2026-09-05",
-          "score": 37.2,
-          "n": 6
-        },
-        {
-          "date": "2026-09-06",
-          "score": 37.2,
-          "n": 6
-        },
-        {
-          "date": "2026-09-07",
-          "score": 34.7,
-          "n": 5
-        },
-        {
-          "date": "2026-09-08",
-          "score": 38.6,
-          "n": 5
-        },
-        {
-          "date": "2026-09-09",
-          "score": 42.5,
-          "n": 5
-        },
-        {
-          "date": "2026-09-10",
-          "score": 47.8,
-          "n": 4
         }
       ]
     },
@@ -14679,6 +14332,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 40.5
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 40.5
         }
       ],
       "daily": [
@@ -14704,8 +14361,355 @@
         },
         {
           "date": "2026-09-10",
-          "score": 39.2,
+          "score": 39.5,
+          "n": 5
+        }
+      ]
+    },
+    {
+      "key": "016360.KS",
+      "name": "삼성증권",
+      "ticker": "016360",
+      "group_desc": "증권",
+      "sector": "증권",
+      "current_level": 87400.0,
+      "score": 50.0,
+      "zone": "neutral",
+      "label": "중립",
+      "total_posts": 25,
+      "greed_total": 0,
+      "fear_total": 0,
+      "greed_counts": {},
+      "fear_counts": {},
+      "hot_posts": 2,
+      "dropped_posts": 1,
+      "evidence": [],
+      "per_source": [
+        {
+          "key": "naver",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_krstock",
+          "count": 1,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_stockus",
+          "count": 1,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_neostock",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "dc_jusik",
+          "count": 0,
+          "error": null,
+          "unsupported": false
+        },
+        {
+          "key": "arca",
+          "count": 0,
+          "error": "연속 실패로 건너뜀",
+          "unsupported": false
+        },
+        {
+          "key": "fmkorea",
+          "count": 0,
+          "error": "연속 실패로 건너뜀",
+          "unsupported": false
+        },
+        {
+          "key": "ppomppu",
+          "count": 23,
+          "error": null,
+          "unsupported": false
+        }
+      ],
+      "history": [
+        {
+          "ts": "2026-09-04 08:45",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-04 14:08",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-04 18:56",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-04 22:17",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-05 03:58",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-05 08:16",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-05 13:21",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-05 16:43",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-05 20:12",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-05 23:43",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-06 04:03",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-06 08:37",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-06 13:31",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-06 16:49",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-06 20:17",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-06 23:41",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-07 04:03",
+          "score": 37.2
+        },
+        {
+          "ts": "2026-09-07 09:16",
+          "score": 34.1
+        },
+        {
+          "ts": "2026-09-07 15:42",
+          "score": 34.1
+        },
+        {
+          "ts": "2026-09-07 19:48",
+          "score": 34.1
+        },
+        {
+          "ts": "2026-09-07 22:43",
+          "score": 34.1
+        },
+        {
+          "ts": "2026-09-08 04:04",
+          "score": 34.1
+        },
+        {
+          "ts": "2026-09-08 08:49",
+          "score": 38.7
+        },
+        {
+          "ts": "2026-09-08 14:19",
+          "score": 40.0
+        },
+        {
+          "ts": "2026-09-08 19:22",
+          "score": 40.0
+        },
+        {
+          "ts": "2026-09-08 22:30",
+          "score": 40.0
+        },
+        {
+          "ts": "2026-09-09 04:11",
+          "score": 41.4
+        },
+        {
+          "ts": "2026-09-09 11:05",
+          "score": 43.3
+        },
+        {
+          "ts": "2026-09-09 16:23",
+          "score": 43.3
+        },
+        {
+          "ts": "2026-09-09 20:48",
+          "score": 43.3
+        },
+        {
+          "ts": "2026-09-09 23:59",
+          "score": 41.4
+        },
+        {
+          "ts": "2026-09-10 04:09",
+          "score": 41.4
+        },
+        {
+          "ts": "2026-09-10 11:02",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 16:12",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 20:43",
+          "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 50.0
+        }
+      ],
+      "daily": [
+        {
+          "date": "2026-08-16",
+          "score": 53.9,
+          "n": 12
+        },
+        {
+          "date": "2026-08-17",
+          "score": 53.6,
+          "n": 12
+        },
+        {
+          "date": "2026-08-18",
+          "score": 55.0,
+          "n": 12
+        },
+        {
+          "date": "2026-08-19",
+          "score": 54.8,
+          "n": 12
+        },
+        {
+          "date": "2026-08-20",
+          "score": 59.4,
+          "n": 12
+        },
+        {
+          "date": "2026-08-21",
+          "score": 58.7,
+          "n": 12
+        },
+        {
+          "date": "2026-08-22",
+          "score": 53.6,
+          "n": 12
+        },
+        {
+          "date": "2026-08-23",
+          "score": 53.2,
+          "n": 12
+        },
+        {
+          "date": "2026-08-24",
+          "score": 52.9,
+          "n": 12
+        },
+        {
+          "date": "2026-08-25",
+          "score": 45.8,
+          "n": 12
+        },
+        {
+          "date": "2026-08-26",
+          "score": 41.7,
+          "n": 11
+        },
+        {
+          "date": "2026-08-27",
+          "score": 41.0,
+          "n": 2
+        },
+        {
+          "date": "2026-08-28",
+          "score": 41.0,
+          "n": 2
+        },
+        {
+          "date": "2026-08-29",
+          "score": 41.0,
           "n": 4
+        },
+        {
+          "date": "2026-08-30",
+          "score": 40.6,
+          "n": 5
+        },
+        {
+          "date": "2026-08-31",
+          "score": 38.3,
+          "n": 4
+        },
+        {
+          "date": "2026-09-01",
+          "score": 37.6,
+          "n": 5
+        },
+        {
+          "date": "2026-09-02",
+          "score": 39.0,
+          "n": 5
+        },
+        {
+          "date": "2026-09-03",
+          "score": 36.5,
+          "n": 5
+        },
+        {
+          "date": "2026-09-04",
+          "score": 36.6,
+          "n": 5
+        },
+        {
+          "date": "2026-09-05",
+          "score": 37.2,
+          "n": 6
+        },
+        {
+          "date": "2026-09-06",
+          "score": 37.2,
+          "n": 6
+        },
+        {
+          "date": "2026-09-07",
+          "score": 34.7,
+          "n": 5
+        },
+        {
+          "date": "2026-09-08",
+          "score": 38.6,
+          "n": 5
+        },
+        {
+          "date": "2026-09-09",
+          "score": 42.5,
+          "n": 5
+        },
+        {
+          "date": "2026-09-10",
+          "score": 48.2,
+          "n": 5
         }
       ]
     },
@@ -14793,13 +14797,17 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 50.0
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 50.0
         }
       ],
       "daily": [
         {
           "date": "2026-09-10",
-          "score": 49.0,
-          "n": 4
+          "score": 49.2,
+          "n": 5
         }
       ]
     },
@@ -14813,7 +14821,7 @@
       "score": 46.2,
       "zone": "neutral",
       "label": "중립",
-      "total_posts": 16,
+      "total_posts": 17,
       "greed_total": 0,
       "fear_total": 1,
       "greed_counts": {},
@@ -14845,7 +14853,7 @@
         },
         {
           "key": "dc_krstock",
-          "count": 1,
+          "count": 2,
           "error": null,
           "unsupported": false
         },
@@ -14887,10 +14895,6 @@
         }
       ],
       "history": [
-        {
-          "ts": "2026-09-04 04:00",
-          "score": 70.6
-        },
         {
           "ts": "2026-09-04 08:45",
           "score": 70.6
@@ -15030,6 +15034,10 @@
         {
           "ts": "2026-09-10 20:43",
           "score": 46.2
+        },
+        {
+          "ts": "2026-09-10 23:55",
+          "score": 46.2
         }
       ],
       "daily": [
@@ -15065,8 +15073,8 @@
         },
         {
           "date": "2026-09-10",
-          "score": 50.0,
-          "n": 4
+          "score": 49.2,
+          "n": 5
         }
       ]
     }
